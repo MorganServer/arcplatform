@@ -13,6 +13,7 @@
 <p>
     Audit and Reporting Console
 </p>
+<img src="assets/images/logo.png" alt="">
     
 </body>
 </html>
