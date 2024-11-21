@@ -1,31 +1,42 @@
+/* Reset margins, padding, and ensure consistent box-sizing */
 * {
     margin: 0;
     padding: 0;
     box-sizing: border-box;
 }
 
+/* Header styles */
 .header {
     display: block;
 }
+
+/* Navigation list styles */
 .nav-list {
     display: flex;
     padding-top: 5px;
 }
+
+/* Navigation list item styles */
 .nav-list-item {
     display: flex;
     list-style-type: none;
     padding-right: 20px;
 }
+
+/* Navigation link styles */
 .nav-list-item-link {
     text-decoration: none;
     color: black;
     font-size: 20px;
 }
+
+/* Navigation link hover effect */
 .nav-list-item-link:hover {
     color: #2d87d1;
     border-bottom: 4px solid #2d87d1;
 }
 
+/* Page header styles */
 .page_header {
     background-color: black;
 }
