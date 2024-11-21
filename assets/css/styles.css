@@ -5,8 +5,8 @@
 .nav-list-item {
     list-style-type: none;
     padding-right: 20px;
-    color: black;
 }
 .nav-list-item-link {
     text-decoration: none;
+    color: black;
 }
