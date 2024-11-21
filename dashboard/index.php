@@ -39,6 +39,7 @@
 </div>
 
 
+<div class="content">
 
     <div class="row">
         <div class="card" style="width: 18rem;">
@@ -69,6 +70,8 @@
         </div>
     
     </div>
+
+</div>
 
 
 
