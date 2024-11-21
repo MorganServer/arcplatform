@@ -28,7 +28,7 @@
 
 <div class="page_header">
     <div class="left">
-        <h4>Dashboard</h4>
+        <h6>Dashboard</h6>
     </div>
     <div class="right">
         <p style="padding-right: 15px;">Welcome, Garrett Morgan</p>
@@ -39,7 +39,6 @@
 </div>
 
 
-<div class="content">
 
     <div class="row">
         <div class="card">
@@ -53,7 +52,7 @@
         </div>
     </div>
 
-</div>
+
 
 
     
