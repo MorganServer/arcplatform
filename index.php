@@ -9,7 +9,7 @@
 </head>
 <body>
 
-<div class="header" style="overflow: auto; margin-bottom: 10px;">
+<div class="header" style="overflow: auto; margin-bottom: 5px;">
     <div class="left" style="float: left;">
         <img src="assets/images/logo.png" width="250" alt="">
     </div>
