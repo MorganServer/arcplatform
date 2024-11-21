@@ -42,7 +42,7 @@
 <div class="content pt-5 d-flex">
 
     <div class="row mx-auto">
-        <div class="card me-3" style="width: 18rem;">
+        <div class="card me-5" style="width: 18rem;">
           <div class="card-body text-center">
             <p style="font-size: 35px;">
                 25
@@ -51,7 +51,7 @@
           </div>
         </div>
 
-        <div class="card me-3" style="width: 18rem;">
+        <div class="card me-5" style="width: 18rem;">
           <div class="card-body text-center">
             <p style="font-size: 35px;">
                 25
