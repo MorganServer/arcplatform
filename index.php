@@ -8,9 +8,9 @@
 </head>
 <body>
     <div class="login-container">
-        <img src="assets/images/login_logo.png" alt="">
         <div class="login-box">
             <h2>Login</h2>
+            <img src="assets/images/login_logo.png" width="150" alt="">
             <form>
                 <div class="form-group">
                     <label for="email">Email</label>
