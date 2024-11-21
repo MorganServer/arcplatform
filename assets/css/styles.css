@@ -58,7 +58,7 @@ html, body {
     justify-content: center;
     background-color: white;
     color: rgb(40, 40, 40); 
-    height: 100vh; 
+    height: 100vh/10; 
     width: 40px; 
     border-radius: 5px;
     text-decoration: none;
