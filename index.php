@@ -9,24 +9,25 @@
 </head>
 <body>
 
-<div class="header">
-    <div class="left" style="float: left;">
-        <img src="assets/images/logo.png" width="250" alt="">
-    </div>
-    <div class="right" style="float: right;">
-        <div class="nav">
-            <ul class="nav-list">
-                <li class="nav-list-item"><a class="nav-list-item-link" href="">Dashboard</a></li>
-                <li class="nav-list-item"><a class="nav-list-item-link" href="">Engagements</a></li>
-                <li class="nav-list-item"><a class="nav-list-item-link" href="">Clients</a></li>
-                <li class="nav-list-item"><a class="nav-list-item-link" href="">Settings</a></li>
-            </ul>
+    <div class="header">
+        <div class="left" style="float: left;">
+            <img src="assets/images/logo.png" width="250" alt="">
         </div>
+        <div class="right" style="float: right;">
+            <div class="nav">
+                <ul class="nav-list">
+                    <li class="nav-list-item"><a class="nav-list-item-link" href="">Dashboard</a></li>
+                    <li class="nav-list-item"><a class="nav-list-item-link" href="">Engagements</a></li>
+                    <li class="nav-list-item"><a class="nav-list-item-link" href="">Clients</a></li>
+                    <li class="nav-list-item"><a class="nav-list-item-link" href="">Settings</a></li>
+                </ul>
+            </div>
+        </div>
+
     </div>
+    <br>
 
-</div>
-
-<div class="page_header">
+    <div class="page_header">
         <div class="left" stlyle="float: left: padding-left: 15px;">
             <h4>
                 Dashboard
