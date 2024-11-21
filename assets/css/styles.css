@@ -32,6 +32,6 @@
 /* Page header styles */
 .page_header {
     background-color: black;
-    margin-left: 0;
-    margin-right: 0;
+    margin-left: 0 !important;
+    margin-right: 0 !important;
 }
