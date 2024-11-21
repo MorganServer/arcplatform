@@ -4,6 +4,7 @@
 }
 .nav-list {
     display: flex;
+    padding-top: 15px;
 }
 .nav-list-item {
     display: flex;
