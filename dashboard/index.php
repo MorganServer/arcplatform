@@ -46,7 +46,7 @@
             <p style="font-size: 25px;">
                 25
             </p>
-            <h5 class="card-title">Open Engagements</h5>
+            <h5 class="card-title text-secondary">Open Engagements</h5>
           </div>
         </div>
         <div class="card">
