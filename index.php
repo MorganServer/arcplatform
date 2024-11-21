@@ -13,7 +13,12 @@
     </div>
     <div class="right" style="float: right;">
         <div class="nav">
-            test
+            <ul class="nav-list" style="display: inline;">
+                <li class="nav-list-itme"><a class="nav-list-item-link" href="">Dashboard</a></li>
+                <li class="nav-list-itme"><a class="nav-list-item-link" href="">Engagements</a></li>
+                <li class="nav-list-itme"><a class="nav-list-item-link" href="">Clients</a></li>
+                <li class="nav-list-itme"><a class="nav-list-item-link" href="">Settings</a></li>
+            </ul>
         </div>
     </div>
 </div>
