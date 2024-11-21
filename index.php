@@ -4,7 +4,8 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="assets/css/styles.css?v=<?php echo time(); ?>">
-    <title>ARC Platform</title>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
+    <title>Dashbaord - ARC Platform</title>
 </head>
 <body>
 
@@ -22,6 +23,25 @@
             </ul>
         </div>
     </div>
+
+    <div class="page_header">
+        <div class="left" stlyle="float: left: padding-left: 15px;">
+            <h4>
+                Dashboard
+            </h4>
+        </div>
+        <div class="right" stlyle="float: right: padding-right: 15px;">
+            <p style="padding-right: 10px;">
+                Welcome, Garrett Morgan
+            </p>
+            <div>
+                <a href=""><i class="bi bi-info-circle-fill"></i></a>
+                <a href=""></a>
+                <a href=""></a>
+            </div>
+        </div>
+    </div>
+
 </div>
 
     
