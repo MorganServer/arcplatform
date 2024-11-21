@@ -32,6 +32,7 @@ html, body {
 }
 
 .page_header {
-    background-color: black;
+    background-color: rgb(40, 40, 40);
     padding: 10px; /* Example padding for the page header */
+    color: white;
 }
