@@ -4,6 +4,7 @@
 }
 .nav-list-item {
     list-style-type: none;
+    padding-right: 10px;
 }
 .nav-list-item-link {
     text-decoration: none;
