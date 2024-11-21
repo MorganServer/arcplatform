@@ -7,13 +7,17 @@
 </head>
 <body>
 
-<h1>
-    ARC
-</h1>
-<p>
-    Audit and Reporting Console
-</p>
-<img src="assets/images/logo.png" alt="">
+<div class="header">
+    <div class="left" style="float: left;">
+        <img src="assets/images/logo.png" wdith="150px;" alt="">
+    </div>
+    <div class="right" style="float: right;">
+        <div class="nav">
+            test
+        </div>
+    </div>
+</div>
+
     
 </body>
 </html>
