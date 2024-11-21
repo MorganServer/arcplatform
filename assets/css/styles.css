@@ -33,10 +33,37 @@ html, body {
 
 .page_header {
     background-color: rgb(40, 40, 40);
-    padding: 10px; /* Example padding for the page header */
+    padding: 0 15px; /* Remove vertical padding for full height alignment */
     color: white;
+    display: flex;
+    align-items: center; /* Vertically centers content */
+    justify-content: space-between; /* Separates left and right sections */
+    height: 60px; /* Example height, adjust as needed */
 }
+
+/* .left h4 {
+    margin: 0;
+    line-height: 60px; 
+}
+
+.right {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+} */
+
 .header-icon {
-    padding-right: 10px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
     background-color: white;
+    color: rgb(40, 40, 40); /* Icon color for contrast */
+    height: 100%; /* Match the full height of page_header */
+    width: 40px; /* Equal width for square icons */
+    border-radius: 5px; /* Optional: rounded corners */
+    text-decoration: none; /* Remove underline for links */
+}
+
+.header-icon i {
+    font-size: 20px; /* Adjust icon size */
 }
