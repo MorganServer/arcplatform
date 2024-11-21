@@ -11,7 +11,7 @@ html, body {
 /* Add padding/margin where needed for other elements */
 .nav-list {
     display: flex;
-    padding-top: 5px; /* Specific padding for the navigation list */
+    padding-top: 25px; /* Specific padding for the navigation list */
 }
 
 .nav-list-item {
