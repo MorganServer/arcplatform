@@ -42,7 +42,7 @@
 
     <div class="row">
         <div class="card" style="width: 18rem;">
-          <div class="card-body text-align-center">
+          <div class="card-body text-center">
             <p style="font-size: 25px;">
                 25
             </p>
