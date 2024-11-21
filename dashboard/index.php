@@ -39,10 +39,10 @@
 </div>
 
 
-<div class="content">
+<div class="content pt-5">
 
     <div class="row">
-        <div class="card" style="width: 18rem;">
+        <div class="card pe-3" style="width: 18rem;">
           <div class="card-body text-center">
             <p style="font-size: 35px;">
                 25
@@ -51,7 +51,7 @@
           </div>
         </div>
 
-        <div class="card" style="width: 18rem;">
+        <div class="card pe-3" style="width: 18rem;">
           <div class="card-body text-center">
             <p style="font-size: 35px;">
                 25
