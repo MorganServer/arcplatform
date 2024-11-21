@@ -38,6 +38,23 @@
 </div>
 
 
+<div class="content">
+
+    <div class="row">
+        <div class="card">
+            Open Engagements
+        </div>
+        <div class="card">
+            Open QA Comments
+        </div>
+        <div class="card">
+            Tasks
+        </div>
+    </div>
+
+</div>
+
+
     
 </body>
 </html>
