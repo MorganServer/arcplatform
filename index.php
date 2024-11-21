@@ -30,7 +30,7 @@
         <h4>Dashboard</h4>
     </div>
     <div class="right">
-        <p>Welcome, Garrett Morgan</p>
+        <p style="padding-right: 15px;">Welcome, Garrett Morgan</p>
         <a class="header-icon" href=""><i class="bi bi-info-circle-fill"></i></a>
         <a class="header-icon" href=""><i class="bi bi-lock-fill"></i></a>
         <a class="header-icon" href=""><i class="bi bi-box-arrow-right"></i></a>
