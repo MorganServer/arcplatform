@@ -25,17 +25,15 @@
     </div>
 </div>
 
-<div class="page_header" style="overflow: auto; padding: 10px 15px; border-top: 1px solid #ddd;">
-    <div class="left" style="float: left;">
-        <h4 style="margin: 0;">Dashboard</h4>
+<div class="page_header">
+    <div class="left">
+        <h4>Dashboard</h4>
     </div>
-    <div class="right" style="float: right; display: flex; align-items: center; gap: 10px;">
-        <p style="margin: 0; padding-right: 20px;">Welcome, Garrett Morgan</p>
-        <div>
-            <a class="header-icon" href=""><i class="bi bi-info-circle-fill"></i></a>
-            <a class="header-icon" href=""><i class="bi bi-lock-fill"></i></a>
-            <a class="header-icon" href=""><i class="bi bi-box-arrow-right"></i></a>
-        </div>
+    <div class="right">
+        <p>Welcome, Garrett Morgan</p>
+        <a class="header-icon" href=""><i class="bi bi-info-circle-fill"></i></a>
+        <a class="header-icon" href=""><i class="bi bi-lock-fill"></i></a>
+        <a class="header-icon" href=""><i class="bi bi-box-arrow-right"></i></a>
     </div>
 </div>
 
