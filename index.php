@@ -14,7 +14,7 @@
     </div>
     <div class="right" style="float: right;">
         <div class="nav">
-            <ul class="nav-list" style="display: inline;">
+            <ul class="nav-list">
                 <li class="nav-list-item"><a class="nav-list-item-link" href="">Dashboard</a></li>
                 <li class="nav-list-item"><a class="nav-list-item-link" href="">Engagements</a></li>
                 <li class="nav-list-item"><a class="nav-list-item-link" href="">Clients</a></li>

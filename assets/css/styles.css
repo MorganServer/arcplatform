@@ -1,3 +1,7 @@
+
+.nav-list {
+    display: inline-block;
+}
 .nav-list-item {
     list-style-type: none;
 }
