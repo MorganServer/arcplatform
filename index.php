@@ -15,7 +15,7 @@
     </div>
     <div class="right" style="float: right;">
         <div class="nav">
-            <ul class="nav-list" style="list-style: none; margin: 0; padding: 0; display: flex; gap: 15px;">
+            <ul class="nav-list">
                 <li class="nav-list-item"><a class="nav-list-item-link" href="">Dashboard</a></li>
                 <li class="nav-list-item"><a class="nav-list-item-link" href="">Engagements</a></li>
                 <li class="nav-list-item"><a class="nav-list-item-link" href="">Clients</a></li>
