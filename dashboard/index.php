@@ -49,12 +49,25 @@
             <h5 class="card-title text-secondary">Open Engagements</h5>
           </div>
         </div>
-        <div class="card">
-            Open QA Comments
+
+        <div class="card" style="width: 18rem;">
+          <div class="card-body text-center">
+            <p style="font-size: 35px;">
+                25
+            </p>
+            <h5 class="card-title text-secondary">Open QA Comments</h5>
+          </div>
         </div>
-        <div class="card">
-            Tasks
+
+        <div class="card" style="width: 18rem;">
+          <div class="card-body text-center">
+            <p style="font-size: 35px;">
+                25
+            </p>
+            <h5 class="card-title text-secondary">Tasks</h5>
+          </div>
         </div>
+    
     </div>
 
 
