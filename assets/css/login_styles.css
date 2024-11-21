@@ -42,6 +42,7 @@ body {
     color: #333;
     margin-top: -20px;
     background-color: #256ba8;
+    border-radius: 0 15px 15px 0;
 }
 
 /* Form styling */
