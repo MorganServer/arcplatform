@@ -43,7 +43,7 @@
     <div class="row">
         <div class="card" style="width: 18rem;">
           <div class="card-body text-center">
-            <p style="font-size: 25px;">
+            <p style="font-size: 35px;">
                 25
             </p>
             <h5 class="card-title text-secondary">Open Engagements</h5>
