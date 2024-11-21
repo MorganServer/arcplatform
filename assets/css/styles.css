@@ -1,37 +1,37 @@
-/* Header styles */
-.header {
-    display: block;
+html, body {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
 }
 
-/* Navigation list styles */
+* {
+    box-sizing: border-box;
+}
+
+/* Add padding/margin where needed for other elements */
 .nav-list {
     display: flex;
-    padding-top: 5px;
+    padding-top: 5px; /* Specific padding for the navigation list */
 }
 
-/* Navigation list item styles */
 .nav-list-item {
     display: flex;
     list-style-type: none;
-    padding-right: 20px;
+    padding-right: 20px; /* Keep individual padding */
 }
 
-/* Navigation link styles */
 .nav-list-item-link {
     text-decoration: none;
     color: black;
     font-size: 20px;
 }
 
-/* Navigation link hover effect */
 .nav-list-item-link:hover {
     color: #2d87d1;
     border-bottom: 4px solid #2d87d1;
 }
 
-/* Page header styles */
 .page_header {
     background-color: black;
-    margin-left: 0 !important;
-    margin-right: 0 !important;
+    padding: 10px; /* Example padding for the page header */
 }
