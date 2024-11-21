@@ -36,3 +36,7 @@ html, body {
     padding: 10px; /* Example padding for the page header */
     color: white;
 }
+.header-icon {
+    padding-right: 10px;
+    background-color: white;
+}

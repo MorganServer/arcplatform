@@ -30,11 +30,11 @@
         <h4 style="margin: 0;">Dashboard</h4>
     </div>
     <div class="right" style="float: right; display: flex; align-items: center; gap: 10px;">
-        <p style="margin: 0; padding-right: 10px;">Welcome, Garrett Morgan</p>
+        <p style="margin: 0; padding-right: 20px;">Welcome, Garrett Morgan</p>
         <div>
-            <a href=""><i class="bi bi-info-circle-fill"></i></a>
-            <a href=""><i class="bi bi-lock-fill"></i></a>
-            <a href=""><i class="bi bi-box-arrow-right"></i></a>
+            <a class="header-icon" href=""><i class="bi bi-info-circle-fill"></i></a>
+            <a class="header-icon" href=""><i class="bi bi-lock-fill"></i></a>
+            <a class="header-icon" href=""><i class="bi bi-box-arrow-right"></i></a>
         </div>
     </div>
 </div>
