@@ -33,8 +33,8 @@
         <p style="margin: 0; padding-right: 10px;">Welcome, Garrett Morgan</p>
         <div>
             <a href=""><i class="bi bi-info-circle-fill"></i></a>
-            <a href=""></a>
-            <a href=""></a>
+            <a href=""><i class="bi bi-lock-fill"></i></a>
+            <a href=""><i class="bi bi-box-arrow-right"></i></a>
         </div>
     </div>
 </div>
