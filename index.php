@@ -9,7 +9,7 @@
 
 <div class="header">
     <div class="left" style="float: left;">
-        <img src="assets/images/logo.png" width="200" alt="">
+        <img src="assets/images/logo.png" width="250" alt="">
     </div>
     <div class="right" style="float: right;">
         <div class="nav">
