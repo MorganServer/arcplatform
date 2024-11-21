@@ -20,3 +20,7 @@
     color: #2d87d1;
     border-bottom: 4px solid #2d87d1;
 }
+
+.page_header {
+    background-color: black;
+}
