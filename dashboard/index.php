@@ -10,7 +10,7 @@
 <body>
 
 <div class="header" style="overflow: auto; margin-bottom: 5px;">
-    <div style="float: left;">
+    <div style="float: left; padding-left: 20px;">
         <img src="../assets/images/logo.png" width="250" alt="">
     </div>
     <div style="float: right;">

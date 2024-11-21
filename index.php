@@ -23,7 +23,7 @@
                 <button type="submit" class="login-button">Login</button>
                 <div class="extra-links">
                     <a href="#">Forgot Password?</a>
-                    <a href="#">Create an Account</a>
+                    <!-- <a href="#">Create an Account</a> -->
                 </div>
             </form>
         </div>
