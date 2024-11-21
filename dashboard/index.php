@@ -39,9 +39,9 @@
 </div>
 
 
-<div class="content pt-5">
+<div class="content pt-5 mx-auto">
 
-    <div class="row mx-auto">
+    <div class="row ">
         <div class="card me-3" style="width: 18rem;">
           <div class="card-body text-center">
             <p style="font-size: 35px;">
