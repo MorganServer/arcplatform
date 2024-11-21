@@ -24,7 +24,9 @@
         </div>
     </div>
 
-    <div class="page_header">
+</div>
+
+<div class="page_header">
         <div class="left" stlyle="float: left: padding-left: 15px;">
             <h4>
                 Dashboard
@@ -41,8 +43,6 @@
             </div>
         </div>
     </div>
-
-</div>
 
     
 </body>
