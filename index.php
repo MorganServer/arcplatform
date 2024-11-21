@@ -10,10 +10,10 @@
 <body>
 
 <div class="header" style="overflow: auto; margin-bottom: 5px;">
-    <div class="left" style="float: left;">
+    <div style="float: left;">
         <img src="assets/images/logo.png" width="250" alt="">
     </div>
-    <div class="right" style="float: right;">
+    <div style="float: right;">
         <div class="nav">
             <ul class="nav-list">
                 <li class="nav-list-item"><a class="nav-list-item-link" href="">Dashboard</a></li>
