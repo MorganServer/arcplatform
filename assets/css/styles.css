@@ -58,7 +58,7 @@ html, body {
     justify-content: center;
     background-color: pink;
     color: rgb(40, 40, 40); 
-    height: vh; 
+    height: 5vh; 
     width: 40px; 
     text-decoration: none;
 }
