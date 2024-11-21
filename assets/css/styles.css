@@ -58,9 +58,8 @@ html, body {
     justify-content: center;
     background-color: pink;
     color: rgb(40, 40, 40); 
-    height: 5vh; 
+    height: vh; 
     width: 40px; 
-    border-radius: 5px;
     text-decoration: none;
 }
 
