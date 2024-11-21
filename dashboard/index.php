@@ -42,7 +42,9 @@
 
     <div class="row">
         <div class="card">
-            Open Engagements
+            <div class="card-body">
+                Open Engagements
+            </div>
         </div>
         <div class="card">
             Open QA Comments
