@@ -193,7 +193,7 @@ body {
   .progress-bar {
     transition: stroke-dashoffset 0.3s ease;
   }
-  .progress-bar svg {
+  .progress-bar circle {
     transform: rotate(-90deg);
   }
   
