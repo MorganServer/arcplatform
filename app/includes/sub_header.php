@@ -8,7 +8,7 @@ $pageName = ucfirst($currentDirectory);
 
 <div class="page_header">
     <div class="left">
-        <h6><?php echo $pageName; ?></h6>
+        <h5><?php echo $pageName; ?></h5>
     </div>
     <div class="right">
         <p style="padding-right: 15px;">Welcome, <?php echo $_SESSION['full_name']; ?></p>
