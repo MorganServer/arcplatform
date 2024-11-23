@@ -66,10 +66,10 @@ redirectIfNotLoggedIn();
                     <?php echo $off_client_name; ?> - <?php echo $off_year; ?> <?php echo $off_engagement_type; ?>
                 </div>
                 <div class="audit-period">
-
+                    <strong>Audit Period: </strong><?php echo $off_report_start; ?> - <?php echo $off_report_end; ?>
                 </div>
                 <div class="complete-button">
-
+                    completed
                 </div>
             </div>
 
