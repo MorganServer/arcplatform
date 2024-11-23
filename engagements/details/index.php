@@ -94,7 +94,7 @@ redirectIfNotLoggedIn();
                 </div>
             </div>
 
-            <div class="mt-5"></div>
+            <div class="mt-3"></div>
 
             <div class="card-container">
                 <div class="card" style="width: 20rem;">
