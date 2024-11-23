@@ -219,11 +219,8 @@ redirectIfNotLoggedIn();
             </div>
             <div class="comment_content_table" style="border-radius: 15px; background-color: white;">
 
-            <form style="padding: 10px;">
-              <div class="mb-3">
+            <form style="padding: 20px;">
                 <input type="text" class="form-control" id="search_bar" aria-describedby="search_bar">
-              </div>
-              <!-- <button type="submit" class="btn btn-primary">Submit</button> -->
             </form>
 
 
