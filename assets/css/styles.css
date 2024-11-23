@@ -169,13 +169,13 @@ body {
     padding: 2.5px;
     width: 50%;
 }
-.complete-comments i {
+.completed-comments i {
     background-color: blue;
     border-radius: 100%;
     padding: 2.5px;
     width: 50%;
 }
-.complete-status i {
+.completed-status i {
     background-color: blue;
     border-radius: 100%;
     padding: 2.5px;
