@@ -3,32 +3,17 @@
 function logoutUser($conn)
 {
     if (isset($_GET['logout']) && $_GET['logout'] == 1) {
-        if (isset($_SESSION['email'])) {
-            // Sanitize email input
-            $email = $conn->real_escape_string($_SESSION['email']);
-            
-            // Update the logged_in status in the database
-            $sql = "UPDATE users SET logged_in = 0 WHERE email = '$email'";
-            
-            if ($conn->query($sql)) {
-                // Clear session data
-                session_unset();
-                session_destroy();
-                
-                // Redirect to login page
-                header("Location: " . BASE_URL . "/");
-                exit;
-            } else {
-                // Log error for debugging purposes
-                error_log("Query Error: " . $conn->error . " - SQL: " . $sql);
-                echo "Error logging out. Please try again later.";
-                exit;
-            }
-        } else {
-            // Handle missing session email
-            header("Location: " . BASE_URL . "/");
-            exit;
-        }
+        // Update the logged_in status to 0 in the database
+        $email = $_SESSION['email']; // Assuming 'username' is the column where the username is stored in your users table
+        $sql = "UPDATE users SET logged_in='0' WHERE email='$email'";
+        mysqli_query($conn, $sql); // <-- Added semicolon here
+        
+        // Destroy the session and redirect to the login page
+        session_destroy();
+        header("Location: " . BASE_URL);
+        exit; // Prevent further execution
     }
 }
+
+// END LOGOUT
 ?>
