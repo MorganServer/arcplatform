@@ -126,8 +126,8 @@ body {
 }
 
 .circle {
-    width: 40px;
-    height: 40px;
+    width: 36px;
+    height: 36px;
     background-color: #43454b; /* Circle background color */
     color: white;
     font-size: 14px;
