@@ -163,3 +163,8 @@ body {
     padding: 2.5px;
 }
 
+.followup-comments i {
+    background-color: blue;
+    border-radius: 100%;
+    padding: 2.5px;
+}
