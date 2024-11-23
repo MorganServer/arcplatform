@@ -34,7 +34,7 @@ redirectIfNotLoggedIn();
 
 
 
-    <div class="container" style="">
+    <div class="container mx-auto" style="">
 
             <div class="mt-4"></div>
 
