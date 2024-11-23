@@ -143,7 +143,7 @@ body {
 
 .name-bg {
     background-color: #e8e8e8; /* Match circle color */
-    padding: 8.5px 8px; /* Add padding for text inside */
+    padding: 8.5px 10px; /* Add padding for text inside */
     border-radius: 0 20px 20px 0; /* Rounded corners on the right side */
     z-index: 0; /* Ensure it's below the circle */
     display: flex;
