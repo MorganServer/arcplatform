@@ -240,6 +240,8 @@ redirectIfNotLoggedIn();
                     <th></th>
                     <th scope="col">ID</th>
                     <th scope="col">Reference</th>
+                    <th scope="col">Control</th>
+
                     <th scope="col">Comment By</th>
                     <th scope="col">Status</th>
                     <th style="width: 100px; text-align: center;">View</th>
@@ -266,6 +268,7 @@ redirectIfNotLoggedIn();
                                 $engagement_id          = $row['engagement_id'];
                                 $control_ref            = $row['control_ref'];
                                 $comment_by             = $row['comment_by'];
+                                $control                = $row['control'];
                                 $status                 = $row['status'];
 
                   
@@ -281,6 +284,7 @@ redirectIfNotLoggedIn();
                     <td></td>
                     <th scope="row"><?php echo $idno; ?></th>
                     <td><?php echo $control_ref ? $control_ref : '-'; ?></td>
+                    <td><?php echo $control ? $control : '-'; ?></td>
                     <td><?php echo $comment_by ? $comment_by : '-'; ?></td>
                     <td><?php echo $status ? $status : '-'; ?></td>
                     <!-- <td><?php //echo $status ? $status : '-'; ?></td> -->
