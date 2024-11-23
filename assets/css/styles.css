@@ -148,7 +148,7 @@ body {
     z-index: 0; /* Ensure it's below the circle */
     display: flex;
     align-items: center;
-    padding-left: 20px;
+    padding-left: 30px;
 }
 
 .name {
