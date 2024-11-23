@@ -248,7 +248,7 @@ function updateProgressCircle(percent) {
 }
 
 // Example usage:
-updateProgressCircle(65); // Update to 75% progress
+updateProgressCircle(<?php echo $percentage_completed; ?>); // Update to 75% progress
 </script>
 
 </body>
