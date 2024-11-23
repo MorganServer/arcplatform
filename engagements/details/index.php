@@ -32,15 +32,8 @@ redirectIfNotLoggedIn();
     <?php include(ROOT_PATH . "/app/includes/header.php"); ?>
     <?php include(ROOT_PATH . "/app/includes/sub_header.php"); ?>
 
-    <!-- main-container -->
-        <div class="container" style="padding: 0 5px 0 5px;">
-            <h2 class="mt-4">
-                Engagement Details
-            </h2>
-            <hr>
-
-            <!-- php code for getting asset details -->
-            <?php
+    <!-- php code for getting asset details -->
+    <?php
             $id = $_GET['id'];
             $off_sql = "SELECT * FROM engagement WHERE engagement_id = $id";
             $off_result = mysqli_query($conn, $off_sql);
@@ -58,6 +51,13 @@ redirectIfNotLoggedIn();
             // }}
             ?>
         <!-- end php code for getting asset details -->
+
+    <!-- main-container -->
+        <div class="container">
+            <a href=""><i class="bi bi-arrow-left"></i>&nbsp; Back to Engagements</a>
+            <hr>
+
+            
 
         <?php echo $off_client_name; ?>
 
