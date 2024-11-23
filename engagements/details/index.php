@@ -303,8 +303,8 @@ redirectIfNotLoggedIn();
         $modalsql = "SELECT * FROM qa_comments WHERE qa_id = '$id' ORDER BY qa_updated DESC LIMIT $limit OFFSET $offset";
         $modalresult = mysqli_query($conn, $modalsql);
         if($modalresult) {
-            $num_rows = mysqli_num_rows($modalresult);
-            if($num_rows > 0) {
+            $mnum_rows = mysqli_num_rows($modalresult);
+            if($mnum_rows > 0) {
                 while ($mrow = mysqli_fetch_assoc($modalresult)) {
                     $mid                     = $mrow['qa_id'];
                     $midno                   = $mrow['idno'];
