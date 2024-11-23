@@ -137,45 +137,44 @@ redirectIfNotLoggedIn();
                     <h5 class="card-title">Engagement Summary <span class="text-secondary" style="font-size: 12px;">(QA Comments)</span></h5>
                     <div class="mt-5"></div>
                     <p class="card-text">
-                        <div class="summary-content d-flex justify-content-between">
-                            <div class="new-comments d-flex flex-column text-center">
-                                <i class="bi bi-circle"></i>
-                                <div class="pt-1"></div>
-                                New
-                                <br>
-                                <div class="pt-1"></div>
-                                <strong>22</strong>
-                            </div>
-                            <div class="followup-comments d-flex flex-column text-center">
-                                <i class="bi bi-clock mx-auto"></i>
-                                <div class="pt-1"></div>
-                                Follow-Up
-                                <br>
-                                <div class="pt-1"></div>
-                                <strong>04</strong>
-                            </div>
-                            <div class="completed-comments d-flex flex-column text-center">
-                                <i class="bi bi-check-lg mx-auto"></i>
-                                <div class="pt-1"></div>
-                                Completed
-                                <br>
-                                <div class="pt-1"></div>
-                                <strong>05</strong>
-                            </div>
-                            <div class="completed-status d-flex flex-column text-center">
-                                <!-- <i class="bi bi-check-lg mx-auto"></i>
-                                completed status -->
-                                <div class="progress-circle">
-                                  <svg width="120" height="120" viewBox="0 0 120 120">
+                    <div class="summary-content d-flex justify-content-between align-items-center">
+                        <div class="new-comments d-flex flex-column text-center">
+                            <i class="bi bi-circle"></i>
+                            <div class="pt-1"></div>
+                            New
+                            <br>
+                            <div class="pt-1"></div>
+                            <strong>22</strong>
+                        </div>
+                        <div class="followup-comments d-flex flex-column text-center">
+                            <i class="bi bi-clock mx-auto"></i>
+                            <div class="pt-1"></div>
+                            Follow-Up
+                            <br>
+                            <div class="pt-1"></div>
+                            <strong>04</strong>
+                        </div>
+                        <div class="completed-comments d-flex flex-column text-center">
+                            <i class="bi bi-check-lg mx-auto"></i>
+                            <div class="pt-1"></div>
+                            Completed
+                            <br>
+                            <div class="pt-1"></div>
+                            <strong>05</strong>
+                        </div>
+                        <div class="completed-status d-flex flex-column text-center">
+                            <div class="progress-circle">
+                                <svg width="120" height="120" viewBox="0 0 120 120">
                                     <!-- Background Circle -->
                                     <circle cx="60" cy="60" r="54" stroke="#e6e6e6" stroke-width="12" fill="none"></circle>
                                     <!-- Progress Circle -->
                                     <circle class="progress-bar" cx="60" cy="60" r="54" stroke="#007bff" stroke-width="12" fill="none" stroke-dasharray="339.292" stroke-dashoffset="339.292"></circle>
-                                  </svg>
-                                  <div class="progress-text">75%</div>
-                                </div>
+                                </svg>
+                                <div class="progress-text">75%</div>
                             </div>
                         </div>
+                    </div>
+
                     </p>
                   </div>
                 </div>
