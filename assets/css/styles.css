@@ -119,17 +119,16 @@ body {
   }
 
 
+
   .manager-info {
     display: flex;
     align-items: center;
-    gap: 10px; /* Space between the circle and name */
-    
 }
 
 .circle {
     width: 40px;
     height: 40px;
-    background-color: #007bff; /* Adjust to your preferred color */
+    background-color: #007bff; /* Circle background color */
     color: white;
     font-size: 16px;
     font-weight: bold;
@@ -138,11 +137,22 @@ body {
     justify-content: center;
     border-radius: 50%; /* Makes it a circle */
     text-transform: uppercase; /* Ensures initials are uppercase */
+    margin-right: -5px; /* Slight overlap to connect with the name background */
+    z-index: 1; /* Ensure circle is above the name background */
+}
+
+.name-bg {
+    background-color: #007bff; /* Match circle color */
+    padding: 10px 15px; /* Add padding for text inside */
+    border-radius: 0 20px 20px 0; /* Rounded corners on the right side */
+    z-index: 0; /* Ensure it's below the circle */
+    display: flex;
+    align-items: center;
 }
 
 .name {
     font-size: 16px;
-    color: #333; /* Adjust text color */
-    background-color: #aeaeae;
-    padding: 5px;
+    color: white; /* Text color */
+    font-weight: bold;
 }
+

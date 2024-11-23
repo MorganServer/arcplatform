@@ -101,7 +101,9 @@ redirectIfNotLoggedIn();
                     <p class="card-text">
                         <div class="manager-info">
                             <div class="circle"><?php echo htmlspecialchars($initials); ?></div>
-                            <span class="name"><?php echo htmlspecialchars($off_manager); ?></span>
+                            <div class="name-bg">
+                                <span class="name"><?php echo htmlspecialchars($off_manager); ?></span>
+                            </div>
                         </div>
                         <?php //echo $off_manager; ?>
                         <?php echo $off_senior; ?>
