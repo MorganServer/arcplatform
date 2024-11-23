@@ -11,7 +11,11 @@ html, body {
     background-color: white !important;
 }
 
-body, .container {
+body {
+    background-color: #f2f2f2 !important;
+}
+
+.container {
     background-color: #f2f2f2 !important;
 }
 
