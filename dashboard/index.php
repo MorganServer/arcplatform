@@ -4,13 +4,14 @@ require_once "../app/database/connection.php";
 require_once "../path.php";
 session_start();
 
-logoutUser($conn);
+
 
 $files = glob("app/functions/*.php");
 foreach ($files as $file) {
     require_once $file;
 }
 
+logoutUser($conn);
 
 ?>
 <!DOCTYPE html>
