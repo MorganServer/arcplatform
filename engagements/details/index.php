@@ -234,7 +234,7 @@ redirectIfNotLoggedIn();
             </form>
 
 
-            <table class="table-secondary">
+            <table class="table table-secondary">
             <thead style="">
                 <tr>
                     <th></th>
