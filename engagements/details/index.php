@@ -222,9 +222,9 @@ redirectIfNotLoggedIn();
             <thead style="bg-dark text-white">
                 <tr>
                     <th scope="col">ID</th>
-                    <th scope="col">Client</th>
-                    <th scope="col">Year</th>
-                    <th scope="col">Type</th>
+                    <th scope="col">Reference</th>
+                    <th scope="col">Comment By</th>
+                    <th scope="col">Status</th>
                     <th style="width: 100px; text-align: center;">View</th>
                     <th style="width: 100px; text-align: center;">Edit</th>
                     <th style="width: 100px; text-align: center;">Delete</th>
