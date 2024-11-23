@@ -44,7 +44,7 @@ redirectIfNotLoggedIn();
                 <tr>
                     <th scope="col">ID</th>
                     <th scope="col">Name</th>
-                    <th scope="col">Total Number of Engagements</th>
+                    <th scope="col">Number of Engagements</th>
                     <th style="width: 100px; text-align: center;">View</th>
                     <th style="width: 100px; text-align: center;">Edit</th>
                     <th style="width: 100px; text-align: center;">Delete</th>
