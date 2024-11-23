@@ -220,7 +220,7 @@ redirectIfNotLoggedIn();
             <div class="comment_content_table" style="border-radius: 15px; background-color: white;">
 
             <form style="padding: 20px;">
-                <input type="text" class="form-control" id="search_bar" aria-describedby="search_bar">
+                <input type="text" class="form-control" id="search_bar" placeholder="Search QA Comment...">
             </form>
 
 
