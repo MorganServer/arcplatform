@@ -207,7 +207,7 @@ function updateProgressCircle(percent) {
 }
 
 // Example usage:
-updateProgressCircle(75); // Update to 75% progress
+updateProgressCircle(65); // Update to 75% progress
 </script>
 
 </body>
