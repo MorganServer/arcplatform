@@ -39,6 +39,7 @@ html, body {
     align-items: center;
     justify-content: space-between; 
     height: 60px; 
+    border-bottom: 4px solid #2d87d1;
 }
 
 .left h6{

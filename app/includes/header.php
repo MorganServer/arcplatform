@@ -5,10 +5,10 @@
     <div style="float: right;">
         <div class="nav">
             <ul class="nav-list">
-                <li class="nav-list-item"><a class="nav-list-item-link" href="">Dashboard</a></li>
-                <li class="nav-list-item"><a class="nav-list-item-link" href="">Engagements</a></li>
-                <li class="nav-list-item"><a class="nav-list-item-link" href="">Clients</a></li>
-                <li class="nav-list-item"><a class="nav-list-item-link" href="">Settings</a></li>
+                <li class="nav-list-item"><a class="nav-list-item-link" href="<?php BASE_URL; ?>/">Dashboard</a></li>
+                <li class="nav-list-item"><a class="nav-list-item-link" href="<?php BASE_URL; ?>/engagements">Engagements</a></li>
+                <li class="nav-list-item"><a class="nav-list-item-link" href="<?php BASE_URL; ?>/clients">Clients</a></li>
+                <li class="nav-list-item"><a class="nav-list-item-link" href="<?php BASE_URL; ?>/settings">Settings</a></li>
             </ul>
         </div>
     </div>
