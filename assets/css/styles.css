@@ -185,14 +185,14 @@ body {
     width: 25%;
 }
 
-.progress-circle {
+/* .progress-circle {
     position: relative;
     display: inline-block;
   }
   
   .progress-bar {
     transition: stroke-dashoffset 0.3s ease;
-    transform: rotate(-90deg); /* Rotate to start from the top */
+    transform: rotate(-90deg); 
   }
   
   .progress-text {
@@ -203,5 +203,40 @@ body {
     font-size: 20px;
     font-weight: bold;
     color: #333;
+  } */
+
+  .circle-progress {
+    width: 120px;
+    height: 120px;
+    position: relative;
+  }
+  
+  .circle-progress svg {
+    transform: rotate(-90deg); /* Rotate so the circle starts from the top */
+  }
+  
+  .circle-progress .background-circle {
+    fill: none;
+    stroke: #e6e6e6;
+    stroke-width: 12;
+  }
+  
+  .circle-progress .progress-circle {
+    fill: none;
+    stroke: #007bff;
+    stroke-width: 12;
+    stroke-dasharray: 339.292; /* Circumference of the circle (2 * π * radius) */
+    stroke-dashoffset: 0; /* Initially set to 0 to fill the circle */
+    transition: stroke-dashoffset 1s ease;
+  }
+
+  .circle-progress .percentage-text {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    font-size: 20px;
+    font-weight: bold;
+    color: #007bff;
   }
   
