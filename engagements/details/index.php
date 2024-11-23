@@ -163,8 +163,17 @@ redirectIfNotLoggedIn();
                                 <strong>05</strong>
                             </div>
                             <div class="completed-status d-flex flex-column text-center">
-                                <i class="bi bi-check-lg mx-auto"></i>
-                                completed status
+                                <!-- <i class="bi bi-check-lg mx-auto"></i>
+                                completed status -->
+                                <div class="progress-circle">
+                                  <svg width="120" height="120" viewBox="0 0 120 120">
+                                    <!-- Background Circle -->
+                                    <circle cx="60" cy="60" r="54" stroke="#e6e6e6" stroke-width="12" fill="none"></circle>
+                                    <!-- Progress Circle -->
+                                    <circle class="progress-bar" cx="60" cy="60" r="54" stroke="#007bff" stroke-width="12" fill="none" stroke-dasharray="339.292" stroke-dashoffset="339.292"></circle>
+                                  </svg>
+                                  <div class="progress-text">75%</div>
+                                </div>
                             </div>
                         </div>
                     </p>
