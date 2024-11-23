@@ -142,7 +142,7 @@ redirectIfNotLoggedIn();
                                 new
                             </div>
                             <div class="followup-comments d-flex flex-column text-center">
-                                <i class="bi bi-clock"></i>
+                                <i class="bi bi-clock mx-auto"></i>
                                 followup
                             </div>
                             <div class="completed-comments d-flex flex-column text-center">
