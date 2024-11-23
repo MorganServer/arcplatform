@@ -214,7 +214,7 @@ body {
 }
 
 thead {
-    background-color: #343a40; /* Dark background */
+    background-color: #343a40 !important; /* Dark background */
     color: white;             /* White text */
 }
 
