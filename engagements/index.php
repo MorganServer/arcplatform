@@ -42,58 +42,56 @@ redirectIfNotLoggedIn();
             <table class="table">
             <thead>
                 <tr>
-                <th scope="col">Tag No</th>
-                <th scope="col">Asset Name</th>
-                <th scope="col">Location</th>
-                <th scope="col">Next Audit</th>
-                <th scope="col">Status</th>
+                <th scope="col">ID</th>
+                <th scope="col">Client</th>
+                <th scope="col">Type</th>
+                <!-- <th scope="col"></th> -->
+                <!-- <th scope="col">Status</th> -->
                 <th scope="col">Actions</th>
                 </tr>
             </thead>
             <tbody>
                 <?php
-                    // Pagination variables
-                    // $limit = 10; 
-                    // $page = isset($_GET['page']) ? $_GET['page'] : 1;
-                    // $offset = ($page - 1) * $limit;
+                    Pagination variables
+                    $limit = 10; 
+                    $page = isset($_GET['page']) ? $_GET['page'] : 1;
+                    $offset = ($page - 1) * $limit;
                     
-                    // $sql = "SELECT * FROM assets WHERE asset_type = 'Computer' ORDER BY asset_created DESC LIMIT $limit OFFSET $offset";
-                    // $result = mysqli_query($conn, $sql);
-                    // if($result) {
-                    //     $num_rows = mysqli_num_rows($result);
-                    //     if($num_rows > 0) {
-                    //         while ($row = mysqli_fetch_assoc($result)) {
-                    //             $id                     = $row['asset_id'];
-                    //             $idno                   = $row['idno'];
-                    //             $status                 = $row['status'];
-                    //             $asset_name             = $row['asset_name'];
-                    //             $asset_tag_no           = $row['asset_tag_no'];
-                    //             $audit_schedule         = $row['audit_schedule'];
-                    //             $location               = $row['location'];
-                    //             $created_at             = $row['created_at'];
+                    $sql = "SELECT * FROM engagement WHERE status = 'Open' ORDER BY engagement_created DESC LIMIT $limit OFFSET $offset";
+                    $result = mysqli_query($conn, $sql);
+                    if($result) {
+                        $num_rows = mysqli_num_rows($result);
+                        if($num_rows > 0) {
+                            while ($row = mysqli_fetch_assoc($result)) {
+                                $id                     = $row['engagement_id'];
+                                $idno                   = $row['idno'];
+                                $status                 = $row['status'];
+                                $client_name            = $row['client_name'];
+                                $engagement_type        = $row['engagement_type'];
+                             
 
                                 // Format maintenance schedule if not null
-                                // $f_maintenance_schedule = !empty($maintenance_schedule) ? date_format(date_create($maintenance_schedule), 'M d, Y') : '-';
+                                $f_maintenance_schedule = !empty($maintenance_schedule) ? date_format(date_create($maintenance_schedule), 'M d, Y') : '-';
 
                                 // Format audit schedule if not null
-                                // $f_audit_schedule = !empty($audit_schedule) ? date_format(date_create($audit_schedule), 'M d, Y') : '-';
+                                $f_audit_schedule = !empty($audit_schedule) ? date_format(date_create($audit_schedule), 'M d, Y') : '-';
                 ?>
                 <tr>
-                    <th scope="row"><?php //echo $asset_tag_no; ?></th>
-                    <td><?php //echo $asset_name ? $asset_name : '-'; ?></td>
-                    <td><?php //echo $location ? $location : '-'; ?></td>
+                    <th scope="row"><?php echo $idno; ?></th>
+                    <td><?php echo $client_name ? $client_name : '-'; ?></td>
+                    <td><?php echo $engagement_type ? $engagement_type : '-'; ?></td>
                     <td><?php //echo $f_audit_schedule ? $f_audit_schedule : '-'; ?></td>
                     <td><?php //echo $status ? $status : '-'; ?></td>
                     <td style="font-size: 20px;">
-                        <a href="<?php //echo BASE_URL; ?>/asset/view/?id=<?php //echo $id; ?>" class="view">
+                        <a href="<?php echo BASE_URL; ?>/asset/view/?id=<?php echo $id; ?>" class="view">
                             <i class="bi bi-eye text-success"></i>
                         </a> 
                         &nbsp; 
-                        <a href="<?php //echo BASE_URL; ?>/asset/update/?id=<?php //echo $id; ?>">
+                        <a href="<?php echo BASE_URL; ?>/asset/update/?id=<?php echo $id; ?>">
                             <i class="bi bi-pencil-square" style="color:#005382;"></i>
                         </a> 
                         &nbsp; 
-                        <a href="<?php //echo BASE_URL; ?>/asset/delete/?id=<?php //echo $id; ?>" class="delete">
+                        <a href="<?php echo BASE_URL; ?>/asset/delete/?id=<?php echo $id; ?>" class="delete">
                             <i class="bi bi-trash" style="color:#941515;"></i>
                         </a>
                     </td>
@@ -108,17 +106,17 @@ redirectIfNotLoggedIn();
         <br>
         <?php
             // Pagination links
-            // $sql = "SELECT COUNT(*) as total FROM assets WHERE asset_type = 'Computer'";
-            // $result = mysqli_query($conn, $sql);
-            // $row = mysqli_fetch_assoc($result);
-            // $total_pages = ceil($row["total"] / $limit);
+            $sql = "SELECT COUNT(*) as total FROM engagement WHERE status = 'Open'";
+            $result = mysqli_query($conn, $sql);
+            $row = mysqli_fetch_assoc($result);
+            $total_pages = ceil($row["total"] / $limit);
 
-            //     echo '<ul class="pagination justify-content-center">';
-            //     for ($i = 1; $i <= $total_pages; $i++) {
-            //         $active = ($page == $i) ? "active" : "";
-            //         echo "<li class='page-item {$active}'><a class='page-link' href='?page={$i}'>{$i}</a></li>";
-            //     }
-            //     echo '</ul>';
+                echo '<ul class="pagination justify-content-center">';
+                for ($i = 1; $i <= $total_pages; $i++) {
+                    $active = ($page == $i) ? "active" : "";
+                    echo "<li class='page-item {$active}'><a class='page-link' href='?page={$i}'>{$i}</a></li>";
+                }
+                echo '</ul>';
         ?>
 
 
