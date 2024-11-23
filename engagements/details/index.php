@@ -139,27 +139,27 @@ redirectIfNotLoggedIn();
                         <div class="summary-content d-flex justify-content-between">
                             <div class="new-comments d-flex flex-column text-center">
                                 <i class="bi bi-circle"></i>
-                                <div class="pt-2"></div>
+                                <div class="pt-1"></div>
                                 New
                                 <br>
-                                <div class="pt-2"></div>
-                                22
+                                <div class="pt-1"></div>
+                                <strong>22</strong>
                             </div>
                             <div class="followup-comments d-flex flex-column text-center">
                                 <i class="bi bi-clock mx-auto"></i>
-                                <div class="pt-2"></div>
+                                <div class="pt-1"></div>
                                 Follow-Up
                                 <br>
-                                <div class="pt-2"></div>
-                                04
+                                <div class="pt-1"></div>
+                                <strong>04</strong>
                             </div>
                             <div class="completed-comments d-flex flex-column text-center">
                                 <i class="bi bi-check-lg mx-auto"></i>
-                                <div class="pt-2"></div>
+                                <div class="pt-1"></div>
                                 Completed
                                 <br>
-                                <div class="pt-2"></div>
-                                05
+                                <div class="pt-1"></div>
+                                <strong>05</strong>
                             </div>
                             <div class="completed-status d-flex flex-column text-center">
                                 <i class="bi bi-check-lg mx-auto"></i>
