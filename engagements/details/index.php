@@ -194,19 +194,7 @@ redirectIfNotLoggedIn();
 
 
     <script>
-        function updateProgressCircle(percent) {
-  const circle = document.querySelector('.progress-bar');
-  const radius = circle.r.baseVal.value;
-  const circumference = 2 * Math.PI * radius;
-  const offset = circumference - (percent / 100) * circumference;
-  
-  circle.style.strokeDashoffset = offset;
-  document.querySelector('.progress-text').textContent = `${percent}%`;
-}
-
-// Example usage:
-updateProgressCircle(75); // Update the circle to 75%
-
+        
     </script>
 
 </body>
