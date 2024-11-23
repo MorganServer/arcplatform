@@ -9,8 +9,12 @@ foreach ($files as $file) {
     require_once $file;
 }
 
-
+// Trigger the logout function
+if (isset($_GET['logout']) && $_GET['logout'] == 1) {
+    logoutUser($conn);
+}
 ?>
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
