@@ -168,5 +168,6 @@ body {
     border-radius: 100%;
     padding: 2.5px;
     width: 50%;
-    text-align: center;
+    display: flex;
+    justify-content: center;
 }
