@@ -23,7 +23,7 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
         // Set session variables
         $_SESSION['user_id'] = $user['user_id'];
         $_SESSION['email'] = $user['email'];
-        $_SESSION['full_name'] = $user['first_name'] + " " $user["last_name"];
+        $_SESSION['full_name'] = $user['first_name'] . " " . $user["last_name"];
 
         // Redirect to a dashboard or homepage
         header("Location: " . ROOT_PATH . "/dashboard/index.php");
