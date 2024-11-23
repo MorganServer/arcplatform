@@ -144,7 +144,18 @@ redirectIfNotLoggedIn();
                             New
                             <br>
                             <div class="pt-1"></div>
-                            <strong>22</strong>
+                            <strong>
+                                <?php
+                                    $sql="SELECT count('1') FROM qa_comments WHERE status='New'";
+                                    $result=mysqli_query($conn,$sql);
+                                    $rowtotal=mysqli_fetch_array($result); 
+                                    if($rowtotal[0] < 10) {
+                                        echo "0$rowtotal[0]";
+                                    } else {
+                                        echo "$rowtotal[0]";
+                                    }
+                                ?>
+                            </strong>
                         </div>
                         <div class="followup-comments d-flex flex-column text-center">
                             <i class="bi bi-clock mx-auto"></i>
@@ -152,7 +163,18 @@ redirectIfNotLoggedIn();
                             Follow-Up
                             <br>
                             <div class="pt-1"></div>
-                            <strong>04</strong>
+                            <strong>
+                                <?php
+                                    $sql="SELECT count('1') FROM qa_comments WHERE status='Follow-Up'";
+                                    $result=mysqli_query($conn,$sql);
+                                    $rowtotal=mysqli_fetch_array($result); 
+                                    if($rowtotal[0] < 10) {
+                                        echo "0$rowtotal[0]";
+                                    } else {
+                                        echo "$rowtotal[0]";
+                                    }
+                                ?>
+                            </strong>
                         </div>
                         <div class="completed-comments d-flex flex-column text-center">
                             <i class="bi bi-check-lg mx-auto"></i>
@@ -160,7 +182,18 @@ redirectIfNotLoggedIn();
                             Completed
                             <br>
                             <div class="pt-1"></div>
-                            <strong>05</strong>
+                            <strong>
+                                <?php
+                                    $sql="SELECT count('1') FROM qa_comments WHERE status='Completed'";
+                                    $result=mysqli_query($conn,$sql);
+                                    $rowtotal=mysqli_fetch_array($result); 
+                                    if($rowtotal[0] < 10) {
+                                        echo "0$rowtotal[0]";
+                                    } else {
+                                        echo "$rowtotal[0]";
+                                    }
+                                ?>
+                            </strong>
                         </div>
                         <div class="completed-status d-flex flex-column text-center">
                             <div class="progress-circle">
