@@ -93,7 +93,7 @@ redirectIfNotLoggedIn();
                     <a href="#" class="btn btn-primary">Go somewhere</a>
                   </div>
                 </div>
-                <div class="card" style="width: 30rem;">
+                <div class="card" style="width: 35rem;">
                   <img src="..." class="card-img-top" alt="...">
                   <div class="card-body">
                     <h5 class="card-title">Card title</h5>
