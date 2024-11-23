@@ -221,7 +221,7 @@ body {
     stroke-width: 12;
   } */
   
-  /* .circle-progress .progress-circle {
+  .circle-progress .progress-circle {
     fill: none;
     stroke: #007bff;
     stroke-width: 12;
@@ -230,7 +230,7 @@ body {
     transition: stroke-dashoffset 1s ease;
   } */
 
-  .circle-progress .percentage-text {
+  /* .circle-progress .percentage-text {
     position: absolute;
     top: 50%;
     left: 50%;
