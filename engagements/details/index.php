@@ -173,7 +173,9 @@ redirectIfNotLoggedIn();
                                 <div class="progress-text">
                                     75%
                                     <br>
-                                    Completed
+                                    <span class="text-secondary" style="font-size: 14px;">
+                                        Completed
+                                    </span>
                                 </div>
                             </div>
                         </div>
