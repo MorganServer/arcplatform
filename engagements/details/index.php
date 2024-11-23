@@ -43,6 +43,11 @@ redirectIfNotLoggedIn();
                 while ($off_row = mysqli_fetch_assoc($off_result)) {
                     $off_id                     = $off_row['engagement_id']; 
                     $off_client_name            = $off_row['client_name']; 
+                    $off_engagement_type        = $off_row['engagement_type']; 
+                    $off_year                   = $off_row['year']; 
+                    $off_report_start           = $off_row['report_start']; 
+                    $off_report_end             = $off_row['report_end']; 
+                    $off_report_as_of           = $off_row['report_as_of']; 
                     
 
                     // $today = date('Y-m-d');
@@ -55,7 +60,18 @@ redirectIfNotLoggedIn();
     <!-- main-container -->
         <div class="container">
             <a class="text-decoration-none" href="<?php BASE_URL; ?>/engagements"><i class="bi bi-arrow-left"></i>&nbsp; Back to Engagements</a>
-            <hr>
+            <br>
+            <div class="detail-section">
+                <div class="engagement-client-details">
+                    <?php echo $off_client_name; ?> <?php echo $off_year; ?> <?php echo $off_engagement_type; ?>
+                </div>
+                <div class="audit-period">
+
+                </div>
+                <div class="complete-button">
+
+                </div>
+            </div>
 
             
 
