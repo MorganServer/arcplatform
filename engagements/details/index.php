@@ -387,6 +387,7 @@ redirectIfNotLoggedIn();
         <?php }
         } ?>
 
+
         </div>
     <!-- END main-container -->
 
@@ -411,6 +412,8 @@ function updateProgressCircle(percent) {
 // Example usage:
 updateProgressCircle(<?php echo $percentage_completed; ?>); // Update to 75% progress
 </script>
+
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha3/dist/js/bootstrap.bundle.min.js"></script>
 
 </body>
 </html>
