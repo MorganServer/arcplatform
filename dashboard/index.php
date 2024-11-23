@@ -34,7 +34,7 @@
         <p style="padding-right: 15px;">Welcome, Garrett Morgan</p>
         <a class="header-icon" href=""><i class="bi bi-info-circle-fill"></i></a>
         <a class="header-icon" href=""><i class="bi bi-lock-fill"></i></a>
-        <a class="header-icon" href=""><i class="bi bi-box-arrow-right"></i></a>
+        <a class="header-icon" href="<?php echo ROOT_PATH; ?>/app/functions/logout.php"><i class="bi bi-box-arrow-right"></i></a>
     </div>
 </div>
 
