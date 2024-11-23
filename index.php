@@ -13,7 +13,7 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
     $password = md5($_POST['password']); // Hash the password using MD5
 
     // Query to check the user's credentials
-    $sql = "SELECT id, email, full_name FROM users WHERE email = '$email' AND password = '$password'";
+    $sql = "SELECT user_id, email, full_name FROM users WHERE email = '$email' AND password = '$password'";
     $result = $conn->query($sql);
 
     if ($result->num_rows > 0) {
