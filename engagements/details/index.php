@@ -115,12 +115,14 @@ redirectIfNotLoggedIn();
                                 <span class="name"><?php echo htmlspecialchars($off_manager); ?></span>
                             </div>
                         </div>
+                        <div class="mt-2"></div>
                         <div class="auditor-info">
                             <div class="circle"><?php echo htmlspecialchars($senior_initials); ?></div>
                             <div class="name-bg">
                                 <span class="name"><?php echo htmlspecialchars($off_senior); ?></span>
                             </div>
                         </div>
+                        <div class="mt-2"></div>
                         <div class="auditor-info">
                             <div class="circle"><?php echo htmlspecialchars($staff_initials); ?></div>
                             <div class="name-bg">
