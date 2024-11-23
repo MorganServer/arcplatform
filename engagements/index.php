@@ -39,19 +39,19 @@ redirectIfNotLoggedIn();
             </h2>
             <hr>
 
-            <table class="table" style="background-color: #6d6d6d !important;">
-            <thead>
+            <table class="table">
+            <thead style="background-color: #6d6d6d; color: white;">
                 <tr>
-                <th scope="col">ID</th>
-                <th scope="col">Client</th>
-                <th scope="col">Year</th>
-                <th scope="col">Type</th>
-                <!-- <th scope="col">Status</th> -->
-                <th style="width: 100px; text-align: center;">View</th>
-                <th style="width: 100px; text-align: center;">Edit</th>
-                <th style="width: 100px; text-align: center;">Delete</th>
+                    <th scope="col">ID</th>
+                    <th scope="col">Client</th>
+                    <th scope="col">Year</th>
+                    <th scope="col">Type</th>
+                    <th style="width: 100px; text-align: center;">View</th>
+                    <th style="width: 100px; text-align: center;">Edit</th>
+                    <th style="width: 100px; text-align: center;">Delete</th>
                 </tr>
             </thead>
+
             <tbody>
                 <?php
                     // Pagination variables
