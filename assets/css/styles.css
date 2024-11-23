@@ -104,7 +104,7 @@ body {
   .card {
     width: calc(25% - 20px); /* 33.33% for desktop layout */
     margin-bottom: 20px; /* Add space below cards */
-    border: none;
+    border: none !important;
   }
   
   @media (max-width: 992px) {
