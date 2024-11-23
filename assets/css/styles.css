@@ -44,13 +44,14 @@ html, body {
 .left h4 {
     margin: 0;
     line-height: 60px; 
-    padding-top: 15px;
+    padding-top: 25px;
 }
 
 .right {
     display: flex;
     align-items: center;
     gap: 10px;
+    padding-top: 25px;
 }
 
 .header-icon {
