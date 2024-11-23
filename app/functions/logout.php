@@ -1,27 +1,19 @@
 <?php
-require_once "../database/connection.php";
-require_once "../../path.php";
-session_start();
-
-if (isset($_SESSION['user_id'])) {
-    $userId = $_SESSION['user_id'];
-
-    // Update the logged_in status to 0
-    $updateSql = "UPDATE users SET logged_in = 0 WHERE user_id = $userId";
-    if ($conn->query($updateSql) === TRUE) {
-        // Destroy the session
-        session_unset();
+// LOGOUT
+function logoutUser($conn)
+{
+    if (isset($_GET['logout']) && $_GET['logout'] == 1) {
+        // Update the logged_in status to 0 in the database
+        $email = $_SESSION['email']; // Assuming 'username' is the column where the username is stored in your users table
+        $sql = "UPDATE users SET logged_in='0' WHERE email='$email'";
+        mysqli_query($conn, $sql); // <-- Added semicolon here
+        
+        // Destroy the session and redirect to the login page
         session_destroy();
-
-        // Redirect to the login page
-        header("Location: " . BASE_URL . "/");
-        exit();
-    } else {
-        echo "Error updating logout status: " . $conn->error;
+        header("Location: index.php");
+        exit; // Prevent further execution
     }
-} else {
-    // If no user is logged in, redirect to login page
-    header("Location: " . BASE_URL . "/");
-    exit();
 }
+
+// END LOGOUT
 ?>
