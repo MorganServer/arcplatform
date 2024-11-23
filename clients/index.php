@@ -88,8 +88,9 @@ redirectIfNotLoggedIn();
                 <tr>
                     <th scope="row"><?php echo $idno; ?></th>
                     <td><?php echo $client_name ? $client_name : '-'; ?></td>
-                    <td><?php echo $total_engagements ? $total_engagements : '-'; ?></td>
-                    <td><?php echo $total_open_qa_comments ? $total_open_qa_comments : '-'; ?></td>
+                    <td><?php echo $total_engagements > 0 ? sprintf('%02d', $total_engagements) : '00'; ?></td>
+                    <td><?php echo $total_open_qa_comments > 0 ? sprintf('%02d', $total_open_qa_comments) : '00'; ?></td>
+
                     <td style="width: 100px; text-align: center;">
                         <a href="<?php echo BASE_URL; ?>/asset/view/?id=<?php echo $id; ?>" class="view">
                             <i class="bi bi-eye text-success"></i>
