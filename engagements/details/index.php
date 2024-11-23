@@ -49,7 +49,7 @@ redirectIfNotLoggedIn();
             if($num_rows > 0) {
                 while ($off_row = mysqli_fetch_assoc($off_result)) {
                     $off_id                     = $off_row['engagement_id']; 
-                    $off_client_name             = $off_row['client_name']; 
+                    $off_client_name            = $off_row['client_name']; 
                     
 
                     // $today = date('Y-m-d');
