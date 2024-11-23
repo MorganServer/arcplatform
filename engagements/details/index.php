@@ -168,7 +168,7 @@ redirectIfNotLoggedIn();
                                     <!-- Background Circle -->
                                     <circle cx="60" cy="60" r="54" stroke="#e6e6e6" stroke-width="12" fill="none"></circle>
                                     <!-- Progress Circle -->
-                                    <circle class="progress-bar" cx="60" cy="60" r="54" stroke="blue" stroke-width="12" fill="none" stroke-dasharray="339.292" stroke-dashoffset="339.292"></circle>
+                                    <circle class="progress-bar" cx="60" cy="60" r="54" stroke="#007bff" stroke-width="12" fill="none" stroke-dasharray="339.292" stroke-dashoffset="84.823"></circle>
                                 </svg>
                                 <div class="progress-text">
                                     75%
@@ -178,6 +178,7 @@ redirectIfNotLoggedIn();
                                 </div>
                             </div>
                         </div>
+
                     </div>
 
                     </p>
