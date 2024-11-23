@@ -57,7 +57,17 @@ redirectIfNotLoggedIn();
                     $name_parts = explode(" ", $off_manager);
                     $first_initial = isset($name_parts[0]) ? strtoupper($name_parts[0][0]) : '';
                     $last_initial = isset($name_parts[1]) ? strtoupper($name_parts[1][0]) : '';
-                    $initials = $first_initial . $last_initial;
+                    $manager_initials = $first_initial . $last_initial;
+
+                    $name_parts = explode(" ", $off_senior);
+                    $first_initial = isset($name_parts[0]) ? strtoupper($name_parts[0][0]) : '';
+                    $last_initial = isset($name_parts[1]) ? strtoupper($name_parts[1][0]) : '';
+                    $senior_initials = $first_initial . $last_initial;
+
+                    $name_parts = explode(" ", $off_staff);
+                    $first_initial = isset($name_parts[0]) ? strtoupper($name_parts[0][0]) : '';
+                    $last_initial = isset($name_parts[1]) ? strtoupper($name_parts[1][0]) : '';
+                    $staff_initials = $first_initial . $last_initial;
                     
 
                     // $today = date('Y-m-d');
@@ -99,12 +109,25 @@ redirectIfNotLoggedIn();
                   <div class="card-body">
                     <h5 class="card-title">Auditors</h5>
                     <p class="card-text">
-                        <div class="manager-info">
-                            <div class="circle"><?php echo htmlspecialchars($initials); ?></div>
+                        <div class="auditor-info">
+                            <div class="circle"><?php echo htmlspecialchars($manager_initials); ?></div>
                             <div class="name-bg">
                                 <span class="name"><?php echo htmlspecialchars($off_manager); ?></span>
                             </div>
                         </div>
+                        <div class="auditor-info">
+                            <div class="circle"><?php echo htmlspecialchars($senior_initials); ?></div>
+                            <div class="name-bg">
+                                <span class="name"><?php echo htmlspecialchars($off_senior); ?></span>
+                            </div>
+                        </div>
+                        <div class="auditor-info">
+                            <div class="circle"><?php echo htmlspecialchars($staff_initials); ?></div>
+                            <div class="name-bg">
+                                <span class="name"><?php echo htmlspecialchars($off_staff); ?></span>
+                            </div>
+                        </div>
+                        
                         <?php //echo $off_manager; ?>
                         <?php echo $off_senior; ?>
                         <?php echo $off_staff; ?>
