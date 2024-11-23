@@ -20,11 +20,12 @@ function logoutUser($conn)
                 exit;
             } else {
                 // Log error for debugging purposes
-                error_log("Logout Error: " . $conn->error);
-                echo "Error logging out.";
+                error_log("Query Error: " . $conn->error . " - SQL: " . $sql);
+                echo "Error logging out. Please try again later.";
+                exit;
             }
         } else {
-            // Redirect if no session email exists
+            // Handle missing session email
             header("Location: " . BASE_URL . "/");
             exit;
         }
