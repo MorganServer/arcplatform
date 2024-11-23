@@ -86,7 +86,7 @@ redirectIfNotLoggedIn();
                     <td><?php echo $engagement_type ? $engagement_type : '-'; ?></td>
                     <!-- <td><?php //echo $status ? $status : '-'; ?></td> -->
                     <td style="width: 100px; text-align: center;">
-                        <a href="<?php echo BASE_URL; ?>/engagements/view/?id=<?php echo $id; ?>" class="view">
+                        <a href="<?php echo BASE_URL; ?>/engagements/details/?id=<?php echo $id; ?>" class="view">
                             <i class="bi bi-eye text-success"></i>
                         </a> 
                     </td>
