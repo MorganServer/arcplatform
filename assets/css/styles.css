@@ -161,11 +161,10 @@ body {
     background-color: blue;
     border-radius: 100%;
     padding: 2.5px;
-    width: 50%;
 }
 
 .followup-comments i {
-    background-color: blue;
+    background-color: rgb(106, 255, 0);
     border-radius: 100%;
     padding: 2.5px;
     width: 50%;
