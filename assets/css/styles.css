@@ -158,7 +158,8 @@ body {
 }
 
 .new-comments i {
-    background-color: blue;
+    background-color: #ecf4f9;
+    color: #2d60a3;
     border-radius: 100%;
     padding: 2.5px;
 }
