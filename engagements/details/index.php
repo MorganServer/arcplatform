@@ -189,23 +189,25 @@ redirectIfNotLoggedIn();
         <?php }
         } ?>
 
-
-<div class="circle-progress">
-    <svg width="120" height="120" viewBox="0 0 120 120">
-      <!-- Background Circle -->
-      <circle class="background-circle" cx="60" cy="60" r="54"></circle>
-      <!-- Progress Circle -->
-      <circle class="progress-circle" cx="60" cy="60" r="54"></circle>
-    </svg>
-    <div class="percentage-text" id="progress-text">0%</div>
-  </div>
-
         </div>
     <!-- END main-container -->
 
 
     <script>
+function updateProgressCircle(percent) {
+    const radius = 54;
+    const circumference = 2 * Math.PI * radius;
+    const offset = circumference - (percent / 100) * circumference;
 
+    const circle = document.querySelector('.progress-bar');
+    circle.style.strokeDashoffset = offset;
+
+    // Update the progress percentage text
+    document.querySelector('.progress-text').innerHTML = `${percent}%<p class="text-secondary" style="font-size: 14px;">Completed</p>`;
+}
+
+// Example usage:
+updateProgressCircle(65); // Update to 75% progress
 </script>
 
 </body>
