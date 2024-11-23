@@ -60,7 +60,7 @@ redirectIfNotLoggedIn();
                                             }
                                         ?>
                                     </h2>
-                                    <p class="text-muted text-end">Engagements</p>
+                                    <p class="text-muted text-end">Open Engagements</p>
                                 </div>
                             </p>
                         </div>
