@@ -75,9 +75,9 @@ redirectIfNotLoggedIn();
             </div>
 
             <div class="mt-5"></div>
-            
+
             <div class="card-container">
-                <div class="card" style="width: 25rem;">
+                <div class="card" style="width: 20rem;">
                   <img src="..." class="card-img-top" alt="...">
                   <div class="card-body">
                     <h5 class="card-title">Card title</h5>
@@ -85,7 +85,7 @@ redirectIfNotLoggedIn();
                     <a href="#" class="btn btn-primary">Go somewhere</a>
                   </div>
                 </div>
-                <div class="card" style="width: 25rem;">
+                <div class="card" style="width: 20rem;">
                   <img src="..." class="card-img-top" alt="...">
                   <div class="card-body">
                     <h5 class="card-title">Card title</h5>
