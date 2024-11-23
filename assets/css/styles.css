@@ -157,3 +157,17 @@ body {
     font-weight: bold;
 }
 
+.new-comments {
+    display: flex;               /* Enable Flexbox */
+    flex-direction: column;      /* Stack items vertically */
+    align-items: center;         /* Horizontally center items */
+    justify-content: center;     /* Vertically center items */
+    height: 100px;               /* Set a height for centering */
+    text-align: center;          /* Center the text inside the div */
+}
+
+.bi-circle {
+    font-size: 30px;             /* Adjust icon size */
+    margin-bottom: 5px;          /* Space between icon and text */
+}
+
