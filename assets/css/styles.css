@@ -192,7 +192,7 @@ body {
   
   .progress-bar {
     transition: stroke-dashoffset 0.3s ease;
-    transform: rotate(300deg); 
+    transform: rotate(-290deg); 
     transform-origin: center;
   }
   
