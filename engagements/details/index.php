@@ -140,16 +140,19 @@ redirectIfNotLoggedIn();
                             <div class="new-comments d-flex flex-column text-center">
                                 <i class="bi bi-circle"></i>
                                 New
+                                <br>
                                 22
                             </div>
                             <div class="followup-comments d-flex flex-column text-center">
                                 <i class="bi bi-clock mx-auto"></i>
                                 Follow-Up
+                                <br>
                                 04
                             </div>
                             <div class="completed-comments d-flex flex-column text-center">
                                 <i class="bi bi-check-lg mx-auto"></i>
                                 Completed
+                                <br>
                                 06
                             </div>
                             <div class="completed-status d-flex flex-column text-center">
