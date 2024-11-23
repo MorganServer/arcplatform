@@ -288,21 +288,24 @@ redirectIfNotLoggedIn();
                     <td><?php echo $comment_by ? $comment_by : '-'; ?></td>
                     <td><?php echo $status ? $status : '-'; ?></td>
                     <!-- <td><?php //echo $status ? $status : '-'; ?></td> -->
-                    <td style="width: 100px; text-align: center;">
+                     <td>
+                        <a href="link-stretch"><i class="bi bi-chevron-right"></i></a>
+                     </td>
+                    <!-- <td style="width: 100px; text-align: center;">
                         <a href="<?php echo BASE_URL; ?>/engagements/details/?id=<?php echo $id; ?>" class="view">
                             <i class="bi bi-eye text-success"></i>
                         </a> 
-                    </td>
-                    <td style="width: 100px; text-align: center;">
-                        <!-- <a href="<?php //echo BASE_URL; ?>/asset/update/?id=<?php //echo $id; ?>"> -->
+                    </td> -->
+                    <!-- <td style="width: 100px; text-align: center;">
+                        <a href="<?php //echo BASE_URL; ?>/asset/update/?id=<?php //echo $id; ?>">
                             <i class="bi bi-pencil-square" style="color:#005382;"></i>
                         </a> 
-                    </td>
-                    <td style="width: 100px; text-align: center;">
-                        <!-- <a href="<?php //echo BASE_URL; ?>/asset/delete/?id=<?php //echo $id; ?>" class="delete"> -->
+                    </td> -->
+                    <!-- <td style="width: 100px; text-align: center;">
+                        <a href="<?php //echo BASE_URL; ?>/asset/delete/?id=<?php //echo $id; ?>" class="delete">
                             <i class="bi bi-trash" style="color:#941515;"></i>
                         </a>
-                    </td>
+                    </td> -->
                 </tr>
                 <?php
                         }
