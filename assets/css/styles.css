@@ -185,7 +185,7 @@ body {
     width: 25%;
 }
 
-/* .progress-circle {
+.progress-circle {
     position: relative;
     display: inline-block;
   }
@@ -203,34 +203,34 @@ body {
     font-size: 20px;
     font-weight: bold;
     color: #333;
-  } */
+  }
 
-  .circle-progress {
+  /* .circle-progress {
     width: 120px;
     height: 120px;
     position: relative;
   }
   
   .circle-progress svg {
-    transform: rotate(-90deg); /* Rotate so the circle starts from the top */
+    transform: rotate(-90deg);
   }
   
   .circle-progress .background-circle {
     fill: none;
     stroke: #e6e6e6;
     stroke-width: 12;
-  }
+  } */
   
   .circle-progress .progress-circle {
     fill: none;
     stroke: #007bff;
     stroke-width: 12;
-    stroke-dasharray: 339.292; /* Circumference of the circle (2 * π * radius) */
-    stroke-dashoffset: 0; /* Initially set to 0 to fill the circle */
+    stroke-dasharray: 339.292; 
+    stroke-dashoffset: 0; 
     transition: stroke-dashoffset 1s ease;
   }
 
-  .circle-progress .percentage-text {
+  /* .circle-progress .percentage-text {
     position: absolute;
     top: 50%;
     left: 50%;
@@ -238,5 +238,5 @@ body {
     font-size: 20px;
     font-weight: bold;
     color: #007bff;
-  }
+  } */
   
