@@ -205,11 +205,11 @@ body {
     color: #333;
   }
 
-  /* /* /* .circle-progress {
+  .circle-progress {
     width: 120px;
     height: 120px;
     position: relative;
-  } */
+  }
   
   .circle-progress svg {
     transform: rotate(-90deg);
