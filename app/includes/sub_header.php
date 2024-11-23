@@ -1,9 +1,9 @@
 <?php
-$currentPageName = basename(__DIR__);
+$currentPageName = basename($_SERVER['SCRIPT_NAME'], '.php');
 ?>
 <div class="page_header">
     <div class="left">
-    <h6><?php echo ucfirst($currentPageName); ?></h6>
+        <h6><?php echo ucfirst($currentPageName); ?></h6>
 
     </div>
     <div class="right">
