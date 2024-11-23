@@ -40,8 +40,8 @@ redirectIfNotLoggedIn();
             <hr>
 
             <table class="table">
-            <thead style="background-color: #6d6d6d !important;">
-                <tr>
+            <thead>
+                <tr style="background-color: #6d6d6d !important;">
                 <th scope="col">ID</th>
                 <th scope="col">Client</th>
                 <th scope="col">Year</th>
