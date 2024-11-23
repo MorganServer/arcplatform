@@ -134,20 +134,20 @@ redirectIfNotLoggedIn();
                 </div>
                 <div class="card" style="width: 38rem;">
                   <div class="card-body">
-                    <h5 class="card-title">Engagement Summary</h5>
+                    <h5 class="card-title">Engagement Summary <span class="text-secondary" style="font-size: 12px;">(QA Comments)</span></h5>
                     <p class="card-text">
                         <div class="summary-content d-flex justify-content-between">
                             <div class="new-comments d-flex flex-column text-center">
                                 <i class="bi bi-circle"></i>
-                                new
+                                New
                             </div>
                             <div class="followup-comments d-flex flex-column text-center">
                                 <i class="bi bi-clock mx-auto"></i>
-                                followup
+                                Follow-Up
                             </div>
                             <div class="completed-comments d-flex flex-column text-center">
                                 <i class="bi bi-check-lg mx-auto"></i>
-                                completed
+                                Completed
                             </div>
                             <div class="completed-status d-flex flex-column text-center">
                                 <i class="bi bi-check-lg mx-auto"></i>
