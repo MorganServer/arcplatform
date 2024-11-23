@@ -13,7 +13,7 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
     $password = md5($_POST['password']); // Hash the password using MD5
 
     // Query to check the user's credentials
-    $sql = "SELECT user_id, email, first_name, last_name FROM users WHERE email = '$email' AND password = '$password'";
+    $sql = "SELECT * FROM users WHERE email = '$email' AND password = '$password'";
     $result = $conn->query($sql);
 
     if ($result->num_rows > 0) {
@@ -26,7 +26,7 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
         $_SESSION['full_name'] = $user['first_name'] + " " $user["last_name"];
 
         // Redirect to a dashboard or homepage
-        header("Location: dashboard.php");
+        header("Location: " . ROOT_PATH . "/dashboard/index.php");
         exit();
     } else {
         $error = "Invalid email or password.";
