@@ -170,7 +170,11 @@ redirectIfNotLoggedIn();
                                     <!-- Progress Circle -->
                                     <circle class="progress-bar" cx="60" cy="60" r="54" stroke="#007bff" stroke-width="12" fill="none" stroke-dasharray="339.292" stroke-dashoffset="339.292"></circle>
                                 </svg>
-                                <div class="progress-text">75%</div>
+                                <div class="progress-text">
+                                    75%
+                                    <br>
+                                    Completed
+                                </div>
                             </div>
                         </div>
                     </div>
