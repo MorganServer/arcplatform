@@ -137,7 +137,7 @@ redirectIfNotLoggedIn();
                     <h5 class="card-title">Engagement Summary</h5>
                     <p class="card-text">
                         <div class="summary-content d-flex justify-content-between">
-                            <div class="new-comments">
+                            <div class="new-comments d-flex flex-column">
                                 <i class="bi bi-circle"></i>
                                 new
                             </div>
