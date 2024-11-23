@@ -48,6 +48,9 @@ redirectIfNotLoggedIn();
                     $off_report_start           = $off_row['report_start']; 
                     $off_report_end             = $off_row['report_end']; 
                     $off_report_as_of           = $off_row['report_as_of']; 
+                    $off_manager                = $off_row['manager']; 
+                    $off_senior                 = $off_row['senior']; 
+                    $off_staff                  = $off_row['staff']; 
                     
 
                     // $today = date('Y-m-d');
@@ -80,22 +83,27 @@ redirectIfNotLoggedIn();
                 <div class="card" style="width: 20rem;">
                   <div class="card-body">
                     <h5 class="card-title">Engagements Resources</h5>
-                    <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
-                    <a href="#" class="btn btn-primary">Go somewhere</a>
+                    <p class="card-text">
+                        
+                    </p>
                   </div>
                 </div>
                 <div class="card" style="width: 20rem;">
                   <div class="card-body">
                     <h5 class="card-title">Auditors</h5>
-                    <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
-                    <a href="#" class="btn btn-primary">Go somewhere</a>
+                    <p class="card-text">
+                        <?php echo $off_manager; ?>
+                        <?php echo $off_senior; ?>
+                        <?php echo $off_staff; ?>
+                    </p>
                   </div>
                 </div>
                 <div class="card" style="width: 38rem;">
                   <div class="card-body">
                     <h5 class="card-title">Engagement Summary</h5>
-                    <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
-                    <a href="#" class="btn btn-primary">Go somewhere</a>
+                    <p class="card-text">
+                        
+                    </p>
                   </div>
                 </div>
             </div>
