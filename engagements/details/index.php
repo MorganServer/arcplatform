@@ -237,6 +237,7 @@ redirectIfNotLoggedIn();
             <table class="table">
             <thead style="bg-dark text-white">
                 <tr>
+                    <th></th>
                     <th scope="col">ID</th>
                     <th scope="col">Reference</th>
                     <th scope="col">Comment By</th>
