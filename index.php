@@ -26,7 +26,7 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
         $_SESSION['full_name'] = $user['first_name'] . " " . $user["last_name"];
 
         // Redirect to a dashboard or homepage
-        header("Location: " . ROOT_PATH . "/dashboard/index.php");
+        header("Location: " . BASE_URL . "/dashboard/index.php");
         exit();
     } else {
         $error = "Invalid email or password.";
