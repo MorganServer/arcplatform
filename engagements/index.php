@@ -85,17 +85,17 @@ redirectIfNotLoggedIn();
                     <td><?php echo $year ? $year : '-'; ?></td>
                     <td><?php echo $engagement_type ? $engagement_type : '-'; ?></td>
                     <!-- <td><?php //echo $status ? $status : '-'; ?></td> -->
-                    <td style="width: 15px;">
+                    <td style="width: 30px;">
                         <!-- <a href="<?php //echo BASE_URL; ?>/asset/view/?id=<?php //echo $id; ?>" class="view"> -->
                             <i class="bi bi-eye text-success"></i>
                         </a> 
                     </td>
-                    <td>
+                    <td style="width: 30px;">
                         <!-- <a href="<?php //echo BASE_URL; ?>/asset/update/?id=<?php //echo $id; ?>"> -->
                             <i class="bi bi-pencil-square" style="color:#005382;"></i>
                         </a> 
                     </td>
-                    <td>
+                    <td style="width: 30px;">
                         <!-- <a href="<?php //echo BASE_URL; ?>/asset/delete/?id=<?php //echo $id; ?>" class="delete"> -->
                             <i class="bi bi-trash" style="color:#941515;"></i>
                         </a>
