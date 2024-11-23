@@ -44,8 +44,8 @@ redirectIfNotLoggedIn();
                 <tr>
                 <th scope="col">ID</th>
                 <th scope="col">Client</th>
+                <th scope="col">Year</th>
                 <th scope="col">Type</th>
-                <!-- <th scope="col"></th> -->
                 <!-- <th scope="col">Status</th> -->
                 <th scope="col">Actions</th>
                 </tr>
@@ -67,6 +67,7 @@ redirectIfNotLoggedIn();
                                 $idno                   = $row['idno'];
                                 $status                 = $row['status'];
                                 $client_name            = $row['client_name'];
+                                $year                   = $row['year'];
                                 $engagement_type        = $row['engagement_type'];
                              
 
@@ -79,8 +80,8 @@ redirectIfNotLoggedIn();
                 <tr>
                     <th scope="row"><?php echo $idno; ?></th>
                     <td><?php echo $client_name ? $client_name : '-'; ?></td>
+                    <td><?php echo $year ? $year : '-'; ?></td>
                     <td><?php echo $engagement_type ? $engagement_type : '-'; ?></td>
-                    <!-- <td><?php //echo $f_audit_schedule ? $f_audit_schedule : '-'; ?></td> -->
                     <!-- <td><?php //echo $status ? $status : '-'; ?></td> -->
                     <td style="font-size: 20px;">
                         <!-- <a href="<?php //echo BASE_URL; ?>/asset/view/?id=<?php //echo $id; ?>" class="view"> -->
