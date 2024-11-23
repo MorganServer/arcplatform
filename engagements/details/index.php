@@ -69,7 +69,7 @@ redirectIfNotLoggedIn();
                     <strong>Audit Period: </strong><?php echo $off_report_start; ?> - <?php echo $off_report_end; ?>
                 </div>
                 <div class="complete-button">
-                    completed
+                    <button type="button" class="btn btn-outline-primary"><i class="bi bi-check2-circle"></i> Complete Engagement</button>
                 </div>
             </div>
 
