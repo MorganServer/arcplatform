@@ -157,5 +157,7 @@ body {
     font-weight: bold;
 }
 
-
+.summary-content i {
+    background-color: blue;
+}
 
