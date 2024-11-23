@@ -33,7 +33,7 @@ redirectIfNotLoggedIn();
     <?php include(ROOT_PATH . "/app/includes/sub_header.php"); ?>
 
     <!-- main-container -->
-    <div class="container" style="padding: 0 5px 0 5px;">
+    <div class="container" style="background-color: #f2f2f2 !important;">
             <h2 class="mt-4">
                 Engagements
             </h2>

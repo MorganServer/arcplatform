@@ -34,7 +34,7 @@ redirectIfNotLoggedIn();
 
 
 
-    <div class="container" style="">
+    <div class="container" style="background-color: #f2f2f2 !important;">
 
             <div class="mt-4"></div>
 
