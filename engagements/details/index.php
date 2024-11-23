@@ -186,11 +186,52 @@ redirectIfNotLoggedIn();
             </div>
 
 
+            <?php
+$engagement_id = $_GET['engagement_id']; // Get the engagement ID dynamically
+
+// Prepare the query
+$sql = "
+    SELECT 
+        COUNT(*) AS total_comments,
+        SUM(CASE WHEN status = 'Completed' THEN 1 ELSE 0 END) AS completed_comments,
+        ROUND(
+            (SUM(CASE WHEN status = 'Completed' THEN 1 ELSE 0 END) / COUNT(*)) * 100, 2
+        ) AS percentage_completed
+    FROM 
+        qa_comments
+    WHERE 
+        engagement_id = ?
+";
+
+// Execute the query
+$stmt = $conn->prepare($sql);
+$stmt->bind_param("i", $off_id);
+$stmt->execute();
+$result = $stmt->get_result();
+
+if ($row = $result->fetch_assoc()) {
+    $total_comments = $row['total_comments'];
+    $completed_comments = $row['completed_comments'];
+    $percentage_completed = $row['percentage_completed'];
+
+    echo "Total Comments: $total_comments<br>";
+    echo "Completed Comments: $completed_comments<br>";
+    echo "Percentage Completed: $percentage_completed%";
+} else {
+    echo "No comments found for this engagement.";
+}
+?>
+
+
         <?php }
         } ?>
 
         </div>
     <!-- END main-container -->
+
+
+
+    
 
 
     <script>
