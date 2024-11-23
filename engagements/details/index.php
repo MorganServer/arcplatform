@@ -295,7 +295,38 @@ redirectIfNotLoggedIn();
                 </tr>
 
 
-                 <!-- Bootstrap Modal -->
+                
+            
+               
+                <?php
+                        }
+                    }
+                }
+                ?>
+            </tbody>
+        </table>
+        <br>
+        <?php
+            // Pagination links
+            $sql = "SELECT COUNT(*) as total FROM qa_comments WHERE engagement_id = '$off_id'";
+            $result = mysqli_query($conn, $sql);
+            $row = mysqli_fetch_assoc($result);
+            $total_pages = ceil($row["total"] / $limit);
+
+                echo '<ul class="pagination justify-content-center">';
+                for ($i = 1; $i <= $total_pages; $i++) {
+                    $active = ($page == $i) ? "active" : "";
+                    echo "<li class='page-item {$active}'><a class='page-link' href='?page={$i}'>{$i}</a></li>";
+                }
+                echo '</ul>';
+        ?>
+
+
+
+
+            </div>
+
+             <!-- Bootstrap Modal -->
     <div class="modal fade" id="exampleModal<?php echo $id; ?>" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
         <div class="modal-dialog">
 
@@ -336,35 +367,6 @@ redirectIfNotLoggedIn();
             </div>
         </div>
     </div>
-            
-               
-                <?php
-                        }
-                    }
-                }
-                ?>
-            </tbody>
-        </table>
-        <br>
-        <?php
-            // Pagination links
-            $sql = "SELECT COUNT(*) as total FROM qa_comments WHERE engagement_id = '$off_id'";
-            $result = mysqli_query($conn, $sql);
-            $row = mysqli_fetch_assoc($result);
-            $total_pages = ceil($row["total"] / $limit);
-
-                echo '<ul class="pagination justify-content-center">';
-                for ($i = 1; $i <= $total_pages; $i++) {
-                    $active = ($page == $i) ? "active" : "";
-                    echo "<li class='page-item {$active}'><a class='page-link' href='?page={$i}'>{$i}</a></li>";
-                }
-                echo '</ul>';
-        ?>
-
-
-
-
-            </div>
 
             
 
