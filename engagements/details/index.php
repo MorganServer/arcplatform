@@ -42,7 +42,7 @@ redirectIfNotLoggedIn();
             <!-- php code for getting asset details -->
             <?php
             $id = $_GET['id'];
-            $off_sql = "SELECT * FROM engagements WHERE engagement_id = $id";
+            $off_sql = "SELECT * FROM engagement WHERE engagement_id = $id";
             $off_result = mysqli_query($conn, $off_sql);
             if($off_result) {
             $num_rows = mysqli_num_rows($off_result);
