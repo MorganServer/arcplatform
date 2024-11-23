@@ -20,14 +20,23 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
         // User exists, fetch their details
         $user = $result->fetch_assoc();
 
-        // Set session variables
-        $_SESSION['user_id'] = $user['user_id'];
-        $_SESSION['email'] = $user['email'];
-        $_SESSION['full_name'] = $user['first_name'] . " " . $user["last_name"];
+        // Update the user's logged_in status
+        $userId = $user['user_id'];
+        $updateSql = "UPDATE users SET logged_in = 1 WHERE user_id = $userId";
+        if ($conn->query($updateSql) === TRUE) {
+            // Successfully updated logged_in status
 
-        // Redirect to a dashboard or homepage
-        header("Location: " . BASE_URL . "/dashboard/index.php");
-        exit();
+            // Set session variables
+            $_SESSION['user_id'] = $user['user_id'];
+            $_SESSION['email'] = $user['email'];
+            $_SESSION['full_name'] = $user['first_name'] . " " . $user["last_name"];
+
+            // Redirect to a dashboard or homepage
+            header("Location: " . BASE_URL . "/dashboard");
+            exit();
+        } else {
+            $error = "Failed to update login status. Please try again.";
+        }
     } else {
         $error = "Invalid email or password.";
     }
@@ -61,7 +70,6 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
                 <button type="submit" class="login-button">Login</button>
                 <div class="extra-links">
                     <a href="#">Forgot Password?</a>
-                    <!-- <a href="#">Create an Account</a> -->
                 </div>
             </form>
         </div>
