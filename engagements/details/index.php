@@ -244,9 +244,9 @@ redirectIfNotLoggedIn();
 
                     <th scope="col">Comment By</th>
                     <th scope="col">Status</th>
-                    <th style="width: 100px; text-align: center;">View</th>
-                    <th style="width: 100px; text-align: center;">Edit</th>
-                    <th style="width: 100px; text-align: center;">Delete</th>
+                    <!-- <th style="width: 100px; text-align: center;">View</th> -->
+                    <!-- <th style="width: 100px; text-align: center;">Edit</th>
+                    <th style="width: 100px; text-align: center;">Delete</th> -->
                 </tr>
             </thead>
 
