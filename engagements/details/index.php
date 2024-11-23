@@ -289,7 +289,7 @@ redirectIfNotLoggedIn();
                     <td><?php echo $status ? $status : '-'; ?></td>
                     <!-- <td><?php //echo $status ? $status : '-'; ?></td> -->
                      <td>
-                        <a href="link-stretch"><i class="bi bi-chevron-right"></i></a>
+                        <a href="stretch-link"><i class="bi bi-chevron-right"></i></a>
                      </td>
                     <!-- <td style="width: 100px; text-align: center;">
                         <a href="<?php echo BASE_URL; ?>/engagements/details/?id=<?php echo $id; ?>" class="view">
