@@ -97,7 +97,7 @@ redirectIfNotLoggedIn();
                         <div class="card-body text-center">
                             <p class="card-text">
                                 <div class="card_text_left float-start" style="font-size: 45px;">
-                                    <i class="bi bi-diagram-2 ps-4"></i>
+                                    <i class="bi bi-chat-square-text-fill ps-4"></i>
                                 </div>
                                 <div class="card_text_right float-end pe-3">
                                     <h2 class="text-end">
@@ -118,32 +118,32 @@ redirectIfNotLoggedIn();
                         </div>
                         </a>
                     </div>
-                    <!-- <div class="card" style="border-bottom: 3px solid orange; border-radius: 5px !important;">
+                    <div class="card" style="border-bottom: 3px solid orange; border-radius: 5px !important;">
                         <a class="text-decoration-none text-black stretched-link" href="<?php //echo BASE_URL; ?>/pages/mobile.php">
                         <div class="card-body text-center">
                             <p class="card-text">
                                 <div class="card_text_left float-start" style="font-size: 45px;">
-                                    <i class="bi bi-phone ps-4"></i>
+                                    <i class="bi bi bi-clipboard2-check-fill ps-4"></i>
                                 </div>
                                 <div class="card_text_right float-end pe-3">
                                     <h2 class="text-end">
                                         <?php
-                                            // $sql="SELECT count('1') FROM assets WHERE asset_type='Mobile Device'";
-                                            // $result=mysqli_query($conn,$sql);
-                                            // $rowtotal=mysqli_fetch_array($result); 
-                                            // if($rowtotal[0] < 10) {
-                                            //     echo "0$rowtotal[0]";
-                                            // } else {
-                                            //     echo "$rowtotal[0]";
-                                            // }
+                                            $sql="SELECT count('1') FROM engagement WHERE status='Completed'";
+                                            $result=mysqli_query($conn,$sql);
+                                            $rowtotal=mysqli_fetch_array($result); 
+                                            if($rowtotal[0] < 10) {
+                                                echo "0$rowtotal[0]";
+                                            } else {
+                                                echo "$rowtotal[0]";
+                                            }
                                         ?>
                                     </h2>
-                                    <p class="text-muted text-end">Mobile Devices</p>
+                                    <p class="text-muted text-end">Completed Enagements</p>
                                 </div>
                             </p>
                         </div>
                         </a>
-                    </div> -->
+                    </div>
                 </div>
             <!-- end Top Card Container -->
                                         
