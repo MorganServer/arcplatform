@@ -209,9 +209,7 @@ body {
   .input-group .form-control::placeholder {
     color: gray; /* Set placeholder font color */
 }
-.input-group:focus {
-    border: none;
-}
+
 
 thead {
     background-color: #343a40 !important; /* Dark background */
