@@ -281,35 +281,19 @@ redirectIfNotLoggedIn();
                                 // $f_audit_schedule = !empty($audit_schedule) ? date_format(date_create($audit_schedule), 'M d, Y') : '-';
                 ?>
                 
-                <tr class="qa-comment-row" style="height: 150px;">
-                <a class="" href="google.com/id=<?php echo $id; ?>">
+                
+                <tr class="qa-comment-row" onclick="window.location.href='your-link-here.php';">
                     <td></td>
                     <th scope="row"><?php echo $idno; ?></th>
                     <td><?php echo $control_ref ? $control_ref : '-'; ?></td>
                     <td style="width: 400px;"><?php echo $control ? $control : '-'; ?></td>
                     <td><?php echo $comment_by ? $comment_by : '-'; ?></td>
                     <td><?php echo $status ? $status : '-'; ?></td>
-                    <!-- <td><?php //echo $status ? $status : '-'; ?></td> -->
-                     <td>
+                    <td>
                         <i class="bi bi-chevron-right"></i>
-                     </td>
-                    <!-- <td style="width: 100px; text-align: center;">
-                        <a href="<?php echo BASE_URL; ?>/engagements/details/?id=<?php echo $id; ?>" class="view">
-                            <i class="bi bi-eye text-success"></i>
-                        </a> 
-                    </td> -->
-                    <!-- <td style="width: 100px; text-align: center;">
-                        <a href="<?php //echo BASE_URL; ?>/asset/update/?id=<?php //echo $id; ?>">
-                            <i class="bi bi-pencil-square" style="color:#005382;"></i>
-                        </a> 
-                    </td> -->
-                    <!-- <td style="width: 100px; text-align: center;">
-                        <a href="<?php //echo BASE_URL; ?>/asset/delete/?id=<?php //echo $id; ?>" class="delete">
-                            <i class="bi bi-trash" style="color:#941515;"></i>
-                        </a>
-                    </td> -->
-                    </a>
+                    </td>
                 </tr>
+            
                
                 <?php
                         }
