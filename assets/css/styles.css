@@ -165,13 +165,15 @@ body {
 }
 
 .followup-comments i {
-    background-color: rgb(106, 255, 0);
+    background-color: #fdf1e0;
+    color: #785524;
     border-radius: 100%;
     padding: 2.5px;
     width: 50%;
 }
 .completed-comments i {
-    background-color: blue;
+    background-color: #e9f8e3;
+    color: #497a37;
     border-radius: 100%;
     padding: 2.5px;
     width: 40%;
