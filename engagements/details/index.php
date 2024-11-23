@@ -280,7 +280,7 @@ redirectIfNotLoggedIn();
                                 // Format audit schedule if not null
                                 // $f_audit_schedule = !empty($audit_schedule) ? date_format(date_create($audit_schedule), 'M d, Y') : '-';
                 ?>
-                <a class="" href="">
+                <a class="" href="google.com/id=<?php echo $id; ?>">
                 <tr class="qa-comment-row" style="height: 150px;">
                 
                     <td></td>
