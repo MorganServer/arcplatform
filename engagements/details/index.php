@@ -280,9 +280,7 @@ redirectIfNotLoggedIn();
                                 // Format audit schedule if not null
                                 // $f_audit_schedule = !empty($audit_schedule) ? date_format(date_create($audit_schedule), 'M d, Y') : '-';
                 ?>
-                
                 <tr style="height: 150px;">
-                <a href="stretch-link">
                     <td></td>
                     <th scope="row"><?php echo $idno; ?></th>
                     <td><?php echo $control_ref ? $control_ref : '-'; ?></td>
@@ -291,7 +289,7 @@ redirectIfNotLoggedIn();
                     <td><?php echo $status ? $status : '-'; ?></td>
                     <!-- <td><?php //echo $status ? $status : '-'; ?></td> -->
                      <td>
-                        <i class="bi bi-chevron-right"></i>
+                        <a class="link-stretch" href=""><i class="bi bi-chevron-right"></i></a>
                      </td>
                     <!-- <td style="width: 100px; text-align: center;">
                         <a href="<?php echo BASE_URL; ?>/engagements/details/?id=<?php echo $id; ?>" class="view">
@@ -308,9 +306,7 @@ redirectIfNotLoggedIn();
                             <i class="bi bi-trash" style="color:#941515;"></i>
                         </a>
                     </td> -->
-                    </a>
                 </tr>
-                
                 <?php
                         }
                     }
