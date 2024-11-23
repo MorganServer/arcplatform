@@ -11,6 +11,13 @@
         <div class="login-box">
             <h2>Login</h2>
             <img src="assets/images/login_logo.png" width="150" alt="">
+            <?php
+            session_start();
+            if (isset($_SESSION['error'])) {
+                echo "<p style='color:red'>" . $_SESSION['error'] . "</p>";
+                unset($_SESSION['error']); // Clear the error after displaying
+            }
+            ?>
             <form action="app/functions/login_process.php" method="POST">
                 <div class="form-group">
                     <label for="email">Email</label>
