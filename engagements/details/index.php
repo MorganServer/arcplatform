@@ -241,10 +241,12 @@ $stmt = $conn->prepare($sql);
 $stmt->bind_param("i", $off_id);
 $stmt->execute();
 $result = $stmt->get_result();
-$row = $result->fetch_assoc()
-$total_comments = $row['total_comments'];
-$completed_comments = $row['completed_comments'];
-$percentage_completed = $row['percentage_completed'];
+
+if ($row = $result->fetch_assoc()) {
+    $total_comments = $row['total_comments'];
+    $completed_comments = $row['completed_comments'];
+    $percentage_completed = $row['percentage_completed'];
+} 
 ?>
 
 
