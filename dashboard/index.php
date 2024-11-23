@@ -23,8 +23,8 @@ foreach ($files as $file) {
 </head>
 <body>
 
-    <?php include(BASE_URL . "/app/includes/header.php"); ?>
-    <?php include(BASE_URL . "/app/includes/sub_header.php"); ?>
+    <?php include(ROOT_PATH . "/app/includes/header.php"); ?>
+    <?php include(ROOT_PATH . "/app/includes/sub_header.php"); ?>
 
 
 
