@@ -219,7 +219,7 @@ thead {
 }
 
 .qa-comment-row:hover {
-    background-color: blue;
+    background-color: blue !important;
 }
 
 
