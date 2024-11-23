@@ -42,9 +42,8 @@ html, body {
 }
 
 .left h6{
-    margin: 0;
     line-height: 60px; 
-    padding-top: 5px;
+    /* padding-top: 1px; */
 }
 
 .right p {
