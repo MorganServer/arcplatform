@@ -44,6 +44,7 @@ redirectIfNotLoggedIn();
                 <tr>
                     <th scope="col">ID</th>
                     <th scope="col">Name</th>
+                    <th scope="col">Total Number of Engagements</th>
                     <th style="width: 100px; text-align: center;">View</th>
                     <th style="width: 100px; text-align: center;">Edit</th>
                     <th style="width: 100px; text-align: center;">Delete</th>
@@ -52,26 +53,34 @@ redirectIfNotLoggedIn();
 
             <tbody>
                 <?php
-                    // Pagination variables
-                    $limit = 10; 
-                    $page = isset($_GET['page']) ? $_GET['page'] : 1;
-                    $offset = ($page - 1) * $limit;
-                    
-                    $sql = "SELECT * FROM clients ORDER BY client_created DESC LIMIT $limit OFFSET $offset";
-                    $result = mysqli_query($conn, $sql);
-                    if($result) {
-                        $num_rows = mysqli_num_rows($result);
-                        if($num_rows > 0) {
-                            while ($row = mysqli_fetch_assoc($result)) {
-                                $id                     = $row['client_id'];
-                                $idno                   = $row['idno'];
-                                $client_name            = $row['client_name'];
-                            
+                // Pagination variables
+                $limit = 10; 
+                $page = isset($_GET['page']) ? $_GET['page'] : 1;
+                $offset = ($page - 1) * $limit;
+
+                // Query to get clients and the total number of engagements for each client
+                $sql = "
+                    SELECT c.client_id, c.client_name, COUNT(e.engagement_id) AS total_engagements
+                    FROM clients c
+                    LEFT JOIN engagement e ON c.client_id = e.client_id
+                    GROUP BY c.client_id
+                    ORDER BY c.client_created DESC
+                    LIMIT $limit OFFSET $offset
+                ";
+                $result = mysqli_query($conn, $sql);
+
+                if($result) {
+                    $num_rows = mysqli_num_rows($result);
+                    if($num_rows > 0) {
+                        while ($row = mysqli_fetch_assoc($result)) {
+                            $id               = $row['client_id'];
+                            $client_name      = $row['client_name'];
+                            $total_engagements = $row['total_engagements'];
                 ?>
                 <tr>
                     <th scope="row"><?php echo $idno; ?></th>
                     <td><?php echo $client_name ? $client_name : '-'; ?></td>
-                    <!-- <td><?php //echo $status ? $status : '-'; ?></td> -->
+                    <td><?php echo $total_engagements ? $total_engagements : '-'; ?></td>
                     <td style="width: 100px; text-align: center;">
                         <a href="<?php echo BASE_URL; ?>/asset/view/?id=<?php echo $id; ?>" class="view">
                             <i class="bi bi-eye text-success"></i>
