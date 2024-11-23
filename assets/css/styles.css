@@ -105,7 +105,7 @@ body {
     width: calc(25% - 20px); /* 33.33% for desktop layout */
     margin-bottom: 20px; /* Add space below cards */
     border: none !important;
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2); /* Add a soft shadow */
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2); /* Add a soft shadow */
     transition: box-shadow 0.3s ease; /* Smooth transition for hover effect */
 }
   
