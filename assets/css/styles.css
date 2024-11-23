@@ -7,6 +7,13 @@ html, body {
 * {
     box-sizing: border-box;
 }
+.header {
+    background-color: white !important;
+}
+
+body {
+    background-color: #f2f2f2 !important;
+}
 
 /* Add padding/margin where needed for other elements */
 .nav-list {
