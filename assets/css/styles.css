@@ -47,11 +47,14 @@ html, body {
     padding-top: 25px;
 }
 
+.right p {
+    padding-top: 20px;
+}
+
 .right {
     display: flex;
     align-items: center;
     gap: 10px;
-    padding-top: 25px;
 }
 
 .header-icon {
