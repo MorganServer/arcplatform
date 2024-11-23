@@ -74,6 +74,8 @@ redirectIfNotLoggedIn();
                 </div>
             </div>
 
+            <div class="mt-5"></div>
+            
             <div class="card-container">
                 <div class="card" style="width: 25rem;">
                   <img src="..." class="card-img-top" alt="...">
