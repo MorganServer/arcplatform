@@ -251,7 +251,7 @@ redirectIfNotLoggedIn();
                                 $comment_by             = $row['comment_by'];
                                 $status                 = $row['status'];
 
-                                $comment_section = $co
+                  
                              
 
                                 // Format maintenance schedule if not null
