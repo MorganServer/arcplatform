@@ -52,8 +52,8 @@ redirectIfNotLoggedIn();
                     $off_client_name             = $off_row['client_name']; 
                     
 
-                    $today = date('Y-m-d');
-                    $is_today = ($off_audit_schedule == $today) ? true : false;
+                    // $today = date('Y-m-d');
+                    // $is_today = ($off_audit_schedule == $today) ? true : false;
                 }
             // }}
             ?>
