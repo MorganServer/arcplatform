@@ -61,7 +61,7 @@ redirectIfNotLoggedIn();
         <div class="container">
             <a class="text-decoration-none" href="<?php BASE_URL; ?>/engagements"><i class="bi bi-arrow-left"></i>&nbsp; Back to Engagements</a>
             <br>
-            <div class="mt-2"></div>
+            <div class="mt-5"></div>
             <div class="detail-section d-flex justify-content-between">
                 <div class="engagement-client-details">
                     <?php echo $off_client_name; ?> - <?php echo $off_year; ?> <?php echo $off_engagement_type; ?>
