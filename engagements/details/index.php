@@ -218,36 +218,126 @@ redirectIfNotLoggedIn();
                 </div>
             </div>
 
+            <table class="table">
+            <thead style="bg-dark text-white">
+                <tr>
+                    <th scope="col">ID</th>
+                    <th scope="col">Client</th>
+                    <th scope="col">Year</th>
+                    <th scope="col">Type</th>
+                    <th style="width: 100px; text-align: center;">View</th>
+                    <th style="width: 100px; text-align: center;">Edit</th>
+                    <th style="width: 100px; text-align: center;">Delete</th>
+                </tr>
+            </thead>
 
-            <?php
-$engagement_id = $_GET['engagement_id']; // Get the engagement ID dynamically
+            <tbody>
+                <?php
+                    // Pagination variables
+                    $limit = 10; 
+                    $page = isset($_GET['page']) ? $_GET['page'] : 1;
+                    $offset = ($page - 1) * $limit;
+                    
+                    $sql = "SELECT * FROM qa_comments WHERE engagement_id = '$off_id' ORDER BY qa_updated DESC LIMIT $limit OFFSET $offset";
+                    $result = mysqli_query($conn, $sql);
+                    if($result) {
+                        $num_rows = mysqli_num_rows($result);
+                        if($num_rows > 0) {
+                            while ($row = mysqli_fetch_assoc($result)) {
+                                $id                     = $row['qa_id'];
+                                $idno                   = $row['idno'];
+                                $engagement_id          = $row['engagement_id'];
+                                $control_ref            = $row['control_ref'];
+                                $comment_by             = $row['comment_by'];
+                                $status                 = $row['status'];
 
-// Prepare the query
-$sql = "
-    SELECT 
-        COUNT(*) AS total_comments,
-        SUM(CASE WHEN status = 'Completed' THEN 1 ELSE 0 END) AS completed_comments,
-        ROUND(
-            (SUM(CASE WHEN status = 'Completed' THEN 1 ELSE 0 END) / COUNT(*)) * 100, 2
-        ) AS percentage_completed
-    FROM 
-        qa_comments
-    WHERE 
-        engagement_id = ?
-";
+                                $comment_section = $co
+                             
 
-// Execute the query
-$stmt = $conn->prepare($sql);
-$stmt->bind_param("i", $off_id);
-$stmt->execute();
-$result = $stmt->get_result();
+                                // Format maintenance schedule if not null
+                                // $f_maintenance_schedule = !empty($maintenance_schedule) ? date_format(date_create($maintenance_schedule), 'M d, Y') : '-';
 
-if ($row = $result->fetch_assoc()) {
-    $total_comments = $row['total_comments'];
-    $completed_comments = $row['completed_comments'];
-    $percentage_completed = $row['percentage_completed'];
-} 
-?>
+                                // Format audit schedule if not null
+                                // $f_audit_schedule = !empty($audit_schedule) ? date_format(date_create($audit_schedule), 'M d, Y') : '-';
+                ?>
+                <tr>
+                    <th scope="row"><?php echo $idno; ?></th>
+                    <td><?php echo $control_ref ? $control_ref : '-'; ?></td>
+                    <td><?php echo $comment_by ? $comment_by : '-'; ?></td>
+                    <td><?php echo $status ? $status : '-'; ?></td>
+                    <!-- <td><?php //echo $status ? $status : '-'; ?></td> -->
+                    <td style="width: 100px; text-align: center;">
+                        <a href="<?php echo BASE_URL; ?>/engagements/details/?id=<?php echo $id; ?>" class="view">
+                            <i class="bi bi-eye text-success"></i>
+                        </a> 
+                    </td>
+                    <td style="width: 100px; text-align: center;">
+                        <!-- <a href="<?php //echo BASE_URL; ?>/asset/update/?id=<?php //echo $id; ?>"> -->
+                            <i class="bi bi-pencil-square" style="color:#005382;"></i>
+                        </a> 
+                    </td>
+                    <td style="width: 100px; text-align: center;">
+                        <!-- <a href="<?php //echo BASE_URL; ?>/asset/delete/?id=<?php //echo $id; ?>" class="delete"> -->
+                            <i class="bi bi-trash" style="color:#941515;"></i>
+                        </a>
+                    </td>
+                </tr>
+                <?php
+                        }
+                    }
+                }
+                ?>
+            </tbody>
+        </table>
+        <br>
+        <?php
+            // Pagination links
+            $sql = "SELECT COUNT(*) as total FROM qa_comments WHERE engagement_id = '$off_id'";
+            $result = mysqli_query($conn, $sql);
+            $row = mysqli_fetch_assoc($result);
+            $total_pages = ceil($row["total"] / $limit);
+
+                echo '<ul class="pagination justify-content-center">';
+                for ($i = 1; $i <= $total_pages; $i++) {
+                    $active = ($page == $i) ? "active" : "";
+                    echo "<li class='page-item {$active}'><a class='page-link' href='?page={$i}'>{$i}</a></li>";
+                }
+                echo '</ul>';
+        ?>
+
+
+
+            <!-- Percentage Calculation -->
+                <?php
+                $engagement_id = $_GET['engagement_id']; // Get the engagement ID dynamically
+
+                // Prepare the query
+                $sql = "
+                    SELECT 
+                        COUNT(*) AS total_comments,
+                        SUM(CASE WHEN status = 'Completed' THEN 1 ELSE 0 END) AS completed_comments,
+                        ROUND(
+                            (SUM(CASE WHEN status = 'Completed' THEN 1 ELSE 0 END) / COUNT(*)) * 100, 2
+                        ) AS percentage_completed
+                    FROM 
+                        qa_comments
+                    WHERE 
+                        engagement_id = ?
+                ";
+
+                // Execute the query
+                $stmt = $conn->prepare($sql);
+                $stmt->bind_param("i", $off_id);
+                $stmt->execute();
+                $result = $stmt->get_result();
+
+                if ($row = $result->fetch_assoc()) {
+                    $total_comments = $row['total_comments'];
+                    $completed_comments = $row['completed_comments'];
+                    $percentage_completed = $row['percentage_completed'];
+                } 
+                ?>
+            <!-- end Percentage Calculation -->
 
 
         <?php }
