@@ -218,8 +218,15 @@ thead {
     color: white;             /* White text */
 }
 
+.qa-comment-row {
+    cursor: pointer;
+    text-decoration: none; /* Remove underline */
+    color: inherit;        /* Inherit text color */
+}
+
+/* Highlight the row on hover */
 .qa-comment-row:hover {
-    background-color: blue !important;
+    background-color: #f8f9fa; /* Light gray */
 }
 
 
