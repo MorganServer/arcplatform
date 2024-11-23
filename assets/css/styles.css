@@ -76,6 +76,15 @@ html, body {
 }
 
 
+
+.container {
+    background-color: white !important;
+    position: absolute;
+    margin-left: 200px;
+    max-width: calc(100vw - 200px);
+    margin-top: 57.5px;
+    height: calc(100vh - 57.5px);
+  }
 .card-container {
     display: flex;
     justify-content: space-between;
