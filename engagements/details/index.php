@@ -282,7 +282,7 @@ redirectIfNotLoggedIn();
                 ?>
                 
                 
-                <tr class="qa-comment-row" onclick="window.location.href='';">
+                <tr class="qa-comment-row" data-bs-toggle="modal" data-bs-target="#exampleModal">
                     <td></td>
                     <th scope="row"><?php echo $idno; ?></th>
                     <td><?php echo $control_ref ? $control_ref : '-'; ?></td>
