@@ -74,3 +74,23 @@ html, body {
 .header-icon i {
     font-size: 20px; 
 }
+
+
+.card-container {
+    display: flex;
+    justify-content: space-between;
+  }
+  
+  .card {
+    width: calc(25% - 20px); /* 33.33% for desktop layout */
+    margin-bottom: 20px; /* Add space below cards */
+  }
+  
+  @media (max-width: 992px) {
+    .card-container {
+      flex-wrap: wrap;
+    }
+    .card {
+      width: 100%; /* 50% width on tablets */
+    }
+  }
