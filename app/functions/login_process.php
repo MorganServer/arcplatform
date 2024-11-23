@@ -26,22 +26,22 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
             $_SESSION['user_name'] = $user['name']; // Assuming the table has a 'name' column
 
             // Redirect to dashboard or another page
-            header("Location: dashboard/index.php");
+            header("Location:" . echo ROOT_PATH . "dashboard/index.php");
             exit();
         } else {
             // Invalid credentials
             $_SESSION['error'] = "Invalid email or password.";
-            header("Location: index.php");
+            header("Location:" . echo ROOT_PATH . "index.php");
             exit();
         }
     } else {
         $_SESSION['error'] = "Please fill in all fields.";
-        header("Location: index.php");
+        header("Location:" . echo ROOT_PATH . "index.php");
         exit();
     }
 } else {
     // Redirect back to login if accessed directly
-    header("Location: index.php");
+    header("Location:" . echo ROOT_PATH . "index.php");
     exit();
 }
 ?>
