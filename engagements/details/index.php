@@ -189,6 +189,17 @@ redirectIfNotLoggedIn();
         <?php }
         } ?>
 
+
+<div class="circle-progress">
+    <svg width="120" height="120" viewBox="0 0 120 120">
+      <!-- Background Circle -->
+      <circle class="background-circle" cx="60" cy="60" r="54"></circle>
+      <!-- Progress Circle -->
+      <circle class="progress-circle" cx="60" cy="60" r="54"></circle>
+    </svg>
+    <div class="percentage-text" id="progress-text">0%</div>
+  </div>
+
         </div>
     <!-- END main-container -->
 
