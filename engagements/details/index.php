@@ -141,15 +141,15 @@ redirectIfNotLoggedIn();
                                 <i class="bi bi-circle"></i>
                                 new
                             </div>
-                            <div class="followup-comments">
+                            <div class="followup-comments d-flex flex-column text-center">
                                 <i class="bi bi-clock"></i>
                                 followup
                             </div>
-                            <div class="completed-comments">
+                            <div class="completed-comments d-flex flex-column text-center">
                                 <i class="bi bi-check-lg"></i>
                                 completed
                             </div>
-                            <div class="completed-status">
+                            <div class="completed-status d-flex flex-column text-center">
                                 <i class="bi bi-check-lg"></i>
                                 completed status
                             </div>
