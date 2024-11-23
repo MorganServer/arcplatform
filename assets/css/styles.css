@@ -213,6 +213,12 @@ body {
     border: none;
 }
 
+thead {
+    background-color: #343a40; /* Dark background */
+    color: white;             /* White text */
+}
+
+
   /* .circle-progress {
     width: 120px;
     height: 120px;
