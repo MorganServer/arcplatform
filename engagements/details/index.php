@@ -221,7 +221,7 @@ redirectIfNotLoggedIn();
 
             <form style="padding: 20px;">
                 <div class="input-group">
-                    <span class="input-group-text bg-white border-end-0" style="margin-right: 0;">
+                    <span class="input-group-text bg-white border-end-0" style="margin-right: -10px;">
                         <i class="bi bi-search text-secondary"></i>
                     </span>
                     <input 
