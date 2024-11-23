@@ -282,7 +282,7 @@ redirectIfNotLoggedIn();
                 ?>
                 
                 
-                <tr class="qa-comment-row" data-bs-toggle="modal" data-bs-target="#exampleModal">
+                <tr class="qa-comment-row" data-bs-toggle="modal" data-bs-target="#exampleModal<?php echo $id; ?>">
                     <td></td>
                     <th scope="row"><?php echo $idno; ?></th>
                     <td><?php echo $control_ref ? $control_ref : '-'; ?></td>
@@ -296,8 +296,27 @@ redirectIfNotLoggedIn();
 
 
                  <!-- Bootstrap Modal -->
-    <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal fade" id="exampleModal<?php echo $id; ?>" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
         <div class="modal-dialog">
+
+        <?php
+        $modalsql = "SELECT * FROM qa_comments WHERE qa_id = '$id' ORDER BY qa_updated DESC LIMIT $limit OFFSET $offset";
+        $modalresult = mysqli_query($conn, $modalsql);
+        if($modalresult) {
+            $num_rows = mysqli_num_rows($modalresult);
+            if($num_rows > 0) {
+                while ($mrow = mysqli_fetch_assoc($modalresult)) {
+                    $mid                     = $mrow['qa_id'];
+                    $midno                   = $mrow['idno'];
+                    $mengagement_id          = $mrow['engagement_id'];
+                    $mcontrol_ref            = $mrow['control_ref'];
+                    $mcomment_by             = $mrow['comment_by'];
+                    $mcontrol                = $mrow['control'];
+                    $mstatus                 = $mrow['status'];
+
+                }} ?>
+
+
             <div class="modal-content">
                 <div class="modal-header">
                     <h5 class="modal-title" id="exampleModalLabel">Row Details</h5>
@@ -305,11 +324,11 @@ redirectIfNotLoggedIn();
                 </div>
                 <div class="modal-body">
                     <!-- Populate with dynamic data if needed -->
-                    <p>ID: <?php echo $idno; ?></p>
-                    <p>Reference: <?php echo $control_ref ? $control_ref : '-'; ?></p>
-                    <p>Control: <?php echo $control ? $control : '-'; ?></p>
-                    <p>Comment By: <?php echo $comment_by ? $comment_by : '-'; ?></p>
-                    <p>Status: <?php echo $status ? $status : '-'; ?></p>
+                    <p>ID: <?php echo $midno; ?></p>
+                    <p>Reference: <?php echo $mcontrol_ref ? $mcontrol_ref : '-'; ?></p>
+                    <p>Control: <?php echo $mcontrol ? $mcontrol : '-'; ?></p>
+                    <p>Comment By: <?php echo $mcomment_by ? $mcomment_by : '-'; ?></p>
+                    <p>Status: <?php echo $mstatus ? $mstatus : '-'; ?></p>
                 </div>
                 <div class="modal-footer">
                     <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
