@@ -1,19 +1,14 @@
 <?php
-// Get the current script name
-$currentPageName = basename($_SERVER['SCRIPT_NAME'], '.php');
+// Get the current script directory name (e.g., "dashboard")
+$currentDirectory = basename(dirname($_SERVER['SCRIPT_FILENAME']));
 
-// Handle specific cases for nicer display
-if ($currentPageName == 'index') {
-    $currentPageName = basename(__DIR__); // Use directory name if index.php
-}
-
-// Capitalize the first letter
-$currentPageName = ucfirst($currentPageName);
+// Capitalize the first letter for display purposes
+$pageName = ucfirst($currentDirectory);
 ?>
+
 <div class="page_header">
     <div class="left">
-        <h6><?php echo $currentPageName; ?></h6>
-
+        <h6><?php echo $pageName; ?></h6>
     </div>
     <div class="right">
         <p style="padding-right: 15px;">Welcome, <?php echo $_SESSION['full_name']; ?></p>
