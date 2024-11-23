@@ -217,6 +217,8 @@ redirectIfNotLoggedIn();
                   </div>
                 </div>
             </div>
+            <div class="comment_content_table" style="border-radius: 15px; background-color: white;">
+
 
             <table class="table">
             <thead style="bg-dark text-white">
@@ -304,6 +306,13 @@ redirectIfNotLoggedIn();
                 }
                 echo '</ul>';
         ?>
+
+
+
+
+            </div>
+
+            
 
 
 
