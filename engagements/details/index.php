@@ -280,8 +280,9 @@ redirectIfNotLoggedIn();
                                 // Format audit schedule if not null
                                 // $f_audit_schedule = !empty($audit_schedule) ? date_format(date_create($audit_schedule), 'M d, Y') : '-';
                 ?>
-                <a href="stretch-link">
+                
                 <tr style="height: 150px;">
+                <a href="stretch-link">
                     <td></td>
                     <th scope="row"><?php echo $idno; ?></th>
                     <td><?php echo $control_ref ? $control_ref : '-'; ?></td>
@@ -307,8 +308,9 @@ redirectIfNotLoggedIn();
                             <i class="bi bi-trash" style="color:#941515;"></i>
                         </a>
                     </td> -->
+                    </a>
                 </tr>
-                </a>
+                
                 <?php
                         }
                     }
