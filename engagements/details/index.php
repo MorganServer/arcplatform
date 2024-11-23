@@ -220,7 +220,17 @@ redirectIfNotLoggedIn();
             <div class="comment_content_table" style="border-radius: 15px; background-color: white;">
 
             <form style="padding: 20px;">
-                <input type="text" class="form-control" id="search_bar" placeholder="<i class='bi bi-search'></i>Search QA Comment...">
+                <div class="input-group">
+                    <span class="input-group-text bg-white border-end-0">
+                        <i class="bi bi-search"></i>
+                    </span>
+                    <input 
+                        type="text" 
+                        class="form-control border-start-0" 
+                        id="search_bar" 
+                        placeholder="Search QA Comment..."
+                    >
+                </div>
             </form>
 
 

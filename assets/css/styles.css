@@ -206,6 +206,10 @@ body {
     color: #333;
   }
 
+  .input-group .form-control::placeholder {
+    color: gray; /* Set placeholder font color */
+}
+
   /* .circle-progress {
     width: 120px;
     height: 120px;
