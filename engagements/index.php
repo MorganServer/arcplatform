@@ -80,8 +80,8 @@ redirectIfNotLoggedIn();
                     <th scope="row"><?php echo $idno; ?></th>
                     <td><?php echo $client_name ? $client_name : '-'; ?></td>
                     <td><?php echo $engagement_type ? $engagement_type : '-'; ?></td>
-                    <td><?php //echo $f_audit_schedule ? $f_audit_schedule : '-'; ?></td>
-                    <td><?php //echo $status ? $status : '-'; ?></td>
+                    <!-- <td><?php //echo $f_audit_schedule ? $f_audit_schedule : '-'; ?></td> -->
+                    <!-- <td><?php //echo $status ? $status : '-'; ?></td> -->
                     <td style="font-size: 20px;">
                         <a href="<?php echo BASE_URL; ?>/asset/view/?id=<?php echo $id; ?>" class="view">
                             <i class="bi bi-eye text-success"></i>
