@@ -13,6 +13,8 @@ foreach ($files as $file) {
 if (isset($_GET['logout']) && $_GET['logout'] == 1) {
     logoutUser($conn);
 }
+
+redirectIfNotLoggedIn();
 ?>
 
 <!DOCTYPE html>
