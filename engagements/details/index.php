@@ -135,6 +135,7 @@ redirectIfNotLoggedIn();
                 <div class="card" style="width: 38rem;">
                   <div class="card-body">
                     <h5 class="card-title">Engagement Summary <span class="text-secondary" style="font-size: 12px;">(QA Comments)</span></h5>
+                    <div class="mt-5"></div>
                     <p class="card-text">
                         <div class="summary-content d-flex justify-content-between">
                             <div class="new-comments d-flex flex-column text-center">
