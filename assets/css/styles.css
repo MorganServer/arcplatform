@@ -218,6 +218,10 @@ thead {
     color: white;             /* White text */
 }
 
+.qa-comment-row:hover {
+    background-color: blue;
+}
+
 
   /* .circle-progress {
     width: 120px;
