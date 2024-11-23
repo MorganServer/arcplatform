@@ -10,10 +10,7 @@ foreach ($files as $file) {
     require_once $file;
 }
 
-// Handle logout
-if (isset($_GET['logout']) && $_GET['logout'] == 1) {
-    logoutUser($conn); // Call the logout function
-}
+
 ?>
 <!DOCTYPE html>
 <html lang="en">
