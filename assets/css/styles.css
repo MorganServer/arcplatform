@@ -230,7 +230,7 @@ body {
     transition: stroke-dashoffset 1s ease;
   }
 
-  /* .circle-progress .percentage-text {
+  .circle-progress .percentage-text {
     position: absolute;
     top: 50%;
     left: 50%;
@@ -238,5 +238,5 @@ body {
     font-size: 20px;
     font-weight: bold;
     color: #007bff;
-  } */
+  }
   
