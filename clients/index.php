@@ -62,7 +62,7 @@ redirectIfNotLoggedIn();
                 $sql = "
                     SELECT c.client_id, c.client_name, COUNT(e.engagement_id) AS total_engagements
                     FROM clients c
-                    LEFT JOIN engagement e ON c.client_id = e.client_id
+                    LEFT JOIN engagement e ON c.client_name = e.client_name
                     GROUP BY c.client_id
                     ORDER BY c.client_created DESC
                     LIMIT $limit OFFSET $offset
