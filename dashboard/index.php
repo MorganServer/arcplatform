@@ -27,33 +27,10 @@ if (isset($_GET['logout']) && $_GET['logout'] == 1) {
 </head>
 <body>
 
-<div class="header" style="overflow: auto; margin-bottom: 5px;">
-    <div style="float: left; padding-left: 20px;">
-        <img src="../assets/images/logo.png" width="250" alt="">
-    </div>
-    <div style="float: right;">
-        <div class="nav">
-            <ul class="nav-list">
-                <li class="nav-list-item"><a class="nav-list-item-link" href="">Dashboard</a></li>
-                <li class="nav-list-item"><a class="nav-list-item-link" href="">Engagements</a></li>
-                <li class="nav-list-item"><a class="nav-list-item-link" href="">Clients</a></li>
-                <li class="nav-list-item"><a class="nav-list-item-link" href="">Settings</a></li>
-            </ul>
-        </div>
-    </div>
-</div>
+    <?php include(ROOT_PATH . "/app/includes/header.php"); ?>
+    <?php include(ROOT_PATH . "/app/includes/sub_header.php"); ?>
 
-<div class="page_header">
-    <div class="left">
-        <h6>Dashboard</h6>
-    </div>
-    <div class="right">
-        <p style="padding-right: 15px;">Welcome, Garrett Morgan</p>
-        <a class="header-icon" href=""><i class="bi bi-info-circle-fill"></i></a>
-        <a class="header-icon" href=""><i class="bi bi-lock-fill"></i></a>
-        <a class="header-icon" href="<?php echo BASE_URL . "/?logout=1"; ?>"><i class="bi bi-box-arrow-right"></i></a>
-    </div>
-</div>
+
 
 <div class="content pt-5 d-flex">
     <div class="row mx-auto">
