@@ -33,7 +33,7 @@ html, body {
 
 .page_header {
     background-color: rgb(40, 40, 40);
-    padding: 15px 15px; 
+    padding: 0 15px; 
     color: white;
     display: flex;
     align-items: center;
@@ -44,6 +44,7 @@ html, body {
 .left h4 {
     margin: 0;
     line-height: 60px; 
+    padding-top: 15px;
 }
 
 .right {
