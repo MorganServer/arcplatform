@@ -278,6 +278,7 @@ redirectIfNotLoggedIn();
                                 // $f_audit_schedule = !empty($audit_schedule) ? date_format(date_create($audit_schedule), 'M d, Y') : '-';
                 ?>
                 <tr>
+                    <td></td>
                     <th scope="row"><?php echo $idno; ?></th>
                     <td><?php echo $control_ref ? $control_ref : '-'; ?></td>
                     <td><?php echo $comment_by ? $comment_by : '-'; ?></td>
