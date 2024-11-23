@@ -39,9 +39,9 @@ redirectIfNotLoggedIn();
             </h2>
             <hr>
 
-            <table class="table">
+            <table class="table" style="background-color: #6d6d6d !important;">
             <thead>
-                <tr style="background-color: #6d6d6d !important;">
+                <tr>
                 <th scope="col">ID</th>
                 <th scope="col">Client</th>
                 <th scope="col">Year</th>
