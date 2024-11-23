@@ -117,3 +117,29 @@ body {
       width: 100%; /* 50% width on tablets */
     }
   }
+
+
+  .manager-info {
+    display: flex;
+    align-items: center;
+    gap: 10px; /* Space between the circle and name */
+}
+
+.circle {
+    width: 40px;
+    height: 40px;
+    background-color: #007bff; /* Adjust to your preferred color */
+    color: white;
+    font-size: 16px;
+    font-weight: bold;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 50%; /* Makes it a circle */
+    text-transform: uppercase; /* Ensures initials are uppercase */
+}
+
+.name {
+    font-size: 16px;
+    color: #333; /* Adjust text color */
+}
