@@ -222,6 +222,7 @@ thead {
     cursor: pointer;
     text-decoration: none; /* Remove underline */
     color: inherit;        /* Inherit text color */
+    height: 150px;
 }
 
 /* Highlight the row on hover */

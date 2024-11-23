@@ -282,7 +282,7 @@ redirectIfNotLoggedIn();
                 ?>
                 
                 
-                <tr class="qa-comment-row" onclick="window.location.href='your-link-here.php';">
+                <tr class="qa-comment-row" onclick="window.location.href='';">
                     <td></td>
                     <th scope="row"><?php echo $idno; ?></th>
                     <td><?php echo $control_ref ? $control_ref : '-'; ?></td>
@@ -293,6 +293,30 @@ redirectIfNotLoggedIn();
                         <i class="bi bi-chevron-right"></i>
                     </td>
                 </tr>
+
+
+                 <!-- Bootstrap Modal -->
+    <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="exampleModalLabel">Row Details</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                    <!-- Populate with dynamic data if needed -->
+                    <p>ID: <?php echo $idno; ?></p>
+                    <p>Reference: <?php echo $control_ref ? $control_ref : '-'; ?></p>
+                    <p>Control: <?php echo $control ? $control : '-'; ?></p>
+                    <p>Comment By: <?php echo $comment_by ? $comment_by : '-'; ?></p>
+                    <p>Status: <?php echo $status ? $status : '-'; ?></p>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                </div>
+            </div>
+        </div>
+    </div>
             
                
                 <?php
