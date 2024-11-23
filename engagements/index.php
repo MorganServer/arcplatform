@@ -33,9 +33,9 @@ redirectIfNotLoggedIn();
     <?php include(ROOT_PATH . "/app/includes/sub_header.php"); ?>
 
     <!-- main-container -->
-    <div class="container" style="padding: 0 35px 0 35px;">
+    <div class="container" style="padding: 0 5px 0 5px;">
             <h2 class="mt-4">
-                Computers
+                Engagements
             </h2>
             <hr>
 
