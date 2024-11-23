@@ -221,14 +221,14 @@ body {
     stroke-width: 12;
   } 
   
-  /* .circle-progress .progress-circle {
+  .circle-progress .progress-circle {
     fill: none;
     stroke: #007bff;
     stroke-width: 12;
     stroke-dasharray: 339.292; 
     stroke-dashoffset: 0; 
     transition: stroke-dashoffset 1s ease;
-  } */
+  }
 
   /* .circle-progress .percentage-text {
     position: absolute;
