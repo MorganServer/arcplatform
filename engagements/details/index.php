@@ -129,10 +129,6 @@ redirectIfNotLoggedIn();
                                 <span class="name"><?php echo htmlspecialchars($off_staff); ?></span>
                             </div>
                         </div>
-                        
-                        <?php //echo $off_manager; ?>
-                        <?php echo $off_senior; ?>
-                        <?php echo $off_staff; ?>
                     </p>
                   </div>
                 </div>
@@ -140,7 +136,20 @@ redirectIfNotLoggedIn();
                   <div class="card-body">
                     <h5 class="card-title">Engagement Summary</h5>
                     <p class="card-text">
-                        
+                        <div class="summary-content d-flex justify-content-between">
+                            <div class="new-comments">
+                                new
+                            </div>
+                            <div class="followup-comments">
+                                followup
+                            </div>
+                            <div class="completed-comments">
+                                completed
+                            </div>
+                            <div class="completed-status">
+                                completed status
+                            </div>
+                        </div>
                     </p>
                   </div>
                 </div>
