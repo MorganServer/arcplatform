@@ -139,21 +139,27 @@ redirectIfNotLoggedIn();
                         <div class="summary-content d-flex justify-content-between">
                             <div class="new-comments d-flex flex-column text-center">
                                 <i class="bi bi-circle"></i>
+                                <div class="pt-2"></div>
                                 New
                                 <br>
+                                <div class="pt-2"></div>
                                 22
                             </div>
                             <div class="followup-comments d-flex flex-column text-center">
                                 <i class="bi bi-clock mx-auto"></i>
+                                <div class="pt-2"></div>
                                 Follow-Up
                                 <br>
+                                <div class="pt-2"></div>
                                 04
                             </div>
                             <div class="completed-comments d-flex flex-column text-center">
                                 <i class="bi bi-check-lg mx-auto"></i>
+                                <div class="pt-2"></div>
                                 Completed
                                 <br>
-                                06
+                                <div class="pt-2"></div>
+                                05
                             </div>
                             <div class="completed-status d-flex flex-column text-center">
                                 <i class="bi bi-check-lg mx-auto"></i>
