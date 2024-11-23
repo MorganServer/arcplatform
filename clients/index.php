@@ -60,7 +60,7 @@ redirectIfNotLoggedIn();
 
                 // Query to get clients and the total number of engagements for each client
                 $sql = "
-                    SELECT c.client_id, c.client_name, COUNT(e.engagement_id) AS total_engagements
+                    SELECT c.client_id, c.idno, c.client_name, COUNT(e.engagement_id) AS total_engagements
                     FROM clients c
                     LEFT JOIN engagement e ON c.client_name = e.client_name
                     GROUP BY c.client_id
@@ -73,6 +73,7 @@ redirectIfNotLoggedIn();
                     $num_rows = mysqli_num_rows($result);
                     if($num_rows > 0) {
                         while ($row = mysqli_fetch_assoc($result)) {
+                            $idno             = $row['idno'];
                             $id               = $row['client_id'];
                             $client_name      = $row['client_name'];
                             $total_engagements = $row['total_engagements'];
