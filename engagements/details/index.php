@@ -58,7 +58,7 @@ redirectIfNotLoggedIn();
         <!-- end php code for getting asset details -->
 
     <!-- main-container -->
-        <div class="container" style="margin: 0; padding: 0 30px 0 30px; width: 100%;">
+        <div class="container" style="">
             <a class="text-decoration-none" href="<?php BASE_URL; ?>/engagements"><i class="bi bi-arrow-left"></i>&nbsp; Back to Engagements</a>
             <br>
             <div class="mt-5"></div>
