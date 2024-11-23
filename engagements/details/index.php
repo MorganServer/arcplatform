@@ -138,15 +138,19 @@ redirectIfNotLoggedIn();
                     <p class="card-text">
                         <div class="summary-content d-flex justify-content-between">
                             <div class="new-comments">
+                                <i class="bi bi-circle"></i>
                                 new
                             </div>
                             <div class="followup-comments">
+                                <i class="bi bi-clock"></i>
                                 followup
                             </div>
                             <div class="completed-comments">
+                                <i class="bi bi-check-lg"></i>
                                 completed
                             </div>
                             <div class="completed-status">
+                                <i class="bi bi-check-lg"></i>
                                 completed status
                             </div>
                         </div>
