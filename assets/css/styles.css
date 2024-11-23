@@ -190,10 +190,10 @@ body {
     display: inline-block;
   }
   
-  /* .progress-bar {
-    transition: stroke-dashoffset 0.3s ease;
+  .progress-bar {
+    /* transition: stroke-dashoffset 0.3s ease; */
     transform: rotate(-90deg); 
-  } */
+  }
   
   .progress-text {
     position: absolute;
