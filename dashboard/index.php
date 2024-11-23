@@ -11,7 +11,6 @@ foreach ($files as $file) {
     require_once $file;
 }
 
-logoutUser($conn);
 
 ?>
 <!DOCTYPE html>
