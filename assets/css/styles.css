@@ -123,6 +123,7 @@ body {
     display: flex;
     align-items: center;
     gap: 10px; /* Space between the circle and name */
+    background-color: #333;
 }
 
 .circle {
