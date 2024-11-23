@@ -168,17 +168,16 @@ redirectIfNotLoggedIn();
                                     <!-- Background Circle -->
                                     <circle cx="60" cy="60" r="54" stroke="#e6e6e6" stroke-width="12" fill="none"></circle>
                                     <!-- Progress Circle -->
-                                    <circle class="progress-bar" cx="60" cy="60" r="54" stroke="#007bff" stroke-width="12" fill="none" stroke-dasharray="339.292" stroke-dashoffset="84.823"></circle>
+                                    <circle class="progress-bar" cx="60" cy="60" r="54" stroke="#007bff" stroke-width="12" fill="none" stroke-dasharray="339.292" stroke-dashoffset="339.292"></circle>
                                 </svg>
                                 <div class="progress-text">
-                                    75%
+                                    0%
                                     <p class="text-secondary" style="font-size: 14px;">
                                         Completed
                                     </p>
                                 </div>
                             </div>
                         </div>
-
                     </div>
 
                     </p>
@@ -195,22 +194,21 @@ redirectIfNotLoggedIn();
 
 
     <script>
-        function updateProgressCircle(percent) {
-  const radius = 54;
-  const circumference = 2 * Math.PI * radius;
-  const offset = circumference - (percent / 100) * circumference;
+function updateProgressCircle(percent) {
+    const radius = 54;
+    const circumference = 2 * Math.PI * radius;
+    const offset = circumference - (percent / 100) * circumference;
 
-  const circle = document.querySelector('.progress-bar');
-  circle.style.strokeDashoffset = offset;
+    const circle = document.querySelector('.progress-bar');
+    circle.style.strokeDashoffset = offset;
 
-  // Update the text inside the circle
-  document.querySelector('.progress-text').innerHTML = `${percent}%<p class="text-secondary" style="font-size: 14px;">Completed</p>`;
+    // Update the progress percentage text
+    document.querySelector('.progress-text').innerHTML = `${percent}%<p class="text-secondary" style="font-size: 14px;">Completed</p>`;
 }
 
 // Example usage:
 updateProgressCircle(75); // Update to 75% progress
-
-    </script>
+</script>
 
 </body>
 </html>
