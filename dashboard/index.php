@@ -79,5 +79,7 @@ if (isset($_GET['logout']) && $_GET['logout'] == 1) {
         </div>
     </div>
 </div>
+
+<?php echo $_SESSION['email']; ?>
 </body>
 </html>
