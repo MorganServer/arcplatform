@@ -47,9 +47,9 @@ redirectIfNotLoggedIn();
                 <th scope="col">Year</th>
                 <th scope="col">Type</th>
                 <!-- <th scope="col">Status</th> -->
-                <th scope="col">View</th>
-                <th scope="col">Edit</th>
-                <th scope="col">Delete</th>
+                <th style="width: 60px; text-align: center;">View</th>
+                <th style="width: 60px; text-align: center;">Edit</th>
+                <th style="width: 60px; text-align: center;">Delete</th>
                 </tr>
             </thead>
             <tbody>
