@@ -172,7 +172,7 @@ redirectIfNotLoggedIn();
                                 </svg>
                                 <div class="progress-text">
                                     75%
-                                    <span class="text-secondary" style="font-size: 14px; padding-top: -10px;">
+                                    <span class="text-secondary" style="font-size: 14px; margin-top: -10px;">
                                         Completed
                                     </span>
                                 </div>
