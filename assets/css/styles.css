@@ -143,5 +143,6 @@ body {
 .name {
     font-size: 16px;
     color: #333; /* Adjust text color */
-    background-color: #333;
+    background-color: #aeaeae;
+    padding: 5px;
 }
