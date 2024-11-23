@@ -184,3 +184,24 @@ body {
     padding: 2.5px;
     width: 25%;
 }
+
+.progress-circle {
+    position: relative;
+    display: inline-block;
+  }
+  
+  .progress-bar {
+    transition: stroke-dashoffset 0.3s ease;
+    transform: rotate(-90deg); /* Rotate to start from the top */
+  }
+  
+  .progress-text {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    font-size: 20px;
+    font-weight: bold;
+    color: #333;
+  }
+  
