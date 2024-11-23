@@ -45,6 +45,7 @@ redirectIfNotLoggedIn();
                     <th scope="col">ID</th>
                     <th scope="col">Name</th>
                     <th scope="col">Number of Engagements</th>
+                    <th scope="col">Open QA Comments</th>
                     <th style="width: 100px; text-align: center;">View</th>
                     <th style="width: 100px; text-align: center;">Edit</th>
                     <th style="width: 100px; text-align: center;">Delete</th>
@@ -52,36 +53,43 @@ redirectIfNotLoggedIn();
             </thead>
 
             <tbody>
-                <?php
-                // Pagination variables
-                $limit = 10; 
-                $page = isset($_GET['page']) ? $_GET['page'] : 1;
-                $offset = ($page - 1) * $limit;
+                    <?php
+                    // Pagination variables
+                    $limit = 10; 
+                    $page = isset($_GET['page']) ? $_GET['page'] : 1;
+                    $offset = ($page - 1) * $limit;
 
-                // Query to get clients and the total number of engagements for each client
-                $sql = "
-                    SELECT c.client_id, c.idno, c.client_name, COUNT(e.engagement_id) AS total_engagements
-                    FROM clients c
-                    LEFT JOIN engagement e ON c.client_name = e.client_name
-                    GROUP BY c.client_id
-                    ORDER BY c.client_created DESC
-                    LIMIT $limit OFFSET $offset
-                ";
-                $result = mysqli_query($conn, $sql);
+                    // Query to get clients, the total number of engagements, and open QA comments for each client
+                    $sql = "
+                        SELECT c.client_id, c.idno, c.client_name, 
+                               COUNT(DISTINCT e.engagement_id) AS total_engagements,
+                               COUNT(DISTINCT qc.qa_id) AS total_open_qa_comments
+                        FROM clients c
+                        LEFT JOIN engagement e ON c.client_name = e.client_name  -- Corrected JOIN to use client_id
+                        LEFT JOIN qa_comments qc ON e.engagement_id = qc.engagement_id AND qc.status = 'Open'  -- Join QA comments and filter by open status
+                        GROUP BY c.client_id
+                        ORDER BY c.client_created DESC
+                        LIMIT $limit OFFSET $offset
+                    ";
 
-                if($result) {
-                    $num_rows = mysqli_num_rows($result);
-                    if($num_rows > 0) {
-                        while ($row = mysqli_fetch_assoc($result)) {
-                            $idno             = $row['idno'];
-                            $id               = $row['client_id'];
-                            $client_name      = $row['client_name'];
-                            $total_engagements = $row['total_engagements'];
+                    $result = mysqli_query($conn, $sql);
+
+                    if($result) {
+                        $num_rows = mysqli_num_rows($result);
+                        if($num_rows > 0) {
+                            while ($row = mysqli_fetch_assoc($result)) {
+                                $idno                = $row['idno'];
+                                $id                  = $row['client_id'];
+                                $client_name         = $row['client_name'];
+                                $total_engagements   = $row['total_engagements'];
+                                $total_open_qa_comments = $row['total_open_qa_comments'];  // Get total open QA comments
                 ?>
+
                 <tr>
                     <th scope="row"><?php echo $idno; ?></th>
                     <td><?php echo $client_name ? $client_name : '-'; ?></td>
                     <td><?php echo $total_engagements ? $total_engagements : '-'; ?></td>
+                    <td><?php echo $total_open_qa_comments ? $total_open_qa_comments : '-'; ?></td>
                     <td style="width: 100px; text-align: center;">
                         <a href="<?php echo BASE_URL; ?>/asset/view/?id=<?php echo $id; ?>" class="view">
                             <i class="bi bi-eye text-success"></i>
