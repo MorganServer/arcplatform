@@ -128,7 +128,7 @@ body {
 .circle {
     width: 40px;
     height: 40px;
-    background-color: #007bff; /* Circle background color */
+    background-color: #43454b; /* Circle background color */
     color: white;
     font-size: 14px;
     font-weight: bold;
@@ -142,7 +142,7 @@ body {
 }
 
 .name-bg {
-    background-color: #7070707a; /* Match circle color */
+    background-color: #e8e8e8; /* Match circle color */
     padding: 9.5px 10px; /* Add padding for text inside */
     border-radius: 0 20px 20px 0; /* Rounded corners on the right side */
     z-index: 0; /* Ensure it's below the circle */
