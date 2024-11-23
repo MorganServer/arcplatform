@@ -241,18 +241,10 @@ $stmt = $conn->prepare($sql);
 $stmt->bind_param("i", $off_id);
 $stmt->execute();
 $result = $stmt->get_result();
-
-if ($row = $result->fetch_assoc()) {
-    $total_comments = $row['total_comments'];
-    $completed_comments = $row['completed_comments'];
-    $percentage_completed = $row['percentage_completed'];
-
-    echo "Total Comments: $total_comments<br>";
-    echo "Completed Comments: $completed_comments<br>";
-    echo "Percentage Completed: $percentage_completed%";
-} else {
-    echo "No comments found for this engagement.";
-}
+$row = $result->fetch_assoc()
+$total_comments = $row['total_comments'];
+$completed_comments = $row['completed_comments'];
+$percentage_completed = $row['percentage_completed'];
 ?>
 
 
