@@ -54,7 +54,7 @@ redirectIfNotLoggedIn();
 
     <!-- main-container -->
         <div class="container">
-            <a href=""><i class="bi bi-arrow-left"></i>&nbsp; Back to Engagements</a>
+            <a class="text-decoration-none" href="<?php BASE_URL; ?>/engagements"><i class="bi bi-arrow-left"></i>&nbsp; Back to Engagements</a>
             <hr>
 
             
