@@ -284,7 +284,7 @@ redirectIfNotLoggedIn();
                     <td></td>
                     <th scope="row"><?php echo $idno; ?></th>
                     <td><?php echo $control_ref ? $control_ref : '-'; ?></td>
-                    <td><?php echo $control ? $control : '-'; ?></td>
+                    <td style="width: 200px;"><?php echo $control ? $control : '-'; ?></td>
                     <td><?php echo $comment_by ? $comment_by : '-'; ?></td>
                     <td><?php echo $status ? $status : '-'; ?></td>
                     <!-- <td><?php //echo $status ? $status : '-'; ?></td> -->
