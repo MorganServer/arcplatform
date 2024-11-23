@@ -33,7 +33,7 @@ html, body {
 
 .page_header {
     background-color: rgb(40, 40, 40);
-    padding: 0 15px; 
+    padding: 15px 15px; 
     color: white;
     display: flex;
     align-items: center;

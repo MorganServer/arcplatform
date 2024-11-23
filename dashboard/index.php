@@ -59,6 +59,5 @@ redirectIfNotLoggedIn();
     </div>
 </div>
 
-<?php echo $_SESSION['email']; ?>
 </body>
 </html>
