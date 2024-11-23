@@ -300,7 +300,7 @@ redirectIfNotLoggedIn();
         <div class="modal-dialog">
 
         <?php
-        $modalsql = "SELECT * FROM qa_comments WHERE qa_id = '$id' ORDER BY qa_updated DESC LIMIT $limit OFFSET $offset";
+        $modalsql = "SELECT * FROM qa_comments WHERE qa_id = '$id'";
         $modalresult = mysqli_query($conn, $modalsql);
         if($modalresult) {
             $mnum_rows = mysqli_num_rows($modalresult);
