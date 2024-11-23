@@ -11,14 +11,14 @@
         <div class="login-box">
             <h2>Login</h2>
             <img src="assets/images/login_logo.png" width="150" alt="">
-            <form>
+            <form action="app/functions/login_process.php" method="POST">
                 <div class="form-group">
                     <label for="email">Email</label>
-                    <input type="email" id="email" placeholder="Enter your email" required>
+                    <input type="email" id="email" name="email" placeholder="Enter your email" required>
                 </div>
                 <div class="form-group">
                     <label for="password">Password</label>
-                    <input type="password" id="password" placeholder="Enter your password" required>
+                    <input type="password" id="password" name="password" placeholder="Enter your password" required>
                 </div>
                 <button type="submit" class="login-button">Login</button>
                 <div class="extra-links">
@@ -26,6 +26,7 @@
                     <!-- <a href="#">Create an Account</a> -->
                 </div>
             </form>
+
         </div>
     </div>
 </body>
