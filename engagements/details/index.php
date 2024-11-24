@@ -511,7 +511,7 @@ document.getElementById('followup-comment-form').addEventListener('submit', func
     const formData = new FormData(this);
 
     // Send an AJAX request to the server
-    fetch('insert_followup_comment.php', {
+    fetch('<?php BASE_URL; ?>/app/functions/insert_followup_comment.php', {
         method: 'POST',
         body: formData
     })
