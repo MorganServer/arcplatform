@@ -510,8 +510,7 @@ updateProgressCircle(<?php echo $percentage_completed; ?>); // Update to 75% pro
 </script>
 
 <script>
-    // Attach an event listener to dynamically created forms
-document.addEventListener('submit', function(e) {
+    document.addEventListener('submit', function(e) {
     // Ensure the form has the followup-comment-form class
     if (e.target.classList.contains('followup-comment-form')) {
         e.preventDefault(); // Prevent the form from submitting normally
@@ -520,7 +519,7 @@ document.addEventListener('submit', function(e) {
         const formData = new FormData(e.target);
 
         // Send an AJAX request to the server
-        fetch('<?php BASE_URL; ?>/app/functions/insert_followup_comment.php', {
+        fetch('<?php echo BASE_URL; ?>/app/functions/insert_followup_comment.php', {
             method: 'POST',
             body: formData
         })
@@ -528,10 +527,13 @@ document.addEventListener('submit', function(e) {
         .then(data => {
             // Get the qa_id from the form data
             const qaId = formData.get('qa_id');
+            
+            // Find the container element where comments are displayed
+            const container = document.getElementById('followup-comments-container-' + qaId);
 
-            // Update the follow-up comments container for the specific qa_id
-            document.getElementById('followup-comments-container-' + qaId).innerHTML = data;
-
+            // Append the new comment to the container
+            container.insertAdjacentHTML('afterbegin', data);  // Adds the comment at the top
+            
             // Clear the form textarea after submission
             document.getElementById('followup_comment-' + qaId).value = '';
         })
