@@ -91,11 +91,11 @@ redirectIfNotLoggedIn();
             <div class="detail-section d-flex justify-content-between">
                 <div class="engagement-client-details">
                     <?php if (strpos($off_engagement_type, 'SOC 2') !== false) { ?>
-                        <img src="<?php ROOT_PATH; ?>/assets/images/soc-2-icon.png" width="40" alt=""> &nbsp; <?php echo $off_client_name; ?> - <?php echo $off_year; ?> <?php echo $off_engagement_type; ?>
+                        <img src="<?php ROOT_PATH; ?>/assets/images/soc-2-icon.png" width="35" alt=""> &nbsp; <?php echo $off_client_name; ?> - <?php echo $off_year; ?> <?php echo $off_engagement_type; ?>
                     <?php } else if($off_engagement_type == 'SOC 1') { ?>
-                        <img src="<?php ROOT_PATH; ?>/assets/images/soc-1-icon.png" width="15" alt=""><?php echo $off_client_name; ?> - <?php echo $off_year; ?> <?php echo $off_engagement_type; ?>
+                        <img src="<?php ROOT_PATH; ?>/assets/images/soc-1-icon.png" width="35" alt=""><?php echo $off_client_name; ?> - <?php echo $off_year; ?> <?php echo $off_engagement_type; ?>
                     <?php } else if($off_engagement_type == 'HIPAA') { ?>
-                        <img src="<?php ROOT_PATH; ?>/assets/images/hipaa-icon.png" width="15" alt=""><?php echo $off_client_name; ?> - <?php echo $off_year; ?> <?php echo $off_engagement_type; ?>
+                        <img src="<?php ROOT_PATH; ?>/assets/images/hipaa-icon.png" width="35" alt=""><?php echo $off_client_name; ?> - <?php echo $off_year; ?> <?php echo $off_engagement_type; ?>
                     <?php } ?>
                 </div>
                 <div class="audit-period">
