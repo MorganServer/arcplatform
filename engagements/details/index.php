@@ -19,7 +19,7 @@ redirectIfNotLoggedIn();
 // insert followup-comment
 // include(ROOT_PATH . '/app/database/connection.php');
 
-if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['qa_id'])) {
+if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['followup_owner'])) {
     // Handle follow-up comment submission
     $qaId = intval($_POST['qa_id']);
     $comment = trim($_POST['followup_comment']);
