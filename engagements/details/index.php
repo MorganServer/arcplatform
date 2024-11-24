@@ -245,8 +245,6 @@ redirectIfNotLoggedIn();
                     <th scope="col">Comment By</th>
                     <th scope="col">Status</th>
                     <th style="width: 100px; text-align: center;"></th>
-                    <!-- <th style="width: 100px; text-align: center;">Edit</th>
-                    <th style="width: 100px; text-align: center;">Delete</th> -->
                 </tr>
             </thead>
 
@@ -272,13 +270,6 @@ redirectIfNotLoggedIn();
                                 $status                 = $row['status'];
 
                   
-                             
-
-                                // Format maintenance schedule if not null
-                                // $f_maintenance_schedule = !empty($maintenance_schedule) ? date_format(date_create($maintenance_schedule), 'M d, Y') : '-';
-
-                                // Format audit schedule if not null
-                                // $f_audit_schedule = !empty($audit_schedule) ? date_format(date_create($audit_schedule), 'M d, Y') : '-';
                 ?>
                 
                 
@@ -296,47 +287,48 @@ redirectIfNotLoggedIn();
 
 
                  <!-- Bootstrap Modal -->
-    <div class="modal fade" id="exampleModal<?php echo $id; ?>" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
-        <div class="modal-dialog">
+                    <div class="modal fade" id="exampleModal<?php echo $id; ?>" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                        <div class="modal-dialog">
 
-        <?php
-        $modalsql = "SELECT * FROM qa_comments WHERE qa_id = '$id'";
-        $modalresult = mysqli_query($conn, $modalsql);
-        if($modalresult) {
-            $mnum_rows = mysqli_num_rows($modalresult);
-            if($mnum_rows > 0) {
-                while ($mrow = mysqli_fetch_assoc($modalresult)) {
-                    $mid                     = $mrow['qa_id'];
-                    $midno                   = $mrow['idno'];
-                    $mengagement_id          = $mrow['engagement_id'];
-                    $mcontrol_ref            = $mrow['control_ref'];
-                    $mcomment_by             = $mrow['comment_by'];
-                    $mcontrol                = $mrow['control'];
-                    $mstatus                 = $mrow['status'];
+                        <?php
+                        $modalsql = "SELECT * FROM qa_comments WHERE qa_id = '$id'";
+                        $modalresult = mysqli_query($conn, $modalsql);
+                        if($modalresult) {
+                            $mnum_rows = mysqli_num_rows($modalresult);
+                            if($mnum_rows > 0) {
+                                while ($mrow = mysqli_fetch_assoc($modalresult)) {
+                                    $mid                     = $mrow['qa_id'];
+                                    $midno                   = $mrow['idno'];
+                                    $mengagement_id          = $mrow['engagement_id'];
+                                    $mcontrol_ref            = $mrow['control_ref'];
+                                    $mcomment_by             = $mrow['comment_by'];
+                                    $mcontrol                = $mrow['control'];
+                                    $mstatus                 = $mrow['status'];
+                                
+                                ?>
 
-                ?>
-
-
-            <div class="modal-content">
-                <div class="modal-header">
-                    <h5 class="modal-title" id="exampleModalLabel">Row Details</h5>
-                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-                </div>
-                <div class="modal-body">
-                    <!-- Populate with dynamic data if needed -->
-                    <p>ID: <?php echo $midno; ?></p>
-                    <p>Reference: <?php echo $mcontrol_ref ? $mcontrol_ref : '-'; ?></p>
-                    <p>Control: <?php echo $mcontrol ? $mcontrol : '-'; ?></p>
-                    <p>Comment By: <?php echo $mcomment_by ? $mcomment_by : '-'; ?></p>
-                    <p>Status: <?php echo $mstatus ? $mstatus : '-'; ?></p>
-                </div>
-                <div class="modal-footer">
-                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-                </div>
-            </div>
-        </div>
-    <?php }}} ?>
-    </div>
+                                
+                            <div class="modal-content">
+                                <div class="modal-header">
+                                    <h5 class="modal-title" id="exampleModalLabel">Row Details</h5>
+                                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                                </div>
+                                <div class="modal-body">
+                                    <!-- Populate with dynamic data if needed -->
+                                    <p>ID: <?php echo $midno; ?></p>
+                                    <p>Reference: <?php echo $mcontrol_ref ? $mcontrol_ref : '-'; ?></p>
+                                    <p>Control: <?php echo $mcontrol ? $mcontrol : '-'; ?></p>
+                                    <p>Comment By: <?php echo $mcomment_by ? $mcomment_by : '-'; ?></p>
+                                    <p>Status: <?php echo $mstatus ? $mstatus : '-'; ?></p>
+                                </div>
+                                <div class="modal-footer">
+                                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                                </div>
+                            </div>
+                        </div>
+                    <?php }}} ?>
+                    </div>
+                <!-- end Bootstrap -->
             
                
                 <?php
