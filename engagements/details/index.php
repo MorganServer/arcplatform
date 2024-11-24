@@ -567,50 +567,71 @@ updateProgressCircle(<?php echo $percentage_completed; ?>); // Update to 75% pro
 </script>
 
 <script>
-    document.addEventListener('submit', function(e) {
+//     document.addEventListener('submit', function(e) {
 
-    // Ensure the form has the followup-comment-form class
-    if (e.target.classList.contains('followup-comment-form')) {
-        e.preventDefault(); // Prevent the form from submitting normally
+//     // Ensure the form has the followup-comment-form class
+//     if (e.target.classList.contains('followup-comment-form')) {
+//         e.preventDefault(); // Prevent the form from submitting normally
 
-        // Gather form data using FormData
-        const formData = new FormData(e.target);
+//         // Gather form data using FormData
+//         const formData = new FormData(e.target);
 
-        // Log form data for debugging
-        for (const [key, value] of formData.entries()) {
-            console.log(key + ": " + value);
-        }
+//         // Log form data for debugging
+//         for (const [key, value] of formData.entries()) {
+//             console.log(key + ": " + value);
+//         }
 
-        // Send an AJAX request to the server
-        fetch(window.location.href, { // Use current URL for the request
+//         // Send an AJAX request to the server
+//         fetch(window.location.href, { // Use current URL for the request
+//             method: 'POST',
+//             body: formData
+//         })
+//         .then(response => {
+//             if (!response.ok) {
+//                 throw new Error("Network response was not ok");
+//             }
+//             return response.text(); // Expect only the comment HTML snippet
+//         })
+//         .then(data => {
+//             // Get the qa_id from the form data
+//             const qaId = formData.get('qa_id');
+            
+//             // Find the container element where comments are displayed
+//             const container = document.getElementById('followup-comments-container-' + qaId);
+
+//             // Append the new comment to the container
+//             container.insertAdjacentHTML('afterbegin', data);
+
+//             // Clear the form fields after submission
+//             document.getElementById('followup_comment-' + qaId).value = '';
+//             document.getElementById('followup_owner-' + qaId).value = '';
+//         })
+//         .catch(error => {
+//             console.error('Error:', error);
+//         });
+//     }
+// });
+
+document.querySelectorAll('.followup-comment-form').forEach(form => {
+    form.addEventListener('submit', function(e) {
+        e.preventDefault(); // Prevent normal form submission
+
+        const formData = new FormData(this);
+        fetch(window.location.href, {
             method: 'POST',
             body: formData
         })
-        .then(response => {
-            if (!response.ok) {
-                throw new Error("Network response was not ok");
-            }
-            return response.text(); // Expect only the comment HTML snippet
-        })
+        .then(response => response.ok ? response.text() : Promise.reject(response.statusText))
         .then(data => {
-            // Get the qa_id from the form data
             const qaId = formData.get('qa_id');
-            
-            // Find the container element where comments are displayed
             const container = document.getElementById('followup-comments-container-' + qaId);
-
-            // Append the new comment to the container
             container.insertAdjacentHTML('afterbegin', data);
-
-            // Clear the form fields after submission
-            document.getElementById('followup_comment-' + qaId).value = '';
-            document.getElementById('followup_owner-' + qaId).value = '';
+            this.reset(); // Clear form fields
         })
-        .catch(error => {
-            console.error('Error:', error);
-        });
-    }
+        .catch(error => console.error('Error:', error));
+    });
 });
+
 
 </script>
 
