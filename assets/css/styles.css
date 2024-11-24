@@ -211,11 +211,6 @@ body {
 }
 
 
-thead {
-    background-color: #2e659d !important; /* Dark background */
-    color: white;             /* White text */
-}
-
 .qa-comment-row {
     cursor: pointer;
     text-decoration: none; /* Remove underline */
