@@ -399,9 +399,7 @@ redirectIfNotLoggedIn();
                     </div>
                 </div>";
         }
-    } else {
-        echo "<p>No comments yet.</p>";
-    }
+    } 
     ?>
 </div>
 
