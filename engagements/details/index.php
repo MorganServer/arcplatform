@@ -240,7 +240,7 @@ redirectIfNotLoggedIn();
             </form>
 
 
-            <table class="table">
+            <table class="table table-hover">
             <thead class="table-secondary">
                 <tr>
                     <th></th>
