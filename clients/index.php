@@ -78,8 +78,30 @@ redirectIfNotLoggedIn();
                 <tr>
                     <th scope="row"><?php echo $idno; ?></th>
                     <td><?php echo $client_name ? $client_name : '-'; ?></td>
-                    <td><?php echo $total_engagements > 0 ? sprintf('%02d', $total_engagements) : '00'; ?></td>
-                    <td><?php echo $total_open_qa_comments > 0 ? sprintf('%02d', $total_open_qa_comments) : '00'; ?></td>
+                    <td>
+                        <?php
+                            $sql="SELECT count('1') FROM engagement WHERE client_name='$client_name'";
+                            $result=mysqli_query($conn,$sql);
+                            $rowtotal=mysqli_fetch_array($result); 
+                            if($rowtotal[0] < 10) {
+                                echo "0$rowtotal[0]";
+                            } else {
+                                echo "$rowtotal[0]";
+                            }
+                        ?>
+                    </td>
+                    <td>
+                        <?php
+                            $sql="SELECT count('1') FROM qa_comments WHERE client_id='$id'";
+                            $result=mysqli_query($conn,$sql);
+                            $rowtotal=mysqli_fetch_array($result); 
+                            if($rowtotal[0] < 10) {
+                                echo "0$rowtotal[0]";
+                            } else {
+                                echo "$rowtotal[0]";
+                            }
+                        ?>
+                    </td>
 
                     <td style="width: 100px; text-align: center;">
                         <a href="<?php echo BASE_URL; ?>/asset/view/?id=<?php echo $id; ?>" class="view">
