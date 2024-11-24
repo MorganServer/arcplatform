@@ -29,7 +29,7 @@ redirectIfNotLoggedIn();
 
     <style>
         .qa-comment-row:hover {
-            background-color: #f8f9fa; /* Light gray for hover effect */
+            background-color: #f8f9fa !important; /* Light gray for hover effect */
         }
     </style>
 </head>
