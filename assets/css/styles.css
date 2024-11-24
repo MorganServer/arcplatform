@@ -223,10 +223,7 @@ thead {
     height: 150px;
 }
 
-/* Highlight the row on hover */
-table tbody tr.qa-comment-row:hover {
-    background-color: #3b87d4 !important;
-}
+
 
 
   /* .circle-progress {
