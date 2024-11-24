@@ -108,6 +108,9 @@ body {
     box-shadow: 0 2px 4px rgba(90, 90, 90, 0.1); /* Add a soft shadow */
     transition: box-shadow 0.3s ease; /* Smooth transition for hover effect */
 }
+.details_card {
+    border: none !important;
+}
   
   @media (max-width: 992px) {
     .card-container {
