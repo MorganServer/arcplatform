@@ -364,23 +364,26 @@ redirectIfNotLoggedIn();
                                                     <span class="detail-value"><?php echo $mqa_comment ? $mqa_comment : '-'; ?></span>
                                                 </div>
                                             </div>
-                                            <div class="mt-4"></div>
                                             <h6 class="details-header" style="font-size: 15px;">Follow-Up Comments</h6>
-                                            <div id="followup-comments-list">
-                                                <?php
-                                                // Fetch and display existing follow-up comments
-                                                $query = "SELECT followup_comment FROM followup_qa_comments WHERE qa_id = ?";
-                                                $stmt = $conn->prepare($query);
-                                                $stmt->bind_param("i", $id);
-                                                $stmt->execute();
-                                                $result = $stmt->get_result();
 
-                                                while ($row = $result->fetch_assoc()) {
-                                                    echo '<div class="followup-comment-item">' . htmlspecialchars($row['followup_comment']) . '</div>';
+                                            <!-- Follow-up Comments Display -->
+                                            <div id="followup-comments-container">
+                                                <?php
+                                                // Fetch and display current follow-up comments
+                                                $followupSql = "SELECT * FROM followup_qa_comments WHERE qa_id = '$id'";
+                                                $followupResult = mysqli_query($conn, $followupSql);
+                                                if ($followupResult && mysqli_num_rows($followupResult) > 0) {
+                                                    while ($followupRow = mysqli_fetch_assoc($followupResult)) {
+                                                        echo "<p>" . htmlspecialchars($followupRow['followup_comment']) . "</p>";
+                                                    }
+                                                } else {
+                                                    echo "<p>No follow-up comments yet.</p>";
                                                 }
                                                 ?>
                                             </div>
-                                            <form id="followup-comment-form" method="POST">
+                                            
+                                            <!-- Follow-Up Comment Form -->
+                                            <form id="followup-comment-form">
                                                 <div class="form-group">
                                                     <label for="followup_comment">Follow-Up Comment:</label>
                                                     <textarea name="followup_comment" id="followup_comment" rows="4" class="form-control" required></textarea>
@@ -390,6 +393,7 @@ redirectIfNotLoggedIn();
                                                 <button type="submit" class="btn btn-primary mt-3">Submit Follow-Up Comment</button>
                                             </form>
                                         </div>
+
 
                                     
                                     
@@ -499,6 +503,30 @@ function updateProgressCircle(percent) {
 updateProgressCircle(<?php echo $percentage_completed; ?>); // Update to 75% progress
 </script>
 
+<script>
+document.getElementById('followup-comment-form').addEventListener('submit', function(e) {
+    e.preventDefault(); // Prevent the form from submitting normally
+
+    // Gather form data
+    const formData = new FormData(this);
+
+    // Send an AJAX request to the server
+    fetch('submit_followup_comment.php', {
+        method: 'POST',
+        body: formData
+    })
+    .then(response => response.text())
+    .then(data => {
+        // Update the follow-up comments container with the new data
+        document.getElementById('followup-comments-container').innerHTML = data;
+        // Clear the form textarea
+        document.getElementById('followup_comment').value = '';
+    })
+    .catch(error => {
+        console.error('Error:', error);
+    });
+});
+</script>
 
 
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha3/dist/js/bootstrap.bundle.min.js"></script>
