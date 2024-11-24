@@ -336,16 +336,24 @@ redirectIfNotLoggedIn();
                                 </div>
                                 <div class="modal-body">
                                     <div class="qa-comment-details" style="background-color: white; padding: 10px; border-radius: 15px; margin: 25px;">
-                                        <h4>
-                                            Details
-                                        </h4>
+                                        <h4>Details</h4>
 
-                                        <p>Reference: <?php echo $mcontrol_ref ? $mcontrol_ref : '-'; ?></p>
-                                        <p>Comment By: <?php echo $mcomment_by ? $mcomment_by : '-'; ?></p>
-                                        <p>Control: <?php echo $mcontrol ? $mcontrol : '-'; ?></p>
-
-
+                                        <div style="display: flex; flex-direction: column; gap: 10px;">
+                                            <div style="display: flex; justify-content: space-between;">
+                                                <span>Reference:</span>
+                                                <span><?php echo $mcontrol_ref ? $mcontrol_ref : '-'; ?></span>
+                                            </div>
+                                            <div style="display: flex; justify-content: space-between;">
+                                                <span>Comment By:</span>
+                                                <span><?php echo $mcomment_by ? $mcomment_by : '-'; ?></span>
+                                            </div>
+                                            <div style="display: flex; justify-content: space-between;">
+                                                <span>Control:</span>
+                                                <span><?php echo $mcontrol ? $mcontrol : '-'; ?></span>
+                                            </div>
+                                        </div>
                                     </div>
+
                                     <!-- Populate with dynamic data if needed -->
 
                                     <div class="additional-comments-section">
