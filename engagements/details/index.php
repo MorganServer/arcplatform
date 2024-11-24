@@ -374,7 +374,7 @@ redirectIfNotLoggedIn();
                                             </div>
                                             <input type="hidden" name="qa_id" value="<?php echo $qa_id; ?>">
                                             <input type="hidden" name="engagement_id" value="<?php echo $engagement_id; ?>">
-                                            <button type="submit" name="submit" class="btn btn-primary mt-3">Submit Follow-Up Comment</button>
+                                            <button type="submit" name="submit_followup_comment" class="btn btn-primary mt-3">Submit Follow-Up Comment</button>
                                         </form>
                                     </div>
 
