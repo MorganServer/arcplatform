@@ -587,7 +587,7 @@ updateProgressCircle(<?php echo $percentage_completed; ?>); // Update to 75% pro
 </script>
 
 <script>
- document.addEventListener('submit', function(e) {
+    document.addEventListener('submit', function(e) {
     // Ensure the form has the followup-comment-form class
     if (e.target.classList.contains('followup-comment-form')) {
         e.preventDefault(); // Prevent the form from submitting normally
@@ -596,11 +596,16 @@ updateProgressCircle(<?php echo $percentage_completed; ?>); // Update to 75% pro
         const formData = new FormData(e.target);
 
         // Send an AJAX request to the server
-        fetch('<?php echo BASE_URL; ?>/app/functions/insert_followup_comment.php', {
+        fetch('<?php echo $_SERVER["PHP_SELF"]; ?>', {
             method: 'POST',
             body: formData
         })
-        .then(response => response.text())
+        .then(response => {
+            if (!response.ok) {
+                throw new Error("Network response was not ok");
+            }
+            return response.text();
+        })
         .then(data => {
             // Get the qa_id from the form data
             const qaId = formData.get('qa_id');
@@ -620,7 +625,6 @@ updateProgressCircle(<?php echo $percentage_completed; ?>); // Update to 75% pro
         });
     }
 });
-
 </script>
 
 
