@@ -384,18 +384,20 @@ redirectIfNotLoggedIn();
                                                                                     
                                                 if ($followupResult && mysqli_num_rows($followupResult) > 0) {
                                                     while ($followupRow = mysqli_fetch_assoc($followupResult)) {
+                                                        $owner = htmlspecialchars($followupRow['followup_owner']);
                                                         $comment = htmlspecialchars($followupRow['followup_comment']);
                                                         $createdAt = date("F j, Y, g:i a", strtotime($followupRow['followup_created']));
                                                         echo "
-                                                        <div class='comment'>
-                                                            <div class='comment-header'>
-                                                                <span class='comment-time'>$createdAt</span>
-                                                            </div>
-                                                            <div class='comment-body'>
-                                                                <p>$comment</p>
-                                                            </div>
-                                                        </div>";
-                                                    }
+                                                            <div class='comment'>
+                                                                <div class='comment-header'>
+                                                                    <span class='comment-time'>$createdAt</span>
+                                                                    <span class='comment-author'>By: $owner</span> <!-- Display the author here -->
+                                                                </div>
+                                                                <div class='comment-body'>
+                                                                    <p>$comment</p>
+                                                                </div>
+                                                            </div>";
+
                                                 } else {
                                                     echo "<p></p>";
                                                 }
