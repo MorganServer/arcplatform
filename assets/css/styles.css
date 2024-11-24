@@ -223,8 +223,9 @@ thead {
     height: 150px;
 }
 
-.table-hover {
-    background-color: #3b87d4 !important; /* Ensure this rule takes priority */
+.table-hover tbody tr:hover {
+    background-color: #3b87d4; /* Your blue color */
+    color: white; /* Optional: Adjust text color for better contrast */
 }
 
 
