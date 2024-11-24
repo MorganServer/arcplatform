@@ -321,7 +321,7 @@ redirectIfNotLoggedIn();
                                 ?>
 
                                 
-                            <div class="modal-content" style="background-color: gray;">
+                            <div class="modal-content" style="background-color: #f2f2f2;">
                                 <div class="modal-header">
                                     <h5 class="modal-title" id="exampleModalLabel">Row Details</h5>
                                     <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
