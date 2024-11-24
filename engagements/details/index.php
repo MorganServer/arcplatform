@@ -1,9 +1,10 @@
 <?php
 date_default_timezone_set('America/Denver');
-require_once "../../app/database/connection.php";
+require_once "../../app/database/connection.php";  // Ensure this is correct
 require_once "../../path.php";
 session_start();
 
+// Include necessary functions
 $files = glob("../../app/functions/*.php");
 foreach ($files as $file) {
     require_once $file;
@@ -16,9 +17,7 @@ if (isset($_GET['logout']) && $_GET['logout'] == 1) {
 
 redirectIfNotLoggedIn();
 
-// insert followup-comment
-// include(ROOT_PATH . '/app/database/connection.php');
-
+// Insert follow-up comment
 if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['followup_owner'])) {
     // Handle follow-up comment submission
     $qaId = intval($_POST['qa_id']);
@@ -26,18 +25,24 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['followup_owner'])) {
     $owner = trim($_POST['followup_owner']);
 
     if ($qaId && !empty($comment) && !empty($owner)) {
-        // Insert the comment into the database
-        $stmt = $conn->prepare("INSERT INTO followup_comments (qa_id, comment, owner) VALUES (?, ?, ?)");
-        $stmt->bind_param("iss", $qaId, $comment, $owner);
+        // Ensure $conn is valid
+        if ($conn) {
+            // Insert the comment into the database
+            $stmt = $conn->prepare("INSERT INTO followup_comments (qa_id, comment, owner) VALUES (?, ?, ?)");
+            $stmt->bind_param("iss", $qaId, $comment, $owner);
 
-        if ($stmt->execute()) {
-            // Respond only with the comment HTML snippet
-            echo "<div class='comment'><strong>" . htmlspecialchars($owner) . "</strong>: " . htmlspecialchars($comment) . "</div>";
+            if ($stmt->execute()) {
+                // Respond with the comment HTML snippet
+                echo "<div class='comment'><strong>" . htmlspecialchars($owner) . "</strong>: " . htmlspecialchars($comment) . "</div>";
+            } else {
+                http_response_code(500);
+                echo "Error inserting comment.";
+            }
+            $stmt->close();
         } else {
             http_response_code(500);
-            echo "Error inserting comment.";
+            echo "Database connection failed.";
         }
-        $stmt->close();
     } else {
         http_response_code(400);
         echo "Invalid input.";
@@ -45,6 +50,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['followup_owner'])) {
     exit; // Ensure no further output is sent
 }
 ?>
+
 
 <!DOCTYPE html>
 <html lang="en">
@@ -574,7 +580,7 @@ document.addEventListener('submit', function(e) {
         const formData = new FormData(e.target);
 
         // Send an AJAX request to the server
-        fetch('<?php echo $_SERVER["PHP_SELF"]; ?>', {
+        fetch(window.location.href, { // Use current URL for the request
             method: 'POST',
             body: formData
         })
