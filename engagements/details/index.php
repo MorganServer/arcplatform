@@ -28,11 +28,12 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['followup_owner'])) {
     $qaId = intval($_POST['qa_id']);
     $comment = trim($_POST['followup_comment']);
     $owner = trim($_POST['followup_owner']);
+    $engagement_id = trim($_POST['engagement_id']);
 
     if ($qaId && !empty($comment) && !empty($owner)) {
         // Insert the comment into the database
-        $stmt = $conn->prepare("INSERT INTO followup_comments (qa_id, followup_comment, followup_owner) VALUES (?, ?, ?)");
-        $stmt->bind_param("iss", $qaId, $comment, $owner);
+        $stmt = $conn->prepare("INSERT INTO followup_comments (qa_id, engagement_id, followup_comment, followup_owner) VALUES (?, ?, ?, ?)");
+        $stmt->bind_param("iiss", $qaId, $engagement_id, $comment, $owner);
 
         if ($stmt->execute()) {
             // Return the comment HTML snippet
