@@ -28,7 +28,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['followup_owner'])) {
 
     if ($qaId && !empty($comment) && !empty($owner)) {
         // Insert the comment into the database
-        $stmt = $conn->prepare("INSERT INTO followup_comments (qa_id, comment, owner) VALUES (?, ?, ?)");
+        $stmt = $conn->prepare("INSERT INTO followup_comments (qa_id, followup_comment, followup_owner) VALUES (?, ?, ?)");
         $stmt->bind_param("iss", $qaId, $comment, $owner);
 
         if ($stmt->execute()) {
