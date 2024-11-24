@@ -299,39 +299,13 @@ redirectIfNotLoggedIn();
 
 
 
-                 <!-- Bootstrap Modal -->
+                <!-- Bootstrap Modal -->
                     <div class="modal fade" id="exampleModal<?php echo $id; ?>" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
-                        <div class="modal-dialog  modal-lg">
-
-                        <?php
-                        $modalsql = "SELECT * FROM qa_comments WHERE qa_id = '$id'";
-                        $modalresult = mysqli_query($conn, $modalsql);
-                        if($modalresult) {
-                            $mnum_rows = mysqli_num_rows($modalresult);
-                            if($mnum_rows > 0) {
-                                while ($mrow = mysqli_fetch_assoc($modalresult)) {
-                                    $mid                     = $mrow['qa_id'];
-                                    $midno                   = $mrow['idno'];
-                                    $mengagement_id          = $mrow['engagement_id'];
-                                    $mcontrol_ref            = $mrow['control_ref'];
-                                    $mcomment_by             = $mrow['comment_by'];
-                                    $mcontrol                = $mrow['control'];
-                                    $mstatus                 = $mrow['status'];
-                                    $mqa_comment             = $mrow['qa_comment'];
-                                
-                                ?>
-
-                                
+                        <div class="modal-dialog modal-lg">
                             <div class="modal-content" style="background-color: #f2f2f2;">
                                 <div class="modal-header">
                                     <h5 class="modal-title" id="exampleModalLabel">
-                                        <?php if (strpos($off_engagement_type, 'SOC 2') !== false) { ?>
-                                            <?php echo $control_ref; ?> &nbsp; <p class="badge soc-2-badge">SOC 2</p>
-                                        <?php } else if (strpos($off_engagement_type, 'SOC 1') !== false) { ?>
-                                            <?php echo $control_ref; ?> &nbsp; <p class="badge soc-1-badge">SOC 1</p>
-                                        <?php } else if (strpos($off_engagement_type, 'HIPAA') !== false) { ?>
-                                            <?php echo $control_ref; ?> &nbsp; <p class="badge hipaa-badge">HIPAA</p>
-                                        <?php } ?>
+                                        <?php echo $control_ref; ?>
                                     </h5>
                                     <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                                 </div>
@@ -341,86 +315,76 @@ redirectIfNotLoggedIn();
                                         <div class="details-content">
                                             <div class="detail-item">
                                                 <span class="detail-label">Reference:</span>
-                                                <span class="detail-value"><?php echo $mcontrol_ref ? $mcontrol_ref : '-'; ?></span>
+                                                <span class="detail-value"><?php echo $mcontrol_ref ?: '-'; ?></span>
                                             </div>
                                             <div class="detail-item">
                                                 <span class="detail-label">Owner:</span>
-                                                <span class="detail-value"><?php echo $mcomment_by ? $mcomment_by : '-'; ?></span>
+                                                <span class="detail-value"><?php echo $mcomment_by ?: '-'; ?></span>
                                             </div>
                                             <div class="detail-item">
                                                 <span class="detail-label">Control:</span>
-                                                <span class="detail-value"><?php echo $mcontrol ? $mcontrol : '-'; ?></span>
+                                                <span class="detail-value"><?php echo $mcontrol ?: '-'; ?></span>
                                             </div>
                                         </div>
                                     </div>
 
-                                    <!-- Populate with dynamic data if needed -->
-
-                                        <div class="additional-comments-section">
-                                            <h4 class="details-header">QA Comment Details</h4>
-                                            <div class="original-comment-details">
-                                                <div class="detail-item">
-                                                    <span class="detail-label">Original Comment:</span>
-                                                    <span class="detail-value"><?php echo $mqa_comment ? $mqa_comment : '-'; ?></span>
-                                                </div>
+                                    <div class="additional-comments-section">
+                                        <h4 class="details-header">QA Comment Details</h4>
+                                        <div class="original-comment-details">
+                                            <div class="detail-item">
+                                                <span class="detail-label">Original Comment:</span>
+                                                <span class="detail-value"><?php echo $mqa_comment ?: '-'; ?></span>
                                             </div>
-                                            <div class="mt-3"></div>
-                                            <h6 class="details-header" style="font-size: 15px;">Follow-Up Comments</h6>
-
-                                            <!-- Follow-up Comments Display -->
-                                            <div id="followup-comments-container">
-                                                <?php
-                                                // Fetch and display current follow-up comments
-                                                $followupSql = "SELECT * FROM followup_qa_comments WHERE qa_id = '$id' ORDER BY followup_created DESC";
-                                                $followupResult = mysqli_query($conn, $followupSql);
-
-                                                if ($followupResult && mysqli_num_rows($followupResult) > 0) {
-                                                    while ($followupRow = mysqli_fetch_assoc($followupResult)) {
-                                                        $comment = htmlspecialchars($followupRow['followup_comment']);
-                                                        $createdAt = date("F j, Y, g:i a", strtotime($followupRow['followup_created'])); // Format the date
-
-                                                        echo "
-                                                        <div class='comment'>
-                                                            <div class='comment-header'>
-                                                                <span class='comment-time'>$createdAt</span>
-                                                            </div>
-                                                            <div class='comment-body'>
-                                                                <p>$comment</p>
-                                                            </div>
-                                                        </div>";
-                                                    }
-                                                } else {
-                                                    echo "<p>No follow-up comments yet.</p>";
-                                                }
-                                                ?>
-                                            </div>
-
-                                            
-                                            <!-- Follow-Up Comment Form -->
-                                            <form id="followup-comment-form">
-                                                <div class="form-group">
-                                                    <label for="followup_comment">Follow-Up Comment:</label>
-                                                    <textarea name="followup_comment" id="followup_comment" rows="4" class="form-control" required></textarea>
-                                                </div>
-                                                <input type="hidden" name="qa_id" value="<?php echo $id; ?>">
-                                                <input type="hidden" name="engagement_id" value="<?php echo $mengagement_id; ?>">
-                                                <button type="submit" class="btn btn-primary mt-3">Submit Follow-Up Comment</button>
-                                            </form>
                                         </div>
+                                        <div class="mt-3"></div>
+                                        <h6 class="details-header" style="font-size: 15px;">Follow-Up Comments</h6>
 
+                                        <!-- Follow-up Comments Display -->
+                                        <div id="followup-comments-container">
+                                            <?php
+                                            $followupSql = "SELECT * FROM followup_qa_comments WHERE qa_id = '$id' ORDER BY followup_created DESC";
+                                            $followupResult = mysqli_query($conn, $followupSql);
 
-                                    
-                                    
-                                    
+                                            if ($followupResult && mysqli_num_rows($followupResult) > 0) {
+                                                while ($followupRow = mysqli_fetch_assoc($followupResult)) {
+                                                    $comment = htmlspecialchars($followupRow['followup_comment']);
+                                                    $createdAt = date("F j, Y, g:i a", strtotime($followupRow['followup_created']));
+                                                    echo "
+                                                    <div class='comment'>
+                                                        <div class='comment-header'>
+                                                            <span class='comment-time'>$createdAt</span>
+                                                        </div>
+                                                        <div class='comment-body'>
+                                                            <p>$comment</p>
+                                                        </div>
+                                                    </div>";
+                                                }
+                                            } else {
+                                                echo "<p>No follow-up comments yet.</p>";
+                                            }
+                                            ?>
+                                        </div>
+                                        
+                                        <!-- Follow-Up Comment Form -->
+                                        <form id="followup-comment-form">
+                                            <div class="form-group">
+                                                <label for="followup_comment">Follow-Up Comment:</label>
+                                                <textarea name="followup_comment" id="followup_comment" rows="4" class="form-control" required></textarea>
+                                            </div>
+                                            <input type="hidden" name="qa_id" value="<?php echo $id; ?>">
+                                            <input type="hidden" name="engagement_id" value="<?php echo $mengagement_id; ?>">
+                                            <button type="submit" class="btn btn-primary mt-3">Submit Follow-Up Comment</button>
+                                        </form>
+                                    </div>
                                 </div>
                                 <div class="modal-footer">
                                     <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
                                 </div>
                             </div>
                         </div>
-                    <?php }}} ?>
                     </div>
-                <!-- end Bootstrap -->
+                <!-- end Bootstrap modal -->
+
             
                
                 <?php
@@ -541,6 +505,7 @@ updateProgressCircle(<?php echo $percentage_completed; ?>); // Update to 75% pro
         console.error('Error:', error);
     });
 });
+
 
 </script>
 
