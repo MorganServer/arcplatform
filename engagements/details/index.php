@@ -339,18 +339,16 @@ redirectIfNotLoggedIn();
                                         <h4>Details</h4>
 
                                    
-                                            <tr>
+                       
                                                 <td style="width: 150px; font-weight: bold; padding: 5px;">Reference:</td>
                                                 <td style="padding: 5px;"><?php echo $mcontrol_ref ? $mcontrol_ref : '-'; ?></td>
-                                            </tr>
-                                            <tr>
+                                    
                                                 <td style="font-weight: bold; padding: 5px;">Owner:</td>
                                                 <td style="padding: 5px;"><?php echo $mcomment_by ? $mcomment_by : '-'; ?></td>
-                                            </tr>
-                                            <tr>
+                                  
                                                 <td style="font-weight: bold; padding: 5px;">Control:</td>
                                                 <td style="padding: 5px;"><?php echo $mcontrol ? $mcontrol : '-'; ?></td>
-                                            </tr>
+                                        
                                        
                                     </div>
 
