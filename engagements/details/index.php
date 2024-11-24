@@ -366,7 +366,7 @@ redirectIfNotLoggedIn();
                                         <h6 class="details-header" style="font-size: 15px;">Follow-Up Comments</h6>
 
                                         <!-- Comments Container for each qa_id -->
-                                        <div id="followup-comments-container-<?php echo $id; ?>">
+                                            <div id="followup-comments-container-<?php echo $id; ?>">
                                                 <!-- Existing comments for qa_id -->
                                                 <?php
                                                 // Fetch and display current follow-up comments
