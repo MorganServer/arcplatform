@@ -530,7 +530,7 @@ updateProgressCircle(<?php echo $percentage_completed; ?>); // Update to 75% pro
         console.log("Submitting form for qa_id:", qaId); // Debugging line
 
         // Send the data via fetch (AJAX request)
-        fetch('/app/functions/insert_followup_comment.php', {
+        fetch('<?php BASE_URL; ?>/app/functions/insert_followup_comment.php', {
             method: 'POST',
             body: formData
         })
