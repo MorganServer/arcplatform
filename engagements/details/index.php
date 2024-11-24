@@ -338,7 +338,7 @@ redirectIfNotLoggedIn();
                                     <div class="qa-comment-details" style="background-color: white; padding: 10px; border-radius: 15px; margin: 25px;">
                                         <h4>Details</h4>
 
-                                        <div style="display: flex; flex-direction: column; gap: 10px;">
+                                        <div style="display: flex; flex-direction: column; gap: 2px;">
                                             <div style="display: flex; justify-content: space-between;">
                                                 <span>Reference:</span>
                                                 <span><?php echo $mcontrol_ref ? $mcontrol_ref : '-'; ?></span>
