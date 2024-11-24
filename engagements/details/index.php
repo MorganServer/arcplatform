@@ -301,11 +301,37 @@ redirectIfNotLoggedIn();
 
                 <!-- Bootstrap Modal -->
                     <div class="modal fade" id="exampleModal<?php echo $id; ?>" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
-                        <div class="modal-dialog modal-lg">
+                        <div class="modal-dialog  modal-lg">
+
+                        <?php
+                        $modalsql = "SELECT * FROM qa_comments WHERE qa_id = '$id'";
+                        $modalresult = mysqli_query($conn, $modalsql);
+                        if($modalresult) {
+                            $mnum_rows = mysqli_num_rows($modalresult);
+                            if($mnum_rows > 0) {
+                                while ($mrow = mysqli_fetch_assoc($modalresult)) {
+                                    $mid                     = $mrow['qa_id'];
+                                    $midno                   = $mrow['idno'];
+                                    $mengagement_id          = $mrow['engagement_id'];
+                                    $mcontrol_ref            = $mrow['control_ref'];
+                                    $mcomment_by             = $mrow['comment_by'];
+                                    $mcontrol                = $mrow['control'];
+                                    $mstatus                 = $mrow['status'];
+                                    $mqa_comment             = $mrow['qa_comment'];
+                                
+                                ?>
+
+                                
                             <div class="modal-content" style="background-color: #f2f2f2;">
                                 <div class="modal-header">
                                     <h5 class="modal-title" id="exampleModalLabel">
-                                        <?php echo $control_ref; ?>
+                                        <?php if (strpos($off_engagement_type, 'SOC 2') !== false) { ?>
+                                            <?php echo $control_ref; ?> &nbsp; <p class="badge soc-2-badge">SOC 2</p>
+                                        <?php } else if (strpos($off_engagement_type, 'SOC 1') !== false) { ?>
+                                            <?php echo $control_ref; ?> &nbsp; <p class="badge soc-1-badge">SOC 1</p>
+                                        <?php } else if (strpos($off_engagement_type, 'HIPAA') !== false) { ?>
+                                            <?php echo $control_ref; ?> &nbsp; <p class="badge hipaa-badge">HIPAA</p>
+                                        <?php } ?>
                                     </h5>
                                     <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                                 </div>
