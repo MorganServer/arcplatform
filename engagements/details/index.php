@@ -1,6 +1,6 @@
 <?php
 date_default_timezone_set('America/Denver');
-require_once "../../app/database/connection.php";  // Ensure this is correct
+require_once "../../app/database/connection.php"; // Ensure this is correct
 require_once "../../path.php";
 require_once "../../app/functions/logout.php";
 require_once "../../app/functions/session_helpers.php";
@@ -8,13 +8,6 @@ session_start();
 
 ini_set('display_errors', 1);
 error_reporting(E_ALL);
-
-// Include necessary functions
-// $files = glob("../../app/functions/*.php");
-// foreach ($files as $file) {
-//     require_once $file;
-// }
-
 
 // Trigger the logout function
 if (isset($_GET['logout']) && $_GET['logout'] == 1) {
@@ -28,28 +21,34 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['followup_owner'])) {
     $qaId = intval($_POST['qa_id']);
     $comment = trim($_POST['followup_comment']);
     $owner = trim($_POST['followup_owner']);
-    $engagement_id = trim($_POST['engagement_id']);
+    $engagement_id = intval($_POST['engagement_id']); // Ensure it's an integer
 
-    if ($qaId && !empty($comment) && !empty($owner)) {
-        // Insert the comment into the database
-        $stmt = $conn->prepare("INSERT INTO followup_comments (qa_id, engagement_id, followup_comment, followup_owner) VALUES (?, ?, ?, ?)");
-        $stmt->bind_param("iiss", $qaId, $engagement_id, $comment, $owner);
-
-        if ($stmt->execute()) {
-            // Return the comment HTML snippet
-            echo "<div class='comment'><strong>" . htmlspecialchars($owner) . "</strong>: " . htmlspecialchars($comment) . "</div>";
-        } else {
-            http_response_code(500);
-            echo "Error inserting comment.";
-        }
-        $stmt->close();
-    } else {
-        http_response_code(400);
-        echo "Invalid input.";
+    // Debug input values
+    if (!$qaId || !$engagement_id || empty($comment) || empty($owner)) {
+        die("Invalid input: qa_id=$qaId, engagement_id=$engagement_id, comment=$comment, owner=$owner");
     }
-    exit; // Ensure no further output is sent
+
+    // Prepare SQL statement
+    $stmt = $conn->prepare("INSERT INTO followup_comments (qa_id, engagement_id, comment, owner) VALUES (?, ?, ?, ?)");
+    if (!$stmt) {
+        die("SQL prepare failed: (" . $conn->errno . ") " . $conn->error);
+    }
+
+    // Bind parameters
+    $stmt->bind_param("iiss", $qaId, $engagement_id, $comment, $owner);
+
+    // Execute the query
+    if ($stmt->execute()) {
+        echo "<div class='comment'><strong>" . htmlspecialchars($owner) . "</strong>: " . htmlspecialchars($comment) . "</div>";
+    } else {
+        die("Execution failed: (" . $stmt->errno . ") " . $stmt->error);
+    }
+
+    $stmt->close();
+    exit;
 }
 ?>
+
 
 
 <!DOCTYPE html>
