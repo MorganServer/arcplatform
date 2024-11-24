@@ -344,7 +344,7 @@ redirectIfNotLoggedIn();
                                                 <span><?php echo $mcontrol_ref ? $mcontrol_ref : '-'; ?></span>
                                             </div>
                                             <div style="display: flex; align-items: center;">
-                                                <span style="width: 150px;">Comment By:</span>
+                                                <span style="width: 150px;">Owner:</span>
                                                 <span><?php echo $mcomment_by ? $mcomment_by : '-'; ?></span>
                                             </div>
                                             <div style="display: flex; align-items: center;">
