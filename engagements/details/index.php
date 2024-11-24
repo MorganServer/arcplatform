@@ -338,21 +338,22 @@ redirectIfNotLoggedIn();
                                     <div class="qa-comment-details" style="background-color: white; padding: 10px; border-radius: 15px; margin: 25px;">
                                         <h4>Details</h4>
 
-                                        <div style="display: flex; flex-direction: column; gap: 10px;">
-                                            <div style="display: flex; align-items: center;">
-                                                <span style="width: 150px;">Reference:</span>
-                                                <span><?php echo $mcontrol_ref ? $mcontrol_ref : '-'; ?></span>
-                                            </div>
-                                            <div style="display: flex; align-items: center;">
-                                                <span style="width: 150px;">Owner:</span>
-                                                <span><?php echo $mcomment_by ? $mcomment_by : '-'; ?></span>
-                                            </div>
-                                            <div style="display: flex; align-items: center;">
-                                                <span style="width: 150px;">Control:</span>
-                                                <span><?php echo $mcontrol ? $mcontrol : '-'; ?></span>
-                                            </div>
-                                        </div>
+                                        <table style="width: 100%; border-collapse: collapse;">
+                                            <tr>
+                                                <td style="width: 150px; font-weight: bold; padding: 5px;">Reference:</td>
+                                                <td style="padding: 5px;"><?php echo $mcontrol_ref ? $mcontrol_ref : '-'; ?></td>
+                                            </tr>
+                                            <tr>
+                                                <td style="font-weight: bold; padding: 5px;">Owner:</td>
+                                                <td style="padding: 5px;"><?php echo $mcomment_by ? $mcomment_by : '-'; ?></td>
+                                            </tr>
+                                            <tr>
+                                                <td style="font-weight: bold; padding: 5px;">Control:</td>
+                                                <td style="padding: 5px;"><?php echo $mcontrol ? $mcontrol : '-'; ?></td>
+                                            </tr>
+                                        </table>
                                     </div>
+
 
 
                                     <!-- Populate with dynamic data if needed -->
