@@ -364,20 +364,21 @@ redirectIfNotLoggedIn();
                                                     <span class="detail-value"><?php echo $mqa_comment ? $mqa_comment : '-'; ?></span>
                                                 </div>
                                             </div>
+                                            <div class="mt-3"></div>
                                             <h6 class="details-header" style="font-size: 15px;">Follow-Up Comments</h6>
 
                                             <!-- Follow-up Comments Display -->
                                             <div id="followup-comments-container">
                                                 <?php
                                                 // Fetch and display current follow-up comments
-                                                $followupSql = "SELECT * FROM followup_qa_comments WHERE qa_id = '$id' ORDER BY created_at DESC";
+                                                $followupSql = "SELECT * FROM followup_qa_comments WHERE qa_id = '$id' ORDER BY followup_created DESC";
                                                 $followupResult = mysqli_query($conn, $followupSql);
-                                                                                    
+
                                                 if ($followupResult && mysqli_num_rows($followupResult) > 0) {
                                                     while ($followupRow = mysqli_fetch_assoc($followupResult)) {
                                                         $comment = htmlspecialchars($followupRow['followup_comment']);
-                                                        $createdAt = date("F j, Y, g:i a", strtotime($followupRow['created_at'])); // Format the date
-                                                        
+                                                        $createdAt = date("F j, Y, g:i a", strtotime($followupRow['followup_created'])); // Format the date
+
                                                         echo "
                                                         <div class='comment'>
                                                             <div class='comment-header'>
