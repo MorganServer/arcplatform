@@ -241,6 +241,47 @@ body {
 
 
 
+.qa-comment-details {
+    background-color: #ffffff;
+    padding: 15px;
+    border-radius: 15px;
+    margin: 25px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    font-family: Arial, sans-serif;
+}
+
+.details-header {
+    font-size: 18px;
+    margin-bottom: 15px;
+    font-weight: bold;
+    color: #333333;
+}
+
+.details-content {
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+}
+
+.detail-item {
+    display: flex;
+    align-items: center;
+    font-size: 14px;
+}
+
+.detail-label {
+    width: 150px;
+    font-weight: bold;
+    color: #555555;
+}
+
+.detail-value {
+    color: #333333;
+}
+
+
+
+
   /* .circle-progress {
     width: 120px;
     height: 120px;

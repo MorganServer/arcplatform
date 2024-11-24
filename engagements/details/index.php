@@ -335,24 +335,24 @@ redirectIfNotLoggedIn();
                                     <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                                 </div>
                                 <div class="modal-body">
-                                    <div class="qa-comment-details" style="background-color: white; padding: 10px; border-radius: 15px; margin: 25px;">
-                                        <h4>Details</h4>
-
-                                        <div style="display: flex; flex-direction: column; gap: 10px;">
-                                            <div style="display: flex; align-items: center;">
-                                                <span style="width: 150px;">Reference:</span>
-                                                <span><?php echo $mcontrol_ref ? $mcontrol_ref : '-'; ?></span>
+                                    <div class="qa-comment-details">
+                                        <h4 class="details-header">Details</h4>
+                                        <div class="details-content">
+                                            <div class="detail-item">
+                                                <span class="detail-label">Reference:</span>
+                                                <span class="detail-value"><?php echo $mcontrol_ref ? $mcontrol_ref : '-'; ?></span>
                                             </div>
-                                            <div style="display: flex; align-items: center;">
-                                                <span style="width: 150px;">Owner:</span>
-                                                <span><?php echo $mcomment_by ? $mcomment_by : '-'; ?></span>
+                                            <div class="detail-item">
+                                                <span class="detail-label">Owner:</span>
+                                                <span class="detail-value"><?php echo $mcomment_by ? $mcomment_by : '-'; ?></span>
                                             </div>
-                                            <div style="display: flex; align-items: center;">
-                                                <span style="width: 160px;">Control:</span>
-                                                <span><?php echo $mcontrol ? $mcontrol : '-'; ?></span>
+                                            <div class="detail-item">
+                                                <span class="detail-label">Control:</span>
+                                                <span class="detail-value"><?php echo $mcontrol ? $mcontrol : '-'; ?></span>
                                             </div>
                                         </div>
                                     </div>
+
 
 
                                     <!-- Populate with dynamic data if needed -->
