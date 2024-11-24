@@ -23,23 +23,37 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['followup_owner'])) {
     $owner = trim($_POST['followup_owner']);
     $engagement_id = intval($_POST['engagement_id']); // Ensure it's an integer
 
-    // Debug input values
-    if (!$qaId || !$engagement_id || empty($comment) || empty($owner)) {
-        die("Invalid input: qa_id=$qaId, engagement_id=$engagement_id, comment=$comment, owner=$owner");
-    }
+    // Generate a random 6-digit number for idno
+    do {
+        $idno = rand(100000, 999999);
+        $checkQuery = "SELECT idno FROM followup_qa_comments WHERE idno = ?";
+        $stmt = $conn->prepare($checkQuery);
+        $stmt->bind_param("i", $idno);
+        $stmt->execute();
+        $stmt->store_result();
+    } while ($stmt->num_rows > 0);
 
-    // Prepare SQL statement
-    $stmt = $conn->prepare("INSERT INTO followup_qa_comments (qa_id, engagement_id, followup_comment, followup_owner) VALUES (?, ?, ?, ?)");
-    if (!$stmt) {
-        die("SQL prepare failed: (" . $conn->errno . ") " . $conn->error);
-    }
+    // Insert the follow-up comment
+    $insertQuery = "INSERT INTO followup_qa_comments (idno, qa_id, engagement_id, followup_comment, followup_owner) VALUES (?, ?, ?, ?, ?)";
+    $stmt = $conn->prepare($insertQuery);
+    $stmt->bind_param("iiiss", $idno, $qa_id, $engagement_id, $followup_comment, $followup_owner);
+    $stmt->execute();
 
-    // Bind parameters
-    $stmt->bind_param("iiss", $qaId, $engagement_id, $comment, $owner);
+    // Fetch the newly inserted follow-up comment
+    $followupSql = "SELECT * FROM followup_qa_comments WHERE idno = ?";
+    $stmt = $conn->prepare($followupSql);
+    $stmt->bind_param("i", $idno);
+    $stmt->execute();
+    $result = $stmt->get_result();
+    $row = $result->fetch_assoc();
 
-    // Execute the query
-    if ($stmt->execute()) {
-        echo "<div class='comment'>
+    // Format and return the new comment
+    // $owner = htmlspecialchars($row['followup_owner']);
+    $comment = htmlspecialchars($row['followup_comment']);
+    $createdAt = date("F j, Y, g:i a", strtotime($row['followup_created']));
+    
+    echo "
+    <div class='comment'>
         <div class='comment-header'>
             <span class='comment-time'>$createdAt</span>
             <span class='comment-author'>$followup_owner</span> <!-- Display the author here -->
@@ -48,12 +62,6 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['followup_owner'])) {
             <p>$comment</p>
         </div>
     </div>";
-    } else {
-        die("Execution failed: (" . $stmt->errno . ") " . $stmt->error);
-    }
-
-    $stmt->close();
-    exit;
 }
 ?>
 
