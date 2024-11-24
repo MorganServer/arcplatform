@@ -4,6 +4,9 @@ require_once "../../app/database/connection.php";  // Ensure this is correct
 require_once "../../path.php";
 session_start();
 
+ini_set('display_errors', 1);
+error_reporting(E_ALL);
+
 // Include necessary functions
 $files = glob("../../app/functions/*.php");
 foreach ($files as $file) {
