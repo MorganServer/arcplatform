@@ -408,6 +408,7 @@ redirectIfNotLoggedIn();
                                 </div>
                             </div>
                         </div>
+                        <?php }}} ?>
                     </div>
                 <!-- end Bootstrap modal -->
 
