@@ -212,7 +212,7 @@ body {
 
 
 thead {
-    background-color: #343a40 !important; /* Dark background */
+    background-color: #2e659d !important; /* Dark background */
     color: white;             /* White text */
 }
 
@@ -223,10 +223,6 @@ thead {
     height: 150px;
 }
 
-.table-hover tbody tr:hover {
-    background-color: #3b87d4; /* Your blue color */
-    color: white; /* Optional: Adjust text color for better contrast */
-}
 
 
   /* .circle-progress {
