@@ -405,9 +405,9 @@ redirectIfNotLoggedIn();
 
 
                                         <!-- Follow-Up Comment Form -->
-                                        <div class="mt-3"></div>
+                                        <div class="mt-5"></div>
                                         <hr>
-                                        <div class="mt-3"></div>
+                                        <div class="mt-5"></div>
                                         <h6 class="details-header" style="font-size: 15px;">Add New Comments</h6>
                                             <form id="followup-comment-form-<?php echo $id; ?>" class="followup-comment-form">
                                                 <div class="form-group">
