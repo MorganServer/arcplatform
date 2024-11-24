@@ -499,37 +499,7 @@ function updateProgressCircle(percent) {
 updateProgressCircle(<?php echo $percentage_completed; ?>); // Update to 75% progress
 </script>
 
-<script>
-document.getElementById('followup-comment-form').addEventListener('submit', function (e) {
-    e.preventDefault(); // Prevent form from reloading the page
 
-    // Gather form data
-    const formData = new FormData(this);
-
-    // Send AJAX request to server
-    fetch('submit_followup_comment.php', {
-        method: 'POST',
-        body: formData
-    })
-    .then(response => response.json())
-    .then(data => {
-        if (data.success) {
-            // Append the new comment to the list
-            const commentList = document.getElementById('followup-comments-list');
-            const newComment = document.createElement('div');
-            newComment.classList.add('followup-comment-item');
-            newComment.textContent = data.new_comment; // Add the new comment text
-            commentList.appendChild(newComment);
-
-            // Clear the textarea
-            document.getElementById('followup_comment').value = '';
-        } else {
-            alert('Error: ' + data.message);
-        }
-    })
-    .catch(error => console.error('Error:', error));
-});
-</script>
 
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha3/dist/js/bootstrap.bundle.min.js"></script>
 
