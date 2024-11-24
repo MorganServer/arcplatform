@@ -325,7 +325,7 @@ redirectIfNotLoggedIn();
                                 <div class="modal-header">
                                     <h5 class="modal-title" id="exampleModalLabel">
                                         <?php if (strpos($off_engagement_type, 'SOC 2') !== false) { ?>
-                                            <?php echo $control_ref; ?> &nbsp; <span class="badge text-bg-primary" style="font-size: 12px !important;">New</span>
+                                            <?php echo $control_ref; ?> &nbsp; <span class="badge text-bg-primary" style="font-size: 12px !important; margin-top: -5px;">New</span>
                                         <?php } else if (strpos($off_engagement_type, 'SOC 1') !== false) { ?>
                                             <img src="<?php ROOT_PATH; ?>/assets/images/soc-1-icon.png" width="35" alt=""> &nbsp; <?php echo $off_client_name; ?> - <?php echo $off_year; ?> <?php echo $off_engagement_type; ?>
                                         <?php } else if (strpos($off_engagement_type, 'HIPAA') !== false) { ?>
