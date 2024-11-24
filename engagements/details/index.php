@@ -291,7 +291,17 @@ redirectIfNotLoggedIn();
                     <td><?php echo $control_ref ? $control_ref : '-'; ?></td>
                     <td style="width: 400px;"><?php echo $control ? $control : '-'; ?></td>
                     <td><?php echo $comment_by ? $comment_by : '-'; ?></td>
-                    <td><?php echo $status ? $status : '-'; ?></td>
+                    <td>
+                        <?php if($status == 'New') { ?>
+                            <span class="badge" style="background-color: #ecf4f9; color: #2d60a3;"><?php echo $status ? $status : '-'; ?></span>
+                            
+                        <?php } else if($status == 'Follow-Up') { ?>
+
+                        <?php } else if($status == 'Completed') { ?>
+
+                        <?php } ?>
+                        
+                    </td>
                     <td>
                         <i class="bi bi-chevron-right"></i>
                     </td>
