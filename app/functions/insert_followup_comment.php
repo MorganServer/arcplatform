@@ -32,6 +32,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     $row = $result->fetch_assoc();
 
     // Format and return the new comment
+    $owner = htmlspecialchars($row['followup_owner']);
     $comment = htmlspecialchars($row['followup_comment']);
     $createdAt = date("F j, Y, g:i a", strtotime($row['followup_created']));
     
@@ -39,7 +40,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     <div class='comment'>
         <div class='comment-header'>
             <span class='comment-time'>$createdAt</span>
-            <span class='comment-author'>By: $followup_owner</span> <!-- Display the author here -->
+            <span class='comment-author'>By: $owner</span> <!-- Display the author here -->
         </div>
         <div class='comment-body'>
             <p>$comment</p>
