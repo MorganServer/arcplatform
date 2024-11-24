@@ -20,7 +20,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     // Insert the follow-up comment
     $insertQuery = "INSERT INTO followup_qa_comments (idno, qa_id, engagement_id, followup_comment, followup_owner) VALUES (?, ?, ?, ?, ?)";
     $stmt = $conn->prepare($insertQuery);
-    $stmt->bind_param("iiiss", $idno, $qa_id, $engagement_id, $followup_comment);
+    $stmt->bind_param("iiiss", $idno, $qa_id, $engagement_id, $followup_comment, $followup_owner);
     $stmt->execute();
 
     // Fetch the newly inserted follow-up comment
