@@ -40,9 +40,9 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     <div class='comment'>
         <div class='comment-header'>
             <span class='comment-time'>$createdAt</span>
-            <span class='comment-author'>By: $followup_owner</span> <!-- Display the author here -->
+            <span class='comment-author'>$followup_owner</span> <!-- Display the author here -->
         </div>
-        <div class='comment-body'>
+        <div class='comment-body mt-2'>
             <p>$comment</p>
         </div>
     </div>";

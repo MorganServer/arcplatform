@@ -391,10 +391,10 @@ redirectIfNotLoggedIn();
             echo "
                 <div class='comment'>
                     <div class='comment-header'>
-                        <span class='comment-author'>By: $followupOwner</span> <!-- Author on the left -->
+                        <span class='comment-author'>$followupOwner</span> <!-- Author on the left -->
                         <span class='comment-time'>$createdAt</span> <!-- Time on the right -->
                     </div>
-                    <div class='comment-body'>
+                    <div class='comment-body mt-2'>
                         <p>$comment</p>
                     </div>
                 </div>";
