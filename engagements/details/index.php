@@ -338,17 +338,17 @@ redirectIfNotLoggedIn();
                                     <div class="qa-comment-details" style="background-color: white; padding: 10px; border-radius: 15px; margin: 25px;">
                                         <h4>Details</h4>
 
-                                        <div style="display: flex; flex-direction: column; gap: 2px;">
-                                            <div style="display: flex; justify-content: space-between;">
-                                                <span>Reference:</span>
+                                        <div style="display: flex; flex-direction: column">
+                                            <div style="display: flex;">
+                                                <span>Reference:</span> <div class="me-2"></div>
                                                 <span><?php echo $mcontrol_ref ? $mcontrol_ref : '-'; ?></span>
                                             </div>
-                                            <div style="display: flex; justify-content: space-between;">
-                                                <span>Comment By:</span>
+                                            <div style="display: flex;">
+                                                <span>Comment By:</span> <div class="me-2"></div>
                                                 <span><?php echo $mcomment_by ? $mcomment_by : '-'; ?></span>
                                             </div>
-                                            <div style="display: flex; justify-content: space-between;">
-                                                <span>Control:</span>
+                                            <div style="display: flex;">
+                                                <span>Control:</span> <div class="me-2"></div>
                                                 <span><?php echo $mcontrol ? $mcontrol : '-'; ?></span>
                                             </div>
                                         </div>
