@@ -372,8 +372,8 @@ redirectIfNotLoggedIn();
                                                 <label for="followup_comment">Follow-Up Comment:</label>
                                                 <textarea name="followup_comment" id="followup_comment" rows="4" class="form-control" required></textarea>
                                             </div>
-                                            <input type="hidden" name="qa_id" value="<?php echo $qa_id; ?>">
-                                            <input type="hidden" name="engagement_id" value="<?php echo $engagement_id; ?>">
+                                            <input type="hidden" name="qa_id" value="<?php echo $mid; ?>">
+                                            <input type="hidden" name="engagement_id" value="<?php echo $mengagement_id; ?>">
                                             <button type="submit" name="submit_followup_comment" class="btn btn-primary mt-3">Submit Follow-Up Comment</button>
                                         </form>
                                     </div>
