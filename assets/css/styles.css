@@ -224,7 +224,7 @@ thead {
 }
 
 /* Highlight the row on hover */
-.qa-comment-row:hover {
+table tbody tr.qa-comment-row:hover {
     background-color: #3b87d4 !important;
 }
 
