@@ -39,7 +39,15 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['followup_owner'])) {
 
     // Execute the query
     if ($stmt->execute()) {
-        echo "<div class='comment'><strong>" . htmlspecialchars($owner) . "</strong>: " . htmlspecialchars($comment) . "</div>";
+        echo "<div class='comment'>
+        <div class='comment-header'>
+            <span class='comment-time'>$createdAt</span>
+            <span class='comment-author'>$followup_owner</span> <!-- Display the author here -->
+        </div>
+        <div class='comment-body mt-2'>
+            <p>$comment</p>
+        </div>
+    </div>";
     } else {
         die("Execution failed: (" . $stmt->errno . ") " . $stmt->error);
     }
