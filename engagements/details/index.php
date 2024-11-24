@@ -518,7 +518,7 @@ updateProgressCircle(<?php echo $percentage_completed; ?>); // Update to 75% pro
 </script>
 
 <script>
-document.getElementById('followup-comment-form').addEventListener('submit', function(e) {
+    document.getElementById('followup-comment-form').addEventListener('submit', function(e) {
     e.preventDefault(); // Prevent the form from submitting normally
 
     // Gather form data
@@ -533,6 +533,7 @@ document.getElementById('followup-comment-form').addEventListener('submit', func
     .then(data => {
         // Update the follow-up comments container with the new data
         document.getElementById('followup-comments-container').innerHTML = data;
+
         // Clear the form textarea
         document.getElementById('followup_comment').value = '';
     })
@@ -540,6 +541,7 @@ document.getElementById('followup-comment-form').addEventListener('submit', func
         console.error('Error:', error);
     });
 });
+
 </script>
 
 
