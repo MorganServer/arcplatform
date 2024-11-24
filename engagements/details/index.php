@@ -317,6 +317,7 @@ redirectIfNotLoggedIn();
                                     $mcomment_by             = $mrow['comment_by'];
                                     $mcontrol                = $mrow['control'];
                                     $mstatus                 = $mrow['status'];
+                                    $mqa_comment             = $mrow['qa_comment'];
                                 
                                 ?>
 
@@ -356,6 +357,10 @@ redirectIfNotLoggedIn();
                                     <!-- Populate with dynamic data if needed -->
 
                                     <div class="additional-comments-section">
+                                        <div class="original-comment-details">
+                                            Original Comment
+                                            <?php echo $mqa_comment ? $mqa_comment : '-'; ?>
+                                        </div>
                                         <form action="">
 
                                         </form>
