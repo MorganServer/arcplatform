@@ -509,29 +509,34 @@ updateProgressCircle(<?php echo $percentage_completed; ?>); // Update to 75% pro
 </script>
 
 <script>
-    document.getElementById('followup-comment-form').addEventListener('submit', function(e) {
-    e.preventDefault(); // Prevent the form from submitting normally
+    // Attach an event listener to dynamically created forms
+document.addEventListener('submit', function(e) {
+    if (e.target.classList.contains('followup-comment-form')) {
+        e.preventDefault(); // Prevent the form from submitting normally
 
-    // Gather form data
-    const formData = new FormData(this);
+        // Gather form data
+        const formData = new FormData(e.target);
 
-    // Send an AJAX request to the server
-    fetch('<?php BASE_URL; ?>/app/functions/insert_followup_comment.php', {
-        method: 'POST',
-        body: formData
-    })
-    .then(response => response.text())
-    .then(data => {
-        // Update the follow-up comments container with the new data
-        document.getElementById('followup-comments-container').innerHTML = data;
+        // Send an AJAX request to the server
+        fetch('<?php BASE_URL; ?>/app/functions/insert_followup_comment.php', {
+            method: 'POST',
+            body: formData
+        })
+        .then(response => response.text())
+        .then(data => {
+            // Find the correct container by qa_id and update it
+            const qaId = formData.get('qa_id');
+            document.getElementById('followup-comments-container-' + qaId).innerHTML = data;
 
-        // Clear the form textarea
-        document.getElementById('followup_comment').value = '';
-    })
-    .catch(error => {
-        console.error('Error:', error);
-    });
+            // Clear the form textarea
+            document.getElementById('followup_comment-' + qaId).value = '';
+        })
+        .catch(error => {
+            console.error('Error:', error);
+        });
+    }
 });
+
 
 
 </script>
