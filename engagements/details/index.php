@@ -587,7 +587,7 @@ updateProgressCircle(<?php echo $percentage_completed; ?>); // Update to 75% pro
 </script>
 
 <script>
-    document.addEventListener('submit', function(e) {
+document.addEventListener('submit', function(e) {
     // Ensure the form has the followup-comment-form class
     if (e.target.classList.contains('followup-comment-form')) {
         e.preventDefault(); // Prevent the form from submitting normally
@@ -604,7 +604,7 @@ updateProgressCircle(<?php echo $percentage_completed; ?>); // Update to 75% pro
             if (!response.ok) {
                 throw new Error("Network response was not ok");
             }
-            return response.text();
+            return response.text(); // Expect only the comment HTML snippet
         })
         .then(data => {
             // Get the qa_id from the form data
@@ -613,10 +613,10 @@ updateProgressCircle(<?php echo $percentage_completed; ?>); // Update to 75% pro
             // Find the container element where comments are displayed
             const container = document.getElementById('followup-comments-container-' + qaId);
 
-            // Append the new comment to the container (using insertAdjacentHTML)
+            // Append the new comment to the container
             container.insertAdjacentHTML('afterbegin', data);
 
-            // Clear the form textarea after submission
+            // Clear the form fields after submission
             document.getElementById('followup_comment-' + qaId).value = '';
             document.getElementById('followup_owner-' + qaId).value = '';
         })
@@ -626,6 +626,7 @@ updateProgressCircle(<?php echo $percentage_completed; ?>); // Update to 75% pro
     }
 });
 </script>
+
 
 
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha3/dist/js/bootstrap.bundle.min.js"></script>
