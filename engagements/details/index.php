@@ -327,7 +327,7 @@ redirectIfNotLoggedIn();
                                     <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                                 </div>
                                 <div class="modal-body">
-                                    <div class="qa-comment-details" style="background-color: white;">
+                                    <div class="qa-comment-details" style="background-color: white; padding: 10px; border-radius: 15px;">
                                         <h4>
                                             Details
                                         </h4>
