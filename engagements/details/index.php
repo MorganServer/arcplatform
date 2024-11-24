@@ -152,7 +152,7 @@ redirectIfNotLoggedIn();
                             <div class="pt-1"></div>
                             <strong>
                                 <?php
-                                    $sql="SELECT count('1') FROM qa_comments WHERE status='New'";
+                                    $sql="SELECT count('1') FROM qa_comments WHERE status='New' && engagement_id = '$id'";
                                     $result=mysqli_query($conn,$sql);
                                     $rowtotal=mysqli_fetch_array($result); 
                                     if($rowtotal[0] < 10) {
