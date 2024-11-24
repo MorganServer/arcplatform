@@ -29,7 +29,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['followup_owner'])) {
     }
 
     // Prepare SQL statement
-    $stmt = $conn->prepare("INSERT INTO followup_qa_comments (qa_id, engagement_id, comment, owner) VALUES (?, ?, ?, ?)");
+    $stmt = $conn->prepare("INSERT INTO followup_qa_comments (qa_id, engagement_id, followup_comment, followup_owner) VALUES (?, ?, ?, ?)");
     if (!$stmt) {
         die("SQL prepare failed: (" . $conn->errno . ") " . $conn->error);
     }
