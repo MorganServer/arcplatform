@@ -510,46 +510,36 @@ updateProgressCircle(<?php echo $percentage_completed; ?>); // Update to 75% pro
 </script>
 
 <script>
- document.addEventListener('submit', function(e) {
-    // Check if the submitted form is the one we want
-    if (e.target && e.target.classList.contains('followup-comment-form')) {
-        e.preventDefault(); // Prevent default form submission
+    // Attach an event listener to dynamically created forms
+document.addEventListener('submit', function(e) {
+    // Ensure the form has the followup-comment-form class
+    if (e.target.classList.contains('followup-comment-form')) {
+        e.preventDefault(); // Prevent the form from submitting normally
 
-        // Get the qa_id dynamically
-        const qaId = e.target.querySelector('input[name="qa_id"]').value;
-        const followupComment = e.target.querySelector('textarea[name="followup_comment"]').value;
-
-        if (!followupComment.trim()) {
-            alert("Please enter a follow-up comment.");
-            return;
-        }
-
-        // Gather form data
+        // Gather form data using FormData
         const formData = new FormData(e.target);
 
-        console.log("Submitting form for qa_id:", qaId); // Debugging line
-
-        // Send the data via fetch (AJAX request)
+        // Send an AJAX request to the server
         fetch('<?php BASE_URL; ?>/app/functions/insert_followup_comment.php', {
             method: 'POST',
             body: formData
         })
         .then(response => response.text())
         .then(data => {
-            console.log("Response received:", data); // Debugging line
+            // Get the qa_id from the form data
+            const qaId = formData.get('qa_id');
 
-            // Update the follow-up comments section dynamically
+            // Update the follow-up comments container for the specific qa_id
             document.getElementById('followup-comments-container-' + qaId).innerHTML = data;
 
-            // Clear the form after submission
-            e.target.querySelector('textarea[name="followup_comment"]').value = '';
+            // Clear the form textarea after submission
+            document.getElementById('followup_comment-' + qaId).value = '';
         })
         .catch(error => {
             console.error('Error:', error);
         });
     }
 });
-
 
 </script>
 
