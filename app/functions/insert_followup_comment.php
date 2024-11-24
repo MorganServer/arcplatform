@@ -17,30 +17,31 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     } while ($stmt->num_rows > 0);
 
     // Insert the follow-up comment
-    $insertQuery = "INSERT INTO followup_qa_comments (idno, qa_id, engagement_id, followup_comment, followup_created) VALUES (?, ?, ?, ?, NOW())";
+    $insertQuery = "INSERT INTO followup_qa_comments (idno, qa_id, engagement_id, followup_comment) VALUES (?, ?, ?, ?)";
     $stmt = $conn->prepare($insertQuery);
     $stmt->bind_param("iiis", $idno, $qa_id, $engagement_id, $followup_comment);
     $stmt->execute();
 
-    // Fetch and return the updated comments
-    $followupSql = "SELECT * FROM followup_qa_comments WHERE qa_id = ? ORDER BY followup_created DESC";
+    // Fetch the newly inserted follow-up comment
+    $followupSql = "SELECT * FROM followup_qa_comments WHERE idno = ?";
     $stmt = $conn->prepare($followupSql);
-    $stmt->bind_param("i", $qa_id);
+    $stmt->bind_param("i", $idno);
     $stmt->execute();
     $result = $stmt->get_result();
+    $row = $result->fetch_assoc();
 
-    while ($row = $result->fetch_assoc()) {
-        $comment = htmlspecialchars($row['followup_comment']);
-        $createdAt = date("F j, Y, g:i a", strtotime($row['followup_created']));
-        echo "
-        <div class='comment'>
-            <div class='comment-header'>
-                <span class='comment-time'>$createdAt</span>
-            </div>
-            <div class='comment-body'>
-                <p>$comment</p>
-            </div>
-        </div>";
-    }
+    // Format and return the new comment
+    $comment = htmlspecialchars($row['followup_comment']);
+    $createdAt = date("F j, Y, g:i a", strtotime($row['followup_created']));
+    
+    echo "
+    <div class='comment'>
+        <div class='comment-header'>
+            <span class='comment-time'>$createdAt</span>
+        </div>
+        <div class='comment-body'>
+            <p>$comment</p>
+        </div>
+    </div>";
 }
 ?>

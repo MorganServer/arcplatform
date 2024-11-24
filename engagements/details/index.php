@@ -365,42 +365,44 @@ redirectIfNotLoggedIn();
                                         <div class="mt-3"></div>
                                         <h6 class="details-header" style="font-size: 15px;">Follow-Up Comments</h6>
 
-                                        <!-- Follow-up Comments Display -->
-                                        <div id="followup-comments-container">
-                                            <?php
-                                            $followupSql = "SELECT * FROM followup_qa_comments WHERE qa_id = '$id' ORDER BY followup_created DESC";
-                                            $followupResult = mysqli_query($conn, $followupSql);
-
-                                            if ($followupResult && mysqli_num_rows($followupResult) > 0) {
-                                                while ($followupRow = mysqli_fetch_assoc($followupResult)) {
-                                                    $comment = htmlspecialchars($followupRow['followup_comment']);
-                                                    $createdAt = date("F j, Y, g:i a", strtotime($followupRow['followup_created']));
-                                                    echo "
-                                                    <div class='comment'>
-                                                        <div class='comment-header'>
-                                                            <span class='comment-time'>$createdAt</span>
-                                                        </div>
-                                                        <div class='comment-body'>
-                                                            <p>$comment</p>
-                                                        </div>
-                                                    </div>";
-                                                }
-                                            } else {
-                                                echo "<p>No follow-up comments yet.</p>";
-                                            }
-                                            ?>
-                                        </div>
-                                        
                                         <!-- Follow-Up Comment Form -->
-                                        <form id="followup-comment-form-<?php echo $id; ?>" class="followup-comment-form">
-                                            <div class="form-group">
-                                                <label for="followup_comment-<?php echo $id; ?>">Follow-Up Comment:</label>
-                                                <textarea name="followup_comment" id="followup_comment-<?php echo $id; ?>" rows="4" class="form-control" required></textarea>
-                                            </div>
-                                            <input type="hidden" name="qa_id" value="<?php echo $id; ?>">
-                                            <input type="hidden" name="engagement_id" value="<?php echo $mengagement_id; ?>">
-                                            <button type="submit" class="btn btn-primary mt-3">Submit Follow-Up Comment</button>
-                                        </form>
+<form id="followup-comment-form-<?php echo $id; ?>" class="followup-comment-form">
+    <div class="form-group">
+        <label for="followup_comment-<?php echo $id; ?>">Follow-Up Comment:</label>
+        <textarea name="followup_comment" id="followup_comment-<?php echo $id; ?>" rows="4" class="form-control" required></textarea>
+    </div>
+    <input type="hidden" name="qa_id" value="<?php echo $id; ?>">
+    <input type="hidden" name="engagement_id" value="<?php echo $mengagement_id; ?>">
+    <button type="submit" class="btn btn-primary mt-3">Submit Follow-Up Comment</button>
+</form>
+
+<!-- Comments Container for each qa_id -->
+<div id="followup-comments-container-<?php echo $id; ?>">
+    <!-- Existing comments for qa_id -->
+    <?php
+    // Fetch and display current follow-up comments
+    $followupSql = "SELECT * FROM followup_qa_comments WHERE qa_id = '$id' ORDER BY followup_created DESC";
+    $followupResult = mysqli_query($conn, $followupSql);
+
+    if ($followupResult && mysqli_num_rows($followupResult) > 0) {
+        while ($followupRow = mysqli_fetch_assoc($followupResult)) {
+            $comment = htmlspecialchars($followupRow['followup_comment']);
+            $createdAt = date("F j, Y, g:i a", strtotime($followupRow['followup_created']));
+            echo "
+            <div class='comment'>
+                <div class='comment-header'>
+                    <span class='comment-time'>$createdAt</span>
+                </div>
+                <div class='comment-body'>
+                    <p>$comment</p>
+                </div>
+            </div>";
+        }
+    } else {
+        echo "<p>No follow-up comments yet.</p>";
+    }
+    ?>
+</div>
 
                                     </div>
                                 </div>
@@ -510,7 +512,7 @@ updateProgressCircle(<?php echo $percentage_completed; ?>); // Update to 75% pro
 </script>
 
 <script>
-    document.addEventListener('submit', function(e) {
+ document.addEventListener('submit', function(e) {
     // Ensure the form has the followup-comment-form class
     if (e.target.classList.contains('followup-comment-form')) {
         e.preventDefault(); // Prevent the form from submitting normally
@@ -531,9 +533,9 @@ updateProgressCircle(<?php echo $percentage_completed; ?>); // Update to 75% pro
             // Find the container element where comments are displayed
             const container = document.getElementById('followup-comments-container-' + qaId);
 
-            // Append the new comment to the container
-            container.insertAdjacentHTML('afterbegin', data);  // Adds the comment at the top
-            
+            // Append the new comment to the container (using insertAdjacentHTML)
+            container.insertAdjacentHTML('afterbegin', data);
+
             // Clear the form textarea after submission
             document.getElementById('followup_comment-' + qaId).value = '';
         })
