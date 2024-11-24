@@ -338,7 +338,7 @@ redirectIfNotLoggedIn();
                                     <div class="qa-comment-details" style="background-color: white; padding: 10px; border-radius: 15px; margin: 25px;">
                                         <h4>Details</h4>
 
-                                        <table style="">
+                                   
                                             <tr>
                                                 <td style="width: 150px; font-weight: bold; padding: 5px;">Reference:</td>
                                                 <td style="padding: 5px;"><?php echo $mcontrol_ref ? $mcontrol_ref : '-'; ?></td>
@@ -351,7 +351,7 @@ redirectIfNotLoggedIn();
                                                 <td style="font-weight: bold; padding: 5px;">Control:</td>
                                                 <td style="padding: 5px;"><?php echo $mcontrol ? $mcontrol : '-'; ?></td>
                                             </tr>
-                                        </table>
+                                       
                                     </div>
 
 
