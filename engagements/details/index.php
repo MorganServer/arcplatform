@@ -371,37 +371,41 @@ redirectIfNotLoggedIn();
                                                 <span class="detail-value"><?php echo $mqa_comment ?: '-'; ?></span>
                                             </div>
                                         </div>
-                                        <div class="mt-3"></div>
+
+                                        <div class="mt-4"></div>
+                                        <hr>
+                                        <div class="mt-4"></div>
+
                                         <h6 class="details-header" style="font-size: 15px;">Follow-Up Comments</h6>
 
                                         <!-- Comments Container for each qa_id -->
-<div id="followup-comments-container-<?php echo $id; ?>">
-    <!-- Existing comments for qa_id -->
-    <?php
-    // Fetch and display current follow-up comments
-    $followupSql = "SELECT * FROM followup_qa_comments WHERE qa_id = '$id' ORDER BY followup_created DESC";
-    $followupResult = mysqli_query($conn, $followupSql);
-
-    if ($followupResult && mysqli_num_rows($followupResult) > 0) {
-        while ($followupRow = mysqli_fetch_assoc($followupResult)) {
-            $comment = htmlspecialchars($followupRow['followup_comment']);
-            $createdAt = date("F j, Y, g:i a", strtotime($followupRow['followup_created']));
-            $followupOwner = htmlspecialchars($followupRow['followup_owner']); // Fetch the owner
-
-            echo "
-                <div class='comment'>
-                    <div class='comment-header'>
-                        <span class='comment-author'>$followupOwner</span> <!-- Author on the left -->
-                        <span class='comment-time'>$createdAt</span> <!-- Time on the right -->
-                    </div>
-                    <div class='comment-body mt-2'>
-                        <p>$comment</p>
-                    </div>
-                </div>";
-        }
-    } 
-    ?>
-</div>
+                                            <div id="followup-comments-container-<?php echo $id; ?>">
+                                                <!-- Existing comments for qa_id -->
+                                                <?php
+                                                // Fetch and display current follow-up comments
+                                                $followupSql = "SELECT * FROM followup_qa_comments WHERE qa_id = '$id' ORDER BY followup_created DESC";
+                                                $followupResult = mysqli_query($conn, $followupSql);
+                                                                                    
+                                                if ($followupResult && mysqli_num_rows($followupResult) > 0) {
+                                                    while ($followupRow = mysqli_fetch_assoc($followupResult)) {
+                                                        $comment = htmlspecialchars($followupRow['followup_comment']);
+                                                        $createdAt = date("F j, Y, g:i a", strtotime($followupRow['followup_created']));
+                                                        $followupOwner = htmlspecialchars($followupRow['followup_owner']); // Fetch the owner
+                                                    
+                                                        echo "
+                                                            <div class='comment'>
+                                                                <div class='comment-header'>
+                                                                    <span class='comment-author'>$followupOwner</span> <!-- Author on the left -->
+                                                                    <span class='comment-time'>$createdAt</span> <!-- Time on the right -->
+                                                                </div>
+                                                                <div class='comment-body mt-2'>
+                                                                    <p>$comment</p>
+                                                                </div>
+                                                            </div>";
+                                                    }
+                                                } 
+                                                ?>
+                                            </div>
 
 
                                         <!-- Follow-Up Comment Form -->
