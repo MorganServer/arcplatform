@@ -1,5 +1,5 @@
 <?php
-include('../database/connection.php');
+include(ROOT_PATH . '/app/database/connection.php');
 
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     $qa_id = $_POST['qa_id'];
