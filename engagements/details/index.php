@@ -321,18 +321,33 @@ redirectIfNotLoggedIn();
                                 ?>
 
                                 
-                            <div class="modal-content">
+                            <div class="modal-content" style="background-color: gray;">
                                 <div class="modal-header">
                                     <h5 class="modal-title" id="exampleModalLabel">Row Details</h5>
                                     <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                                 </div>
                                 <div class="modal-body">
+                                    <div class="qa-comment-details" style="background-color: white;">
+                                        <h4>
+                                            Details
+                                        </h4>
+
+                                        <p>Reference: <?php echo $mcontrol_ref ? $mcontrol_ref : '-'; ?></p>
+                                        <p>Comment By: <?php echo $mcomment_by ? $mcomment_by : '-'; ?></p>
+                                        <p>Control: <?php echo $mcontrol ? $mcontrol : '-'; ?></p>
+
+
+                                    </div>
                                     <!-- Populate with dynamic data if needed -->
-                                    <p>ID: <?php echo $midno; ?></p>
-                                    <p>Reference: <?php echo $mcontrol_ref ? $mcontrol_ref : '-'; ?></p>
-                                    <p>Control: <?php echo $mcontrol ? $mcontrol : '-'; ?></p>
-                                    <p>Comment By: <?php echo $mcomment_by ? $mcomment_by : '-'; ?></p>
-                                    <p>Status: <?php echo $mstatus ? $mstatus : '-'; ?></p>
+
+                                    <div class="additional-comments-section">
+                                        <form action="">
+
+                                        </form>
+                                    </div>
+                                    
+                                    
+                                    
                                 </div>
                                 <div class="modal-footer">
                                     <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
