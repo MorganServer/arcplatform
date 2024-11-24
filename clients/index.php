@@ -60,17 +60,7 @@ redirectIfNotLoggedIn();
                     $offset = ($page - 1) * $limit;
 
                     // Query to get clients, the total number of engagements, and open QA comments for each client
-                    $sql = "
-                        SELECT c.client_id, c.idno, c.client_name, 
-                               COUNT(DISTINCT e.engagement_id) AS total_engagements,
-                               COUNT(DISTINCT qc.qa_id) AS total_open_qa_comments
-                        FROM clients c
-                        LEFT JOIN engagement e ON c.client_name = e.client_name  -- Corrected JOIN to use client_id
-                        LEFT JOIN qa_comments qc ON e.engagement_id = qc.engagement_id AND qc.status = 'Open'  -- Join QA comments and filter by open status
-                        GROUP BY c.client_id
-                        ORDER BY c.client_created DESC
-                        LIMIT $limit OFFSET $offset
-                    ";
+                    $sql = "SELECT * FROM clients ORDER BY client_created DESC LIMIT $limit OFFSET $offset";
 
                     $result = mysqli_query($conn, $sql);
 
