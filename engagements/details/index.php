@@ -448,18 +448,15 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['followup_owner'])) {
                                         <hr>
                                         <div class="mt-4"></div>
                                         <h6 class="details-header" style="font-size: 15px;">Add New Comments</h6>
-                                            <form id="followup-comment-form-<?php echo $id; ?>" class="followup-comment-form">
-                                                <div class="form-group">
-                                                    <textarea name="followup_comment" id="followup_comment-<?php echo $id; ?>" rows="4" class="form-control" placeholder="Enter your follow-up comment..." required></textarea>
-                                                </div>
-                                                <div class="mt-3"></div>
-                                                <div class="form-group">
-                                                    <input name="followup_owner" id="followup_owner-<?php echo $id; ?>" class="form-control" placeholder="Follow-Up Owner..." required>
-                                                </div>
-                                                <input type="hidden" name="qa_id" value="<?php echo $id; ?>">
-                                                <input type="hidden" name="engagement_id" value="<?php echo $mengagement_id; ?>">
-                                                <button type="submit" class="btn btn-primary mt-3">Submit Follow-Up Comment</button>
-                                            </form>
+                                        <form class="followup-comment-form" method="post">
+    <input type="hidden" name="qa_id" value="123">
+    <textarea id="followup_comment-123" name="followup_comment" required></textarea>
+    <input id="followup_owner-123" name="followup_owner" type="text" placeholder="Your name" required>
+    <button type="submit">Submit</button>
+</form>
+
+<div id="followup-comments-container-123"></div>
+
 
                                             
 
