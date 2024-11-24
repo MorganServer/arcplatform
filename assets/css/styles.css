@@ -292,6 +292,42 @@ body {
     font-family: Arial, sans-serif;
 }
 
+    #followup-comments-container {
+        margin-top: 20px;
+        padding: 10px;
+        background-color: #f9f9f9;
+        border-radius: 10px;
+        max-height: 300px; /* Optional: limit height */
+        overflow-y: auto; /* Scrollable for many comments */
+    }
+
+    .comment {
+        background-color: white;
+        padding: 10px;
+        margin-bottom: 10px;
+        border-radius: 8px;
+        box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+    }
+
+    .comment-header {
+        font-size: 0.85rem;
+        color: #555;
+        margin-bottom: 5px;
+        text-align: right; /* Time on the right */
+    }
+
+    .comment-time {
+        font-style: italic;
+    }
+
+    .comment-body p {
+        margin: 0;
+        font-size: 1rem;
+        color: #333;
+    }
+
+
+
 
 
 
