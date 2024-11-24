@@ -279,7 +279,7 @@ redirectIfNotLoggedIn();
                 ?>
                 
                 
-                <tr class="qa-comment-row" style="--bs-link-hover-color-rgb: 25, 135, 84;" data-bs-toggle="modal" data-bs-target="#exampleModal<?php echo $id; ?>">
+                <tr class="qa-comment-row icon-link-hover" style="--bs-link-hover-color-rgb: 25, 135, 84;" data-bs-toggle="modal" data-bs-target="#exampleModal<?php echo $id; ?>">
                     <td></td>
                     <th scope="row"><?php echo $idno; ?></th>
                     <td><?php echo $control_ref ? $control_ref : '-'; ?></td>
