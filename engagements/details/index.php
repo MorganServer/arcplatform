@@ -392,15 +392,16 @@ redirectIfNotLoggedIn();
                                         </div>
                                         
                                         <!-- Follow-Up Comment Form -->
-                                        <form id="followup-comment-form">
+                                        <form id="followup-comment-form-<?php echo $id; ?>" class="followup-comment-form">
                                             <div class="form-group">
-                                                <label for="followup_comment">Follow-Up Comment:</label>
-                                                <textarea name="followup_comment" id="followup_comment" rows="4" class="form-control" required></textarea>
+                                                <label for="followup_comment-<?php echo $id; ?>">Follow-Up Comment:</label>
+                                                <textarea name="followup_comment" id="followup_comment-<?php echo $id; ?>" rows="4" class="form-control" required></textarea>
                                             </div>
                                             <input type="hidden" name="qa_id" value="<?php echo $id; ?>">
                                             <input type="hidden" name="engagement_id" value="<?php echo $mengagement_id; ?>">
                                             <button type="submit" class="btn btn-primary mt-3">Submit Follow-Up Comment</button>
                                         </form>
+
                                     </div>
                                 </div>
                                 <div class="modal-footer">
@@ -511,10 +512,11 @@ updateProgressCircle(<?php echo $percentage_completed; ?>); // Update to 75% pro
 <script>
     // Attach an event listener to dynamically created forms
 document.addEventListener('submit', function(e) {
+    // Ensure the form has the followup-comment-form class
     if (e.target.classList.contains('followup-comment-form')) {
         e.preventDefault(); // Prevent the form from submitting normally
 
-        // Gather form data
+        // Gather form data using FormData
         const formData = new FormData(e.target);
 
         // Send an AJAX request to the server
@@ -524,11 +526,13 @@ document.addEventListener('submit', function(e) {
         })
         .then(response => response.text())
         .then(data => {
-            // Find the correct container by qa_id and update it
+            // Get the qa_id from the form data
             const qaId = formData.get('qa_id');
+
+            // Update the follow-up comments container for the specific qa_id
             document.getElementById('followup-comments-container-' + qaId).innerHTML = data;
 
-            // Clear the form textarea
+            // Clear the form textarea after submission
             document.getElementById('followup_comment-' + qaId).value = '';
         })
         .catch(error => {
@@ -536,8 +540,6 @@ document.addEventListener('submit', function(e) {
         });
     }
 });
-
-
 
 </script>
 
