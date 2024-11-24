@@ -366,7 +366,7 @@ redirectIfNotLoggedIn();
                                         </div>
                                         <div class="mt-4">
                                         </div>
-                                        <h5 class="details-header">Follow-Up Comments</h5>
+                                        <h6 class="details-header">Follow-Up Comments</h6>
                                         <form action="">
 
                                         </form>
