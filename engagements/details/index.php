@@ -454,7 +454,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['followup_owner'])) {
                                                 </div>
                                                 <input type="hidden" name="qa_id" value="<?php echo $id; ?>">
                                                 <input type="hidden" name="engagement_id" value="<?php echo $mengagement_id; ?>">
-                                                <button type="submit" class="btn btn-primary mt-3">Submit Follow-Up Comment</button>
+                                                <button type="submit" name="followupcomment" class="btn btn-primary mt-3">Submit Follow-Up Comment</button>
                                             </form>
 
                                             
@@ -567,7 +567,7 @@ updateProgressCircle(<?php echo $percentage_completed; ?>); // Update to 75% pro
 </script>
 
 <script>
-    document.addEventListener('submit', function(e) {
+    document.addEventListener('followupcomment', function(e) {
     // Ensure the form has the followup-comment-form class
     if (e.target.classList.contains('followup-comment-form')) {
         e.preventDefault(); // Prevent the form from submitting normally
