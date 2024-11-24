@@ -335,7 +335,7 @@ redirectIfNotLoggedIn();
                 </div>
             </div>
         </div>
-    <?php }} ?>
+    <?php }}} ?>
     </div>
             
                
