@@ -223,7 +223,7 @@ thead {
     height: 150px;
 }
 
-.table-hover .qa-comment-row:hover {
+.table-hover {
     background-color: #3b87d4 !important; /* Ensure this rule takes priority */
 }
 
