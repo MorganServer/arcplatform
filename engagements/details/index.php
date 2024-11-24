@@ -370,17 +370,30 @@ redirectIfNotLoggedIn();
                                             <div id="followup-comments-container">
                                                 <?php
                                                 // Fetch and display current follow-up comments
-                                                $followupSql = "SELECT * FROM followup_qa_comments WHERE qa_id = '$id'";
+                                                $followupSql = "SELECT * FROM followup_qa_comments WHERE qa_id = '$id' ORDER BY created_at DESC";
                                                 $followupResult = mysqli_query($conn, $followupSql);
+                                                                                    
                                                 if ($followupResult && mysqli_num_rows($followupResult) > 0) {
                                                     while ($followupRow = mysqli_fetch_assoc($followupResult)) {
-                                                        echo "<p>" . htmlspecialchars($followupRow['followup_comment']) . "</p>";
+                                                        $comment = htmlspecialchars($followupRow['followup_comment']);
+                                                        $createdAt = date("F j, Y, g:i a", strtotime($followupRow['created_at'])); // Format the date
+                                                        
+                                                        echo "
+                                                        <div class='comment'>
+                                                            <div class='comment-header'>
+                                                                <span class='comment-time'>$createdAt</span>
+                                                            </div>
+                                                            <div class='comment-body'>
+                                                                <p>$comment</p>
+                                                            </div>
+                                                        </div>";
                                                     }
                                                 } else {
                                                     echo "<p>No follow-up comments yet.</p>";
                                                 }
                                                 ?>
                                             </div>
+
                                             
                                             <!-- Follow-Up Comment Form -->
                                             <form id="followup-comment-form">
