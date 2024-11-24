@@ -366,11 +366,18 @@ redirectIfNotLoggedIn();
                                         </div>
                                         <div class="mt-4">
                                         </div>
-                                        <h6 class="details-header" style="font-size: 20px;">Follow-Up Comments</h6>
-                                        <form action="">
-
+                                        <h6 class="details-header" style="font-size: 15px;">Follow-Up Comments</h6>
+                                        <form method="POST">
+                                            <div class="form-group">
+                                                <label for="followup_comment">Follow-Up Comment:</label>
+                                                <textarea name="followup_comment" id="followup_comment" rows="4" class="form-control" required></textarea>
+                                            </div>
+                                            <input type="hidden" name="qa_id" value="<?php echo $qa_id; ?>">
+                                            <input type="hidden" name="engagement_id" value="<?php echo $engagement_id; ?>">
+                                            <button type="submit" name="submit" class="btn btn-primary mt-3">Submit Follow-Up Comment</button>
                                         </form>
                                     </div>
+
                                     
                                     
                                     
