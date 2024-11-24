@@ -394,9 +394,11 @@ redirectIfNotLoggedIn();
                                             </div>
 
                                         <!-- Follow-Up Comment Form -->
+                                        <div class="mt-3"></div>
+                                        <h6 class="details-header" style="font-size: 15px;">Add New Comments</h6>
                                             <form id="followup-comment-form-<?php echo $id; ?>" class="followup-comment-form">
                                                 <div class="form-group">
-                                                    <label for="followup_comment-<?php echo $id; ?>">Follow-Up Comment:</label>
+                                                    <!-- <label for="followup_comment-<?php echo $id; ?>">Follow-Up Comment:</label> -->
                                                     <textarea name="followup_comment" id="followup_comment-<?php echo $id; ?>" rows="4" class="form-control" required></textarea>
                                                 </div>
                                                 <input type="hidden" name="qa_id" value="<?php echo $id; ?>">
