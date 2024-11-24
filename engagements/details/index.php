@@ -407,8 +407,10 @@ redirectIfNotLoggedIn();
                                         <h6 class="details-header" style="font-size: 15px;">Add New Comments</h6>
                                             <form id="followup-comment-form-<?php echo $id; ?>" class="followup-comment-form">
                                                 <div class="form-group">
-                                                    <!-- <label for="followup_comment-<?php echo $id; ?>">Follow-Up Comment:</label> -->
                                                     <textarea name="followup_comment" id="followup_comment-<?php echo $id; ?>" rows="4" class="form-control" required></textarea>
+                                                </div>
+                                                <div class="form-group">
+                                                    <input name="followup_owner" id="followup_owner-<?php echo $id; ?>" class="form-control" required>
                                                 </div>
                                                 <input type="hidden" name="qa_id" value="<?php echo $id; ?>">
                                                 <input type="hidden" name="engagement_id" value="<?php echo $mengagement_id; ?>">
@@ -551,6 +553,7 @@ updateProgressCircle(<?php echo $percentage_completed; ?>); // Update to 75% pro
 
             // Clear the form textarea after submission
             document.getElementById('followup_comment-' + qaId).value = '';
+            document.getElementById('followup_owner-' + qaId).value = '';
         })
         .catch(error => {
             console.error('Error:', error);

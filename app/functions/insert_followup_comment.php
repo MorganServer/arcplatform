@@ -5,6 +5,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     $qa_id = $_POST['qa_id'];
     $engagement_id = $_POST['engagement_id'];
     $followup_comment = $_POST['followup_comment'];
+    $followup_owner = $_POST['followup_owner'];
 
     // Generate a random 6-digit number for idno
     do {
@@ -17,9 +18,9 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     } while ($stmt->num_rows > 0);
 
     // Insert the follow-up comment
-    $insertQuery = "INSERT INTO followup_qa_comments (idno, qa_id, engagement_id, followup_comment) VALUES (?, ?, ?, ?)";
+    $insertQuery = "INSERT INTO followup_qa_comments (idno, qa_id, engagement_id, followup_comment, followup_owner) VALUES (?, ?, ?, ?, ?)";
     $stmt = $conn->prepare($insertQuery);
-    $stmt->bind_param("iiis", $idno, $qa_id, $engagement_id, $followup_comment);
+    $stmt->bind_param("iiiss", $idno, $qa_id, $engagement_id, $followup_comment);
     $stmt->execute();
 
     // Fetch the newly inserted follow-up comment
