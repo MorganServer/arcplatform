@@ -221,6 +221,24 @@ body {
     height: 150px;
 }
 
+.soc-2-badge {
+    background-color: #d9eafa !important;
+    color: #275ca1 !important;
+    font-size: 12px !important;
+}
+
+.soc-1-badge {
+    background-color: #d9fae5 !important;
+    color: #27a152 !important;
+    font-size: 12px !important;
+}
+
+.hipaa-badge {
+    background-color: #fad9d9 !important;
+    color: #a12727 !important;
+    font-size: 12px !important;
+}
+
 
 
   /* .circle-progress {
