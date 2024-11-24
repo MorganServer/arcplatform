@@ -267,17 +267,22 @@ body {
     display: flex;
     align-items: center;
     font-size: 14px;
+    justify-content: space-between; /* Ensures spacing between label and value */
 }
 
 .detail-label {
-    width: 150px;
     font-weight: bold;
     color: #555555;
+    min-width: 150px;  /* Set a minimum width for labels */
+    text-align: left;  /* Align the text to the left */
 }
 
 .detail-value {
     color: #333333;
+    text-align: left;
+    flex-grow: 1; /* Allows values to take up remaining space */
 }
+
 
 
 
