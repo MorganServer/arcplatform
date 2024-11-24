@@ -356,27 +356,40 @@ redirectIfNotLoggedIn();
 
                                     <!-- Populate with dynamic data if needed -->
 
-                                    <div class="additional-comments-section">
-                                        <h4 class="details-header">QA Comment Details</h4>
-                                        <div class="original-comment-details">
-                                            <div class="detail-item">
-                                                <span class="detail-label">Original Comment:</span>
-                                                <span class="detail-value"><?php echo $mqa_comment ? $mqa_comment : '-'; ?></span>
+                                        <div class="additional-comments-section">
+                                            <h4 class="details-header">QA Comment Details</h4>
+                                            <div class="original-comment-details">
+                                                <div class="detail-item">
+                                                    <span class="detail-label">Original Comment:</span>
+                                                    <span class="detail-value"><?php echo $mqa_comment ? $mqa_comment : '-'; ?></span>
+                                                </div>
                                             </div>
-                                        </div>
-                                        <div class="mt-4">
-                                        </div>
-                                        <h6 class="details-header" style="font-size: 15px;">Follow-Up Comments</h6>
-                                        <form method="POST">
-                                            <div class="form-group">
-                                                <label for="followup_comment">Follow-Up Comment:</label>
-                                                <textarea name="followup_comment" id="followup_comment" rows="4" class="form-control" required></textarea>
+                                            <div class="mt-4"></div>
+                                            <h6 class="details-header" style="font-size: 15px;">Follow-Up Comments</h6>
+                                            <div id="followup-comments-list">
+                                                <?php
+                                                // Fetch and display existing follow-up comments
+                                                $query = "SELECT followup_comment FROM followup_qa_comments WHERE qa_id = ?";
+                                                $stmt = $conn->prepare($query);
+                                                $stmt->bind_param("i", $id);
+                                                $stmt->execute();
+                                                $result = $stmt->get_result();
+
+                                                while ($row = $result->fetch_assoc()) {
+                                                    echo '<div class="followup-comment-item">' . htmlspecialchars($row['followup_comment']) . '</div>';
+                                                }
+                                                ?>
                                             </div>
-                                            <input type="hidden" name="qa_id" value="<?php echo $id; ?>">
-                                            <input type="hidden" name="engagement_id" value="<?php echo $mengagement_id; ?>">
-                                            <button type="submit" name="submit_followup_comment" class="btn btn-primary mt-3">Submit Follow-Up Comment</button>
-                                        </form>
-                                    </div>
+                                            <form id="followup-comment-form" method="POST">
+                                                <div class="form-group">
+                                                    <label for="followup_comment">Follow-Up Comment:</label>
+                                                    <textarea name="followup_comment" id="followup_comment" rows="4" class="form-control" required></textarea>
+                                                </div>
+                                                <input type="hidden" name="qa_id" value="<?php echo $id; ?>">
+                                                <input type="hidden" name="engagement_id" value="<?php echo $mengagement_id; ?>">
+                                                <button type="submit" class="btn btn-primary mt-3">Submit Follow-Up Comment</button>
+                                            </form>
+                                        </div>
 
                                     
                                     
@@ -484,6 +497,38 @@ function updateProgressCircle(percent) {
 
 // Example usage:
 updateProgressCircle(<?php echo $percentage_completed; ?>); // Update to 75% progress
+</script>
+
+<script>
+document.getElementById('followup-comment-form').addEventListener('submit', function (e) {
+    e.preventDefault(); // Prevent form from reloading the page
+
+    // Gather form data
+    const formData = new FormData(this);
+
+    // Send AJAX request to server
+    fetch('submit_followup_comment.php', {
+        method: 'POST',
+        body: formData
+    })
+    .then(response => response.json())
+    .then(data => {
+        if (data.success) {
+            // Append the new comment to the list
+            const commentList = document.getElementById('followup-comments-list');
+            const newComment = document.createElement('div');
+            newComment.classList.add('followup-comment-item');
+            newComment.textContent = data.new_comment; // Add the new comment text
+            commentList.appendChild(newComment);
+
+            // Clear the textarea
+            document.getElementById('followup_comment').value = '';
+        } else {
+            alert('Error: ' + data.message);
+        }
+    })
+    .catch(error => console.error('Error:', error));
+});
 </script>
 
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha3/dist/js/bootstrap.bundle.min.js"></script>
