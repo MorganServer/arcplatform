@@ -8,10 +8,10 @@ ini_set('display_errors', 1);
 error_reporting(E_ALL);
 
 // Include necessary functions
-$files = glob("../../app/functions/*.php");
-foreach ($files as $file) {
-    require_once $file;
-}
+// $files = glob("../../app/functions/*.php");
+// foreach ($files as $file) {
+//     require_once $file;
+// }
 
 // Trigger the logout function
 if (isset($_GET['logout']) && $_GET['logout'] == 1) {
