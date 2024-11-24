@@ -348,7 +348,7 @@ redirectIfNotLoggedIn();
                                             </div>
                                             <div class="detail-item">
                                                 <span class="detail-label">Control:</span>
-                                                <span class="detail-value" style="margin-left: 10px;"><?php echo $mcontrol ? $mcontrol : '-'; ?></span>
+                                                <span class="detail-value"><?php echo $mcontrol ? $mcontrol : '-'; ?></span>
                                             </div>
                                         </div>
                                     </div>
