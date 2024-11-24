@@ -364,6 +364,8 @@ redirectIfNotLoggedIn();
                                                 <span class="detail-value"><?php echo $mqa_comment ? $mqa_comment : '-'; ?></span>
                                             </div>
                                         </div>
+                                        <div class="mt-4">
+                                        </div>
                                         <h5 class="details-header">Follow-Up Comments</h5>
                                         <form action="">
 
