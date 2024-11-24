@@ -28,9 +28,9 @@ redirectIfNotLoggedIn();
     <title>Engagement Details - ARC Platform</title>
 
     <style>
-        /* .qa-comment-row:hover {
+        .qa-comment-row:hover {
             background-color: #f8f9fa !important; 
-        } */
+        }
     </style>
 </head>
 <body>
@@ -279,7 +279,7 @@ redirectIfNotLoggedIn();
                 ?>
                 
                 
-                <tr class="qa-comment-row icon-link icon-link-hover" style="--bs-link-hover-color-rgb: 25, 135, 84;" data-bs-toggle="modal" data-bs-target="#exampleModal<?php echo $id; ?>">
+                <tr class="qa-comment-row" data-bs-toggle="modal" data-bs-target="#exampleModal<?php echo $id; ?>">
                     <td></td>
                     <th scope="row"><?php echo $idno; ?></th>
                     <td><?php echo $control_ref ? $control_ref : '-'; ?></td>
