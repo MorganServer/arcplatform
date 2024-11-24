@@ -353,8 +353,6 @@ redirectIfNotLoggedIn();
                                         </div>
                                     </div>
 
-
-
                                     <!-- Populate with dynamic data if needed -->
 
                                     <div class="additional-comments-section">

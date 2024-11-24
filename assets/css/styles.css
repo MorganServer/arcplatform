@@ -283,6 +283,15 @@ body {
     flex-grow: 1; /* Allows values to take up remaining space */
 }
 
+.additional-comments-section {
+    background-color: #ffffff;
+    padding: 15px;
+    border-radius: 15px;
+    margin: 25px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    font-family: Arial, sans-serif;
+}
+
 
 
 
