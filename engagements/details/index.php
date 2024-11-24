@@ -92,7 +92,7 @@ redirectIfNotLoggedIn();
                 <div class="engagement-client-details">
                     <?php if (strpos($off_engagement_type, 'SOC 2') !== false) { ?>
                         <img src="<?php ROOT_PATH; ?>/assets/images/soc-2-icon.png" width="35" alt=""> &nbsp; <?php echo $off_client_name; ?> - <?php echo $off_year; ?> <?php echo $off_engagement_type; ?>
-                    <?php } else if (strpos($off_engagement_type, 'SOC 2') !== false) { ?>
+                    <?php } else if (strpos($off_engagement_type, 'SOC 1') !== false) { ?>
                         <img src="<?php ROOT_PATH; ?>/assets/images/soc-1-icon.png" width="35" alt=""><?php echo $off_client_name; ?> - <?php echo $off_year; ?> <?php echo $off_engagement_type; ?>
                     <?php } else if (strpos($off_engagement_type, 'HIPAA') !== false) { ?>
                         <img src="<?php ROOT_PATH; ?>/assets/images/hipaa-icon.png" width="35" alt=""><?php echo $off_client_name; ?> - <?php echo $off_year; ?> <?php echo $off_engagement_type; ?>
