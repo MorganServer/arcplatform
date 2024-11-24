@@ -323,7 +323,15 @@ redirectIfNotLoggedIn();
                                 
                             <div class="modal-content" style="background-color: #f2f2f2;">
                                 <div class="modal-header">
-                                    <h5 class="modal-title" id="exampleModalLabel">Row Details</h5>
+                                    <h5 class="modal-title" id="exampleModalLabel">
+                                        <?php if (strpos($off_engagement_type, 'SOC 2') !== false) { ?>
+                                            <?php echo $control_ref; ?> <span class="badge text-bg-primary">New</span>
+                                        <?php } else if (strpos($off_engagement_type, 'SOC 1') !== false) { ?>
+                                            <img src="<?php ROOT_PATH; ?>/assets/images/soc-1-icon.png" width="35" alt=""> &nbsp; <?php echo $off_client_name; ?> - <?php echo $off_year; ?> <?php echo $off_engagement_type; ?>
+                                        <?php } else if (strpos($off_engagement_type, 'HIPAA') !== false) { ?>
+                                            <img src="<?php ROOT_PATH; ?>/assets/images/hipaa-icon.png" width="35" alt=""> &nbsp; <?php echo $off_client_name; ?> - <?php echo $off_year; ?> <?php echo $off_engagement_type; ?>
+                                        <?php } ?>
+                                    </h5>
                                     <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                                 </div>
                                 <div class="modal-body">
