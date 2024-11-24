@@ -357,9 +357,12 @@ redirectIfNotLoggedIn();
                                     <!-- Populate with dynamic data if needed -->
 
                                     <div class="additional-comments-section">
+                                        <h4 class="details-header">QA Comment Details</h4>
                                         <div class="original-comment-details">
-                                            Original Comment
-                                            <?php echo $mqa_comment ? $mqa_comment : '-'; ?>
+                                            <div class="detail-item">
+                                                <span class="detail-label">Original Comment:</span>
+                                                <span class="detail-value"><?php echo $mqa_comment ? $mqa_comment : '-'; ?></span>
+                                            </div>
                                         </div>
                                         <form action="">
 
