@@ -294,11 +294,10 @@ redirectIfNotLoggedIn();
                     <td>
                         <?php if($status == 'New') { ?>
                             <span class="badge" style="background-color: #ecf4f9; color: #2d60a3;"><?php echo $status ? $status : '-'; ?></span>
-                            
                         <?php } else if($status == 'Follow-Up') { ?>
-
+                            <span class="badge" style="background-color: #fdf1e0; color: #785524;"><?php echo $status ? $status : '-'; ?></span>
                         <?php } else if($status == 'Completed') { ?>
-
+                            <span class="badge" style="background-color: #e9f8e3; color: #497a37;"><?php echo $status ? $status : '-'; ?></span>
                         <?php } ?>
                         
                     </td>
