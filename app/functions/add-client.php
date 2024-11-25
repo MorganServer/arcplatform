@@ -33,7 +33,7 @@ if (isset($_POST['add_engagement'])) {
 
     // Sanitize and validate input data
     $client_name = isset($_POST['e_client_name']) ? trim(mysqli_real_escape_string($conn, $_POST['e_client_name'])) : ""; 
-    $engagement_type = isset($_POST['engagement_type']) ? trim(mysqli_real_escape_string($conn, $_POST['engagement_type'])) : "";
+    $engagement_type = isset($_POST['e_engagement_type']) ? trim(mysqli_real_escape_string($conn, $_POST['e_engagement_type'])) : "";
     $year = isset($_POST['year']) ? trim(mysqli_real_escape_string($conn, $_POST['year'])) : "";
     $report_start = isset($_POST['report_start']) ? trim(mysqli_real_escape_string($conn, $_POST['report_start'])) : "";
     $report_end = isset($_POST['report_end']) ? trim(mysqli_real_escape_string($conn, $_POST['report_end'])) : "";
