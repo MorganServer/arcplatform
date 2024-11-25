@@ -119,7 +119,7 @@ redirectIfNotLoggedIn();
                         </a>
                     </div>
                     <div class="card" style="border-bottom: 3px solid orange; border-radius: 5px !important;">
-                        <a class="text-decoration-none text-black stretched-link" href="<?php echo BASE_URL; ?>/engagements/">
+                        <a class="text-decoration-none text-black stretched-link" href="<?php echo BASE_URL; ?>/completed_engagements/">
                         <div class="card-body text-center">
                             <p class="card-text">
                                 <div class="card_text_left float-start" style="font-size: 45px;">
