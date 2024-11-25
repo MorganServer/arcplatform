@@ -237,9 +237,11 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['followup_owner'])) {
                     <!-- end Complete Engagement PHP -->
                     
                 </div>
-                <?php } else {
-                    echo "Completed Engagement";
-                } ?>
+                <?php } else { ?>
+                    <div class="alert alert-success" role="alert">
+                        Completed Engagement
+                    </div>
+                <?php } ?>
             </div>
 
             <div class="mt-5"></div>
