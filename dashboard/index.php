@@ -152,21 +152,34 @@ redirectIfNotLoggedIn();
     </div>
 
     <script>
-document.addEventListener('DOMContentLoaded', function () {
-    // Handle dropdown selection and update client name
-    const engagementDropdown = document.getElementById('e_engagement_id');
-    const clientNameInput = document.getElementById('client_name');
+    document.addEventListener('DOMContentLoaded', function () {
+        // This function runs after the page has loaded, but before modal is shown
+        // Make sure event listener is added after modal is visible
+        const engagementDropdown = document.getElementById('e_engagement_id');
+        const clientNameInput = document.getElementById('client_name');
 
-    if (engagementDropdown && clientNameInput) {
+        if (engagementDropdown && clientNameInput) {
+            engagementDropdown.addEventListener('change', function () {
+                const selectedOption = this.options[this.selectedIndex];
+                const clientName = selectedOption.getAttribute('data-client-name');
+                clientNameInput.value = clientName || '';  // Ensure client name is empty if none selected
+            });
+        }
+    });
+
+    // Bootstrap event listener to initialize on modal show
+    $('#add_qa_comment').on('shown.bs.modal', function () {
+        // Reattach the event listener in case the modal content is recreated
+        const engagementDropdown = document.getElementById('e_engagement_id');
+        const clientNameInput = document.getElementById('client_name');
+
         engagementDropdown.addEventListener('change', function () {
             const selectedOption = this.options[this.selectedIndex];
             const clientName = selectedOption.getAttribute('data-client-name');
-            clientNameInput.value = clientName;
+            clientNameInput.value = clientName || '';  // Set client name in real-time
         });
-    }
-});
-
-    </script>
+    });
+</script>
 
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha3/dist/js/bootstrap.bundle.min.js"></script>
 </body>

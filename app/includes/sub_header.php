@@ -161,7 +161,7 @@ $pageName = ucwords($pageName);
 </div>
 <!-- end add-engagement -->
 
-<!-- add-engagement -->
+<!-- add-qa-comment -->
 <div class="modal fade" id="add_qa_comment" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
   <div class="modal-dialog">
     <div class="modal-content">
@@ -170,7 +170,6 @@ $pageName = ucwords($pageName);
             <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
         </div>
         <div class="modal-body">
-
             <form class="row g-3">
                 <div class="col-md-6">
                     <label for="e_engagement_id" class="form-label">Engagement</label>
@@ -230,4 +229,4 @@ $pageName = ucwords($pageName);
     </div>
   </div>
 </div>
-<!-- end add-engagement -->
+<!-- end add-qa-comment -->
