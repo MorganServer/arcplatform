@@ -92,7 +92,7 @@ redirectIfNotLoggedIn();
                     </td>
                     <td>
                         <?php
-                            $sql="SELECT count('1') FROM qa_comments WHERE client_id='$id'";
+                            $sql="SELECT count('1') FROM qa_comments WHERE client_id='$id' && status!='Completed'";
                             $result=mysqli_query($conn,$sql);
                             $rowtotal=mysqli_fetch_array($result); 
                             if($rowtotal[0] < 10) {
