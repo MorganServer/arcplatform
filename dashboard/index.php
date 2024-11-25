@@ -162,7 +162,13 @@ redirectIfNotLoggedIn();
             engagementDropdown.addEventListener('change', function () {
                 const selectedOption = this.options[this.selectedIndex];
                 const clientName = selectedOption.getAttribute('data-client-name');
-                clientNameInput.value = clientName || '';  // Ensure client name is empty if none selected
+                
+                // Debugging: Log the selected engagement and client name to the console
+                const selectedEngagementId = selectedOption.value;
+                console.log("Selected Engagement ID:", selectedEngagementId);
+                console.log("Client Name:", clientName);
+                
+                clientNameInput.value = clientName || '';  // Set client name in real-time
             });
         }
     });
@@ -176,6 +182,12 @@ redirectIfNotLoggedIn();
         engagementDropdown.addEventListener('change', function () {
             const selectedOption = this.options[this.selectedIndex];
             const clientName = selectedOption.getAttribute('data-client-name');
+            
+            // Debugging: Log the selected engagement and client name to the console
+            const selectedEngagementId = selectedOption.value;
+            console.log("Selected Engagement ID:", selectedEngagementId);
+            console.log("Client Name:", clientName);
+            
             clientNameInput.value = clientName || '';  // Set client name in real-time
         });
     });
