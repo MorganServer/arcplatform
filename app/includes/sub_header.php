@@ -97,7 +97,7 @@ $pageName = ucwords($pageName);
                 </div>
                 <div class="col-md-6">
                     <label for="e_engagement_type" class="form-label">Engagement Type</label>
-                    <select id="e_engagement_type" name="engagement_type" class="form-select">
+                    <select id="e_engagement_type" name="e_engagement_type" class="form-select">
                         <option value="">Choose...</option>
                         <option value="SOC 1 Type 1">SOC 1 Type 1</option>
                         <option value="SOC 1 Type 2">SOC 1 Type 2</option>
