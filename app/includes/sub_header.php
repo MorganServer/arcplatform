@@ -163,66 +163,71 @@ $pageName = ucwords($pageName);
 
 <!-- add-engagement -->
 <div class="modal fade" id="add_qa_comment" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
-    <div class="modal-dialog">
-        <div class="modal-content">
-            <div class="modal-header">
-                <h1 class="modal-title fs-5" id="exampleModalLabel">Add QA Comment</h1>
-                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-            </div>
-            <div class="modal-body">
-                <form class="row g-3">
-                    <div class="col-md-6">
-                        <label for="e_engagement_id" class="form-label">Engagement</label>
-                        <select id="e_engagement_id" class="form-select">
-                            <option value="">Choose...</option>
-                            <?php
-                            $qa_sql = "SELECT * FROM engagement";
-                            $qa_result = mysqli_query($conn, $qa_sql);
-                            if (mysqli_num_rows($qa_result) > 0) {
-                                while ($qa_row = mysqli_fetch_assoc($qa_result)) { 
-                                    $qa_id = $qa_row['engagement_id'];
-                                    $qa_client_name = htmlspecialchars($qa_row['client_name']);
-                                    $qa_year = htmlspecialchars($qa_row['year']);
-                                    $qa_engagement_type = htmlspecialchars($qa_row['engagement_type']);
-                            ?>
-                                <option value="<?php echo $qa_id; ?>" 
-                                        data-client-name="<?php echo $qa_client_name; ?>">
-                                    <?php echo $qa_client_name; ?> - <?php echo $qa_year; ?> <?php echo $qa_engagement_type; ?>
-                                </option>
-                            <?php 
-                                }
-                            }
-                            ?>
-                        </select>
-                    </div>
+  <div class="modal-dialog">
+    <div class="modal-content">
+        <div class="modal-header">
+            <h1 class="modal-title fs-5" id="exampleModalLabel">Add QA Comment</h1>
+            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+        </div>
+        <div class="modal-body">
 
-                    <div class="col-md-6 mt-3">
-                        <label for="client_name" class="form-label">Client Name</label>
-                        <input type="text" id="client_name" class="form-control" readonly>
-                    </div>
-                    <!-- Other fields -->
-                    <div class="col-12">
-                        <button type="submit" name="submit_qa_comment" class="btn btn-primary">Submit</button>
-                    </div>
-                </form>
-            </div>
+            <form class="row g-3">
+                <div class="col-md-6">
+                    <label for="e_engagement_id" class="form-label">Engagement</label>
+                    <select id="e_engagement_id" class="form-select">
+                        <option value="">Choose...</option>
+                        <?php
+                        $qa_sql = "SELECT * FROM engagement";
+                        $qa_result = mysqli_query($conn, $qa_sql);
+                        if (mysqli_num_rows($qa_result) > 0) {
+                            while ($qa_row = mysqli_fetch_assoc($qa_result)) { 
+                                $qa_id = $qa_row['engagement_id'];
+                                $qa_client_name = htmlspecialchars($qa_row['client_name']);
+                                $qa_year = htmlspecialchars($qa_row['year']);
+                                $qa_engagement_type = htmlspecialchars($qa_row['engagement_type']);
+                        ?>
+                            <option value="<?php echo $qa_id; ?>" 
+                                    data-client-name="<?php echo $qa_client_name; ?>">
+                                <?php echo $qa_client_name; ?> - <?php echo $qa_year; ?> <?php echo $qa_engagement_type; ?>
+                            </option>
+                        <?php 
+                            }
+                        }
+                        ?>
+                    </select>
+                </div>
+                    
+                <div class="col-md-6 mt-3">
+                    <label for="client_name" class="form-label">Client Name</label>
+                    <input type="text" id="client_name" class="form-control" readonly>
+                </div>
+                <div class="col-md-6">
+                    <label for="control_ref" class="form-label">Control Reference</label>
+                    <input type="text" class="form-control" id="control_ref">
+                </div>
+                <div class="col-md-6">
+                    <label for="cell_reference" class="form-label">Cell Reference</label>
+                    <input type="text" class="form-control" id="cell_reference">
+                </div>
+                <div class="col-md-6">
+                    <label for="comment_by" class="form-label">Comment By</label>
+                    <input type="text" class="form-control" id="comment_by">
+                </div>
+                <div class="mb-3">
+                    <label for="control" class="form-label">Control</label>
+                    <textarea class="form-control" id="control" rows="3"></textarea>
+                </div>
+                <div class="mb-3">
+                    <label for="qa_comment" class="form-label">QA Comment</label>
+                    <textarea class="form-control" id="qa_comment" rows="3"></textarea>
+                </div>
+                <div class="col-12">
+                    <button type="submit" name="submit_qa_comment" class="btn btn-primary">Submit</button>
+                </div>
+            </form>
+
         </div>
     </div>
+  </div>
 </div>
 <!-- end add-engagement -->
-
-<script>
-document.addEventListener('DOMContentLoaded', function () {
-    // Handle dropdown selection and update client name
-    const engagementDropdown = document.getElementById('e_engagement_id');
-    const clientNameInput = document.getElementById('client_name');
-
-    if (engagementDropdown && clientNameInput) {
-        engagementDropdown.addEventListener('change', function () {
-            const selectedOption = this.options[this.selectedIndex];
-            const clientName = selectedOption.getAttribute('data-client-name') || '';
-            clientNameInput.value = clientName;
-        });
-    }
-});
-</script>
