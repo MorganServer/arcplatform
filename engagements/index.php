@@ -46,6 +46,7 @@ redirectIfNotLoggedIn();
                     <th scope="col">Client</th>
                     <th scope="col">Year</th>
                     <th scope="col">Type</th>
+                    <th scope="col">Open QA Comments</th>
                     <th style="width: 100px; text-align: center;">View</th>
                     <th style="width: 100px; text-align: center;">Edit</th>
                     <th style="width: 100px; text-align: center;">Delete</th>
@@ -84,6 +85,18 @@ redirectIfNotLoggedIn();
                     <td><?php echo $client_name ? $client_name : '-'; ?></td>
                     <td><?php echo $year ? $year : '-'; ?></td>
                     <td><?php echo $engagement_type ? $engagement_type : '-'; ?></td>
+                    <td>
+                        <?php
+                            $sql="SELECT count('1') FROM qa_comments WHERE client_id='$id'";
+                            $result=mysqli_query($conn,$sql);
+                            $rowtotal=mysqli_fetch_array($result); 
+                            if($rowtotal[0] < 10) {
+                                echo "0$rowtotal[0]";
+                            } else {
+                                echo "$rowtotal[0]";
+                            }
+                        ?>
+                    </td>
                     <!-- <td><?php //echo $status ? $status : '-'; ?></td> -->
                     <td style="width: 100px; text-align: center;">
                         <a href="<?php echo BASE_URL; ?>/engagements/details/?id=<?php echo $id; ?>" class="view">
