@@ -1,9 +1,12 @@
 <?php
-// Get the current script directory name (e.g., "dashboard")
+// Get the current script directory name (e.g., "dashboard" or "user_profile")
 $currentDirectory = basename(dirname($_SERVER['SCRIPT_FILENAME']));
 
-// Capitalize the first letter for display purposes
-$pageName = ucfirst($currentDirectory);
+// Replace underscores with spaces
+$pageName = str_replace('_', ' ', $currentDirectory);
+
+// Capitalize the first letter of each word for display purposes
+$pageName = ucwords($pageName);
 ?>
 
 <div class="page_header">
