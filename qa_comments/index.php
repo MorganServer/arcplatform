@@ -87,6 +87,7 @@ redirectIfNotLoggedIn();
                                     $engage_num_rows = mysqli_num_rows($engage_result);
                                     if ($engage_num_rows > 0) {
                                         while ($engage_row = mysqli_fetch_assoc($engage_result)) {
+                                            $engage_id = $engage_row['engagement_id'];
                                             $engage_client_name = $engage_row['client_name'];
                                             $engage_year = $engage_row['year'];
                                             $engage_engagement_type = $engage_row['engagement_type'];
@@ -99,7 +100,7 @@ redirectIfNotLoggedIn();
                                 <td><?php echo $cell_ref ? $cell_ref : '-'; ?></td>
                                 <td><?php echo $comment_by ? $comment_by : '-'; ?></td>
                                 <td style="width: 100px; text-align: center;">
-                                    <a href="<?php echo BASE_URL; ?>/engagements/details/?id=<?php echo $id; ?>" class="view">
+                                    <a href="<?php echo BASE_URL; ?>/engagements/details/?id=<?php echo $engage_row['engagement_id']; ?>" class="view">
                                         <i class="bi bi-eye text-success"></i>
                                     </a>
                                 </td>
