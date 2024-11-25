@@ -153,8 +153,7 @@ redirectIfNotLoggedIn();
 
     <script>
     document.addEventListener('DOMContentLoaded', function () {
-        // This function runs after the page has loaded, but before modal is shown
-        // Make sure event listener is added after modal is visible
+        // Handle dropdown selection and update client name
         const engagementDropdown = document.getElementById('e_engagement_id');
         const clientNameInput = document.getElementById('client_name');
 
@@ -162,34 +161,16 @@ redirectIfNotLoggedIn();
             engagementDropdown.addEventListener('change', function () {
                 const selectedOption = this.options[this.selectedIndex];
                 const clientName = selectedOption.getAttribute('data-client-name');
-                
+
                 // Debugging: Log the selected engagement and client name to the console
                 const selectedEngagementId = selectedOption.value;
                 console.log("Selected Engagement ID:", selectedEngagementId);
                 console.log("Client Name:", clientName);
-                
-                clientNameInput.value = clientName || '';  // Set client name in real-time
+
+                // Set the client name input field in real-time
+                clientNameInput.value = clientName || '';  // Set client name or empty if not selected
             });
         }
-    });
-
-    // Bootstrap event listener to initialize on modal show
-    $('#add_qa_comment').on('shown.bs.modal', function () {
-        // Reattach the event listener in case the modal content is recreated
-        const engagementDropdown = document.getElementById('e_engagement_id');
-        const clientNameInput = document.getElementById('client_name');
-
-        engagementDropdown.addEventListener('change', function () {
-            const selectedOption = this.options[this.selectedIndex];
-            const clientName = selectedOption.getAttribute('data-client-name');
-            
-            // Debugging: Log the selected engagement and client name to the console
-            const selectedEngagementId = selectedOption.value;
-            console.log("Selected Engagement ID:", selectedEngagementId);
-            console.log("Client Name:", clientName);
-            
-            clientNameInput.value = clientName || '';  // Set client name in real-time
-        });
     });
 </script>
 
