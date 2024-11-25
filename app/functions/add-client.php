@@ -1,29 +1,38 @@
 <?php
 // add Client
     if (isset($_POST['add_client'])) {
+        // Generate a random ID number
         $idno = rand(1000000, 9999999);
-
+    
         // Sanitize input data
-        $client_name = isset($_POST['c_client_name']) ? mysqli_real_escape_string($conn, $_POST['c_client_name']) : ""; 
-
-        // Check if asset already exists
-        $select = "SELECT * FROM clients WHERE idno = '$idno'";
-        $result = mysqli_query($conn, $select);
-        if (mysqli_num_rows($result) > 0) {
+        $client_name = isset($_POST['c_client_name']) ? trim($_POST['c_client_name']) : "";
+    
+        // Check if client already exists
+        $select = $conn->prepare("SELECT idno FROM clients WHERE idno = ?");
+        $select->bind_param("i", $idno); // "i" for integer
+        $select->execute();
+        $result = $select->get_result();
+    
+        if ($result->num_rows > 0) {
             $error[] = 'Client already exists!';
         } else {
-            // Insert the new asset into the database
-            $insert = "INSERT INTO clients (idno, client_name) 
-                VALUES ('$idno', NULLIF('$client_name', ''))";
-
-            if (mysqli_query($conn, $insert)) {
+            // Insert the new client into the database
+            $insert = $conn->prepare("INSERT INTO clients (idno, client_name) VALUES (?, NULLIF(?, ''))");
+            $insert->bind_param("is", $idno, $client_name); // "i" for integer, "s" for string
+        
+            if ($insert->execute()) {
                 header('location:' . BASE_URL . '/');
                 exit; // Ensure script stops execution after redirecting
             } else {
-                $error[] = 'Error: ' . mysqli_error($conn);
+                $error[] = 'Error: ' . $conn->error;
             }
         }
+    
+        // Close prepared statements
+        $select->close();
+        if (isset($insert)) $insert->close();
     }
+
 // end Add Client
 
 // add Engagement
