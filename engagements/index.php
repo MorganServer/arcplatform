@@ -61,13 +61,16 @@ redirectIfNotLoggedIn();
         $page = isset($_GET['page']) ? $_GET['page'] : 1;
         $offset = ($page - 1) * $limit;
 
+        // Debugging: Check pagination variables
+        echo "<!-- Debug: page = $page, offset = $offset -->";
+
         // Fetching engagement records
         $sql = "SELECT * FROM engagement WHERE status = 'Open' ORDER BY engagement_created ASC LIMIT $limit OFFSET $offset";
         $result = mysqli_query($conn, $sql);
 
         if ($result) {
             $num_rows = mysqli_num_rows($result);
-            echo "<!-- Debug: Number of records fetched: $num_rows -->"; // Debugging output
+            echo "<!-- Debug: Number of records fetched: $num_rows -->";
             if ($num_rows > 0) {
                 while ($row = mysqli_fetch_assoc($result)) {
                     $id = $row['engagement_id'];
@@ -124,15 +127,13 @@ redirectIfNotLoggedIn();
 
 <!-- Pagination Links -->
 <?php
-// Get the total number of records
 $sql = "SELECT COUNT(*) as total FROM engagement WHERE status = 'Open'";
 $result = mysqli_query($conn, $sql);
 $row = mysqli_fetch_assoc($result);
 $total_records = $row["total"];
 $total_pages = ceil($total_records / $limit);
 
-echo "<!-- Debug: Total records = $total_records, Total pages = $total_pages -->"; // Debugging output
-
+echo "<!-- Debug: Total records = $total_records, Total pages = $total_pages -->"; 
 
 echo '<ul class="pagination justify-content-center">';
 for ($i = 1; $i <= $total_pages; $i++) {
