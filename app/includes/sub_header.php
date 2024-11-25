@@ -76,7 +76,7 @@ $pageName = ucwords($pageName);
             <form class="row g-3" method="POST" action="">
                 <div class="col-md-6">
                     <label for="e_client_name" class="form-label">Client Name</label>
-                    <select id="e_client_name" name="e_client_name" class="form-select" required>
+                    <select id="e_client_name" name="e_client_name" class="form-select" >
                         <option>Choose...</option>
                         <?php
                         $sql = "SELECT client_name FROM clients";
@@ -91,7 +91,7 @@ $pageName = ucwords($pageName);
                 </div>
                 <div class="col-md-6">
                     <label for="e_engagement_type" class="form-label">Engagement Type</label>
-                    <select id="e_engagement_type" name="engagement_type" class="form-select" required>
+                    <select id="e_engagement_type" name="engagement_type" class="form-select" >
                         <option>Choose...</option>
                         <option value="SOC 1 Type 1">SOC 1 Type 1</option>
                         <option value="SOC 1 Type 2">SOC 1 Type 2</option>
@@ -102,51 +102,51 @@ $pageName = ucwords($pageName);
                 </div>
                 <div class="col-md-6">
                     <label for="year" class="form-label">Year</label>
-                    <input type="text" class="form-control" id="year" name="year" required>
+                    <input type="text" class="form-control" id="year" name="year" >
                 </div>
                 <div class="col-md-6">
                     <label for="report_start" class="form-label">Report Start Date</label>
-                    <input type="date" class="form-control" id="report_start" name="report_start" required>
+                    <input type="date" class="form-control" id="report_start" name="report_start" >
                 </div>
                 <div class="col-md-6">
                     <label for="report_end" class="form-label">Report End Date</label>
-                    <input type="date" class="form-control" id="report_end" name="report_end" required>
+                    <input type="date" class="form-control" id="report_end" name="report_end" >
                 </div>
                 <div class="col-md-6">
                     <label for="report_as_of" class="form-label">Report As Of Date</label>
-                    <input type="date" class="form-control" id="report_as_of" name="report_as_of" required>
+                    <input type="date" class="form-control" id="report_as_of" name="report_as_of" >
                 </div>
                 <div class="col-md-6">
                     <label for="manager" class="form-label">Manager</label>
-                    <input type="text" class="form-control" id="manager" name="manager" required>
+                    <input type="text" class="form-control" id="manager" name="manager" >
                 </div>
                 <div class="col-md-6">
                     <label for="senior" class="form-label">Senior</label>
-                    <input type="text" class="form-control" id="senior" name="senior" required>
+                    <input type="text" class="form-control" id="senior" name="senior" >
                 </div>
                 <div class="col-md-6">
                     <label for="staff" class="form-label">Staff</label>
-                    <input type="text" class="form-control" id="staff" name="staff" required>
+                    <input type="text" class="form-control" id="staff" name="staff" >
                 </div>
                 <div class="col-md-6">
                     <label for="leadsheet_due" class="form-label">Leadsheet Due</label>
-                    <input type="date" class="form-control" id="leadsheet_due" name="leadsheet_due" required>
+                    <input type="date" class="form-control" id="leadsheet_due" name="leadsheet_due" >
                 </div>
                 <div class="col-md-6">
                     <label for="field_work_week" class="form-label">Fieldwork Week</label>
-                    <input type="date" class="form-control" id="field_work_week" name="field_work_week" required>
+                    <input type="date" class="form-control" id="field_work_week" name="field_work_week" >
                 </div>
                 <div class="col-md-6">
                     <label for="senior_dol" class="form-label">Senior DOL</label>
-                    <input type="text" class="form-control" id="senior_dol" name="senior_dol" required>
+                    <input type="text" class="form-control" id="senior_dol" name="senior_dol" >
                 </div>
                 <div class="col-md-6">
                     <label for="staff_1_dol" class="form-label">Staff 1 DOL</label>
-                    <input type="text" class="form-control" id="staff-1-dol" name="staff_1_dol" required>
+                    <input type="text" class="form-control" id="staff-1-dol" name="staff_1_dol" >
                 </div>
                 <div class="col-md-6">
                     <label for="staff_2_dol" class="form-label">Staff 2 DOL</label>
-                    <input type="text" class="form-control" id="staff-2-dol" name="staff_2_dol" required>
+                    <input type="text" class="form-control" id="staff-2-dol" name="staff_2_dol" >
                 </div>
                 <div class="col-12">
                     <button type="submit" name="add_engagement" class="btn btn-primary">Add Engagement</button>
@@ -172,7 +172,7 @@ $pageName = ucwords($pageName);
             <form class="row g-3" method="POST" action="">
                 <div class="col-md-6">
                     <label for="qa_engagement_id" class="form-label">Engagement</label>
-                    <select id="qa_engagement_id" name="qa_engagement_id" class="form-select" required>
+                    <select id="qa_engagement_id" name="qa_engagement_id" class="form-select">
                         <option value="">Choose...</option>
                         <?php
                         $qa_sql = "SELECT * FROM engagement";
@@ -201,23 +201,23 @@ $pageName = ucwords($pageName);
                 </div>
                 <div class="col-md-6">
                     <label for="control_ref" class="form-label">Control Reference</label>
-                    <input type="text" class="form-control" id="control_ref" name="control_ref" required>
+                    <input type="text" class="form-control" id="control_ref" name="control_ref">
                 </div>
                 <div class="col-md-6">
                     <label for="cell_reference" class="form-label">Cell Reference</label>
-                    <input type="text" class="form-control" id="cell_reference" name="cell_reference" required>
+                    <input type="text" class="form-control" id="cell_reference" name="cell_reference">
                 </div>
                 <div class="col-md-6">
                     <label for="comment_by" class="form-label">Comment By</label>
-                    <input type="text" class="form-control" id="comment_by" name="comment_by" required>
+                    <input type="text" class="form-control" id="comment_by" name="comment_by">
                 </div>
                 <div class="mb-3">
                     <label for="control" class="form-label">Control</label>
-                    <textarea class="form-control" id="control" name="control" rows="3" required></textarea>
+                    <textarea class="form-control" id="control" name="control" rows="3" ></textarea>
                 </div>
                 <div class="mb-3">
                     <label for="qa_comment" class="form-label">QA Comment</label>
-                    <textarea class="form-control" id="qa_comment" name="qa_comment" rows="3" required></textarea>
+                    <textarea class="form-control" id="qa_comment" name="qa_comment" rows="3" ></textarea>
                 </div>
                 <div class="col-12">
                     <button type="submit" name="submit_qa_comment" class="btn btn-primary">Submit</button>
