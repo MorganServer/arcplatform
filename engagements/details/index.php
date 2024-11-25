@@ -19,7 +19,7 @@ redirectIfNotLoggedIn();
 // Ensure the script runs only when needed
 if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['followup_owner'])) {
     // Connect to your database (ensure $conn is initialized)
-    require_once 'db_connection.php';
+    // require_once 'db_connection.php';
 
     $qaId = intval($_POST['qa_id']);
     $comment = trim($_POST['followup_comment']);
