@@ -200,15 +200,15 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['followup_owner'])) {
 
 if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['complete_engagement'])) {
     // Get the engagement ID and status from the form
-    $engagement_id = intval($_POST['engagement_id']);
-    $status = $_POST['status'];
+    $update_engagement_id = intval($_POST['engagement_id']);
+    $update_status = $_POST['status'];
 
     // Prepare the SQL query to update the engagement table
-    $sql = "UPDATE engagement SET status = ? WHERE id = ?";
+    $updatesql = "UPDATE engagement SET status = ? WHERE id = ?";
 
-    if ($stmt = $conn->prepare($sql)) {
+    if ($stmt = $conn->prepare($updatesql)) {
         // Bind the parameters
-        $stmt->bind_param("si", $status, $engagement_id);
+        $stmt->bind_param("si", $update_status, $update_engagement_id);
 
         // Execute the statement
         if ($stmt->execute()) {
