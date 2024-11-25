@@ -170,31 +170,7 @@
 
 // Complete Engagement
 
-if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['complete_engagement'])) {
-    // Get the engagement ID and status from the form
-    $engagement_id = intval($_POST['engagement_id']);
-    $status = $_POST['status'];
 
-    // Prepare the SQL query to update the engagement table
-    $sql = "UPDATE engagement SET status = ? WHERE id = ?";
-
-    if ($stmt = $conn->prepare($sql)) {
-        // Bind the parameters
-        $stmt->bind_param("si", $status, $engagement_id);
-
-        // Execute the statement
-        if ($stmt->execute()) {
-            echo "<div class='alert alert-success'>Engagement status updated to Completed successfully.</div>";
-        } else {
-            echo "<div class='alert alert-danger'>Error updating engagement status: " . $stmt->error . "</div>";
-        }
-
-        // Close the statement
-        $stmt->close();
-    } else {
-        echo "<div class='alert alert-danger'>Error preparing the SQL statement: " . $conn->error . "</div>";
-    }
-}
 
 
 // end Complete Engagement
