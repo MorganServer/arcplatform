@@ -234,7 +234,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['followup_owner'])) {
                     
                 </div>
                 <?php } else {
-                    echo "Completed Engagement"
+                    echo "Completed Engagement";
                 } ?>
             </div>
 
