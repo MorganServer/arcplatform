@@ -62,7 +62,7 @@ redirectIfNotLoggedIn();
         $offset = ($page - 1) * $limit;
 
         // Fetching engagement records
-        $sql = "SELECT * FROM engagement WHERE status = 'Open' ORDER BY engagement_created DESC LIMIT $limit OFFSET $offset";
+        $sql = "SELECT * FROM engagement WHERE status = 'Open' ORDER BY engagement_created ASC LIMIT $limit OFFSET $offset";
         $result = mysqli_query($conn, $sql);
 
         if ($result) {
@@ -76,8 +76,6 @@ redirectIfNotLoggedIn();
                     $client_name = $row['client_name'];
                     $year = $row['year'];
                     $engagement_type = $row['engagement_type'];
-
-                    echo "<!-- Debug: SQL = $sql -->";
                     ?>
                     <tr>
                         <th scope="row"><?php echo $idno; ?></th>
