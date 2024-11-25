@@ -100,7 +100,7 @@ redirectIfNotLoggedIn();
                                 <td><?php echo $cell_ref ? $cell_ref : '-'; ?></td>
                                 <td><?php echo $comment_by ? $comment_by : '-'; ?></td>
                                 <td style="width: 100px; text-align: center;">
-                                    <a href="<?php echo BASE_URL; ?>/engagements/details/?id=<?php echo $engage_row['engagement_id']; ?>" class="view">
+                                    <a href="<?php echo BASE_URL; ?>/engagements/details/?id=<?php echo $engage_id; ?>" class="view">
                                         <i class="bi bi-eye text-success"></i>
                                     </a>
                                 </td>
