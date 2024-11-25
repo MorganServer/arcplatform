@@ -21,16 +21,16 @@
         $staff_2_dol = isset($_POST['staff_2_dol']) ? mysqli_real_escape_string($conn, $_POST['staff_2_dol']) : "";
 
         // Check if client already exists
-        $select = "SELECT * FROM engagement WHERE idno = '$idno'";
-        $result = mysqli_query($conn, $select);
+        $engagement_select = "SELECT * FROM engagement WHERE idno = '$idno'";
+        $engagement_result = mysqli_query($conn, $engagement_select);
         if (mysqli_num_rows($result) > 0) {
             $error[] = 'Engagement already exists!';
         } else {
             // Insert the new engagement into the database
-            $insert = "INSERT INTO engagement (idno, client_name, engagement_type, year, report_start, report_end, report_as_of, manager, senior, staff, leadsheet_due, field_work_week, senior_dol, staff_1_dol, staff_2_dol)
+            $engagement_insert = "INSERT INTO engagement (idno, client_name, engagement_type, year, report_start, report_end, report_as_of, manager, senior, staff, leadsheet_due, field_work_week, senior_dol, staff_1_dol, staff_2_dol)
                 VALUES ('$idno', NULLIF('$client_name' ''), NULLIF('$engagement_type', ''), NULLIF('$year', ''), NULLIF('$report_start', ''), NULLIF('$report_end' ''), NULLIF('$report_as_of', ''), NULLIF('$manager', ''), NULLIF('$senior', ''), NULLIF('$staff', ''), NULLIF('$leadsheet_due', ''), NULLIF('$field_work_week', ''), NULLIF('$senior_dol', ''), NULLIF('$staff_1_dol', ''), NULLIF('$staff_2_dol', ''))";
 
-            if (mysqli_query($conn, $insert)) {
+            if (mysqli_query($conn, $engagement_insert)) {
                 header('location: ' . BASE_URL . '/');
                 exit; // Ensure script stops execution after redirecting
             } else {
