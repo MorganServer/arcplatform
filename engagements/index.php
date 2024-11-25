@@ -56,87 +56,76 @@ redirectIfNotLoggedIn();
             </thead>
 
             <tbody>
-                <?php
-                // Pagination variables
-                $limit = 10;
-                $page = isset($_GET['page']) ? $_GET['page'] : 1;
-                $offset = ($page - 1) * $limit;
+            <?php
+// Pagination variables
+$limit = 10;
+$page = isset($_GET['page']) ? $_GET['page'] : 1;
+$offset = ($page - 1) * $limit;
 
-                // Fetching engagement records
-                $sql = "SELECT * FROM engagement WHERE status = 'Open' ORDER BY engagement_created DESC LIMIT $limit OFFSET $offset";
-                $result = mysqli_query($conn, $sql);
+// Fetching engagement records
+$sql = "SELECT * FROM engagement WHERE status = 'Open' ORDER BY engagement_created DESC LIMIT $limit OFFSET $offset";
+$result = mysqli_query($conn, $sql);
 
-                if ($result) {
-                    $num_rows = mysqli_num_rows($result);
-                    if ($num_rows > 0) {
-                        while ($row = mysqli_fetch_assoc($result)) {
-                            $id = $row['engagement_id'];
-                            $idno = $row['idno'];
-                            $status = $row['status'];
-                            $client_name = $row['client_name'];
-                            $year = $row['year'];
-                            $engagement_type = $row['engagement_type'];
-                            // Output your rows here, e.g., for display
-                            // echo "<p>$client_name - $engagement_type</p>"; // Example output
-                        
-                ?>
-                <tr>
-                    <th scope="row"><?php echo $idno; ?></th>
-                    <td><?php echo $client_name ? $client_name : '-'; ?></td>
-                    <td><?php echo $year ? $year : '-'; ?></td>
-                    <td><?php echo $engagement_type ? $engagement_type : '-'; ?></td>
-                    <td>
-                    <?php
-                        $sql = "SELECT COUNT(1) FROM qa_comments WHERE client_name='$client_name' AND status != 'Completed'";
-                        $result = mysqli_query($conn, $sql);
-                                                
-                        if ($result) {
-                            $rowtotal = mysqli_fetch_array($result);
-                            if ($rowtotal[0] < 10) {
-                                echo "0$rowtotal[0]";
-                            } else {
-                                echo "$rowtotal[0]";
-                            }
-                        } else {
-                            // Error handling for query failure
-                            echo "Error in query execution: " . mysqli_error($conn);
-                        }
-                    ?>
+if ($result) {
+    $num_rows = mysqli_num_rows($result);
+    if ($num_rows > 0) {
+        while ($row = mysqli_fetch_assoc($result)) {
+            $id = $row['engagement_id'];
+            $idno = $row['idno'];
+            $status = $row['status'];
+            $client_name = $row['client_name'];
+            $year = $row['year'];
+            $engagement_type = $row['engagement_type'];
+?>
 
-                    </td>
-                    <!-- <td><?php //echo $status ? $status : '-'; ?></td> -->
-                    <td style="width: 100px; text-align: center;">
-                        <a href="<?php echo BASE_URL; ?>/engagements/details/?id=<?php echo $id; ?>" class="view">
-                            <i class="bi bi-eye text-success"></i>
-                        </a> 
-                    </td>
-                    <?php if($_SESSION['account_type'] == 'Admin') { ?>
-                    <td style="width: 100px; text-align: center;">
-                        <!-- <a href="<?php //echo BASE_URL; ?>/asset/update/?id=<?php //echo $id; ?>"> -->
-                            <i class="bi bi-pencil-square" style="color:#005382;"></i>
-                        </a> 
-                    </td>
-                    <td style="width: 100px; text-align: center;">
-                        <!-- <a href="<?php //echo BASE_URL; ?>/asset/delete/?id=<?php //echo $id; ?>" class="delete"> -->
-                            <i class="bi bi-trash" style="color:#941515;"></i>
-                        </a>
-                    </td>
-                    <?php } else {} ?>
-                </tr>
-                <?php
-                }
-            } else {
-                echo "<p>No records found.</p>";
-            }
+<tr>
+    <th scope="row"><?php echo $idno; ?></th>
+    <td><?php echo $client_name ? $client_name : '-'; ?></td>
+    <td><?php echo $year ? $year : '-'; ?></td>
+    <td><?php echo $engagement_type ? $engagement_type : '-'; ?></td>
+    <td>
+    <?php
+        $sql = "SELECT COUNT(1) FROM qa_comments WHERE client_name='$client_name' AND status != 'Completed'";
+        $result = mysqli_query($conn, $sql);
+
+        if ($result) {
+            $rowtotal = mysqli_fetch_array($result);
+            echo ($rowtotal[0] < 10) ? "0$rowtotal[0]" : "$rowtotal[0]";
         } else {
-            echo "<p>Error fetching data: " . mysqli_error($conn) . "</p>";
+            echo "Error in query execution: " . mysqli_error($conn);
         }
-                ?>
+    ?>
+    </td>
+    <!-- <td><?php //echo $status ? $status : '-'; ?></td> -->
+    <td style="width: 100px; text-align: center;">
+        <a href="<?php echo BASE_URL; ?>/engagements/details/?id=<?php echo $id; ?>" class="view">
+            <i class="bi bi-eye text-success"></i>
+        </a> 
+    </td>
+    <?php if($_SESSION['account_type'] == 'Admin') { ?>
+    <td style="width: 100px; text-align: center;">
+        <i class="bi bi-pencil-square" style="color:#005382;"></i>
+    </td>
+    <td style="width: 100px; text-align: center;">
+        <i class="bi bi-trash" style="color:#941515;"></i>
+    </td>
+    <?php } ?>
+</tr>
+
+<?php
+        }
+    } else {
+        echo "<p>No records found.</p>";
+    }
+} else {
+    echo "<p>Error fetching data: " . mysqli_error($conn) . "</p>";
+}
+?>
             </tbody>
         </table>
         <br>
-        <?php
-// Pagination links
+        <!-- Pagination Links -->
+<?php
 $sql = "SELECT COUNT(*) as total FROM engagement WHERE status = 'Open'";
 $result = mysqli_query($conn, $sql);
 $row = mysqli_fetch_assoc($result);
