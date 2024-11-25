@@ -32,7 +32,6 @@
         $select->close();
         if (isset($insert)) $insert->close();
     }
-
 // end Add Client
 
 // add Engagement
@@ -168,4 +167,32 @@
         }
     }
 // end Add QA Comment
+
+// Completed Engagement
+    if (isset($_POST['complete_engagement'])) {
+        // Sanitize input data
+        $engagement_id = isset($_POST['engagement_id']) ? trim($_POST['engagement_id']) : "";
+        $status = isset($_POST['status']) ? trim($_POST['status']) : "";
+
+        // Prepare the UPDATE query
+        $update = $conn->prepare("UPDATE engagement SET status = ? WHERE engagement_id = ?");
+        if (!$update) {
+            die("Prepare failed: " . $conn->error); // Check if prepare was successful
+        }
+
+        // Bind parameters to the prepared statement
+        $update->bind_param("si", $status, $engagement_id); // "s" for string, "i" for integer (assuming engagement_id is an integer)
+
+        // Execute the query
+        if ($update->execute()) {
+            header('Location: ' . BASE_URL . '/'); // Redirect to the desired page
+            exit; // Ensure script stops execution after redirect
+        } else {
+            $error[] = 'Error: ' . $update->error; // Display error from the statement if it fails
+        }
+
+        // Close prepared statements
+        $update->close();
+    }
+// end Complete Engagement
 ?>

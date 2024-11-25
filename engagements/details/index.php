@@ -186,7 +186,12 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['followup_owner'])) {
                     <strong>Audit Period: </strong><br><?php echo $off_report_start; ?> - <?php echo $off_report_end; ?>
                 </div>
                 <div class="complete-button">
-                    <button type="button" class="btn btn-outline-primary"><i class="bi bi-check2-circle"></i> Complete Engagement</button>
+                <form method="POST">
+                    <input type="hidden" name="engagement_id" value="<?php echo $off_id; ?>">
+                    <input type="hidden" name="status" value="Completed">
+                    <button type="submit" name="complete_engagement" class="btn btn-outline-primary"><i class="bi bi-check2-circle"></i> Complete Engagement</button>
+                </form>
+                    
                 </div>
             </div>
 
