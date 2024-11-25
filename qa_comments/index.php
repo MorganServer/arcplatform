@@ -46,7 +46,8 @@ redirectIfNotLoggedIn();
                     <th scope="col">Engagement</th>
                     <th scope="col">Control Ref</th>
                     <th scope="col">Cell Ref</th>
-                    <th scope="col">Comment Owner</th>
+                    <th scope="col">Owner</th>
+                    <th scope="col">Status</th>
                     <th style="width: 100px; text-align: center;">View</th>
                     <?php if ($_SESSION['account_type'] == 'Admin') { ?>
                         <th style="width: 100px; text-align: center;">Edit</th>
@@ -75,6 +76,7 @@ redirectIfNotLoggedIn();
                             $control_ref = $row['control_ref'];
                             $cell_ref = $row['cell_reference'];
                             $comment_by = $row['comment_by'];
+                            $status = $row['status'];
                             ?>
                             <tr>
                                 <th scope="row"><?php echo $idno; ?></th>
@@ -98,6 +100,7 @@ redirectIfNotLoggedIn();
                                 <?php }}} ?>
                                 <td><?php echo $control_ref ? $control_ref : '-'; ?></td>
                                 <td><?php echo $cell_ref ? $cell_ref : '-'; ?></td>
+                                <td><?php echo $comment_by ? $comment_by : '-'; ?></td>
                                 <td><?php echo $comment_by ? $comment_by : '-'; ?></td>
                                 <td style="width: 100px; text-align: center;">
                                     <a href="<?php echo BASE_URL; ?>/engagements/details/?id=<?php echo $engage_id; ?>" class="view">
