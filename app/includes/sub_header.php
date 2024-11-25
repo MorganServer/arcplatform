@@ -25,13 +25,15 @@ $pageName = ucfirst($currentDirectory);
   <div class="modal-dialog">
     <div class="modal-content">
         <div class="modal-header">
-            <h1 class="modal-title fs-5" id="exampleModalLabel">New message</h1>
+            <h1 class="modal-title fs-5" id="exampleModalLabel">ARC Actions</h1>
             <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
         </div>
         <div class="modal-body">
 
             <a class="btn btn-primary" href="<?php BASE_URL; ?>/actions/add_qa_comment/" role="button">Add QA Comment</a>
+            <br>
             <a class="btn btn-primary" href="<?php BASE_URL; ?>/actions/add_client/" role="button">Add Client</a>
+            <br>
             <a class="btn btn-primary" href="<?php BASE_URL; ?>/actions/add_engagement/" role="button">Add Engagement</a>
 
         </div>
