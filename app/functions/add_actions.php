@@ -168,54 +168,34 @@
     }
 // end Add QA Comment
 
-// Completed Engagement
-if (isset($_POST['complete_engagement'])) {
-    // Debugging: Check if POST data is being sent
-    var_dump($_POST);
+// Complete Engagement
 
-    // Sanitize input data
-    $engagement_id = isset($_POST['engagement_id']) ? (int) trim($_POST['engagement_id']) : 0;
-    $status = isset($_POST['status']) ? trim($_POST['status']) : "";
+if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['complete_engagement'])) {
+    // Get the engagement ID and status from the form
+    $engagement_id = intval($_POST['engagement_id']);
+    $status = $_POST['status'];
 
-    // Debugging: Check if engagement_id and status are correct
-    echo "Engagement ID: " . $engagement_id . "<br>";
-    echo "Status: " . $status . "<br>";
+    // Prepare the SQL query to update the engagement table
+    $sql = "UPDATE engagement SET status = ? WHERE id = ?";
 
-    // Check database connection
-    if (!$conn) {
-        die("Database connection failed: " . $conn->connect_error);
-    }
+    if ($stmt = $conn->prepare($sql)) {
+        // Bind the parameters
+        $stmt->bind_param("si", $status, $engagement_id);
 
-    // Prepare the UPDATE query
-    $update = $conn->prepare("UPDATE engagement SET status = ? WHERE engagement_id = ?");
-    
-    // Check if prepare was successful
-    if ($update === false) {
-        die("Prepare failed: " . $conn->error); // Print detailed error if prepare fails
-    }
-
-    // Bind parameters to the prepared statement
-    $update->bind_param("si", $status, $engagement_id); // "s" for string, "i" for integer
-
-    // Execute the query
-    if ($update->execute()) {
-        // Check if rows were updated
-        if ($update->affected_rows > 0) {
-            // Success: Redirect to the desired page
-            header('Location: ' . BASE_URL . '/');
-            exit; // Ensure script stops execution after redirect
+        // Execute the statement
+        if ($stmt->execute()) {
+            echo "<div class='alert alert-success'>Engagement status updated to Completed successfully.</div>";
         } else {
-            // No rows updated, maybe engagement_id doesn't exist or status is already set
-            echo '<div class="error">No changes made. Please verify engagement ID and current status.</div>';
+            echo "<div class='alert alert-danger'>Error updating engagement status: " . $stmt->error . "</div>";
         }
-    } else {
-        // Error: Display detailed error message
-        echo '<div class="error">Error executing query: ' . $update->error . '</div>';
-    }
 
-    // Close prepared statement
-    $update->close();
+        // Close the statement
+        $stmt->close();
+    } else {
+        echo "<div class='alert alert-danger'>Error preparing the SQL statement: " . $conn->error . "</div>";
+    }
 }
+
 
 // end Complete Engagement
 ?>
