@@ -170,13 +170,21 @@
 
 // Completed Engagement
 if (isset($_POST['complete_engagement'])) {
+    // Debugging: Check if POST data is being sent
+    var_dump($_POST);
+
     // Sanitize input data
-    $engagement_id = isset($_POST['engagement_id']) ? trim($_POST['engagement_id']) : "";
+    $engagement_id = isset($_POST['engagement_id']) ? (int) trim($_POST['engagement_id']) : 0;
     $status = isset($_POST['status']) ? trim($_POST['status']) : "";
 
     // Debugging: Check if engagement_id and status are correct
     echo "Engagement ID: " . $engagement_id . "<br>";
     echo "Status: " . $status . "<br>";
+
+    // Check database connection
+    if (!$conn) {
+        die("Database connection failed: " . $conn->connect_error);
+    }
 
     // Prepare the UPDATE query
     $update = $conn->prepare("UPDATE engagement SET status = ? WHERE engagement_id = ?");
@@ -198,11 +206,11 @@ if (isset($_POST['complete_engagement'])) {
             exit; // Ensure script stops execution after redirect
         } else {
             // No rows updated, maybe engagement_id doesn't exist or status is already set
-            $error[] = 'No changes made. Please verify engagement ID and current status.';
+            echo '<div class="error">No changes made. Please verify engagement ID and current status.</div>';
         }
     } else {
         // Error: Display detailed error message
-        $error[] = 'Error executing query: ' . $update->error;
+        echo '<div class="error">Error executing query: ' . $update->error . '</div>';
     }
 
     // Close prepared statement
