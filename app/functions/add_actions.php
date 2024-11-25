@@ -36,10 +36,6 @@
 // end Add Client
 
 // add Engagement
-
-    error_reporting(E_ALL); // Report all types of errors
-    ini_set('display_errors', 1); // Display errors on the screen
-
     if (isset($_POST['add_engagement'])) {
         error_reporting(E_ALL);
         ini_set('display_errors', 1);
@@ -111,69 +107,65 @@
 // end Add Engagement
 
 // add QA Comment
-if (isset($_POST['submit_qa_comment'])) {
-    // Generate a unique ID for the comment
-    $idno = rand(1000000, 9999999);
+    if (isset($_POST['submit_qa_comment'])) {
+        // Generate a unique ID for the comment
+        $idno = rand(1000000, 9999999);
 
-    // Sanitize input data
-    $qa_engagement_id = isset($_POST['qa_engagement_id']) ? trim($_POST['qa_engagement_id']) : "";
-    $qa_client_name = isset($_POST['qa_client_name']) ? trim($_POST['qa_client_name']) : "";
-    $control_ref = isset($_POST['control_ref']) ? trim($_POST['control_ref']) : "";
-    $cell_reference = isset($_POST['cell_reference']) ? trim($_POST['cell_reference']) : "";
-    $comment_by = isset($_POST['comment_by']) ? trim($_POST['comment_by']) : "";
-    $control = isset($_POST['control']) ? trim($_POST['control']) : "";
-    $qa_comment = isset($_POST['qa_comment']) ? trim($_POST['qa_comment']) : "";
+        // Sanitize input data
+        $qa_engagement_id = isset($_POST['qa_engagement_id']) ? trim($_POST['qa_engagement_id']) : "";
+        $qa_client_name = isset($_POST['qa_client_name']) ? trim($_POST['qa_client_name']) : "";
+        $control_ref = isset($_POST['control_ref']) ? trim($_POST['control_ref']) : "";
+        $cell_reference = isset($_POST['cell_reference']) ? trim($_POST['cell_reference']) : "";
+        $comment_by = isset($_POST['comment_by']) ? trim($_POST['comment_by']) : "";
+        $control = isset($_POST['control']) ? trim($_POST['control']) : "";
+        $qa_comment = isset($_POST['qa_comment']) ? trim($_POST['qa_comment']) : "";
 
-    // Check if QA comment already exists using prepared statement
-    $stmt = $conn->prepare("SELECT * FROM qa_comments WHERE idno = ?");
-    if (!$stmt) {
-        die("Prepare failed: " . $conn->error);
-    }
-
-    $stmt->bind_param("s", $idno);
-    $stmt->execute();
-    $result = $stmt->get_result();
-
-    if ($result->num_rows > 0) {
-        $error[] = 'QA Comment already exists!';
-    } else {
-        // Prepare the insert query using prepared statements
-        $stmt = $conn->prepare(
-            "INSERT INTO qa_comments (idno, engagement_id, client_name, control_ref, cell_reference, comment_by, control, qa_comment)
-            VALUES (?, NULLIF(?, ''), NULLIF(?, ''), NULLIF(?, ''), NULLIF(?, ''), NULLIF(?, ''), NULLIF(?, ''), NULLIF(?, ''))"
-        );
-
+        // Check if QA comment already exists using prepared statement
+        $stmt = $conn->prepare("SELECT * FROM qa_comments WHERE idno = ?");
         if (!$stmt) {
             die("Prepare failed: " . $conn->error);
         }
 
-        // Bind parameters to the prepared statement
-        $stmt->bind_param(
-            "ssssssss",
-            $idno,
-            $qa_engagement_id,
-            $qa_client_name,
-            $control_ref,
-            $cell_reference,
-            $comment_by,
-            $control,
-            $qa_comment
-        );
+        $stmt->bind_param("s", $idno);
+        $stmt->execute();
+        $result = $stmt->get_result();
 
-        // Execute the query
-        if ($stmt->execute()) {
-            header('location: ' . BASE_URL . '/');
-            exit; // Ensure script stops execution after redirecting
+        if ($result->num_rows > 0) {
+            $error[] = 'QA Comment already exists!';
         } else {
-            $error[] = 'Error: ' . $stmt->error; // Display error from the statement
+            // Prepare the insert query using prepared statements
+            $stmt = $conn->prepare(
+                "INSERT INTO qa_comments (idno, engagement_id, client_name, control_ref, cell_reference, comment_by, control, qa_comment)
+                VALUES (?, NULLIF(?, ''), NULLIF(?, ''), NULLIF(?, ''), NULLIF(?, ''), NULLIF(?, ''), NULLIF(?, ''), NULLIF(?, ''))"
+            );
+
+            if (!$stmt) {
+                die("Prepare failed: " . $conn->error);
+            }
+
+            // Bind parameters to the prepared statement
+            $stmt->bind_param(
+                "ssssssss",
+                $idno,
+                $qa_engagement_id,
+                $qa_client_name,
+                $control_ref,
+                $cell_reference,
+                $comment_by,
+                $control,
+                $qa_comment
+            );
+
+            // Execute the query
+            if ($stmt->execute()) {
+                header('location: ' . BASE_URL . '/');
+                exit; // Ensure script stops execution after redirecting
+            } else {
+                $error[] = 'Error: ' . $stmt->error; // Display error from the statement
+            }
+
+            $stmt->close();
         }
-
-        $stmt->close();
     }
-}
-
 // end Add QA Comment
-
-
-
 ?>
