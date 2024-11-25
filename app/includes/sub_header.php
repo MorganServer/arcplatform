@@ -16,8 +16,8 @@ $pageName = ucwords($pageName);
     <div class="right">
         <p style="padding-right: 15px;">Welcome, <?php echo $_SESSION['full_name']; ?></p>
         <div class="dropdown header-icon">
-            <a class="btn btn-secondary dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
-                Dropdown link
+            <a class="dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                <i class="bi bi-plus-circle-fill"></i>
             </a>
 
             <ul class="dropdown-menu">
