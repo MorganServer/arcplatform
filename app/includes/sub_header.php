@@ -202,66 +202,27 @@ $pageName = ucwords($pageName);
                     <input type="text" id="client_name" class="form-control" readonly>
                 </div>
                 <div class="col-md-6">
-                    <label for="e_engagement_type" class="form-label">Engagement Type</label>
-                    <select id="e_engagement_type" class="form-select">
-                        <option>Choose...</option>
-                        <option value="SOC 1 Type 1">SOC 1 Type 1</option>
-                        <option value="SOC 1 Type 2">SOC 1 Type 2</option>
-                        <option value="SOC 2 Type 1">SOC 2 Type 1</option>
-                        <option value="SOC 2 Type 2">SOC 2 Type 2</option>
-                        <option value="HIPAA">HIPAA</option>
-                    </select>
+                    <label for="control_ref" class="form-label">Control Reference</label>
+                    <input type="text" class="form-control" id="control_ref">
                 </div>
                 <div class="col-md-6">
-                    <label for="year" class="form-label">Year</label>
-                    <input type="text" class="form-control" id="year">
+                    <label for="cell_reference" class="form-label">Cell Reference</label>
+                    <input type="text" class="form-control" id="cell_reference">
                 </div>
                 <div class="col-md-6">
-                    <label for="report_start" class="form-label">Report Start Date</label>
-                    <input type="date" class="form-control" id="report_start">
+                    <label for="comment_by" class="form-label">Comment By</label>
+                    <input type="text" class="form-control" id="comment_by">
                 </div>
-                <div class="col-md-6">
-                    <label for="report_end" class="form-label">Report End Date</label>
-                    <input type="date" class="form-control" id="report_end">
+                <div class="mb-3">
+                    <label for="control" class="form-label">Control</label>
+                    <textarea class="form-control" id="control" rows="3"></textarea>
                 </div>
-                <div class="col-md-6">
-                    <label for="report_as_of" class="form-label">Report As Of Date</label>
-                    <input type="date" class="form-control" id="report_as_of">
-                </div>
-                <div class="col-md-6">
-                    <label for="manager" class="form-label">Manager</label>
-                    <input type="text" class="form-control" id="manager">
-                </div>
-                <div class="col-md-6">
-                    <label for="senior" class="form-label">Senior</label>
-                    <input type="text" class="form-control" id="senior">
-                </div>
-                <div class="col-md-6">
-                    <label for="staff" class="form-label">Staff</label>
-                    <input type="text" class="form-control" id="staff">
-                </div>
-                <div class="col-md-6">
-                    <label for="leadsheet_due" class="form-label">Leadsheet Due</label>
-                    <input type="date" class="form-control" id="leadsheet_due">
-                </div>
-                <div class="col-md-6">
-                    <label for="field_work_week" class="form-label">Fieldwork Week</label>
-                    <input type="date" class="form-control" id="field_work_week">
-                </div>
-                <div class="col-md-6">
-                    <label for="senior_dol" class="form-label">Senior DOL</label>
-                    <input type="text" class="form-control" id="senior_dol">
-                </div>
-                <div class="col-md-6">
-                    <label for="staff_1_dol" class="form-label">Staff 1 DOL</label>
-                    <input type="text" class="form-control" id="staff-1-dol">
-                </div>
-                <div class="col-md-6">
-                    <label for="staff_2_dol" class="form-label">Staff 2 DOL</label>
-                    <input type="text" class="form-control" id="staff-2-dol">
+                <div class="mb-3">
+                    <label for="qa_comment" class="form-label">QA Comment</label>
+                    <textarea class="form-control" id="qa_comment" rows="3"></textarea>
                 </div>
                 <div class="col-12">
-                    <button type="submit" name="submit_engagement" class="btn btn-primary">Submit</button>
+                    <button type="submit" name="submit_qa_comment" class="btn btn-primary">Submit</button>
                 </div>
             </form>
 
