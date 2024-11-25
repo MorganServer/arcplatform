@@ -73,7 +73,7 @@ $pageName = ucwords($pageName);
             </div>
             <div class="modal-body">
 
-            <form class="row g-3" method="POST" action="">
+            <form class="row g-3" method="POST" action="" onsubmit="console.log('Form Submitted!');">
                 <div class="col-md-6">
                     <label for="e_client_name" class="form-label">Client Name</label>
                     <select id="e_client_name" name="e_client_name" class="form-select" >
