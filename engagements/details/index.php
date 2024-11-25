@@ -199,31 +199,35 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['followup_owner'])) {
 <?php
 
 if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['complete_engagement'])) {
-    // Get the engagement ID and status from the form
-    $update_engagement_id = intval($_POST['engagement_id']);
-    $update_status = $_POST['status'];
+    $engagement_id = intval($_POST['engagement_id']);
+    $status = $_POST['status'];
 
-    // Prepare the SQL query to update the engagement table
-    $updatesql = "UPDATE engagement SET status = ? WHERE id = ?";
+    // Debugging: Check variables
+    echo "Engagement ID: $engagement_id<br>";
+    echo "Status: $status<br>";
 
-    if ($stmt = $conn->prepare($updatesql)) {
-        // Bind the parameters
-        $stmt->bind_param("si", $update_status, $update_engagement_id);
+    // Debugging: Check connection
+    if ($conn->connect_error) {
+        die("Connection failed: " . $conn->connect_error);
+    }
+
+    // Prepare the SQL query
+    $sql = "UPDATE engagement SET status = ? WHERE id = ?";
+    if ($stmt = $conn->prepare($sql)) {
+        $stmt->bind_param("si", $status, $engagement_id);
 
         // Execute the statement
         if ($stmt->execute()) {
             echo "<div class='alert alert-success'>Engagement status updated to Completed successfully.</div>";
         } else {
-            echo "<div class='alert alert-danger'>Error updating engagement status: " . $stmt->error . "</div>";
+            echo "<div class='alert alert-danger'>Error executing statement: " . $stmt->error . "</div>";
         }
 
-        // Close the statement
         $stmt->close();
     } else {
         echo "<div class='alert alert-danger'>Error preparing the SQL statement: " . $conn->error . "</div>";
     }
 }
-
 ?>
 
 
