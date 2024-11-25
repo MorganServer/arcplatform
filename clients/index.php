@@ -93,7 +93,7 @@ redirectIfNotLoggedIn();
                                     <td>
                                         <?php
                                             // Counting open QA comments for the client
-                                            $sql_qa = "SELECT COUNT(*) FROM qa_comments WHERE client_id='$id' AND status != 'Completed'";
+                                            $sql_qa = "SELECT COUNT(*) FROM qa_comments WHERE client_name='$client_name' AND status != 'Completed'";
                                             $result_qa = mysqli_query($conn, $sql_qa);
                                             if ($result_qa) {
                                                 $rowtotal = mysqli_fetch_array($result_qa);
