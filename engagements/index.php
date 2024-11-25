@@ -84,21 +84,21 @@ redirectIfNotLoggedIn();
                     <td><?php echo $engagement_type ? $engagement_type : '-'; ?></td>
                     <td>
                     <?php
-    $sql = "SELECT COUNT(1) FROM qa_comments WHERE client_id='$id' AND status != 'Completed'";
-    $result = mysqli_query($conn, $sql);
-    
-    if ($result) {
-        $rowtotal = mysqli_fetch_array($result);
-        if ($rowtotal[0] < 10) {
-            echo "0$rowtotal[0]";
-        } else {
-            echo "$rowtotal[0]";
-        }
-    } else {
-        // Error handling for query failure
-        echo "Error in query execution: " . mysqli_error($conn);
-    }
-?>
+                        $sql = "SELECT COUNT(1) FROM qa_comments WHERE client_name='$client_name' AND status != 'Completed'";
+                        $result = mysqli_query($conn, $sql);
+                                                
+                        if ($result) {
+                            $rowtotal = mysqli_fetch_array($result);
+                            if ($rowtotal[0] < 10) {
+                                echo "0$rowtotal[0]";
+                            } else {
+                                echo "$rowtotal[0]";
+                            }
+                        } else {
+                            // Error handling for query failure
+                            echo "Error in query execution: " . mysqli_error($conn);
+                        }
+                    ?>
 
                     </td>
                     <!-- <td><?php //echo $status ? $status : '-'; ?></td> -->
