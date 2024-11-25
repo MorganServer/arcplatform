@@ -73,91 +73,91 @@ $pageName = ucwords($pageName);
             </div>
             <div class="modal-body">
 
-            <form class="row g-3" method="POST" action="your-action.php">
-    <div class="col-md-6">
-        <label for="e_client_name" class="form-label">Client Name</label>
-        <select id="e_client_name" name="e_client_name" class="form-select">
-            <option value="">Choose...</option>
-            <?php
-            // Secure the database query
-            $stmt = $conn->prepare("SELECT client_name FROM clients");
-            $stmt->execute();
-            $result = $stmt->get_result();
-            
-            if ($result->num_rows > 0) {
-                while ($row = $result->fetch_assoc()) {
-                    $e_client_name = htmlspecialchars($row['client_name']);
-                    echo "<option value=\"$e_client_name\">$e_client_name</option>";
-                }
-            } else {
-                echo "<option value=\"\">No clients found</option>";
-            }
-            ?>
-        </select>
-    </div>
-    <div class="col-md-6">
-        <label for="e_engagement_type" class="form-label">Engagement Type</label>
-        <select id="e_engagement_type" name="engagement_type" class="form-select">
-            <option value="">Choose...</option>
-            <option value="SOC 1 Type 1">SOC 1 Type 1</option>
-            <option value="SOC 1 Type 2">SOC 1 Type 2</option>
-            <option value="SOC 2 Type 1">SOC 2 Type 1</option>
-            <option value="SOC 2 Type 2">SOC 2 Type 2</option>
-            <option value="HIPAA">HIPAA</option>
-        </select>
-    </div>
-    <div class="col-md-6">
-        <label for="year" class="form-label">Year</label>
-        <input type="number" class="form-control" id="year" name="year" min="1900" max="2100">
-    </div>
-    <div class="col-md-6">
-        <label for="report_start" class="form-label">Report Start Date</label>
-        <input type="date" class="form-control" id="report_start" name="report_start">
-    </div>
-    <div class="col-md-6">
-        <label for="report_end" class="form-label">Report End Date</label>
-        <input type="date" class="form-control" id="report_end" name="report_end">
-    </div>
-    <div class="col-md-6">
-        <label for="report_as_of" class="form-label">Report As Of Date</label>
-        <input type="date" class="form-control" id="report_as_of" name="report_as_of">
-    </div>
-    <div class="col-md-6">
-        <label for="manager" class="form-label">Manager</label>
-        <input type="text" class="form-control" id="manager" name="manager">
-    </div>
-    <div class="col-md-6">
-        <label for="senior" class="form-label">Senior</label>
-        <input type="text" class="form-control" id="senior" name="senior">
-    </div>
-    <div class="col-md-6">
-        <label for="staff" class="form-label">Staff</label>
-        <input type="text" class="form-control" id="staff" name="staff">
-    </div>
-    <div class="col-md-6">
-        <label for="leadsheet_due" class="form-label">Leadsheet Due</label>
-        <input type="date" class="form-control" id="leadsheet_due" name="leadsheet_due">
-    </div>
-    <div class="col-md-6">
-        <label for="field_work_week" class="form-label">Fieldwork Week</label>
-        <input type="date" class="form-control" id="field_work_week" name="field_work_week">
-    </div>
-    <div class="col-md-6">
-        <label for="senior_dol" class="form-label">Senior DOL</label>
-        <input type="text" class="form-control" id="senior_dol" name="senior_dol">
-    </div>
-    <div class="col-md-6">
-        <label for="staff_1_dol" class="form-label">Staff 1 DOL</label>
-        <input type="text" class="form-control" id="staff_1_dol" name="staff_1_dol">
-    </div>
-    <div class="col-md-6">
-        <label for="staff_2_dol" class="form-label">Staff 2 DOL</label>
-        <input type="text" class="form-control" id="staff_2_dol" name="staff_2_dol">
-    </div>
-    <div class="col-12">
-        <button type="submit" name="add_engagement" class="btn btn-primary">Add Engagement</button>
-    </div>
-</form>
+            <form class="row g-3" method="POST">
+                <div class="col-md-6">
+                    <label for="e_client_name" class="form-label">Client Name</label>
+                    <select id="e_client_name" name="e_client_name" class="form-select">
+                        <option value="">Choose...</option>
+                        <?php
+                        // Secure the database query
+                        $stmt = $conn->prepare("SELECT client_name FROM clients");
+                        $stmt->execute();
+                        $result = $stmt->get_result();
+
+                        if ($result->num_rows > 0) {
+                            while ($row = $result->fetch_assoc()) {
+                                $e_client_name = htmlspecialchars($row['client_name']);
+                                echo "<option value=\"$e_client_name\">$e_client_name</option>";
+                            }
+                        } else {
+                            echo "<option value=\"\">No clients found</option>";
+                        }
+                        ?>
+                    </select>
+                </div>
+                <div class="col-md-6">
+                    <label for="e_engagement_type" class="form-label">Engagement Type</label>
+                    <select id="e_engagement_type" name="engagement_type" class="form-select">
+                        <option value="">Choose...</option>
+                        <option value="SOC 1 Type 1">SOC 1 Type 1</option>
+                        <option value="SOC 1 Type 2">SOC 1 Type 2</option>
+                        <option value="SOC 2 Type 1">SOC 2 Type 1</option>
+                        <option value="SOC 2 Type 2">SOC 2 Type 2</option>
+                        <option value="HIPAA">HIPAA</option>
+                    </select>
+                </div>
+                <div class="col-md-6">
+                    <label for="year" class="form-label">Year</label>
+                    <input type="number" class="form-control" id="year" name="year" min="1900" max="2100">
+                </div>
+                <div class="col-md-6">
+                    <label for="report_start" class="form-label">Report Start Date</label>
+                    <input type="date" class="form-control" id="report_start" name="report_start">
+                </div>
+                <div class="col-md-6">
+                    <label for="report_end" class="form-label">Report End Date</label>
+                    <input type="date" class="form-control" id="report_end" name="report_end">
+                </div>
+                <div class="col-md-6">
+                    <label for="report_as_of" class="form-label">Report As Of Date</label>
+                    <input type="date" class="form-control" id="report_as_of" name="report_as_of">
+                </div>
+                <div class="col-md-6">
+                    <label for="manager" class="form-label">Manager</label>
+                    <input type="text" class="form-control" id="manager" name="manager">
+                </div>
+                <div class="col-md-6">
+                    <label for="senior" class="form-label">Senior</label>
+                    <input type="text" class="form-control" id="senior" name="senior">
+                </div>
+                <div class="col-md-6">
+                    <label for="staff" class="form-label">Staff</label>
+                    <input type="text" class="form-control" id="staff" name="staff">
+                </div>
+                <div class="col-md-6">
+                    <label for="leadsheet_due" class="form-label">Leadsheet Due</label>
+                    <input type="date" class="form-control" id="leadsheet_due" name="leadsheet_due">
+                </div>
+                <div class="col-md-6">
+                    <label for="field_work_week" class="form-label">Fieldwork Week</label>
+                    <input type="date" class="form-control" id="field_work_week" name="field_work_week">
+                </div>
+                <div class="col-md-6">
+                    <label for="senior_dol" class="form-label">Senior DOL</label>
+                    <input type="text" class="form-control" id="senior_dol" name="senior_dol">
+                </div>
+                <div class="col-md-6">
+                    <label for="staff_1_dol" class="form-label">Staff 1 DOL</label>
+                    <input type="text" class="form-control" id="staff_1_dol" name="staff_1_dol">
+                </div>
+                <div class="col-md-6">
+                    <label for="staff_2_dol" class="form-label">Staff 2 DOL</label>
+                    <input type="text" class="form-control" id="staff_2_dol" name="staff_2_dol">
+                </div>
+                <div class="col-12">
+                    <button type="submit" name="add_engagement" class="btn btn-primary">Add Engagement</button>
+                </div>
+            </form>
 
 
 
