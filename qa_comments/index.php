@@ -63,7 +63,7 @@ redirectIfNotLoggedIn();
                 $offset = ($page - 1) * $limit;
 
                 // Fetching engagement records
-                $sql = "SELECT * FROM qa_comments WHERE status!='Completed' ORDER BY qa_created ASC LIMIT $limit OFFSET $offset";
+                $sql = "SELECT * FROM qa_comments ORDER BY qa_created ASC LIMIT $limit OFFSET $offset";
                 $result = mysqli_query($conn, $sql);
 
                 if ($result) {
