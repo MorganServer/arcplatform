@@ -15,10 +15,24 @@ $pageName = ucwords($pageName);
     </div>
     <div class="right">
         <p style="padding-right: 15px;">Welcome, <?php echo $_SESSION['full_name']; ?></p>
+        <div class="dropdown">
+            <a class="btn btn-secondary dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                Dropdown link
+            </a>
+
+            <ul class="dropdown-menu">
+              <li><a class="dropdown-item" href="#">Action</a></li>
+              <li><a class="dropdown-item" href="#">Another action</a></li>
+              <li><a class="dropdown-item" href="#">Something else here</a></li>
+            </ul>
+        </div>
         <a class="header-icon" data-bs-toggle="modal" data-bs-target="#add_content" style="cursor: pointer;"><i class="bi bi-plus-circle-fill"></i></a>
         <a class="header-icon" href="?logout=1"><i class="bi bi-box-arrow-right"></i></a>
     </div>
 </div>
+
+
+
 
 
 
