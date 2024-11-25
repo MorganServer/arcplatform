@@ -23,7 +23,7 @@
         // Check if client already exists
         $engagement_select = "SELECT * FROM engagement WHERE idno = '$idno'";
         $engagement_result = mysqli_query($conn, $engagement_select);
-        if (mysqli_num_rows($result) > 0) {
+        if (mysqli_num_rows($engagement_result) > 0) {
             $error[] = 'Engagement already exists!';
         } else {
             // Insert the new engagement into the database
