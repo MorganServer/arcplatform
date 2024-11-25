@@ -102,7 +102,7 @@ redirectIfNotLoggedIn();
                                 <div class="card_text_right float-end pe-3">
                                     <h2 class="text-end">
                                         <?php
-                                            $sql="SELECT count('1') FROM qa_comments WHERE status='New' && status='Follow-Up'";
+                                            $sql="SELECT count('1') FROM qa_comments WHERE status!='Completed'";
                                             $result=mysqli_query($conn,$sql);
                                             $rowtotal=mysqli_fetch_array($result); 
                                             if($rowtotal[0] < 10) {
