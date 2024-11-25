@@ -169,30 +169,45 @@
 // end Add QA Comment
 
 // Completed Engagement
-    if (isset($_POST['complete_engagement'])) {
-        // Sanitize input data
-        $engagement_id = isset($_POST['engagement_id']) ? trim($_POST['engagement_id']) : "";
-        $status = isset($_POST['status']) ? trim($_POST['status']) : "";
+if (isset($_POST['complete_engagement'])) {
+    // Sanitize input data
+    $engagement_id = isset($_POST['engagement_id']) ? trim($_POST['engagement_id']) : "";
+    $status = isset($_POST['status']) ? trim($_POST['status']) : "";
 
-        // Prepare the UPDATE query
-        $update = $conn->prepare("UPDATE engagement SET status = ? WHERE engagement_id = ?");
-        if (!$update) {
-            die("Prepare failed: " . $conn->error); // Check if prepare was successful
-        }
+    // Debugging: Check if engagement_id and status are correct
+    echo "Engagement ID: " . $engagement_id . "<br>";
+    echo "Status: " . $status . "<br>";
 
-        // Bind parameters to the prepared statement
-        $update->bind_param("si", $status, $engagement_id); // "s" for string, "i" for integer (assuming engagement_id is an integer)
+    // Prepare the UPDATE query
+    $update = $conn->prepare("UPDATE engagement SET status = ? WHERE engagement_id = ?");
+    
+    // Check if prepare was successful
+    if ($update === false) {
+        die("Prepare failed: " . $conn->error); // Print detailed error if prepare fails
+    }
 
-        // Execute the query
-        if ($update->execute()) {
-            header('Location: ' . BASE_URL . '/'); // Redirect to the desired page
+    // Bind parameters to the prepared statement
+    $update->bind_param("si", $status, $engagement_id); // "s" for string, "i" for integer
+
+    // Execute the query
+    if ($update->execute()) {
+        // Check if rows were updated
+        if ($update->affected_rows > 0) {
+            // Success: Redirect to the desired page
+            header('Location: ' . BASE_URL . '/');
             exit; // Ensure script stops execution after redirect
         } else {
-            $error[] = 'Error: ' . $update->error; // Display error from the statement if it fails
+            // No rows updated, maybe engagement_id doesn't exist or status is already set
+            $error[] = 'No changes made. Please verify engagement ID and current status.';
         }
-
-        // Close prepared statements
-        $update->close();
+    } else {
+        // Error: Display detailed error message
+        $error[] = 'Error executing query: ' . $update->error;
     }
+
+    // Close prepared statement
+    $update->close();
+}
+
 // end Complete Engagement
 ?>
