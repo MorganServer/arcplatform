@@ -58,7 +58,7 @@ redirectIfNotLoggedIn();
             <tbody>
                 <?php
                     // Pagination variables
-                    $limit = 10; 
+                    $limit = 50; 
                     $page = isset($_GET['page']) ? $_GET['page'] : 1;
                     $offset = ($page - 1) * $limit;
                     
