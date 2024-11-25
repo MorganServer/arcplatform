@@ -61,16 +61,12 @@ redirectIfNotLoggedIn();
         $page = isset($_GET['page']) ? $_GET['page'] : 1;
         $offset = ($page - 1) * $limit;
 
-        // Debugging: Check pagination variables
-        echo "<!-- Debug: page = $page, offset = $offset -->";
-
         // Fetching engagement records
-        $sql = "SELECT * FROM engagement WHERE status = 'Open' ORDER BY engagement_created ASC LIMIT $limit OFFSET $offset";
+        $sql = "SELECT * FROM engagement WHERE status = 'Open' ORDER BY engagement_created ASC ";
         $result = mysqli_query($conn, $sql);
 
         if ($result) {
             $num_rows = mysqli_num_rows($result);
-            echo "<!-- Debug: Number of records fetched: $num_rows -->";
             if ($num_rows > 0) {
                 while ($row = mysqli_fetch_assoc($result)) {
                     $id = $row['engagement_id'];
