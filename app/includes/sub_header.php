@@ -76,7 +76,7 @@ $pageName = ucwords($pageName);
         <div class="modal-body">
 
             <form class="row g-3">
-                <div class="col-md-4">
+                <div class="col-md-6">
                     <label for="e_client_name" class="form-label">Client Name</label>
                     <select id="e_client_name" class="form-select">
                         <option>Choose...</option>
@@ -92,8 +92,63 @@ $pageName = ucwords($pageName);
                     </select>
                 </div>
                 <div class="col-md-6">
-                    <label for="client_name" class="form-label"></label>
-                    <input type="text" class="form-control" id="client_name">
+                    <label for="e_engagement_type" class="form-label">Engagement Type</label>
+                    <select id="e_engagement_type" class="form-select">
+                        <option>Choose...</option>
+                        <option value="SOC 1 Type 1">SOC 1 Type 1</option>
+                        <option value="SOC 1 Type 2">SOC 1 Type 2</option>
+                        <option value="SOC 2 Type 1">SOC 2 Type 1</option>
+                        <option value="SOC 2 Type 2">SOC 2 Type 2</option>
+                        <option value="HIPAA">HIPAA</option>
+                    </select>
+                </div>
+                <div class="col-md-6">
+                    <label for="year" class="form-label">Year</label>
+                    <input type="text" class="form-control" id="year">
+                </div>
+                <div class="col-md-6">
+                    <label for="report_start" class="form-label">Report Start Date</label>
+                    <input type="date" class="form-control" id="report_start">
+                </div>
+                <div class="col-md-6">
+                    <label for="report_end" class="form-label">Report End Date</label>
+                    <input type="date" class="form-control" id="report_end">
+                </div>
+                <div class="col-md-6">
+                    <label for="report_as_of" class="form-label">Report As Of Date</label>
+                    <input type="date" class="form-control" id="report_as_of">
+                </div>
+                <div class="col-md-6">
+                    <label for="manager" class="form-label">Manager</label>
+                    <input type="text" class="form-control" id="manager">
+                </div>
+                <div class="col-md-6">
+                    <label for="senior" class="form-label">Senior</label>
+                    <input type="text" class="form-control" id="senior">
+                </div>
+                <div class="col-md-6">
+                    <label for="staff" class="form-label">Staff</label>
+                    <input type="text" class="form-control" id="staff">
+                </div>
+                <div class="col-md-6">
+                    <label for="leadsheet_due" class="form-label">Leadsheet Due</label>
+                    <input type="date" class="form-control" id="leadsheet_due">
+                </div>
+                <div class="col-md-6">
+                    <label for="field_work_week" class="form-label">Fieldwork Week</label>
+                    <input type="date" class="form-control" id="field_work_week">
+                </div>
+                <div class="col-md-6">
+                    <label for="senior_dol" class="form-label">Senior DOL</label>
+                    <input type="text" class="form-control" id="senior_dol">
+                </div>
+                <div class="col-md-6">
+                    <label for="staff_1_dol" class="form-label">Staff 1 DOL</label>
+                    <input type="text" class="form-control" id="staff-1-dol">
+                </div>
+                <div class="col-md-6">
+                    <label for="staff_2_dol" class="form-label">Staff 2 DOL</label>
+                    <input type="text" class="form-control" id="staff-2-dol">
                 </div>
                 <div class="col-12">
                     <button type="submit" class="btn btn-primary">Submite</button>
