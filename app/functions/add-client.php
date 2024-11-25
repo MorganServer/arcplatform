@@ -1,5 +1,5 @@
 <?php
-if (isset($_POST['submit-client'])) {
+if (isset($_POST['add_client'])) {
     $idno = rand(1000000, 9999999);
 
     // Sanitize input data

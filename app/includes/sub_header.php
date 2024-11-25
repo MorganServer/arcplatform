@@ -53,7 +53,7 @@ $pageName = ucwords($pageName);
                         <input type="text" class="form-control" id="c_client_name" name="c_client_name">
                     </div>
                     <div class="col-12">
-                        <button type="submit" name="submit-client" class="btn btn-primary">Submit</button>
+                        <button type="submit" name="add_client" class="btn btn-primary">Submit</button>
                     </div>
                 </form>
 
