@@ -76,11 +76,6 @@ redirectIfNotLoggedIn();
                                 $engagement_type        = $row['engagement_type'];
                              
 
-                                // Format maintenance schedule if not null
-                                // $f_maintenance_schedule = !empty($maintenance_schedule) ? date_format(date_create($maintenance_schedule), 'M d, Y') : '-';
-
-                                // Format audit schedule if not null
-                                // $f_audit_schedule = !empty($audit_schedule) ? date_format(date_create($audit_schedule), 'M d, Y') : '-';
                 ?>
                 <tr>
                     <th scope="row"><?php echo $idno; ?></th>
