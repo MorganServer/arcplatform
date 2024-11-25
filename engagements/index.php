@@ -57,25 +57,34 @@ redirectIfNotLoggedIn();
 
             <tbody>
                 <?php
-                    // Pagination variables
-                    $limit = 50; 
-                    $page = isset($_GET['page']) ? $_GET['page'] : 1;
-                    $offset = ($page - 1) * $limit;
-                    
-                    $sql = "SELECT * FROM engagement WHERE status = 'Open' ORDER BY engagement_created DESC LIMIT $limit OFFSET $offset";
-                    $result = mysqli_query($conn, $sql);
-                    if($result) {
-                        $num_rows = mysqli_num_rows($result);
-                        if($num_rows > 0) {
-                            while ($row = mysqli_fetch_assoc($result)) {
-                                $id                     = $row['engagement_id'];
-                                $idno                   = $row['idno'];
-                                $status                 = $row['status'];
-                                $client_name            = $row['client_name'];
-                                $year                   = $row['year'];
-                                $engagement_type        = $row['engagement_type'];
-                             
+                // Pagination variables
+                $limit = 10;
+                $page = isset($_GET['page']) ? $_GET['page'] : 1;
+                $offset = ($page - 1) * $limit;
 
+                // Fetching engagement records
+                $sql = "SELECT * FROM engagement WHERE status = 'Open' ORDER BY engagement_created DESC LIMIT $limit OFFSET $offset";
+                $result = mysqli_query($conn, $sql);
+
+                if ($result) {
+                    $num_rows = mysqli_num_rows($result);
+                    if ($num_rows > 0) {
+                        while ($row = mysqli_fetch_assoc($result)) {
+                            $id = $row['engagement_id'];
+                            $idno = $row['idno'];
+                            $status = $row['status'];
+                            $client_name = $row['client_name'];
+                            $year = $row['year'];
+                            $engagement_type = $row['engagement_type'];
+                            // Output your rows here, e.g., for display
+                            echo "<p>$client_name - $engagement_type</p>"; // Example output
+                        }
+                    } else {
+                        echo "<p>No records found.</p>";
+                    }
+                } else {
+                    echo "<p>Error fetching data: " . mysqli_error($conn) . "</p>";
+                }
                 ?>
                 <tr>
                     <th scope="row"><?php echo $idno; ?></th>
@@ -121,27 +130,27 @@ redirectIfNotLoggedIn();
                     <?php } else {} ?>
                 </tr>
                 <?php
-                        }
-                    }
-                }
+                //         }
+                //     }
+                // }
                 ?>
             </tbody>
         </table>
         <br>
         <?php
-            // Pagination links
-            $sql = "SELECT COUNT(*) as total FROM engagement WHERE status = 'Open'";
-            $result = mysqli_query($conn, $sql);
-            $row = mysqli_fetch_assoc($result);
-            $total_pages = ceil($row["total"] / $limit);
+// Pagination links
+$sql = "SELECT COUNT(*) as total FROM engagement WHERE status = 'Open'";
+$result = mysqli_query($conn, $sql);
+$row = mysqli_fetch_assoc($result);
+$total_pages = ceil($row["total"] / $limit);
 
-                echo '<ul class="pagination justify-content-center">';
-                for ($i = 1; $i <= $total_pages; $i++) {
-                    $active = ($page == $i) ? "active" : "";
-                    echo "<li class='page-item {$active}'><a class='page-link' href='?page={$i}'>{$i}</a></li>";
-                }
-                echo '</ul>';
-        ?>
+echo '<ul class="pagination justify-content-center">';
+for ($i = 1; $i <= $total_pages; $i++) {
+    $active = ($page == $i) ? "active" : "";
+    echo "<li class='page-item {$active}'><a class='page-link' href='?page={$i}'>{$i}</a></li>";
+}
+echo '</ul>';
+?>
 
 
         </div>
