@@ -93,7 +93,7 @@ redirectIfNotLoggedIn();
 
                                 ?>
 
-                                <td><?php echo $engage_client_name . " - " . $engage_year . $engage_engagement_type ? $engage_client_name . " - " . $engage_year . $engage_engagement_type : '-'; ?></td>
+                                <td><?php echo $engage_client_name . " - " . $engage_year . " " . $engage_engagement_type ? $engage_client_name . " - " . $engage_year . " " . $engage_engagement_type : '-'; ?></td>
                                 <?php }}} ?>
                                 <td><?php echo $year ? $year : '-'; ?></td>
                                 <td><?php echo $engagement_type ? $engagement_type : '-'; ?></td>
