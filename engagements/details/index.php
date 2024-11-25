@@ -559,7 +559,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['followup_owner'])) {
 
             <!-- Percentage Calculation -->
                 <?php
-                $engagement_id = $_GET['engagement_id']; // Get the engagement ID dynamically
+                // $engagement_id = $_GET['engagement_id'];
 
                 // Prepare the query
                 $sql = "
