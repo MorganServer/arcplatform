@@ -152,14 +152,20 @@ redirectIfNotLoggedIn();
     </div>
 
     <script>
-            // JavaScript to handle dropdown selection and update client name
-document.getElementById('e_engagement_id').addEventListener('change', function () {
-    const selectedOption = this.options[this.selectedIndex];
-    const clientName = selectedOption.getAttribute('data-client-name');
+document.addEventListener('DOMContentLoaded', function () {
+    // Handle dropdown selection and update client name
+    const engagementDropdown = document.getElementById('e_engagement_id');
+    const clientNameInput = document.getElementById('client_name');
 
-    // Set the client name input field
-    document.getElementById('client_name').value = clientName || '';
+    if (engagementDropdown && clientNameInput) {
+        engagementDropdown.addEventListener('change', function () {
+            const selectedOption = this.options[this.selectedIndex];
+            const clientName = selectedOption.getAttribute('data-client-name') || '';
+            clientNameInput.value = clientName;
+        });
+    }
 });
+
     </script>
 
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha3/dist/js/bootstrap.bundle.min.js"></script>
