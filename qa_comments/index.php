@@ -97,19 +97,7 @@ redirectIfNotLoggedIn();
                                 <?php }}} ?>
                                 <td><?php echo $control_ref ? $control_ref : '-'; ?></td>
                                 <td><?php echo $cell_ref ? $cell_ref : '-'; ?></td>
-                                <td>
-                                    <?php
-                                    $sql_comments = "SELECT COUNT(1) FROM qa_comments WHERE client_name='$client_name' AND status != 'Completed'";
-                                    $result_comments = mysqli_query($conn, $sql_comments);
-
-                                    if ($result_comments) {
-                                        $rowtotal = mysqli_fetch_array($result_comments);
-                                        echo ($rowtotal[0] < 10) ? "0$rowtotal[0]" : "$rowtotal[0]";
-                                    } else {
-                                        echo "Error in query execution: " . mysqli_error($conn);
-                                    }
-                                    ?>
-                                </td>
+                                <td><?php echo $comment_by ? $comment_by : '-'; ?></td>
                                 <td style="width: 100px; text-align: center;">
                                     <a href="<?php echo BASE_URL; ?>/engagements/details/?id=<?php echo $id; ?>" class="view">
                                         <i class="bi bi-eye text-success"></i>
