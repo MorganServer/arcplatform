@@ -54,7 +54,7 @@ $pageName = ucwords($pageName);
                     <input type="text" class="form-control" id="client_name">
                 </div>
                 <div class="col-12">
-                    <button type="submit" class="btn btn-primary">Submite</button>
+                    <button type="submit" name="submit" class="btn btn-primary">Submit</button>
                 </div>
             </form>
 
@@ -65,8 +65,8 @@ $pageName = ucwords($pageName);
 
 <!-- end add-client -->
 
-<!-- add-client -->
-<div class="modal fade" id="add_client" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+<!-- add-engagement -->
+<div class="modal fade" id="add_engagement" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
   <div class="modal-dialog">
     <div class="modal-content">
         <div class="modal-header">
@@ -104,4 +104,4 @@ $pageName = ucwords($pageName);
     </div>
   </div>
 </div>
-<!-- end add-client -->
+<!-- end add-engagement -->
