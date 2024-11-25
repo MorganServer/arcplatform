@@ -1,4 +1,8 @@
 <?php
+
+error_reporting(E_ALL);
+ini_set('display_errors', 1);
+
 // Process form submission
 if (isset($_POST['submit-client'])) {
     $idno = rand(1000000, 9999999); // Generate random idno
