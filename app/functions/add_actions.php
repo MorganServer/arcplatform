@@ -1,4 +1,8 @@
 <?php
+
+ini_set('display_errors', 1);
+error_reporting(E_ALL);
+
 // add Client
     if (isset($_POST['add_client'])) {
         // Generate a random ID number
