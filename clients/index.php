@@ -61,95 +61,94 @@ redirectIfNotLoggedIn();
 
                     // Query to get clients, the total number of engagements, and open QA comments for each client
                     $sql = "SELECT * FROM clients ORDER BY client_created DESC LIMIT $limit OFFSET $offset";
-
                     $result = mysqli_query($conn, $sql);
 
-                    if($result) {
+                    if ($result) {
                         $num_rows = mysqli_num_rows($result);
-                        if($num_rows > 0) {
+                        if ($num_rows > 0) {
                             while ($row = mysqli_fetch_assoc($result)) {
-                                $idno                = $row['idno'];
-                                $id                  = $row['client_id'];
-                                $client_name         = $row['client_name'];
-                                $total_engagements   = $row['total_engagements'];
+                                $idno = $row['idno'];
+                                $id = $row['client_id'];
+                                $client_name = $row['client_name'];
+                                $total_engagements = $row['total_engagements'];
                                 $total_open_qa_comments = $row['total_open_qa_comments'];  // Get total open QA comments
-                ?>
+                                ?>
 
-                <tr>
-                    <th scope="row"><?php echo $idno; ?></th>
-                    <td><?php echo $client_name ? $client_name : '-'; ?></td>
-                    <td>
-                        <?php
-                            $sql="SELECT count('1') FROM engagement WHERE client_name='$client_name'";
-                            $result=mysqli_query($conn,$sql);
-                            $rowtotal=mysqli_fetch_array($result); 
-                            if($rowtotal[0] < 10) {
-                                echo "0$rowtotal[0]";
-                            } else {
-                                echo "$rowtotal[0]";
-                            }
-                        ?>
-                    </td>
-                    <td>
-                        <?php
-                            $sql="SELECT count('1') FROM qa_comments WHERE client_id='$id' && status!='Completed'";
-                            $result=mysqli_query($conn,$sql);
-                            $rowtotal=mysqli_fetch_array($result); 
-                            if($rowtotal[0] < 10) {
-                                echo "0$rowtotal[0]";
-                            } else {
-                                echo "$rowtotal[0]";
-                            }
-                        ?>
-                    </td>
+                                <tr>
+                                    <th scope="row"><?php echo $idno; ?></th>
+                                    <td><?php echo $client_name ? $client_name : '-'; ?></td>
+                                    <td>
+                                        <?php
+                                            // Counting engagements for the client
+                                            $sql_engagements = "SELECT COUNT(*) FROM engagement WHERE client_name='$client_name'";
+                                            $result_engagements = mysqli_query($conn, $sql_engagements);
+                                            if ($result_engagements) {
+                                                $rowtotal = mysqli_fetch_array($result_engagements);
+                                                echo ($rowtotal[0] < 10) ? "0$rowtotal[0]" : "$rowtotal[0]";
+                                            } else {
+                                                echo "Error in query: " . mysqli_error($conn);
+                                            }
+                                        ?>
+                                    </td>
+                                    <td>
+                                        <?php
+                                            // Counting open QA comments for the client
+                                            $sql_qa = "SELECT COUNT(*) FROM qa_comments WHERE client_id='$id' AND status != 'Completed'";
+                                            $result_qa = mysqli_query($conn, $sql_qa);
+                                            if ($result_qa) {
+                                                $rowtotal = mysqli_fetch_array($result_qa);
+                                                echo ($rowtotal[0] < 10) ? "0$rowtotal[0]" : "$rowtotal[0]";
+                                            } else {
+                                                echo "Error in query: " . mysqli_error($conn);
+                                            }
+                                        ?>
+                                    </td>
 
-                    <td style="width: 100px; text-align: center;">
-                        <a href="<?php echo BASE_URL; ?>/asset/view/?id=<?php echo $id; ?>" class="view">
-                            <i class="bi bi-eye text-success"></i>
-                        </a> 
-                    </td>
-                    <td style="width: 100px; text-align: center;">
-                        <!-- <a href="<?php //echo BASE_URL; ?>/asset/update/?id=<?php //echo $id; ?>"> -->
-                            <i class="bi bi-pencil-square" style="color:#005382;"></i>
-                        </a> 
-                    </td>
-                    <td style="width: 100px; text-align: center;">
-                        <!-- <a href="<?php //echo BASE_URL; ?>/asset/delete/?id=<?php //echo $id; ?>" class="delete"> -->
-                            <i class="bi bi-trash" style="color:#941515;"></i>
-                        </a>
-                    </td>
-                </tr>
-                <?php
+                                    <td style="width: 100px; text-align: center;">
+                                        <a href="<?php echo BASE_URL; ?>/asset/view/?id=<?php echo $id; ?>" class="view">
+                                            <i class="bi bi-eye text-success"></i>
+                                        </a> 
+                                    </td>
+                                    <td style="width: 100px; text-align: center;">
+                                        <i class="bi bi-pencil-square" style="color:#005382;"></i>
+                                    </td>
+                                    <td style="width: 100px; text-align: center;">
+                                        <i class="bi bi-trash" style="color:#941515;"></i>
+                                    </td>
+                                </tr>
+                                <?php
+                            }
+                        } else {
+                            echo "<tr><td colspan='7'>No records found.</td></tr>";
                         }
+                    } else {
+                        echo "<tr><td colspan='7'>Error fetching data: " . mysqli_error($conn) . "</td></tr>";
                     }
-                }
-                ?>
+                    ?>
             </tbody>
         </table>
         <br>
         <?php
             // Pagination links
-            $sql = "SELECT COUNT(*) as total FROM clients";
-            $result = mysqli_query($conn, $sql);
-            $row = mysqli_fetch_assoc($result);
-            $total_pages = ceil($row["total"] / $limit);
+            $sql_total = "SELECT COUNT(*) as total FROM clients";
+            $result_total = mysqli_query($conn, $sql_total);
+            if ($result_total) {
+                $row = mysqli_fetch_assoc($result_total);
+                $total_pages = ceil($row["total"] / $limit);
+            } else {
+                $total_pages = 1;
+            }
 
-                echo '<ul class="pagination justify-content-center">';
-                for ($i = 1; $i <= $total_pages; $i++) {
-                    $active = ($page == $i) ? "active" : "";
-                    echo "<li class='page-item {$active}'><a class='page-link' href='?page={$i}'>{$i}</a></li>";
-                }
-                echo '</ul>';
+            echo '<ul class="pagination justify-content-center">';
+            for ($i = 1; $i <= $total_pages; $i++) {
+                $active = ($page == $i) ? "active" : "";
+                echo "<li class='page-item {$active}'><a class='page-link' href='?page={$i}'>{$i}</a></li>";
+            }
+            echo '</ul>';
         ?>
-
 
         </div>
     <!-- END main-container -->
-
-
-
-    <!-- <div class="content pt-5 d-flex">
-    </div> -->
 
 </body>
 </html>
