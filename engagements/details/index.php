@@ -170,7 +170,11 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['followup_owner'])) {
 
     <!-- main-container -->
         <div class="container" style="background-color: #f2f2f2 !important;">
-            <a class="text-decoration-none" href="<?php BASE_URL; ?>/engagements"><i class="bi bi-arrow-left"></i>&nbsp; Back to Engagements</a>
+            <?php if($off_status !== "Completed") { ?>
+                <a class="text-decoration-none" href="<?php BASE_URL; ?>/engagements"><i class="bi bi-arrow-left"></i>&nbsp; Back to Engagements</a>
+            <?php } else { ?>
+                <a class="text-decoration-none" href="<?php BASE_URL; ?>/completed_engagements"><i class="bi bi-arrow-left"></i>&nbsp; Back to Completed Engagements</a>
+            <?php } ?>
             <br>
             <div class="mt-5"></div>
             <div class="detail-section d-flex justify-content-between">
