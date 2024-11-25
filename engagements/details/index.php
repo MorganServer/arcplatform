@@ -33,11 +33,20 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['followup_owner'])) {
         $stmt->store_result();
     } while ($stmt->num_rows > 0);
 
-    // Insert the follow-up comment
-    $insertQuery = "INSERT INTO followup_qa_comments (idno, qa_id, engagement_id, followup_comment, followup_owner) VALUES (?, ?, ?, ?, ?)";
-    $stmt = $conn->prepare($insertQuery);
-    $stmt->bind_param("iiiss", $idno, $qa_id, $engagement_id, $followup_comment, $followup_owner);
-    $stmt->execute();
+
+    // Debug input values
+    if (!$qaId || !$engagement_id || empty($comment) || empty($owner)) {
+        die("Invalid input: qa_id=$qaId, engagement_id=$engagement_id, comment=$comment, owner=$owner");
+    }
+
+    // Prepare SQL statement
+    $stmt = $conn->prepare("INSERT INTO followup_qa_comments (idno, qa_id, engagement_id, followup_comment, followup_owner) VALUES (?, ?, ?, ?)");
+    if (!$stmt) {
+        die("SQL prepare failed: (" . $conn->errno . ") " . $conn->error);
+    }
+
+    // Bind parameters
+    $stmt->bind_param("iiiss", $idno, $qaId, $engagement_id, $comment, $owner);
 
     // Fetch the newly inserted follow-up comment
     $followupSql = "SELECT * FROM followup_qa_comments WHERE idno = ?";
@@ -47,13 +56,12 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['followup_owner'])) {
     $result = $stmt->get_result();
     $row = $result->fetch_assoc();
 
-    // Format and return the new comment
-    // $owner = htmlspecialchars($row['followup_owner']);
     $comment = htmlspecialchars($row['followup_comment']);
     $createdAt = date("F j, Y, g:i a", strtotime($row['followup_created']));
-    
-    echo "
-    <div class='comment'>
+
+    // Execute the query
+    if ($stmt->execute()) {
+        echo "<div class='comment'>
         <div class='comment-header'>
             <span class='comment-time'>$createdAt</span>
             <span class='comment-author'>$followup_owner</span> <!-- Display the author here -->
@@ -62,6 +70,12 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['followup_owner'])) {
             <p>$comment</p>
         </div>
     </div>";
+    } else {
+        die("Execution failed: (" . $stmt->errno . ") " . $stmt->error);
+    }
+
+    $stmt->close();
+    exit;
 }
 ?>
 
