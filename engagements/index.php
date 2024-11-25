@@ -76,6 +76,8 @@ redirectIfNotLoggedIn();
                     $client_name = $row['client_name'];
                     $year = $row['year'];
                     $engagement_type = $row['engagement_type'];
+
+                    echo "<!-- Debug: SQL = $sql -->";
                     ?>
                     <tr>
                         <th scope="row"><?php echo $idno; ?></th>
@@ -132,6 +134,7 @@ $total_records = $row["total"];
 $total_pages = ceil($total_records / $limit);
 
 echo "<!-- Debug: Total records = $total_records, Total pages = $total_pages -->"; // Debugging output
+
 
 echo '<ul class="pagination justify-content-center">';
 for ($i = 1; $i <= $total_pages; $i++) {
