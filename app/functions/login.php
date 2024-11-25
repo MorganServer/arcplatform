@@ -21,6 +21,7 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
 
             // Set session variables
             $_SESSION['user_id'] = $user['user_id'];
+            $_SESSION['account_type'] = $user['account_type'];
             $_SESSION['email'] = $user['email'];
             $_SESSION['full_name'] = $user['first_name'] . " " . $user["last_name"];
 

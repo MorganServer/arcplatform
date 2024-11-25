@@ -103,6 +103,7 @@ redirectIfNotLoggedIn();
                             <i class="bi bi-eye text-success"></i>
                         </a> 
                     </td>
+                    <?php if($_SESSION['account_type'] == 'Admin') { ?>
                     <td style="width: 100px; text-align: center;">
                         <!-- <a href="<?php //echo BASE_URL; ?>/asset/update/?id=<?php //echo $id; ?>"> -->
                             <i class="bi bi-pencil-square" style="color:#005382;"></i>
@@ -113,6 +114,7 @@ redirectIfNotLoggedIn();
                             <i class="bi bi-trash" style="color:#941515;"></i>
                         </a>
                     </td>
+                    <?php } else {} ?>
                 </tr>
                 <?php
                         }
