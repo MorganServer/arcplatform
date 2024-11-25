@@ -30,13 +30,13 @@ $pageName = ucfirst($currentDirectory);
         </div>
         <div class="modal-body">
 
-            <a class="btn btn-primary" href="<?php BASE_URL; ?>/actions/add_qa_comment/" role="button">Add QA Comment</a>
+            <a class="btn btn-secondary" href="<?php BASE_URL; ?>/actions/add_qa_comment/" role="button">Add QA Comment</a>
             <br>
             <div class="mt-3"></div>
-            <a class="btn btn-primary" href="<?php BASE_URL; ?>/actions/add_client/" role="button">Add Client</a>
+            <a class="btn btn-secondary" href="<?php BASE_URL; ?>/actions/add_client/" role="button">Add Client</a>
             <br>
             <div class="mt-3"></div>
-            <a class="btn btn-primary" href="<?php BASE_URL; ?>/actions/add_engagement/" role="button">Add Engagement</a>
+            <a class="btn btn-secondary" href="<?php BASE_URL; ?>/actions/add_engagement/" role="button">Add Engagement</a>
 
         </div>
     </div>
