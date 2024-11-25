@@ -28,7 +28,7 @@
         } else {
             // Insert the new engagement into the database
             $engagement_insert = "INSERT INTO engagement (idno, client_name, engagement_type, year, report_start, report_end, report_as_of, manager, senior, staff, leadsheet_due, field_work_week, senior_dol, staff_1_dol, staff_2_dol)
-                VALUES ('$idno', NULLIF('$client_name' ''), NULLIF('$engagement_type', ''), NULLIF('$year', ''), NULLIF('$report_start', ''), NULLIF('$report_end' ''), NULLIF('$report_as_of', ''), NULLIF('$manager', ''), NULLIF('$senior', ''), NULLIF('$staff', ''), NULLIF('$leadsheet_due', ''), NULLIF('$field_work_week', ''), NULLIF('$senior_dol', ''), NULLIF('$staff_1_dol', ''), NULLIF('$staff_2_dol', ''))";
+                VALUES ('$idno', NULLIF('$client_name', ''), NULLIF('$engagement_type', ''), NULLIF('$year', ''), NULLIF('$report_start', ''), NULLIF('$report_end', ''), NULLIF('$report_as_of', ''), NULLIF('$manager', ''), NULLIF('$senior', ''), NULLIF('$staff', ''), NULLIF('$leadsheet_due', ''), NULLIF('$field_work_week', ''), NULLIF('$senior_dol', ''), NULLIF('$staff_1_dol', ''), NULLIF('$staff_2_dol', ''))";
 
             if (mysqli_query($conn, $engagement_insert)) {
                 header('location: ' . BASE_URL . '/');
