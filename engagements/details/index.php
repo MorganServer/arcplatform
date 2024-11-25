@@ -141,6 +141,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['followup_owner'])) {
                     $off_manager                = $off_row['manager']; 
                     $off_senior                 = $off_row['senior']; 
                     $off_staff                  = $off_row['staff']; 
+                    $off_status                 = $off_row['status']; 
 
 
                     // Split the name into parts and get initials
@@ -185,55 +186,56 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['followup_owner'])) {
                 <div class="audit-period">
                     <strong>Audit Period: </strong><br><?php echo $off_report_start; ?> - <?php echo $off_report_end; ?>
                 </div>
+                <?php if($off_status == "Completed") { ?>
                 <div class="complete-button">
-                <form method="POST">
-    <input type="hidden" name="engagement_id" value="<?php echo htmlspecialchars($off_id); ?>">
-    <input type="hidden" name="status" value="Completed">
-    <button type="submit" name="complete_engagement" class="btn btn-outline-primary">
-        <i class="bi bi-check2-circle"></i> Complete Engagement
-    </button>
-</form>
+                    <form method="POST">
+                        <input type="hidden" name="engagement_id" value="<?php echo htmlspecialchars($off_id); ?>">
+                        <input type="hidden" name="status" value="Completed">
+                        <button type="submit" name="complete_engagement" class="btn btn-outline-primary">
+                            <i class="bi bi-check2-circle"></i> Complete Engagement
+                        </button>
+                    </form>
 
-<!-- Complete Engagement PHP -->
+                    <!-- Complete Engagement PHP -->
+                        <?php
 
-<?php
-
-if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['complete_engagement'])) {
-    $engagement_id = intval($_POST['engagement_id']);
-    $status = $_POST['status'];
-
-    // Debugging: Check variables
-    echo "Engagement ID: $engagement_id<br>";
-    echo "Status: $status<br>";
-
-    // Debugging: Check connection
-    if ($conn->connect_error) {
-        die("Connection failed: " . $conn->connect_error);
-    }
-
-    // Prepare the SQL query
-    $sql = "UPDATE engagement SET status = ? WHERE engagement_id = ?";
-    if ($stmt = $conn->prepare($sql)) {
-        $stmt->bind_param("si", $status, $engagement_id);
-
-        // Execute the statement
-        if ($stmt->execute()) {
-            echo "<div class='alert alert-success'>Engagement status updated to Completed successfully.</div>";
-        } else {
-            echo "<div class='alert alert-danger'>Error executing statement: " . $stmt->error . "</div>";
-        }
-
-        $stmt->close();
-    } else {
-        echo "<div class='alert alert-danger'>Error preparing the SQL statement: " . $conn->error . "</div>";
-    }
-}
-?>
-
-
-<!-- end Complete Engagement PHP -->
+                        if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['complete_engagement'])) {
+                            $engagement_id = intval($_POST['engagement_id']);
+                            $status = $_POST['status'];
+                        
+                            // Debugging: Check variables
+                            echo "Engagement ID: $engagement_id<br>";
+                            echo "Status: $status<br>";
+                        
+                            // Debugging: Check connection
+                            if ($conn->connect_error) {
+                                die("Connection failed: " . $conn->connect_error);
+                            }
+                        
+                            // Prepare the SQL query
+                            $sql = "UPDATE engagement SET status = ? WHERE engagement_id = ?";
+                            if ($stmt = $conn->prepare($sql)) {
+                                $stmt->bind_param("si", $status, $engagement_id);
+                            
+                                // Execute the statement
+                                if ($stmt->execute()) {
+                                    echo "<div class='alert alert-success'>Engagement status updated to Completed successfully.</div>";
+                                } else {
+                                    echo "<div class='alert alert-danger'>Error executing statement: " . $stmt->error . "</div>";
+                                }
+                            
+                                $stmt->close();
+                            } else {
+                                echo "<div class='alert alert-danger'>Error preparing the SQL statement: " . $conn->error . "</div>";
+                            }
+                        }
+                        ?>
+                    <!-- end Complete Engagement PHP -->
                     
                 </div>
+                <?php } else {
+                    echo "Completed Engagement"
+                } ?>
             </div>
 
             <div class="mt-5"></div>
