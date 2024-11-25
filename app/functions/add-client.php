@@ -29,11 +29,11 @@
 // add Engagement
 if (isset($_POST['add_engagement'])) {
     // Generate a unique ID for the engagement
-    $idno = rand(1000000, 9999999);
+    $e_idno = rand(1000000, 9999999);
 
     // Sanitize and validate input data
-    $client_name = isset($_POST['e_client_name']) ? trim(mysqli_real_escape_string($conn, $_POST['e_client_name'])) : ""; 
-    $engagement_type = isset($_POST['e_engagement_type']) ? trim(mysqli_real_escape_string($conn, $_POST['e_engagement_type'])) : "";
+    $e_client_name = isset($_POST['e_client_name']) ? trim(mysqli_real_escape_string($conn, $_POST['e_client_name'])) : ""; 
+    $e_engagement_type = isset($_POST['e_engagement_type']) ? trim(mysqli_real_escape_string($conn, $_POST['e_engagement_type'])) : "";
     $year = isset($_POST['year']) ? trim(mysqli_real_escape_string($conn, $_POST['year'])) : "";
     $report_start = isset($_POST['report_start']) ? trim(mysqli_real_escape_string($conn, $_POST['report_start'])) : "";
     $report_end = isset($_POST['report_end']) ? trim(mysqli_real_escape_string($conn, $_POST['report_end'])) : "";
@@ -64,9 +64,9 @@ if (isset($_POST['add_engagement'])) {
         
         $stmt->bind_param(
             "sssssssssssssss",
-            $idno,
-            $client_name,
-            $engagement_type,
+            $e_idno,
+            $e_client_name,
+            $e_engagement_type,
             $year,
             $report_start,
             $report_end,
