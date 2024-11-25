@@ -160,7 +160,7 @@ document.addEventListener('DOMContentLoaded', function () {
     if (engagementDropdown && clientNameInput) {
         engagementDropdown.addEventListener('change', function () {
             const selectedOption = this.options[this.selectedIndex];
-            const clientName = selectedOption.getAttribute('data-client-name') || '';
+            const clientName = selectedOption.getAttribute('data-client-name');
             clientNameInput.value = clientName;
         });
     }
