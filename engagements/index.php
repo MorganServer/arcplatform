@@ -76,7 +76,9 @@ redirectIfNotLoggedIn();
                             $client_name = $row['client_name'];
                             $year = $row['year'];
                             $engagement_type = $row['engagement_type'];
-                            
+                            // Output your rows here, e.g., for display
+                            // echo "<p>$client_name - $engagement_type</p>"; // Example output
+                        
                 ?>
                 <tr>
                     <th scope="row"><?php echo $idno; ?></th>
@@ -122,9 +124,13 @@ redirectIfNotLoggedIn();
                     <?php } else {} ?>
                 </tr>
                 <?php
-                        }
-                    }
                 }
+            } else {
+                echo "<p>No records found.</p>";
+            }
+        } else {
+            echo "<p>Error fetching data: " . mysqli_error($conn) . "</p>";
+        }
                 ?>
             </tbody>
         </table>
