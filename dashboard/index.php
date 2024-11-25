@@ -164,8 +164,8 @@ redirectIfNotLoggedIn();
 
                 // Debugging: Log the selected engagement and client name to the console
                 const selectedEngagementId = selectedOption.value;
-                console.log("Selected Engagement ID:", selectedEngagementId);
-                console.log("Client Name:", clientName);
+                // console.log("Selected Engagement ID:", selectedEngagementId);
+                // console.log("Client Name:", clientName);
 
                 // Set the client name input field in real-time
                 clientNameInput.value = clientName || '';  // Set client name or empty if not selected
