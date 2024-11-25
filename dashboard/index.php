@@ -154,8 +154,8 @@ redirectIfNotLoggedIn();
     <script>
     document.addEventListener('DOMContentLoaded', function () {
         // Handle dropdown selection and update client name
-        const engagementDropdown = document.getElementById('e_engagement_id');
-        const clientNameInput = document.getElementById('client_name');
+        const engagementDropdown = document.getElementById('qa_engagement_id');
+        const clientNameInput = document.getElementById('qa_client_name');
 
         if (engagementDropdown && clientNameInput) {
             engagementDropdown.addEventListener('change', function () {

@@ -172,8 +172,8 @@ $pageName = ucwords($pageName);
         <div class="modal-body">
             <form class="row g-3">
                 <div class="col-md-6">
-                    <label for="e_engagement_id" class="form-label">Engagement</label>
-                    <select id="e_engagement_id" class="form-select">
+                    <label for="qa_engagement_id" class="form-label">Engagement</label>
+                    <select id="qa_engagement_id" class="form-select">
                         <option value="">Choose...</option>
                         <?php
                         $qa_sql = "SELECT * FROM engagement";
@@ -197,8 +197,8 @@ $pageName = ucwords($pageName);
                 </div>
                     
                 <div class="col-md-6 mt-3">
-                    <label for="client_name" class="form-label">Client Name</label>
-                    <input type="text" id="client_name" class="form-control" readonly>
+                    <label for="qa_client_name" class="form-label">Client Name</label>
+                    <input type="text" id="qa_client_name" class="form-control" readonly>
                 </div>
                 <div class="col-md-6">
                     <label for="control_ref" class="form-label">Control Reference</label>
