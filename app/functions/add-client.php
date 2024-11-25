@@ -37,6 +37,11 @@
 
 // add Engagement
 
+$stmt = $conn->prepare("SELECT * FROM engagement WHERE idno = ?");
+if (!$stmt) {
+    die("Prepare failed: " . $conn->error);
+}
+
 error_reporting(E_ALL); // Report all types of errors
 ini_set('display_errors', 1); // Display errors on the screen
 
