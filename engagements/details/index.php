@@ -16,67 +16,86 @@ if (isset($_GET['logout']) && $_GET['logout'] == 1) {
 
 redirectIfNotLoggedIn();
 
-// Handle follow-up comment submission
+// Ensure the script runs only when needed
 if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['followup_owner'])) {
+    // Connect to your database (ensure $conn is initialized)
+
+
     $qaId = intval($_POST['qa_id']);
     $comment = trim($_POST['followup_comment']);
     $owner = trim($_POST['followup_owner']);
-    $engagement_id = intval($_POST['engagement_id']); // Ensure it's an integer
+    $engagement_id = intval($_POST['engagement_id']);
 
-    // Generate a random 6-digit number for idno
+    // Input validation
+    if (!$qaId || !$engagement_id || empty($comment) || empty($owner)) {
+        die("Invalid input. Please provide all required data.");
+    }
+
+    // Generate a unique random idno
+    $idno = null;
     do {
         $idno = rand(100000, 999999);
         $checkQuery = "SELECT idno FROM followup_qa_comments WHERE idno = ?";
         $stmt = $conn->prepare($checkQuery);
+        if (!$stmt) {
+            die("SQL prepare failed (check idno): (" . $conn->errno . ") " . $conn->error);
+        }
         $stmt->bind_param("i", $idno);
         $stmt->execute();
         $stmt->store_result();
-    } while ($stmt->num_rows > 0);
+        $isDuplicate = $stmt->num_rows > 0;
+        $stmt->close();
+    } while ($isDuplicate);
 
-
-    // Debug input values
-    if (!$qaId || !$engagement_id || empty($comment) || empty($owner)) {
-        die("Invalid input: qa_id=$qaId, engagement_id=$engagement_id, comment=$comment, owner=$owner");
-    }
-
-    // Prepare SQL statement
-    $stmt = $conn->prepare("INSERT INTO followup_qa_comments (idno, qa_id, engagement_id, followup_comment, followup_owner) VALUES (?, ?, ?, ?)");
+    // Prepare SQL to insert the follow-up comment
+    $insertQuery = "INSERT INTO followup_qa_comments (idno, qa_id, engagement_id, followup_comment, followup_owner) 
+                    VALUES (?, ?, ?, ?, ?)";
+    $stmt = $conn->prepare($insertQuery);
     if (!$stmt) {
-        die("SQL prepare failed: (" . $conn->errno . ") " . $conn->error);
+        die("SQL prepare failed (insert comment): (" . $conn->errno . ") " . $conn->error);
     }
 
-    // Bind parameters
     $stmt->bind_param("iiiss", $idno, $qaId, $engagement_id, $comment, $owner);
 
+    // Execute the insert query
+    if (!$stmt->execute()) {
+        die("Execution failed (insert comment): (" . $stmt->errno . ") " . $stmt->error);
+    }
+    $stmt->close();
+
     // Fetch the newly inserted follow-up comment
-    $followupSql = "SELECT * FROM followup_qa_comments WHERE idno = ?";
-    $stmt = $conn->prepare($followupSql);
+    $fetchQuery = "SELECT * FROM followup_qa_comments WHERE idno = ?";
+    $stmt = $conn->prepare($fetchQuery);
+    if (!$stmt) {
+        die("SQL prepare failed (fetch comment): (" . $conn->errno . ") " . $conn->error);
+    }
     $stmt->bind_param("i", $idno);
     $stmt->execute();
     $result = $stmt->get_result();
     $row = $result->fetch_assoc();
+    $stmt->close();
 
-    $comment = htmlspecialchars($row['followup_comment']);
-    $createdAt = date("F j, Y, g:i a", strtotime($row['followup_created']));
-
-    // Execute the query
-    if ($stmt->execute()) {
-        echo "<div class='comment'>
-        <div class='comment-header'>
-            <span class='comment-time'>$createdAt</span>
-            <span class='comment-author'>$followup_owner</span> <!-- Display the author here -->
-        </div>
-        <div class='comment-body mt-2'>
-            <p>$comment</p>
-        </div>
-    </div>";
-    } else {
-        die("Execution failed: (" . $stmt->errno . ") " . $stmt->error);
+    if (!$row) {
+        die("Failed to fetch the newly inserted comment.");
     }
 
-    $stmt->close();
+    // Escape the comment for display
+    $commentText = htmlspecialchars($row['followup_comment']);
+    $createdAt = date("F j, Y, g:i a", strtotime($row['followup_created']));
+    $followupOwner = htmlspecialchars($row['followup_owner']);
+
+    // Return the new comment HTML
+    echo "<div class='comment'>
+        <div class='comment-header'>
+            <span class='comment-time'>$createdAt</span>
+            <span class='comment-author'>$followupOwner</span>
+        </div>
+        <div class='comment-body mt-2'>
+            <p>$commentText</p>
+        </div>
+    </div>";
+
     exit;
-}
 ?>
 
 
