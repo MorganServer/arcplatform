@@ -48,8 +48,10 @@ redirectIfNotLoggedIn();
                     <th scope="col">Type</th>
                     <th scope="col">Open QA Comments</th>
                     <th style="width: 100px; text-align: center;">View</th>
+                    <?php if($_SESSION['account_type'] == 'Admin') { ?>
                     <th style="width: 100px; text-align: center;">Edit</th>
                     <th style="width: 100px; text-align: center;">Delete</th>
+                    <?php } else {} ?>
                 </tr>
             </thead>
 
