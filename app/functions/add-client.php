@@ -37,11 +37,6 @@
 
 // add Engagement
 
-$stmt = $conn->prepare("SELECT * FROM engagement WHERE idno = ?");
-if (!$stmt) {
-    die("Prepare failed: " . $conn->error);
-}
-
 error_reporting(E_ALL); // Report all types of errors
 ini_set('display_errors', 1); // Display errors on the screen
 
@@ -80,24 +75,9 @@ if (isset($_POST['add_engagement'])) {
             VALUES (?, NULLIF(?, ''), NULLIF(?, ''), NULLIF(?, ''), NULLIF(?, ''), NULLIF(?, ''), NULLIF(?, ''), NULLIF(?, ''), NULLIF(?, ''), NULLIF(?, ''), NULLIF(?, ''), NULLIF(?, ''), NULLIF(?, ''), NULLIF(?, ''), NULLIF(?, ''))"
         );
         
-        $stmt->bind_param(
-            "sssssssssssssss",
-            $e_idno,
-            $e_client_name,
-            $e_engagement_type,
-            $year,
-            $report_start,
-            $report_end,
-            $report_as_of,
-            $manager,
-            $senior,
-            $staff,
-            $leadsheet_due,
-            $field_work_week,
-            $senior_dol,
-            $staff_1_dol,
-            $staff_2_dol
-        );
+        if (!$stmt) {
+            die("Prepare failed: " . $conn->error); // Display the error message
+        }
 
         if ($stmt->execute()) {
             header('Location: ' . BASE_URL . '/');
