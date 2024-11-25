@@ -37,7 +37,7 @@ $pageName = ucwords($pageName);
 
 
 
-<!-- modal -->
+<!-- add-client -->
 
 <div class="modal fade" id="add_client" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
   <div class="modal-dialog">
@@ -63,4 +63,45 @@ $pageName = ucwords($pageName);
   </div>
 </div>
 
-<!-- end modal -->
+<!-- end add-client -->
+
+<!-- add-client -->
+<div class="modal fade" id="add_client" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+        <div class="modal-header">
+            <h1 class="modal-title fs-5" id="exampleModalLabel">Add Client</h1>
+            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+        </div>
+        <div class="modal-body">
+
+            <form class="row g-3">
+                <div class="col-md-4">
+                    <label for="e_client_name" class="form-label">Client Name</label>
+                    <select id="e_client_name" class="form-select">
+                        <option>Choose...</option>
+                        <?php
+                        $sql = "SELECT client_name FROM clients";
+                        $result = mysqli_query($conn, $sql);
+                        if (mysqli_num_rows($result) > 0) {
+                            while ($row = mysqli_fetch_assoc($result)) { 
+                                $client_name = $row['client_name'];
+                        ?>
+                            <option value="<?php echo $client_name; ?>"><?php echo $client_name; ?></option>
+                        <?php } } ?>
+                    </select>
+                </div>
+                <div class="col-md-6">
+                    <label for="client_name" class="form-label"></label>
+                    <input type="text" class="form-control" id="client_name">
+                </div>
+                <div class="col-12">
+                    <button type="submit" class="btn btn-primary">Submite</button>
+                </div>
+            </form>
+
+        </div>
+    </div>
+  </div>
+</div>
+<!-- end add-client -->
