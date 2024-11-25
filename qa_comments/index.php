@@ -95,8 +95,8 @@ redirectIfNotLoggedIn();
 
                                 <td><?php echo $engage_client_name . " - " . $engage_year . " " . $engage_engagement_type ? $engage_client_name . " - " . $engage_year . " " . $engage_engagement_type : '-'; ?></td>
                                 <?php }}} ?>
-                                <td><?php echo $year ? $year : '-'; ?></td>
-                                <td><?php echo $engagement_type ? $engagement_type : '-'; ?></td>
+                                <td><?php echo $control_ref ? $control_ref : '-'; ?></td>
+                                <td><?php echo $cell_ref ? $cell_ref : '-'; ?></td>
                                 <td>
                                     <?php
                                     $sql_comments = "SELECT COUNT(1) FROM qa_comments WHERE client_name='$client_name' AND status != 'Completed'";
