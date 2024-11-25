@@ -336,7 +336,7 @@ body {
 
 /* Remove the dropdown caret */
 .custom-dropdown-toggle::after {
-    display: none; /* Hides the default Bootstrap caret */
+    display: none !important; /* Hides the default Bootstrap caret */
 }
 
 /* Change the dropdown toggle icon color to black */
