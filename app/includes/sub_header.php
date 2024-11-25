@@ -79,13 +79,13 @@ $pageName = ucwords($pageName);
                     <select id="e_client_name" name="e_client_name" class="form-select" >
                         <option>Choose...</option>
                         <?php
-                        $engage_sql = "SELECT client_name FROM clients";
-                        $engage_result = mysqli_query($conn, $engage_sql);
-                        if (mysqli_num_rows($engage_result) > 0) {
-                            while ($engage_row = mysqli_fetch_assoc($engage_result)) { 
-                                $engage_client_name = $row['client_name'];
+                        $sql = "SELECT client_name FROM clients";
+                        $result = mysqli_query($conn, $sql);
+                        if (mysqli_num_rows($result) > 0) {
+                            while ($row = mysqli_fetch_assoc($result)) { 
+                                $client_name = $row['client_name'];
                         ?>
-                            <option value="<?php echo $engage_client_name; ?>"><?php echo $engage_client_name; ?></option>
+                            <option value="<?php echo $client_name; ?>"><?php echo $client_name; ?></option>
                         <?php } } ?>
                     </select>
                 </div>
