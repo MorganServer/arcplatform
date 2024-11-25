@@ -70,8 +70,6 @@ redirectIfNotLoggedIn();
                                 $idno = $row['idno'];
                                 $id = $row['client_id'];
                                 $client_name = $row['client_name'];
-                                $total_engagements = $row['total_engagements'];
-                                $total_open_qa_comments = $row['total_open_qa_comments'];  // Get total open QA comments
                                 ?>
 
                                 <tr>
