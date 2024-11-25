@@ -3,23 +3,23 @@
     if (isset($_POST['add_client'])) {
         // Generate a random ID number
         $idno = rand(1000000, 9999999);
-    
+
         // Sanitize input data
         $client_name = isset($_POST['c_client_name']) ? trim($_POST['c_client_name']) : "";
-    
+
         // Check if client already exists
         $select = $conn->prepare("SELECT idno FROM clients WHERE idno = ?");
         $select->bind_param("i", $idno); // "i" for integer
         $select->execute();
         $result = $select->get_result();
-    
+
         if ($result->num_rows > 0) {
             $error[] = 'Client already exists!';
         } else {
             // Insert the new client into the database
             $insert = $conn->prepare("INSERT INTO clients (idno, client_name) VALUES (?, NULLIF(?, ''))");
             $insert->bind_param("is", $idno, $client_name); // "i" for integer, "s" for string
-        
+
             if ($insert->execute()) {
                 header('location:' . BASE_URL . '/');
                 exit; // Ensure script stops execution after redirecting
@@ -27,7 +27,7 @@
                 $error[] = 'Error: ' . $conn->error;
             }
         }
-    
+
         // Close prepared statements
         $select->close();
         if (isset($insert)) $insert->close();
@@ -36,6 +36,10 @@
 // end Add Client
 
 // add Engagement
+
+error_reporting(E_ALL); // Report all types of errors
+ini_set('display_errors', 1); // Display errors on the screen
+
 if (isset($_POST['add_engagement'])) {
     // Generate a unique ID for the engagement
     $e_idno = rand(1000000, 9999999);
