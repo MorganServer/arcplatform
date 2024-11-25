@@ -212,7 +212,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['complete_engagement']
     }
 
     // Prepare the SQL query
-    $sql = "UPDATE engagement SET status = ? WHERE id = ?";
+    $sql = "UPDATE engagement SET status = ? WHERE engagement_id = ?";
     if ($stmt = $conn->prepare($sql)) {
         $stmt->bind_param("si", $status, $engagement_id);
 
