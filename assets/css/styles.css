@@ -377,13 +377,13 @@ body {
 
 /* Remove background color on hover for the accordion button */
 .accordion-button:hover {
-    background-color: transparent !important; /* No background color on hover */
+    background-color: #f2f2f2 !important; /* No background color on hover */
     color: inherit !important; /* Optional: Keep the text color unchanged */
 }
 
 /* If you want to remove other hover effects (like the border), you can add more rules */
 .accordion-button:focus, .accordion-button:not(.collapsed) {
     box-shadow: none !important; /* Remove focus outline or box-shadow */
-    background-color: transparent !important; /* Ensure no background color on focus */
+    background-color: #f2f2f2 !important; /* Ensure no background color on focus */
 }
 
