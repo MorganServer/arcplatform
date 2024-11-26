@@ -100,12 +100,12 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 
                 foreach ($comments_by_status[$option] as $comment) {
                     // Draw a rounded border around the comment section
-                    $pdf->SetDrawColor(180, 180, 180); // Light gray border
-                    $pdf->SetLineWidth(0.5);
-                    $pdf->Rect($pdf->GetX(), $pdf->GetY(), 180, 60, 'D'); // Adjusted the height of the box
+                    // $pdf->SetDrawColor(180, 180, 180); // Light gray border
+                    // $pdf->SetLineWidth(0.5);
+                    // $pdf->Rect($pdf->GetX(), $pdf->GetY(), 180, 60, 'D'); // Adjusted the height of the box
                     
                     // Set padding inside the box
-                    $pdf->SetXY($pdf->GetX() + 10, $pdf->GetY() + 10); // Adjust for padding inside the box
+                    // $pdf->SetXY($pdf->GetX() + 10, $pdf->GetY() + 10); // Adjust for padding inside the box
 
                     // Print details in a structured way
                     $pdf->Cell(0, 6, "Control Reference: " . $comment['control_ref'], 0, 1);
