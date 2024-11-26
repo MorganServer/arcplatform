@@ -330,21 +330,22 @@ $pageName = ucwords($pageName);
                 <input type="hidden" id="edit_dc_id" name="edit_dc_id" value="<?php echo $dc_id; ?>">
 
                 <?php
-                $ec_sql = "SELECT * FROM clients WHERE client_id = '$dc_id'";
-                $ec_result = mysqli_query($conn, $ec_sql);
-                if ($ec_result) {
-                    $ec_num_rows = mysqli_num_rows($ec_result);
-                    if ($ec_num_rows > 0) {
-                        while ($ec_row = mysqli_fetch_assoc($ec_result)) {
-                            $ec_idno = $row['idno'];
-                            $ec_client_name = $row['client_name'];
-                            $ec_primary_contact = $row['primary_contact'];
-                            $ec_contact_email = $row['contact_email'];
-                            $ec_has_logo = $row['has_logo'];
-                        }
-                    }
-                }
-                ?>
+$ec_sql = "SELECT * FROM clients WHERE client_id = '$dc_id'";
+$ec_result = mysqli_query($conn, $ec_sql);
+if ($ec_result) {
+    $ec_num_rows = mysqli_num_rows($ec_result);
+    if ($ec_num_rows > 0) {
+        while ($ec_row = mysqli_fetch_assoc($ec_result)) {
+            $ec_idno = $ec_row['idno'];
+            $ec_client_name = $ec_row['client_name'];
+            $ec_primary_contact = $ec_row['primary_contact'];
+            $ec_contact_email = $ec_row['contact_email'];
+            $ec_has_logo = $ec_row['has_logo'];
+        }
+    }
+}
+?>
+
 
                 <form method="POST" class="row g-3">
                     <div class="col-md-6">
