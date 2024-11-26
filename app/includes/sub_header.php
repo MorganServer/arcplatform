@@ -306,18 +306,7 @@ $pageName = ucwords($pageName);
                             </div>
                         </li>
 
-
-  
-                        <?php }}} ?>
-                    </ul>
-
-                </div>
-            </div>
-        </div>
-    </div>
-<!-- end manage-client --> 
-
-<!-- edit-client -->
+                        <!-- edit-client -->
     <div class="modal fade" id="edit_client" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
         <div class="modal-dialog">
             <div class="modal-content">
@@ -381,6 +370,19 @@ $pageName = ucwords($pageName);
         </div>
     </div>
 <!-- end edit-client -->
+
+
+  
+                        <?php }}} ?>
+                    </ul>
+
+                </div>
+            </div>
+        </div>
+    </div>
+<!-- end manage-client --> 
+
+
 
 <script>
     document.addEventListener('DOMContentLoaded', function () {
