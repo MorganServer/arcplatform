@@ -102,14 +102,16 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
                     // Draw a rounded border around the comment section
                     $pdf->SetDrawColor(180, 180, 180); // Light gray border
                     $pdf->SetLineWidth(0.5);
-                    $pdf->Rect($pdf->GetX(), $pdf->GetY(), 180, 50, 'D'); // Draw rectangle around the section
+                    $pdf->Rect($pdf->GetX(), $pdf->GetY(), 180, 60, 'D'); // Adjusted the height of the box
                     
-                    // Print comment details inside the border
+                    // Set padding inside the box
                     $pdf->SetXY($pdf->GetX() + 10, $pdf->GetY() + 10); // Adjust for padding inside the box
-                    $pdf->Cell(0, 10, "Control Reference: " . $comment['control_ref'], 0, 1);
-                    $pdf->Cell(0, 10, "Cell Reference: " . $comment['cell_reference'], 0, 1);
-                    $pdf->Cell(0, 10, "Comment By: " . $comment['comment_by'], 0, 1);
-                    $pdf->MultiCell(0, 10, "Comment: " . $comment['qa_comment']);
+
+                    // Print details in a structured way
+                    $pdf->Cell(0, 6, "Control Reference: " . $comment['control_ref'], 0, 1);
+                    $pdf->Cell(0, 6, "Cell Reference: " . $comment['cell_reference'], 0, 1);
+                    $pdf->Cell(0, 6, "Comment By: " . $comment['comment_by'], 0, 1);
+                    $pdf->MultiCell(0, 6, "Comment: " . $comment['qa_comment']);
                     $pdf->Ln(5); // Add some space after the comment
                 }
 
