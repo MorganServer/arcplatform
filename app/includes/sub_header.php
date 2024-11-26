@@ -360,7 +360,7 @@ $pageName = ucwords($pageName);
 
 
 <script>
-    document.getElementById('edit_client').addEventListener('show.bs.modal', function (event) {
+    document.getElementById('edit_client').addEventListener('shown.bs.modal', function (event) {
         // Get the button that triggered the modal
         var button = event.relatedTarget;
         
@@ -393,13 +393,17 @@ $pageName = ucwords($pageName);
                     if (clientData.error) {
                         console.error('Error: ' + clientData.error);
                     } else {
-                        // Delay the population to ensure modal is fully visible
-                        setTimeout(function () {
-                            document.getElementById('c_client_name').value = clientData.client_name || '';
-                            document.getElementById('c_primary_contact').value = clientData.primary_contact || '';
-                            document.getElementById('c_contact_email').value = clientData.contact_email || '';
-                            document.getElementById('has_logo').checked = clientData.has_logo === true; // Updated check for boolean true
-                        }, 100);  // Small delay to ensure modal is ready
+                        // Populate the form fields
+                        document.getElementById('c_client_name').value = clientData.client_name || '';
+                        document.getElementById('c_primary_contact').value = clientData.primary_contact || '';
+                        document.getElementById('c_contact_email').value = clientData.contact_email || '';
+                        
+                        // Handle the checkbox population
+                        if (clientData.has_logo === 1 || clientData.has_logo === '1' || clientData.has_logo === 'payabli') {
+                            document.getElementById('has_logo').checked = true;
+                        } else {
+                            document.getElementById('has_logo').checked = false;
+                        }
                     }
                 } catch (e) {
                     console.error('Error parsing response:', e);
@@ -416,6 +420,7 @@ $pageName = ucwords($pageName);
         xhr.send();
     });
 </script>
+
 
 
 
