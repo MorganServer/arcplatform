@@ -332,7 +332,7 @@ $pageName = ucwords($pageName);
                 <?php
                 if (isset($_GET['dc_id'])) {
                     // Fetch client ID from the URL or hidden field
-                    $ec_id = intval($_GET['dc_id']); // Sanitize input
+                    $ec_id = intval($_GET['edit_dc_id']); // Sanitize input
                     
                     // Query to fetch client details
                     $ec_sql = "SELECT * FROM clients WHERE client_id = ?";
@@ -346,7 +346,9 @@ $pageName = ucwords($pageName);
                             $ec_primary_contact = $row['primary_contact'];
                             $ec_contact_email = $row['contact_email'];
                             $ec_has_logo = $row['has_logo'];
-                        
+                        }
+                    }
+                }
                 ?>
 
                 <form method="POST" class="row g-3">
@@ -374,9 +376,6 @@ $pageName = ucwords($pageName);
                         <button type="submit" name="edit_client" class="btn btn-primary">Submit</button>
                     </div>
                 </form>
-                <?php }
-                    }
-                }?>
             </div>
         </div>
     </div>
