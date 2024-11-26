@@ -1,5 +1,4 @@
 <?php
-session_start(); // Ensure the session is started
 
 // Handle the form submission
 if ($_SERVER["REQUEST_METHOD"] === "POST") {
