@@ -117,7 +117,7 @@
         $staff_1_dol = $_POST['staff_1_dol'];
         $staff_2_dol = $_POST['staff_2_dol'];
 
-        // Validate input data (basic validation, expand as needed)
+        // Validate input data
         if (empty($engagement_id) || empty($client_name) || empty($engagement_type) || empty($year)) {
             echo "Engagement ID, Client Name, Engagement Type, and Year are required!";
             exit;
@@ -131,7 +131,13 @@
                     leadsheet_due = ?, field_work_week = ?, 
                     senior_dol = ?, staff_1_dol = ?, staff_2_dol = ? 
                 WHERE engagement_id = ?";
+
         $stmt = $conn->prepare($sql);
+
+        // Check if prepare() failed
+        if (!$stmt) {
+            die("Error preparing statement: " . $conn->error);
+        }
 
         // Bind the parameters
         $stmt->bind_param(
@@ -144,13 +150,13 @@
             $engagement_id
         );
 
-        // Execute the query and check if the update was successful
+        // Execute the query and check if it was successful
         if ($stmt->execute()) {
             echo "Engagement updated successfully!";
-            // Redirect or refresh the page if needed
+            // Redirect or refresh if needed
             // header("Location: engagements.php");
         } else {
-            echo "Error updating engagement: " . $stmt->error;
+            echo "Error executing statement: " . $stmt->error;
         }
 
         // Close the statement and connection
