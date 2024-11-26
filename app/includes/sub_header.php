@@ -357,7 +357,7 @@ $pageName = ucwords($pageName);
 <!-- end edit-client -->
 
 <!-- manage-engagements -->
-<div class="modal fade" id="manage_engagements" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal fade" id="manage_engagements" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
         <div class="modal-dialog">
             <div class="modal-content">
                 <div class="modal-header">
@@ -418,37 +418,100 @@ $pageName = ucwords($pageName);
                     <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                 </div>
                 <div class="modal-body">
-                    <form id="editClientForm" method="POST" class="row g-3">
-                        <input type="hidden" name="me_edit_engagement_id" id="me_edit_engagement_id">
-                        <div class="col-md-6">
-                            <label for="me_edit_client_name" class="form-label">Client Name</label>
-                            <input type="text" class="form-control" id="me_edit_client_name" name="me_edit_client_name" required>
-                        </div>
-                        <div class="col-md-6">
-                            <label for="me_edit_engagement_type" class="form-label">Engagement Type</label>
-                            <input type="text" class="form-control" id="me_edit_engagement_type" name="me_edit_engagement_type" required>
-                        </div>
-                        <div class="col-md-6">
-                            <label for="c_contact_email" class="form-label">Contact Email</label>
-                            <input type="email" class="form-control" id="edit_contact_email" name="edit_contact_email" required>
-                        </div>
-                        <div class="col-12">
-                            <div class="form-check">
-                                <input class="form-check-input" type="checkbox" value="1" id="edit_has_logo" name="edit_has_logo">
-                                <label class="form-check-label" for="has_logo">
-                                    Client has a logo
-                                </label>
-                            </div>
-                        </div>
-                        <div class="col-12">
-                            <button type="submit" name="edit_client" class="btn btn-primary">Submit</button>
-                        </div>
-                    </form>
+                   
+
+                <form class="row g-3" method="POST">
+    <div class="col-md-6">
+        <label for="me_edit_client_name" class="form-label">Client Name</label>
+        <select id="me_edit_client_name" name="e_client_name" class="form-select">
+            <option value="">Choose...</option>
+            <?php
+            $stmt = $conn->prepare("SELECT client_name FROM clients");
+            $stmt->execute();
+            $result = $stmt->get_result();
+
+            if ($result->num_rows > 0) {
+                while ($row = $result->fetch_assoc()) {
+                    $e_client_name = htmlspecialchars($row['client_name']);
+                    echo "<option value=\"$e_client_name\">$e_client_name</option>";
+                }
+            } else {
+                echo "<option value=\"\">No clients found</option>";
+            }
+            ?>
+        </select>
+    </div>
+    <div class="col-md-6">
+        <label for="me_edit_engagement_type" class="form-label">Engagement Type</label>
+        <select id="me_edit_engagement_type" name="e_engagement_type" class="form-select">
+            <option value="">Choose...</option>
+            <option value="SOC 1 Type 1">SOC 1 Type 1</option>
+            <option value="SOC 1 Type 2">SOC 1 Type 2</option>
+            <option value="SOC 2 Type 1">SOC 2 Type 1</option>
+            <option value="SOC 2 Type 2">SOC 2 Type 2</option>
+            <option value="HIPAA">HIPAA</option>
+        </select>
+    </div>
+    <div class="col-md-6">
+        <label for="me_edit_year" class="form-label">Year</label>
+        <input type="number" class="form-control" id="me_edit_year" name="year" min="1900" max="2100">
+    </div>
+    <div class="col-md-6">
+        <label for="me_edit_report_start" class="form-label">Report Start Date</label>
+        <input type="date" class="form-control" id="me_edit_report_start" name="report_start">
+    </div>
+    <div class="col-md-6">
+        <label for="me_edit_report_end" class="form-label">Report End Date</label>
+        <input type="date" class="form-control" id="me_edit_report_end" name="report_end">
+    </div>
+    <div class="col-md-6">
+        <label for="me_edit_report_as_of" class="form-label">Report As Of Date</label>
+        <input type="date" class="form-control" id="me_edit_report_as_of" name="report_as_of">
+    </div>
+    <div class="col-md-6">
+        <label for="me_edit_manager" class="form-label">Manager</label>
+        <input type="text" class="form-control" id="me_edit_manager" name="manager">
+    </div>
+    <div class="col-md-6">
+        <label for="me_edit_senior" class="form-label">Senior</label>
+        <input type="text" class="form-control" id="me_edit_senior" name="senior">
+    </div>
+    <div class="col-md-6">
+        <label for="me_edit_staff" class="form-label">Staff</label>
+        <input type="text" class="form-control" id="me_edit_staff" name="staff">
+    </div>
+    <div class="col-md-6">
+        <label for="me_edit_leadsheets_due" class="form-label">Leadsheet Due</label>
+        <input type="date" class="form-control" id="me_edit_leadsheets_due" name="leadsheet_due">
+    </div>
+    <div class="col-md-6">
+        <label for="me_edit_field_work_week" class="form-label">Fieldwork Week</label>
+        <input type="date" class="form-control" id="me_edit_field_work_week" name="field_work_week">
+    </div>
+    <div class="col-md-6">
+        <label for="me_edit_senior_dol" class="form-label">Senior DOL</label>
+        <input type="text" class="form-control" id="me_edit_senior_dol" name="senior_dol">
+    </div>
+    <div class="col-md-6">
+        <label for="me_edit_staff_1_dol" class="form-label">Staff 1 DOL</label>
+        <input type="text" class="form-control" id="me_edit_staff_1_dol" name="staff_1_dol">
+    </div>
+    <div class="col-md-6">
+        <label for="me_edit_staff_2_dol" class="form-label">Staff 2 DOL</label>
+        <input type="text" class="form-control" id="me_edit_staff_2_dol" name="staff_2_dol">
+    </div>
+    <div class="col-12">
+        <button type="submit" name="edit_engagement" class="btn btn-primary">Update Engagement</button>
+    </div>
+</form>
+
+                
+
                 </div>
             </div>
         </div>
     </div>
-<!-- end edit-client -->
+<!-- end edit-engagement -->
 
 <script>
     document.getElementById('edit_engagement').addEventListener('show.bs.modal', function (event) {
