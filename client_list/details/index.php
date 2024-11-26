@@ -77,7 +77,7 @@ redirectIfNotLoggedIn();
                   <div class="card-body">
                     <h5 class="card-title"></h5>
                     <p class="card-text">
-                        <div style="padding-top: 10px; padding-left: 5px;">
+                        <div style="padding-top: 10px; padding-left: 15px;">
                             <h6>
                                 Primary Contact
                             </h6>
