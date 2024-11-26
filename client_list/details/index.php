@@ -168,10 +168,12 @@ redirectIfNotLoggedIn();
                                                                         <span class="text-secondary"><strong>Fieldwork Week:&nbsp;&nbsp;</strong></span><?php echo $formatted_fw_week; ?>
                                                                     </span>
                                                                     <br>
-                                                                    <span class="d-block mt-2" style="font-size: 14px !important;">
+                                                                    <!-- Adjusted spacing here with mt-1 for smaller margin -->
+                                                                    <span class="d-block mt-1" style="font-size: 14px !important;">
                                                                         <span class="text-secondary"><strong>Leadsheets Due:&nbsp;&nbsp;</strong></span><?php echo $formatted_leadsheets_due; ?>
                                                                     </span>
                                                                 </p>
+
 
                                                                     
                                                             </div>
