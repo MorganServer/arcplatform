@@ -394,7 +394,7 @@ $pageName = ucwords($pageName);
                     document.getElementById('edit_client_name').value = clientData.client_name || '';
                     document.getElementById('edit_primary_contact').value = clientData.primary_contact || '';
                     document.getElementById('edit_contact_email').value = clientData.contact_email || '';
-                    document.getElementById('edit_has_logo').checked = clientData.has_logo === 1;
+                    document.getElementById('edit_has_logo').checked = clientData.has_logo && clientData.has_logo !== '';
                 }
             } catch (e) {
                 console.error('Error parsing response:', e);
