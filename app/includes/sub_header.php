@@ -18,7 +18,11 @@ $pageName = ucwords($pageName);
             </a>
 
             <ul class="dropdown-menu">
-                <h6>Deletion Actions</h6>
+                <li><h6 class="dropdown-header">Deletion Actions</h6></li>
+                <li><a class="dropdown-item" data-bs-toggle="modal" data-bs-target="#delete_clients">Delete Clients</a></li>
+                <li><a class="dropdown-item" data-bs-toggle="modal" data-bs-target="#add_engagement">Add Engagement</a></li>
+                <li><a class="dropdown-item" data-bs-toggle="modal" data-bs-target="#add_qa_comment">Add QA Comment</a></li>
+                <li><h6 class="dropdown-header">Backup Actions</h6></li>
                 <li><a class="dropdown-item" data-bs-toggle="modal" data-bs-target="#add_client"></a></li>
                 <li><a class="dropdown-item" data-bs-toggle="modal" data-bs-target="#add_engagement">Add Engagement</a></li>
                 <li><a class="dropdown-item" data-bs-toggle="modal" data-bs-target="#add_qa_comment">Add QA Comment</a></li>
@@ -258,6 +262,42 @@ $pageName = ucwords($pageName);
       </div>
     </div>
 <!-- end add-qa-comment -->
+
+<!-- add-client -->
+    <div class="modal fade" id="delete_clients" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h1 class="modal-title fs-5" id="exampleModalLabel">Add Client</h1>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+
+                    <ul class="list-group list-group-flush">
+
+                        <?php
+                        // Query to get clients, the total number of engagements, and open QA comments for each client
+                        $dc_sql = "SELECT * FROM clients ORDER BY client_created ASC LIMIT $limit OFFSET $offset";
+                        $dc_result = mysqli_query($conn, $dc_sql);
+                        if ($dc_result) {
+                            $dc_num_rows = mysqli_num_rows($dc_result);
+                            if ($dc_num_rows > 0) {
+                                while ($dc_row = mysqli_fetch_assoc($dc_result)) {
+                                    $dc_idno = $dc_row['idno'];
+                                    $dc_id = $dc_row['client_id'];
+                                    $dc_client_name = $dc_row['client_name'];
+                        ?>
+
+                        <li class="list-group-item"><?php echo $dc_client_name; ?></li>
+  
+                        <?php }}} ?>
+                    </ul>
+
+                </div>
+            </div>
+        </div>
+    </div>
+<!-- end add-client --> 
 
 <script>
     document.addEventListener('DOMContentLoaded', function () {
