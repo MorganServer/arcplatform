@@ -346,9 +346,7 @@ $pageName = ucwords($pageName);
                             $ec_primary_contact = $row['primary_contact'];
                             $ec_contact_email = $row['contact_email'];
                             $ec_has_logo = $row['has_logo'];
-                        }
-                    }
-                }
+                        
                 ?>
 
                 <form method="POST" class="row g-3">
@@ -376,6 +374,9 @@ $pageName = ucwords($pageName);
                         <button type="submit" name="edit_client" class="btn btn-primary">Submit</button>
                     </div>
                 </form>
+                <?php }
+                    }
+                }?>
             </div>
         </div>
     </div>
