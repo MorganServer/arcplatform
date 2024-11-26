@@ -328,19 +328,19 @@ $pageName = ucwords($pageName);
                 <form id="editClientForm" method="POST" class="row g-3">
                     <div class="col-md-6">
                         <label for="c_client_name" class="form-label">Client Name</label>
-                        <input type="text" class="form-control" id="tim_client_name" name="c_client_name" required>
+                        <input type="text" class="form-control" id="edit_client_name" name="c_client_name" required>
                     </div>
                     <div class="col-md-6">
                         <label for="c_primary_contact" class="form-label">Primary Contact</label>
-                        <input type="text" class="form-control" id="e_primary_contact" name="c_primary_contact" required>
+                        <input type="text" class="form-control" id="edit_primary_contact" name="c_primary_contact" required>
                     </div>
                     <div class="col-md-6">
                         <label for="c_contact_email" class="form-label">Contact Email</label>
-                        <input type="email" class="form-control" id="e_contact_email" name="c_contact_email" required>
+                        <input type="email" class="form-control" id="edit_contact_email" name="c_contact_email" required>
                     </div>
                     <div class="col-12">
                         <div class="form-check">
-                            <input class="form-check-input" type="checkbox" value="1" id="e_has_logo" name="has_logo">
+                            <input class="form-check-input" type="checkbox" value="1" id="edit_has_logo" name="has_logo">
                             <label class="form-check-label" for="has_logo">
                                 Client has a logo
                             </label>
@@ -391,10 +391,10 @@ $pageName = ucwords($pageName);
                 
                 // Populate the modal fields with the fetched data
                 if(clientData) {
-                    document.getElementById('tim_client_name').value = clientData.client_name || '';
-                    document.getElementById('e_primary_contact').value = clientData.primary_contact || '';
-                    document.getElementById('e_contact_email').value = clientData.contact_email || '';
-                    document.getElementById('e_has_logo').checked = clientData.has_logo === 1;
+                    document.getElementById('edit_client_name').value = clientData.client_name || '';
+                    document.getElementById('edit_primary_contact').value = clientData.primary_contact || '';
+                    document.getElementById('edit_contact_email').value = clientData.contact_email || '';
+                    document.getElementById('edit_has_logo').checked = clientData.has_logo === 1;
                 }
             } catch (e) {
                 console.error('Error parsing response:', e);
