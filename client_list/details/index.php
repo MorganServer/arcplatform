@@ -140,26 +140,25 @@ redirectIfNotLoggedIn();
                                                             <!-- Left section for the image -->
                                                             <div class="left">
                                                                 <?php if (strpos($off_engagement_type, 'SOC 2') !== false) { ?>
-                                                                    <img src="<?php echo BASE_URL; ?>/assets/images/soc-2-icon.png" width="90" alt="">
+                                                                    <img src="<?php echo BASE_URL; ?>/assets/images/soc-2-icon.png" width="35" alt="">
                                                                 <?php } else if (strpos($off_engagement_type, 'SOC 1') !== false) { ?>
-                                                                    <img src="<?php echo BASE_URL; ?>/assets/images/soc-1-icon.png" width="90" alt="">
+                                                                    <img src="<?php echo BASE_URL; ?>/assets/images/soc-1-icon.png" width="35" alt="">
                                                                 <?php } else if (strpos($off_engagement_type, 'HIPAA') !== false) { ?>
-                                                                    <img src="<?php echo BASE_URL; ?>/assets/images/hipaa-icon.png" width="90" alt="">
-                                                                <?php } else if (strpos($off_engagement_type, 'PCI') !== false) { ?>
-                                                                    <img src="<?php echo BASE_URL; ?>/assets/images/pci-icon.png" width="90" alt="">
+                                                                    <img src="<?php echo BASE_URL; ?>/assets/images/hipaa-icon.png" width="35" alt="">
                                                                 <?php } ?>
                                                             </div>
                                                                 
                                                             <!-- Right section for the text details -->
-                                                            <div class="right ms-3 flex-column"> <!-- "ms-3" adds left margin between the image and text -->
-                                                                <h5 class="card-title text-start"><?php echo $off_engagement_type; ?></h5>
-                                                                <h6 class="card-subtitle mb-2 text-muted text-start"><?php echo $off_client_name; ?> - <?php echo $off_year; ?></h6>
-                                                                <p class="card-text text-start">
+                                                            <div class="right ms-3 d-flex flex-column text-start">
+                                                                <h5 class="card-title"><?php echo $off_engagement_type; ?></h5>
+                                                                <h6 class="card-subtitle mb-2 text-muted"><?php echo $off_client_name; ?> - <?php echo $off_year; ?></h6>
+                                                                <p class="card-text">
                                                                     Report Period: <?php echo $formatted_start; ?> to <?php echo $formatted_end; ?><br>
                                                                     Report As Of: <?php echo $formatted_as_of; ?>
                                                                 </p>
                                                             </div>
                                                         </div>
+
 
                                                         
                                                         
