@@ -7,7 +7,7 @@ if (!defined('ROOT_PATH')) {
     define('ROOT_PATH', dirname(__DIR__, 2)); // Adjust path as needed
 }
 
-require(BASE_URL . '/app/fpdf/fpdf.php');
+require(ROOT_PATH . '/app/fpdf/fpdf.php');
 require(ROOT_PATH . '/app/database/connection.php'); // Include your database connection file
 
 // Debugging: Check if POST data is being received correctly
