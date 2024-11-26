@@ -360,8 +360,6 @@ body {
     height: 70px !important; 
     vertical-align: middle;
     transition: background-color 0.3s ease; /* Smooth transition effect */
+    cursor: pointer;
 }
 
-.client-list-row:hover {
-    background-color: #616161; /* Light blue shade */
-}
