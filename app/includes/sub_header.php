@@ -14,6 +14,18 @@ $pageName = ucwords($pageName);
         <p style="padding-right: 15px;">Welcome, <?php echo $_SESSION['full_name']; ?></p>
         <div class="dropdown header-icon">
             <a class="dropdown-toggle custom-dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                <i class="bi bi-gear-fill"></i>
+            </a>
+
+            <ul class="dropdown-menu">
+                <h6>Deletion Actions</h6>
+                <li><a class="dropdown-item" data-bs-toggle="modal" data-bs-target="#add_client"></a></li>
+                <li><a class="dropdown-item" data-bs-toggle="modal" data-bs-target="#add_engagement">Add Engagement</a></li>
+                <li><a class="dropdown-item" data-bs-toggle="modal" data-bs-target="#add_qa_comment">Add QA Comment</a></li>
+            </ul>
+        </div>
+        <div class="dropdown header-icon">
+            <a class="dropdown-toggle custom-dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
                 <i class="bi bi-plus-circle-fill"></i>
             </a>
 
