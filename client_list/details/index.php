@@ -145,7 +145,7 @@ redirectIfNotLoggedIn();
                                                         
                                                         
                                                     </div>
-                                                    <div class="card-footer">
+                                                    <div class="card-footer" style="background-color: transparent;">
                                                             <a href="#" class="card-link">View Details</a>
                                                             <a href="#" class="card-link">Another Action</a>
                                                         </div>
