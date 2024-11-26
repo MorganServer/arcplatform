@@ -419,7 +419,7 @@ $pageName = ucwords($pageName);
                 </div>
                 <div class="modal-body">
                     <form id="editClientForm" method="POST" class="row g-3">
-                        <input type="hidden" name="edit_client_id" id="edit_client_id">
+                        <input type="hidden" name="me_edit_engagement_id" id="me_edit_engagement_id">
                         <div class="col-md-6">
                             <label for="me_edit_client_name" class="form-label">Client Name</label>
                             <input type="text" class="form-control" id="me_edit_client_name" name="me_edit_client_name" required>
