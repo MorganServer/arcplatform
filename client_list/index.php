@@ -121,7 +121,7 @@ redirectIfNotLoggedIn();
                                     </td>
                                     <td class="">
                                         <?php 
-                                        $e_sql = "SELECT * FROM engagement WHERE client_name='$client_name' WHERE status != 'Completed'";
+                                        $e_sql = "SELECT * FROM engagement WHERE client_name='$client_name' && status = 'Active'";
                                         $e_result = mysqli_query($conn, $e_sql);
 
                                         if ($e_result) {
