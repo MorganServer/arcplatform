@@ -358,5 +358,6 @@ body {
 
 
 .client-list-row:hover {
-    background-color: #c7c7c7 !important;
+    background-color: #c7c7c7 !important; /* Change to your desired hover color */
+    cursor: pointer; /* Optional: to indicate interactivity */
 }
