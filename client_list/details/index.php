@@ -112,7 +112,7 @@ redirectIfNotLoggedIn();
                         <div class="accordion-body">
                             <div class="row">
                                 <?php
-                                $off_sql = "SELECT * FROM engagement WHERE client_name = '$client_client_name'";
+                                $off_sql = "SELECT * FROM engagement WHERE client_name = '$client_client_name' && status = 'Active'";
                                 $off_result = mysqli_query($conn, $off_sql);
 
                                 if ($off_result) {
@@ -213,7 +213,7 @@ redirectIfNotLoggedIn();
 
                   <div class="row">
                                 <?php
-                                $off_sql = "SELECT * FROM engagement WHERE client_name = '$client_client_name'";
+                                $off_sql = "SELECT * FROM engagement WHERE client_name = '$client_client_name' && status = 'Completed'";
                                 $off_result = mysqli_query($conn, $off_sql);
 
                                 if ($off_result) {
