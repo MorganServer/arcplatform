@@ -16,7 +16,7 @@ require_once $_SERVER['DOCUMENT_ROOT'] . '/app/database/connection.php';
 if ($_SERVER["REQUEST_METHOD"] === "POST") {
     // Get the input data safely
     $email = filter_input(INPUT_POST, 'email', FILTER_SANITIZE_EMAIL);
-    $password = $_POST['password']; // Keep password in plain form for verification
+    $password = md5($_POST['password']); // Keep password in plain form for verification
 
     // Validate the email
     if (filter_var($email, FILTER_VALIDATE_EMAIL)) {
