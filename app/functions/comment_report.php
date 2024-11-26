@@ -33,8 +33,27 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         $statuses = implode("','", array_map([$conn, 'real_escape_string'], $options));
         $statuses = "'$statuses'"; // Prepare for SQL query
 
-        // Log the prepared query
-        $sql = "SELECT qa_comment FROM qa_comments WHERE status IN ($statuses) AND engagement_id = ?";
+        // Fetch engagement name
+        $sql = "SELECT * FROM engagement WHERE engagement_id = ?";
+        $stmt = $conn->prepare($sql);
+        $stmt->bind_param('i', $e_id); // Bind engagement_id
+        $stmt->execute();
+        $result = $stmt->get_result();
+        if ($result->num_rows > 0) {
+            $engagement = $result->fetch_assoc();
+            $client_name = $engagement['client_name'];
+            $engagement_type = $engagement['engagement_type'];
+            $year = $engagement['year'];
+            $enegagment_name = $client_name . " - " . $year . " " . $engagement_type;
+        } else {
+            throw new Exception('Engagement not found.');
+        }
+        $stmt->close();
+
+        // Log the prepared query for comments
+        $sql = "SELECT qa_comment, control_ref, cell_reference, comment_by, status 
+                FROM qa_comments 
+                WHERE status IN ($statuses) AND engagement_id = ?";
 
         // Prepare and execute the statement
         $stmt = $conn->prepare($sql);
@@ -50,16 +69,16 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             throw new Exception('SQL execution failed: ' . $stmt->error);
         }
 
-        // Fetch comments
-        $comments = [];
+        // Fetch comments and group by status
+        $comments_by_status = [];
         while ($row = $result->fetch_assoc()) {
-            $comments[] = $row['qa_comment'];
+            $comments_by_status[$row['status']][] = $row;
         }
 
         $stmt->close();
 
         // Check if no comments were found
-        if (empty($comments)) {
+        if (empty($comments_by_status)) {
             throw new Exception('No comments found for the selected statuses.');
         }
 
@@ -67,19 +86,24 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         $pdf = new FPDF();
         $pdf->AddPage();
         $pdf->SetFont('Arial', 'B', 16);
-        $pdf->Cell(0, 10, 'Comment Report', 0, 1, 'C');
+        $pdf->Cell(0, 10, "Comment Report - $engagement_name", 0, 1, 'C');
         $pdf->Ln(10);
 
         // Add comments for the selected options
         foreach ($options as $option) {
-            $pdf->SetFont('Arial', 'B', 14);
-            $pdf->Cell(0, 10, ucfirst($option) . ' Comments:', 0, 1);
-            $pdf->SetFont('Arial', '', 12);
+            if (isset($comments_by_status[$option])) {
+                $pdf->SetFont('Arial', 'B', 14);
+                $pdf->Cell(0, 10, ucfirst($option) . ' Comments:', 0, 1);
+                $pdf->SetFont('Arial', '', 12);
 
-            foreach ($comments as $comment) {
-                $pdf->Cell(0, 10, "- $comment", 0, 1);
+                foreach ($comments_by_status[$option] as $comment) {
+                    $pdf->Cell(0, 10, "Control Reference: " . $comment['control_ref'], 0, 1);
+                    $pdf->Cell(0, 10, "Cell Reference: " . $comment['cell_reference'], 0, 1);
+                    $pdf->Cell(0, 10, "Comment By: " . $comment['comment_by'], 0, 1);
+                    $pdf->MultiCell(0, 10, "Comment: " . $comment['qa_comment']);
+                    $pdf->Ln(5);
+                }
             }
-            $pdf->Ln(5);
         }
 
         // Output the PDF
