@@ -33,7 +33,7 @@ redirectIfNotLoggedIn();
     <?php include(ROOT_PATH . "/app/includes/sub_header.php"); ?>
 
     <!-- main-container -->
-    <div class="container" style="padding: 0 5px 0 5px;">
+    <!-- <div class="container" style="padding: 0 5px 0 5px;"> -->
             <h2 class="mt-4">
                 Client List
             </h2>
@@ -76,46 +76,43 @@ redirectIfNotLoggedIn();
                                 <tr>
                                     <td><?php echo $client_name ? $client_name : '-'; ?></td>
                                     <td>
-    <?php 
-    $e_sql = "SELECT * FROM engagement WHERE client_name='$client_name'";
-    $e_result = mysqli_query($conn, $e_sql);
+                                        <?php 
+                                        $e_sql = "SELECT * FROM engagement WHERE client_name='$client_name'";
+                                        $e_result = mysqli_query($conn, $e_sql);
 
-    if ($e_result) {
-        $e_num_rows = mysqli_num_rows($e_result);
-        if ($e_num_rows > 0) {
-            $badges = []; // Array to hold all engagement types as badges
-
-            while ($e_row = mysqli_fetch_assoc($e_result)) {
-                $engagement_type = $e_row['engagement_type'];
-
-                // Check for specific engagement types and add them as badges
-                if (strpos($engagement_type, 'SOC 2') !== false) {
-                    $badges[] = '<span class="badge soc-2-badge">SOC 2</span>';
-                }
-                if (strpos($engagement_type, 'SOC 1') !== false) {
-                    $badges[] = '<span class="badge soc-1-badge">SOC 1</span>';
-                }
-                if (strpos($engagement_type, 'PCI') !== false) {
-                    $badges[] = '<span class="badge pci-badge">PCI</span>';
-                }
-                if (strpos($engagement_type, 'HIPAA') !== false) {
-                    $badges[] = '<span class="badge hipaa-badge">HIPAA</span>';
-                }
-            }
-
-            // Print all badges inline
-            echo implode(' ', $badges);
-        } else {
-            echo "No engagement types found.";
-        }
-    } else {
-        echo "Error executing query.";
-    }
-    ?>
-</td>
-
-                                    
-
+                                        if ($e_result) {
+                                            $e_num_rows = mysqli_num_rows($e_result);
+                                            if ($e_num_rows > 0) {
+                                                $badges = []; // Array to hold all engagement types as badges
+                                            
+                                                while ($e_row = mysqli_fetch_assoc($e_result)) {
+                                                    $engagement_type = $e_row['engagement_type'];
+                                                
+                                                    // Check for specific engagement types and add them as badges
+                                                    if (strpos($engagement_type, 'SOC 2') !== false) {
+                                                        $badges[] = '<span class="badge soc-2-badge">SOC 2</span>';
+                                                    }
+                                                    if (strpos($engagement_type, 'SOC 1') !== false) {
+                                                        $badges[] = '<span class="badge soc-1-badge">SOC 1</span>';
+                                                    }
+                                                    if (strpos($engagement_type, 'PCI') !== false) {
+                                                        $badges[] = '<span class="badge pci-badge">PCI</span>';
+                                                    }
+                                                    if (strpos($engagement_type, 'HIPAA') !== false) {
+                                                        $badges[] = '<span class="badge hipaa-badge">HIPAA</span>';
+                                                    }
+                                                }
+                                            
+                                                // Print all badges inline
+                                                echo implode(' ', $badges);
+                                            } else {
+                                                echo "No engagement types found.";
+                                            }
+                                        } else {
+                                            echo "Error executing query.";
+                                        }
+                                        ?>
+                                    </td>
                                     <td style="width: 100px; text-align: center;">
                                         <a href="<?php echo BASE_URL; ?>/asset/view/?id=<?php echo $id; ?>" class="view">
                                         <i class="bi bi-chevron-right"></i>
@@ -153,7 +150,7 @@ redirectIfNotLoggedIn();
             echo '</ul>';
         ?>
 
-        </div>
+        <!-- </div> -->
     <!-- END main-container -->
 
 </body>
