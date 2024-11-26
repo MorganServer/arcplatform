@@ -85,15 +85,15 @@ redirectIfNotLoggedIn();
     // if (!empty($logo)) { ?>
         <img class="me-2" src="<?php echo ROOT_PATH; ?>/assets/images/client_images/<?php echo $logo; ?>.png" width="50" style="border-radius: 15px;">
         <?php echo $client_name ? $client_name : '-'; ?>
-    <!-- <?php //} else { -->
+    <?php //} else {
         // $first_letter = strtoupper(substr($client_name, 0, 1));
     ?>
-        <div class="d-flex align-items-center">
-            <div class="me-2" style="background-color: <?php //echo $random_color; ?>; width: 50px; height: 50px; border-radius: 50%; display: flex; justify-content: center; align-items: center; font-size: 24px; color: white;">
+        <!-- <div class="d-flex align-items-center">
+            <div class="me-2" style="background-color: <?php //echo $random_color; ?>; width: 50px; height: 50px; border-radius: 50%; display: flex; justify-content: center; align-items: center; font-size: 24px; color: white;"> -->
                 <?php //echo $first_letter; ?>
-            </div>
-            <span><?php //echo $client_name ? $client_name : '-'; ?></span>
-        </div>
+            <!-- </div>
+            <span><?php //echo $client_name ? $client_name : '-'; ?></span> -->
+        <!-- </div> -->
     <?php //} ?>
 </td>
 
