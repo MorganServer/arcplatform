@@ -124,7 +124,7 @@
         }
 
         // Prepare the update query
-        $sql = "UPDATE engagements 
+        $sql = "UPDATE engagement
                 SET client_name = ?, engagement_type = ?, year = ?, 
                     report_start = ?, report_end = ?, report_as_of = ?, 
                     manager = ?, senior = ?, staff = ?, 
