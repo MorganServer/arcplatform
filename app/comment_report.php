@@ -5,7 +5,7 @@ ini_set('display_errors', 1);
 error_reporting(E_ALL);
 
 // Define constants for root path and base URL
-define("ROOT_PATH", realpath(dirname(__FILE__, 3)));
+define("ROOT_PATH", realpath(dirname(__FILE__, 2)));
 
 // Include necessary files
 require(ROOT_PATH . '/app/fpdf/fpdf.php'); // Include FPDF library
