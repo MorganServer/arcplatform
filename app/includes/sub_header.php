@@ -265,57 +265,56 @@ $pageName = ucwords($pageName);
 <!-- end add-qa-comment -->
 
 <!-- manage-client -->
-    <div class="modal fade" id="manage_clients" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
-        <div class="modal-dialog">
-            <div class="modal-content">
-                <div class="modal-header">
-                    <h1 class="modal-title fs-5" id="exampleModalLabel">Manage Clients</h1>
-                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-                </div>
-                <div class="modal-body">
-
-                    <ul class="list-group list-group-flush">
-
-                        <?php
-                        // Query to get clients, the total number of engagements, and open QA comments for each client
-                        $dc_sql = "SELECT * FROM clients ORDER BY client_created ASC";
-                        $dc_result = mysqli_query($conn, $dc_sql);
-                        if ($dc_result) {
-                            $dc_num_rows = mysqli_num_rows($dc_result);
-                            if ($dc_num_rows > 0) {
-                                while ($dc_row = mysqli_fetch_assoc($dc_result)) {
-                                    $dc_idno = $dc_row['idno'];
-                                    $dc_id = $dc_row['client_id'];
-                                    $dc_client_name = $dc_row['client_name'];
-                        ?>
-
-                        <li class="list-group-item">
-                            <div class="d-flex justify-content-between align-items-center">
-                                <div>
-                                    <div><strong><?php echo $dc_idno; ?></strong></div>
-                                    <div><?php echo $dc_client_name; ?></div>
-                                </div>
-                                <div>
-                                    <a href="?edit_dc_id=<?PHP echo $dc_id;?>" data-bs-target="#edit_client" data-bs-toggle="modal" data-dc-id="<?php echo $dc_id; ?>">
-                                        <i class="bi bi-pencil-square" style="color: #005382; cursor: pointer;"></i>
-                                    </a> &nbsp;&nbsp;
-                                    <a href="?action=delete&dc_id=<?php echo $dc_id; ?>" onclick="return confirm('Are you sure you want to delete this client?');">
-                                        <i class="bi bi-trash" style="color: #941515; cursor: pointer;"></i>
-                                    </a>
-                                </div>
+<div class="modal fade" id="manage_clients" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h1 class="modal-title fs-5" id="exampleModalLabel">Manage Clients</h1>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+                <ul class="list-group list-group-flush">
+                    <?php
+                    // Query to get clients
+                    $dc_sql = "SELECT * FROM clients ORDER BY client_created ASC";
+                    $dc_result = mysqli_query($conn, $dc_sql);
+                    if ($dc_result) {
+                        $dc_num_rows = mysqli_num_rows($dc_result);
+                        if ($dc_num_rows > 0) {
+                            while ($dc_row = mysqli_fetch_assoc($dc_result)) {
+                                $dc_idno = $dc_row['idno'];
+                                $dc_id = $dc_row['client_id'];
+                                $dc_client_name = $dc_row['client_name'];
+                    ?>
+                    <li class="list-group-item">
+                        <div class="d-flex justify-content-between align-items-center">
+                            <div>
+                                <div><strong><?php echo $dc_idno; ?></strong></div>
+                                <div><?php echo $dc_client_name; ?></div>
                             </div>
-                        </li>
-
-                        <p id="dc_id_content"><?php echo $dc_id; ?></p>
-  
-                        <?php }}} ?>
-                    </ul>
-
-                </div>
+                            <div>
+                                <!-- Pass the client_id as a data attribute for the edit modal -->
+                                <a href="#" data-bs-target="#edit_client" data-bs-toggle="modal" data-dc-id="<?php echo $dc_id; ?>">
+                                    <i class="bi bi-pencil-square" style="color: #005382; cursor: pointer;"></i>
+                                </a> &nbsp;&nbsp;
+                                <a href="?action=delete&dc_id=<?php echo $dc_id; ?>" onclick="return confirm('Are you sure you want to delete this client?');">
+                                    <i class="bi bi-trash" style="color: #941515; cursor: pointer;"></i>
+                                </a>
+                            </div>
+                        </div>
+                    </li>
+                    <?php
+                            }
+                        }
+                    }
+                    ?>
+                </ul>
             </div>
         </div>
     </div>
-<!-- end manage-client --> 
+</div>
+<!-- end manage-client -->
+
 
 <!-- edit-client -->
 <div class="modal fade" id="edit_client" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
@@ -326,36 +325,24 @@ $pageName = ucwords($pageName);
                 <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
             </div>
             <div class="modal-body">
-                <!-- Hidden Input for Client ID -->
-                
-
                 <?php
-// Check if the variable is set and capture the value
-if (isset($_POST['ec_id_capture'])) {
-    $ec_id_capture = $_POST['ec_id_capture'];
+                // Check if the client_id is set in the URL
+                if (isset($_GET['edit_dc_id'])) {
+                    $dc_id = $_GET['edit_dc_id']; // Capture the client_id from the URL
 
-    // Now you can use this variable for your SQL query or whatever logic you need
-    echo "Captured ID: " . $ec_id_capture;
-
-    // Example SQL query using $ec_id_capture
-    $ec_sql = "SELECT * FROM clients WHERE client_id = '$ec_id_capture'";
-    $ec_result = mysqli_query($conn, $ec_sql);
-    if ($ec_result) {
-        $ec_num_rows = mysqli_num_rows($ec_result);
-        if ($ec_num_rows > 0) {
-            while ($ec_row = mysqli_fetch_assoc($ec_result)) {
-                $ec_idno = $ec_row['idno'];
-                $ec_client_name = $ec_row['client_name'];
-                $ec_primary_contact = $ec_row['primary_contact'];
-                $ec_contact_email = $ec_row['contact_email'];
-                $ec_has_logo = $ec_row['logo'];
-            }
-        }
-    }
-}
-?>
-
-
+                    // Query the database to get the client details
+                    $ec_sql = "SELECT * FROM clients WHERE client_id = '$dc_id'";
+                    $ec_result = mysqli_query($conn, $ec_sql);
+                    if ($ec_result) {
+                        $ec_row = mysqli_fetch_assoc($ec_result);
+                        $ec_idno = $ec_row['idno'];
+                        $ec_client_name = $ec_row['client_name'];
+                        $ec_primary_contact = $ec_row['primary_contact'];
+                        $ec_contact_email = $ec_row['contact_email'];
+                        $ec_has_logo = $ec_row['logo'];
+                    }
+                }
+                ?>
 
                 <form method="POST" class="row g-3">
                     <div class="col-md-6">
@@ -389,6 +376,7 @@ if (isset($_POST['ec_id_capture'])) {
 <!-- end edit-client -->
 
 
+
 <script>
     document.addEventListener('DOMContentLoaded', function () {
         // Handle dropdown selection and update client name
@@ -408,28 +396,18 @@ if (isset($_POST['ec_id_capture'])) {
 </script>
 
 <script>
-    // Grab the content of the <p> element with id="edit_dc_id"
-    var dc_id_content = document.getElementById("edit_dc_id").innerText;
-
-    // Send the data to a PHP script using AJAX
-    function sendDataToPHP() {
-        var xhr = new XMLHttpRequest();
-        xhr.open("POST", "your_php_file.php", true);
-        xhr.setRequestHeader("Content-Type", "application/x-www-form-urlencoded");
-
-        // Send the content to the server
-        xhr.send("ec_id_capture=" + encodeURIComponent(dc_id_content));
-
-        // Handle the response (optional)
-        xhr.onload = function() {
-            if (xhr.status == 200) {
-                console.log("Data sent successfully!");
-            }
-        };
-    }
-
-    // Call the function when needed, for example when a button is clicked
-    sendDataToPHP();
+    // When the modal is shown, set the client_id
+    document.getElementById('edit_client').addEventListener('show.bs.modal', function (event) {
+        // Get the button that triggered the modal
+        var button = event.relatedTarget;
+        
+        // Get the client ID from the data-dc-id attribute
+        var dc_id = button.getAttribute('data-dc-id');
+        
+        // Optionally, you can now make an AJAX request to update the modal content dynamically
+        console.log('Editing client with ID:', dc_id);
+    });
 </script>
+
 
 
