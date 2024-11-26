@@ -330,7 +330,8 @@ $pageName = ucwords($pageName);
                 <input type="text" id="edit_dc_id" name="edit_dc_id" value="<?php echo $dc_id; ?>">
 
                 <?php
-                $ec_sql = "SELECT * FROM clients WHERE client_id = '$dc_id'";
+                $ec_id = $_POST['edit_dc_id'];
+                $ec_sql = "SELECT * FROM clients WHERE client_id = '$ec_id'";
                 $ec_result = mysqli_query($conn, $ec_sql);
                 if ($ec_result) {
                     $ec_num_rows = mysqli_num_rows($ec_result);
