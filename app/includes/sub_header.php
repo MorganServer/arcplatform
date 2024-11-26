@@ -316,53 +316,64 @@ $pageName = ucwords($pageName);
 <!-- end manage-client --> 
 
 <!-- edit-client -->
-<div class="modal fade" id="edit_client" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal fade" id="edit_client" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
         <div class="modal-dialog">
             <div class="modal-content">
                 <div class="modal-header">
-                    <h1 class="modal-title fs-5" id="exampleModalLabel">Add Client</h1>
+                    <h1 class="modal-title fs-5" id="exampleModalLabel">Edit Client</h1>
                     <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                 </div>
                 <div class="modal-body">
+                    <!-- Hidden Input for Client ID -->
+                    <input type="hidden" id="edit_dc_id" name="edit_dc_id" value="">
+
                     <?php
-                    // Query to get clients, the total number of engagements, and open QA comments for each client
-                    $ec_sql = "SELECT * FROM clients WHERE client_id = '$dc_id'";
-                    $ec_result = mysqli_query($conn, $ec_sql);
-                    if ($ec_result) {
-                        $ec_num_rows = mysqli_num_rows($ec_result);
-                        if ($ec_num_rows > 0) {
-                            while ($ec_row = mysqli_fetch_assoc($ec_result)) {
-                                $ec_idno = $ec_row['idno'];
-                                $ec_id = $ec_row['client_id'];
-                                $ec_client_name = $ec_row['client_name'];
+                    if (isset($_POST['edit_client'])) {
+                        // Get the client ID from the form submission
+                        $dc_id = intval($_POST['edit_dc_id']); // Make sure to sanitize the input
+
+                        // Query to fetch client details
+                        $ec_sql = "SELECT * FROM clients WHERE client_id = ?";
+                        if ($stmt = $conn->prepare($ec_sql)) {
+                            $stmt->bind_param("i", $dc_id); // Bind the client ID
+                            $stmt->execute();
+                            $result = $stmt->get_result();
+                            if ($row = $result->fetch_assoc()) {
+                                $ec_idno = $row['idno'];
+                                $ec_client_name = $row['client_name'];
+                                $ec_primary_contact = $row['primary_contact']; // Example field
+                                $ec_contact_email = $row['contact_email']; // Example field
+                                $ec_has_logo = $row['has_logo']; // Example field
+                            }
+                        }
+                    }
                     ?>
+
                     <form method="POST" class="row g-3">
                         <div class="col-md-6">
                             <label for="c_client_name" class="form-label">Client Name</label>
-                            <input type="text" class="form-control" id="c_client_name" name="c_client_name" value=""<?php echo $ec_client_name; ?> required>
+                            <input type="text" class="form-control" id="c_client_name" name="c_client_name" value="<?php echo isset($ec_client_name) ? $ec_client_name : ''; ?>" required>
                         </div>
                         <div class="col-md-6">
                             <label for="c_primary_contact" class="form-label">Primary Contact</label>
-                            <input type="text" class="form-control" id="c_primary_contact" name="c_primary_contact" required>
+                            <input type="text" class="form-control" id="c_primary_contact" name="c_primary_contact" value="<?php echo isset($ec_primary_contact) ? $ec_primary_contact : ''; ?>" required>
                         </div>
                         <div class="col-md-6">
                             <label for="c_contact_email" class="form-label">Contact Email</label>
-                            <input type="email" class="form-control" id="c_contact_email" name="c_contact_email" required>
+                            <input type="email" class="form-control" id="c_contact_email" name="c_contact_email" value="<?php echo isset($ec_contact_email) ? $ec_contact_email : ''; ?>" required>
                         </div>
                         <div class="col-12">
                             <div class="form-check">
-                                <input class="form-check-input" type="checkbox" value="1" id="has_logo" name="has_logo">
+                                <input class="form-check-input" type="checkbox" value="1" id="has_logo" name="has_logo" <?php echo (isset($ec_has_logo) && $ec_has_logo == 1) ? 'checked' : ''; ?>>
                                 <label class="form-check-label" for="has_logo">
                                     Client has a logo
                                 </label>
                             </div>
                         </div>
                         <div class="col-12">
-                            <button type="submit" name="add_client" class="btn btn-primary">Submit</button>
+                            <button type="submit" name="edit_client" class="btn btn-primary">Submit</button>
                         </div>
                     </form>
-                    <?php }}} ?>
-
                 </div>
             </div>
         </div>
@@ -391,16 +402,12 @@ $pageName = ucwords($pageName);
     // When the modal is about to be shown
     var editClientModal = document.getElementById('edit_client');
     editClientModal.addEventListener('show.bs.modal', function (event) {
-        // Get the link that triggered the modal
+        // Get the clicked button (triggering the modal)
         var button = event.relatedTarget;
+        var dc_id = button.getAttribute('data-dc-id'); // Get client ID from the clicked link
         
-        // Retrieve the dc_id from the data-bs-dc-id attribute
-        var dc_id = button.getAttribute('data-dc-id');
-        
-        // Set the dc_id in a hidden field or as needed
+        // Set the value of the hidden input field
         document.getElementById('edit_dc_id').value = dc_id;
-
-        // Optionally, you can use dc_id to populate other fields dynamically using AJAX
-        // For example, you can fetch client data using dc_id and populate form fields
     });
 </script>
+
