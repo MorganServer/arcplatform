@@ -327,7 +327,7 @@ $pageName = ucwords($pageName);
             </div>
             <div class="modal-body">
                 <!-- Hidden Input for Client ID -->
-                <input type="text" id="edit_dc_id" name="edit_dc_id" value="<?php echo $dc_id; ?>">
+                <p id="dc_id_content"><?php echo $dc_id; ?>"</p>
 
                 <?php
 // Check if the variable is set and capture the value
