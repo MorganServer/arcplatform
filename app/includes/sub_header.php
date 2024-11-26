@@ -327,7 +327,7 @@ $pageName = ucwords($pageName);
                 </div>
                 <div class="modal-body">
                     <!-- Hidden Input for Client ID -->
-                    <input type="hidden" id="edit_dc_id" name="edit_dc_id" value="">
+                    <input type="text" id="edit_dc_id" name="edit_dc_id" value="<?php echo $dc_id; ?>">
 
                     <?php
                     if (isset($_POST['edit_client'])) {
