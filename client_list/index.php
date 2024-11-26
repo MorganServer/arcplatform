@@ -126,7 +126,7 @@ redirectIfNotLoggedIn();
                                         }
                                         ?>
                                     </td>
-                                    <td style="width: 100px; text-align: center;">
+                                    <td style="width: 100px; text-align: center; position: relative;">
                                             <i class="bi bi-chevron-right"></i>
                                         </td>
                                         <!-- Stretched link covers the whole row -->
