@@ -21,7 +21,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             AND engagement_id = ?";
     
     $stmt = $conn->prepare($sql);
-    $stmt->bind_param('i', $engagement_id); // Bind engagement_id
+    $stmt->bind_param('i', $e_id); // Bind engagement_id
     $stmt->execute();
     $result = $stmt->get_result();
 
