@@ -79,7 +79,7 @@ redirectIfNotLoggedIn();
 
                                 <tr class="" style="height: 70px !important; vertical-align: middle;">
                                     <td><img class="me-2" src="<?php ROOT_PATH; ?>/assets/images/client_images/<?php echo $logo; ?>.png" width="50" alt="" style="border-radius: 15px;"><?php echo $client_name ? $client_name : '-'; ?></td>
-                                    <td><?php echo $primary_contact ? $primary_contact : '-'; ?><br><a href="mailto:<?php echo $contact_email; ?>"><?php echo $contact_email ? $contact_email : '-'; ?></a></td>
+                                    <td><?php echo $primary_contact ? $primary_contact : '-'; ?><br><a style="color: #3c6caa; text-decoration: none;" href="mailto:<?php echo $contact_email; ?>"><?php echo $contact_email ? $contact_email : '-'; ?></a></td>
                                     <td class="">
                                         <?php 
                                         $e_sql = "SELECT * FROM engagement WHERE client_name='$client_name'";
