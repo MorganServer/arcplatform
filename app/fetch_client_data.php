@@ -1,10 +1,10 @@
 <?php
-
+// Enable error reporting
 ini_set('display_errors', 1);
 error_reporting(E_ALL);  // Report all errors
 
 // Include your database connection
-// include(BASE_URL . '/app/database/connection.php');
+include('database/connection.php'); // Update this to the correct path
 
 // Check if the client_id is passed via GET request
 if (isset($_GET['client_id'])) {
@@ -19,9 +19,10 @@ if (isset($_GET['client_id'])) {
     // Debug: Log the SQL query for verification
     error_log("SQL Query: " . $sql);
     
+    // Run the query
     $result = mysqli_query($conn, $sql);
 
-    // Check if the query is successful
+    // Check if the query is successful and if there are any results
     if ($result && mysqli_num_rows($result) > 0) {
         $client = mysqli_fetch_assoc($result);
 
