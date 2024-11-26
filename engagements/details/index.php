@@ -161,8 +161,9 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['followup_owner'])) {
                     $staff_initials = $first_initial . $last_initial;
                     
 
-                    // $today = date('Y-m-d');
-                    // $is_today = ($off_audit_schedule == $today) ? true : false;
+                    $formatted_start = date("m/d/Y", strtotime($off_report_start));
+                    $formatted_end = date("m/d/Y", strtotime($off_report_end));
+                    $formatted_as_of = date("m/d/Y", strtotime($off_report_as_of));
                 }
             // }}
             ?>
@@ -188,7 +189,12 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['followup_owner'])) {
                     <?php } ?>
                 </div>
                 <div class="audit-period">
-                    <strong>Audit Period: </strong><br><?php echo $off_report_start; ?> - <?php echo $off_report_end; ?>
+                    <?php if(!isset($off_report_as_of)) { ?>
+                        <strong>Audit Period: </strong><br><?php echo $formatted_start; ?> - <?php echo $formatted_end; ?>
+                    <?php } else { ?>
+                        <strong>Audit Period: </strong><br>As of <?php echo $formatted_as_of; ?>
+                    <?php } ?>
+                        
                 </div>
                 <?php if($off_status !== "Completed") { ?>
                 <div class="complete-button">
