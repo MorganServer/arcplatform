@@ -669,39 +669,38 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['followup_owner'])) {
 
 
             <!-- Percentage Calculation -->
-            <?php
-// Prepare the query
-$sql = "
-    SELECT 
-        COUNT(*) AS total_comments,
-        SUM(CASE WHEN status = 'Completed' THEN 1 ELSE 0 END) AS completed_comments
-    FROM 
-        qa_comments
-    WHERE 
-        engagement_id = ?
-";
+                <?php
+                // Prepare the query
+                $sql = "
+                    SELECT 
+                        COUNT(*) AS total_comments,
+                        SUM(CASE WHEN status = 'Completed' THEN 1 ELSE 0 END) AS completed_comments
+                    FROM 
+                        qa_comments
+                    WHERE 
+                        engagement_id = ?
+                ";
 
-// Execute the query
-$stmt = $conn->prepare($sql);
-$stmt->bind_param("i", $off_id);
-$stmt->execute();
-$result = $stmt->get_result();
+                // Execute the query
+                $stmt = $conn->prepare($sql);
+                $stmt->bind_param("i", $off_id);
+                $stmt->execute();
+                $result = $stmt->get_result();
 
-$total_comments = 0;
-$completed_comments = 0;
-$percentage_completed = 0;
+                $total_comments = 0;
+                $completed_comments = 0;
+                $percentage_completed = 0;
 
-if ($row = $result->fetch_assoc()) {
-    $total_comments = $row['total_comments'];
-    $completed_comments = $row['completed_comments'];
-
-    // Calculate percentage only if there are comments
-    if ($total_comments > 0) {
-        $percentage_completed = round(($completed_comments / $total_comments) * 100, 2);
-    }
-}
-?>
-
+                if ($row = $result->fetch_assoc()) {
+                    $total_comments = $row['total_comments'];
+                    $completed_comments = $row['completed_comments'];
+                
+                    // Calculate percentage only if there are comments
+                    if ($total_comments > 0) {
+                        $percentage_completed = round(($completed_comments / $total_comments) * 100, 2);
+                    }
+                }
+                ?>
             <!-- end Percentage Calculation -->
 
 
@@ -714,24 +713,24 @@ if ($row = $result->fetch_assoc()) {
 
 
 
-
+<!-- Percentage Script -->
     <script>
-function updateProgressCircle(percent) {
-    const radius = 54;
-    const circumference = 2 * Math.PI * radius;
-    const offset = circumference - (percent / 100) * circumference;
+        function updateProgressCircle(percent) {
+            const radius = 54;
+            const circumference = 2 * Math.PI * radius;
+            const offset = circumference - (percent / 100) * circumference;
+        
+            const circle = document.querySelector('.progress-bar');
+            circle.style.strokeDashoffset = offset;
+        
+            // Update the progress percentage text
+            document.querySelector('.progress-text').innerHTML = `${percent}%<p class="text-secondary" style="font-size: 14px;">Completed</p>`;
+        }
 
-    const circle = document.querySelector('.progress-bar');
-    circle.style.strokeDashoffset = offset;
-
-    // Update the progress percentage text
-    document.querySelector('.progress-text').innerHTML = `${percent}%<p class="text-secondary" style="font-size: 14px;">Completed</p>`;
-}
-
-// Update progress circle with PHP-calculated value
-updateProgressCircle(<?php echo $percentage_completed; ?>);
-</script>
-
+        // Update progress circle with PHP-calculated value
+        updateProgressCircle(<?php echo $percentage_completed; ?>);
+    </script>
+<!-- end Percentage Script -->
 
 <script>
 
