@@ -37,7 +37,7 @@ redirectIfNotLoggedIn();
             <h2 class="mt-4">
                 Client List
             </h2>
-            <form style="padding: 20px;">
+            <form style="width: 150px;">
                 <div class="input-group">
                     <span class="input-group-text bg-white border-end-0" style="margin-right: -10px;">
                         <i class="bi bi-search text-secondary"></i>
