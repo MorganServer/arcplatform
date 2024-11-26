@@ -332,12 +332,12 @@ $pageName = ucwords($pageName);
                 <?php
                 if (isset($_GET['dc_id'])) {
                     // Fetch client ID from the URL or hidden field
-                    $dc_id = intval($_GET['dc_id']); // Sanitize input
+                    $ec_id = intval($_GET['dc_id']); // Sanitize input
                     
                     // Query to fetch client details
                     $ec_sql = "SELECT * FROM clients WHERE client_id = ?";
                     if ($stmt = $conn->prepare($ec_sql)) {
-                        $stmt->bind_param("i", $dc_id); // Bind the client ID
+                        $stmt->bind_param("i", $ec_id); // Bind the client ID
                         $stmt->execute();
                         $result = $stmt->get_result();
                         if ($row = $result->fetch_assoc()) {
