@@ -76,7 +76,7 @@ redirectIfNotLoggedIn();
                     $offset = ($page - 1) * $limit;
 
                     // Query to get clients, the total number of engagements, and open QA comments for each client
-                    $sql = "SELECT * FROM clients ORDER BY client_created DESC LIMIT $limit OFFSET $offset";
+                    $sql = "SELECT * FROM clients ORDER BY client_created ASC LIMIT $limit OFFSET $offset";
                     $result = mysqli_query($conn, $sql);
 
                     if ($result) {
