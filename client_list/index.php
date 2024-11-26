@@ -85,12 +85,10 @@ redirectIfNotLoggedIn();
                                     if (!empty($logo)) { ?>
                                         <img class="me-2" src="<?php echo ROOT_PATH; ?>/assets/images/client_images/<?php echo $logo; ?>.png" width="50" alt="" style="border-radius: 15px;">
                                     <?php } else {
-                                        // If no logo, create a circle with the first letter and a random background color
-                                        $first_letter = strtoupper(substr($client_name, 0, 1)); // Get the first letter of the client name
-                                        // Generate a random color
-                                        echo '<div class="client-avatar" style="background-color: ' . $random_color . '; width: 50px; height: 50px; border-radius: 50%; display: flex; justify-content: center; align-items: center; font-size: 24px; color: white;">' . $first_letter . '</div>';
-                                    }
+                                        $first_letter = strtoupper(substr($client_name, 0, 1));
                                     ?>
+                                        <div class="client-avatar" style="background-color: <?php echo $random_color; ?>; width: 50px; height: 50px; border-radius: 50%; display: flex; justify-content: center; align-items: center; font-size: 24px; color: white;"><?php echo first_letter; ?></div>
+                                    <?php } ?>
                                     <?php echo $client_name ? $client_name : '-'; ?>
                                 </td>
 
