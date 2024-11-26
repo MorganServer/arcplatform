@@ -255,8 +255,8 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['followup_owner'])) {
                             QA Comment Report
                         </h6>
                         <div class="btn-group">
-                          <button type="button" class="btn btn-danger">Action</button>
-                          <button type="button" class="btn btn-danger dropdown-toggle dropdown-toggle-split" data-bs-toggle="dropdown" aria-expanded="false">
+                          <button type="button" class="btn btn-outline-primary" style="border-right: 1px solid blue;">Action</button>
+                          <button type="button" class="btn btn-outline-primary dropdown-toggle dropdown-toggle-split" data-bs-toggle="dropdown" aria-expanded="false">
                             <span class="visually-hidden">Toggle Dropdown</span>
                           </button>
                           <ul class="dropdown-menu">
