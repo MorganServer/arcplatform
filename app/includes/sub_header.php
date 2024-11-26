@@ -42,7 +42,7 @@ $pageName = ucwords($pageName);
                     <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                 </div>
                 <div class="modal-body">
-    
+
                     <form method="POST" class="row g-3">
                         <div class="col-md-6">
                             <label for="c_client_name" class="form-label">Client Name</label>
@@ -68,7 +68,7 @@ $pageName = ucwords($pageName);
                             <button type="submit" name="add_client" class="btn btn-primary">Submit</button>
                         </div>
                     </form>
-    
+
                 </div>
             </div>
         </div>
@@ -249,3 +249,21 @@ $pageName = ucwords($pageName);
       </div>
     </div>
 <!-- end add-qa-comment -->
+
+<script>
+    document.addEventListener('DOMContentLoaded', function () {
+        // Handle dropdown selection and update client name
+        const engagementDropdown = document.getElementById('qa_engagement_id');
+        const clientNameInput = document.getElementById('qa_client_name');
+
+        if (engagementDropdown && clientNameInput) {
+            engagementDropdown.addEventListener('change', function () {
+                const selectedOption = this.options[this.selectedIndex];
+                const clientName = selectedOption.getAttribute('data-client-name');
+
+                // Set the client name input field in real-time
+                clientNameInput.value = clientName || '';  // Set client name or empty if not selected
+            });
+        }
+    });
+</script>
