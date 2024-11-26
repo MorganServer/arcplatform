@@ -327,8 +327,8 @@ $pageName = ucwords($pageName);
             <div class="modal-body">
                 <?php
                 // Check if the client_id is set in the URL
-                if (isset($_GET['edit_dc_id'])) {
-                    $ec_id = $_GET['edit_dc_id']; // Capture the client_id from the URL
+                if (isset($_GET['data-dc-id'])) {
+                    $ec_id = $_GET['data-dc-id']; // Capture the client_id from the URL
 
                     // Query the database to get the client details
                     $ec_sql = "SELECT * FROM clients WHERE client_id = '$ec_id'";
