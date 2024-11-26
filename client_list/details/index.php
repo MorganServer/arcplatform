@@ -136,7 +136,7 @@ redirectIfNotLoggedIn();
                                             <div class="col-md-4 mb-4"> <!-- Make the cards responsive and inline -->
                                                 <div class="card" style="width: 30rem;">
                                                     <div class="card-body">
-                                                        <div class="d-flex align-items-center justify-content-between">
+                                                        <div class="d-flex align-items-center">
                                                             <!-- Left section for the image -->
                                                             <div class="left">
                                                                 <?php if (strpos($off_engagement_type, 'SOC 2') !== false) { ?>
