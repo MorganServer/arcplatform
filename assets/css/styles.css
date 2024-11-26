@@ -375,6 +375,10 @@ body {
     border: none !important;
 }
 
+.accordion-body {
+    background-color: transparent;
+}
+
 /* Remove background color on hover for the accordion button */
 .accordion-button:hover {
     background-color: #f2f2f2 !important; /* No background color on hover */
