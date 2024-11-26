@@ -328,7 +328,7 @@ $pageName = ucwords($pageName);
                 <form id="editClientForm" method="POST" class="row g-3">
                     <div class="col-md-6">
                         <label for="c_client_name" class="form-label">Client Name</label>
-                        <input type="text" class="form-control" id="e_client_name" name="c_client_name" required>
+                        <input type="text" class="form-control" id="tim_client_name" name="c_client_name" required>
                     </div>
                     <div class="col-md-6">
                         <label for="c_primary_contact" class="form-label">Primary Contact</label>
@@ -391,7 +391,7 @@ $pageName = ucwords($pageName);
                 
                 // Populate the modal fields with the fetched data
                 if(clientData) {
-                    document.getElementById('e_client_name').value = clientData.client_name || '';
+                    document.getElementById('tim_client_name').value = clientData.client_name || '';
                     document.getElementById('e_primary_contact').value = clientData.primary_contact || '';
                     document.getElementById('e_contact_email').value = clientData.contact_email || '';
                     document.getElementById('e_has_logo').checked = clientData.has_logo === 1;
