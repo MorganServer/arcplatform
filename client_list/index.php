@@ -87,7 +87,7 @@ redirectIfNotLoggedIn();
                                     <?php } else {
                                         $first_letter = strtoupper(substr($client_name, 0, 1));
                                     ?>
-                                        <div class="client-avatar" style="background-color: <?php echo $random_color; ?>; width: 50px; height: 50px; border-radius: 50%; display: flex; justify-content: center; align-items: center; font-size: 24px; color: white;"><?php echo first_letter; ?></div>
+                                        <div class="client-avatar" style="background-color: <?php echo $random_color; ?>; width: 50px; height: 50px; border-radius: 50%; display: flex; justify-content: center; align-items: center; font-size: 24px; color: white;"><?php echo $first_letter; ?></div>
                                     <?php } ?>
                                     <?php echo $client_name ? $client_name : '-'; ?>
                                 </td>
