@@ -18,10 +18,12 @@ $pageName = ucwords($pageName);
             </a>
 
             <ul class="dropdown-menu">
-                <li><h6 class="dropdown-header">Deletion Actions</h6></li>
+                <hr>
+                <li><h6 class="dropdown-header">Manage Actions</h6></li>
                 <li><a class="dropdown-item" data-bs-toggle="modal" data-bs-target="#delete_clients">Delete Clients</a></li>
                 <li><a class="dropdown-item" data-bs-toggle="modal" data-bs-target="#add_engagement">Add Engagement</a></li>
                 <li><a class="dropdown-item" data-bs-toggle="modal" data-bs-target="#add_qa_comment">Add QA Comment</a></li>
+                <hr>
                 <li><h6 class="dropdown-header">Backup Actions</h6></li>
                 <li><a class="dropdown-item" data-bs-toggle="modal" data-bs-target="#add_client"></a></li>
                 <li><a class="dropdown-item" data-bs-toggle="modal" data-bs-target="#add_engagement">Add Engagement</a></li>
@@ -268,7 +270,7 @@ $pageName = ucwords($pageName);
         <div class="modal-dialog">
             <div class="modal-content">
                 <div class="modal-header">
-                    <h1 class="modal-title fs-5" id="exampleModalLabel">Add Client</h1>
+                    <h1 class="modal-title fs-5" id="exampleModalLabel">Manage Clients</h1>
                     <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                 </div>
                 <div class="modal-body">
