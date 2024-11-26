@@ -85,7 +85,7 @@ redirectIfNotLoggedIn();
     // if (!empty($logo)) { ?>
         <img class="me-2" src="<?php echo ROOT_PATH; ?>/assets/images/client_images/<?php echo $logo; ?>.png" width="50" style="border-radius: 15px;">
         <?php echo $client_name ? $client_name : '-'; ?>
-    <!-- <?php } else { -->
+    <!-- <?php //} else { -->
         // $first_letter = strtoupper(substr($client_name, 0, 1));
     ?>
         <div class="d-flex align-items-center">
