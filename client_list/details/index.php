@@ -40,7 +40,7 @@ redirectIfNotLoggedIn();
 
     <!-- main-container -->
         <div class="" style="padding: 0 20px 0 20px;">
-            <div class="mt-3"></div>
+            <div class="mt-4"></div>
             <a class="text-decoration-none" href="<?php BASE_URL; ?>/client_list"><i class="bi bi-arrow-left"></i>&nbsp; Back to Client List</a>
             
             <div class="mt-2"></div>
