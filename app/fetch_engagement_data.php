@@ -32,6 +32,8 @@ if (isset($_GET['engagement_id'])) {
         // Return client data as JSON
         echo json_encode([
             'engagement_id' => $engagement['engagement_id'],
+            'client_name' => $engagement['client_name'],
+            'engagement_type' => $engagement['engagement_type'],
             // 'client_name' => $engagement['client_name'],
             // 'primary_contact' => $engagement['primary_contact'],
             // 'contact_email' => $engagement['contact_email'],
