@@ -322,7 +322,7 @@ $pageName = ucwords($pageName);
         $dc_id = intval($_GET['dc_id']); // Sanitize the input to prevent SQL injection
 
         // Prepare the SQL query
-        $sql = "DELETE FROM clients WHERE id = ?";
+        $sql = "DELETE FROM clients WHERE client_id = ?";
         if ($stmt = $conn->prepare($sql)) {
             $stmt->bind_param("i", $dc_id);
 
