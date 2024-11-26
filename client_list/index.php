@@ -75,7 +75,7 @@ redirectIfNotLoggedIn();
                                 ?>
 
                                 <tr class="" style="height: 70px !important; vertical-align: middle;">
-                                    <td><img class="me-3" src="<?php ROOT_PATH; ?>/assets/images/client_images/<?php echo $logo; ?>.png" width="100" alt="" style="border-radius: 15px;"><?php echo $client_name ? $client_name : '-'; ?></td>
+                                    <td><img class="me-3" src="<?php ROOT_PATH; ?>/assets/images/client_images/<?php echo $logo; ?>.png" width="50" alt="" style="border-radius: 15px;"><?php echo $client_name ? $client_name : '-'; ?></td>
                                     <td class="">
                                         <?php 
                                         $e_sql = "SELECT * FROM engagement WHERE client_name='$client_name'";
