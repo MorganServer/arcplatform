@@ -73,7 +73,7 @@ redirectIfNotLoggedIn();
 
                                 ?>
 
-                                <tr style="height: 70px !important;">
+                                <tr class="align-items-center" style="height: 70px !important;">
                                     <td><?php echo $client_name ? $client_name : '-'; ?></td>
                                     <td>
                                         <?php 
