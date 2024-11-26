@@ -111,7 +111,7 @@
         $manager = $_POST['manager'];
         $senior = $_POST['senior'];
         $staff = $_POST['staff'];
-        $leadsheet_due = $_POST['leadsheet_due'];
+        $leadsheets_due = $_POST['leadsheet_due'];
         $field_work_week = $_POST['field_work_week'];
         $senior_dol = $_POST['senior_dol'];
         $staff_1_dol = $_POST['staff_1_dol'];
@@ -128,7 +128,7 @@
                 SET client_name = ?, engagement_type = ?, year = ?, 
                     report_start = ?, report_end = ?, report_as_of = ?, 
                     manager = ?, senior = ?, staff = ?, 
-                    leadsheet_due = ?, field_work_week = ?, 
+                    leadsheets_due = ?, field_work_week = ?, 
                     senior_dol = ?, staff_1_dol = ?, staff_2_dol = ? 
                 WHERE engagement_id = ?";
 
