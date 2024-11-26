@@ -138,11 +138,11 @@ redirectIfNotLoggedIn();
                                                     <div class="card-body">
                                                         <div class="left float-start">
                                                             <?php if (strpos($off_engagement_type, 'SOC 2') !== false) { ?>
-                                                                <img src="<?php BASE_URL; ?>/assets/images/soc-2-icon.png" width="35" alt=""> &nbsp; <?php echo $off_client_name; ?> - <?php echo $off_year; ?> <?php echo $off_engagement_type; ?>
+                                                                <img src="<?php BASE_URL; ?>/assets/images/soc-2-icon.png" width="35" alt="">
                                                             <?php } else if (strpos($off_engagement_type, 'SOC 1') !== false) { ?>
-                                                                <img src="<?php BASE_URL; ?>/assets/images/soc-1-icon.png" width="35" alt=""> &nbsp; <?php echo $off_client_name; ?> - <?php echo $off_year; ?> <?php echo $off_engagement_type; ?>
+                                                                <img src="<?php BASE_URL; ?>/assets/images/soc-1-icon.png" width="35" alt="">
                                                             <?php } else if (strpos($off_engagement_type, 'HIPAA') !== false) { ?>
-                                                                <img src="<?php BASE_URL; ?>/assets/images/hipaa-icon.png" width="35" alt=""> &nbsp; <?php echo $off_client_name; ?> - <?php echo $off_year; ?> <?php echo $off_engagement_type; ?>
+                                                                <img src="<?php BASE_URL; ?>/assets/images/hipaa-icon.png" width="35" alt="">
                                                             <?php } ?>
                                                         </div>
                                                         <div class="right float-end">
