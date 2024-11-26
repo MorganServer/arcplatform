@@ -393,11 +393,13 @@ $pageName = ucwords($pageName);
                     if (clientData.error) {
                         console.error('Error: ' + clientData.error);
                     } else {
-                        // Populate the form fields
-                        document.getElementById('c_client_name').value = clientData.client_name || '';
-                        document.getElementById('c_primary_contact').value = clientData.primary_contact || '';
-                        document.getElementById('c_contact_email').value = clientData.contact_email || '';
-                        document.getElementById('has_logo').checked = clientData.has_logo === true; // Updated check for boolean true
+                        // Delay the population to ensure modal is fully visible
+                        setTimeout(function () {
+                            document.getElementById('c_client_name').value = clientData.client_name || '';
+                            document.getElementById('c_primary_contact').value = clientData.primary_contact || '';
+                            document.getElementById('c_contact_email').value = clientData.contact_email || '';
+                            document.getElementById('has_logo').checked = clientData.has_logo === true; // Updated check for boolean true
+                        }, 100);  // Small delay to ensure modal is ready
                     }
                 } catch (e) {
                     console.error('Error parsing response:', e);
@@ -414,6 +416,7 @@ $pageName = ucwords($pageName);
         xhr.send();
     });
 </script>
+
 
 
 
