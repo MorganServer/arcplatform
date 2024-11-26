@@ -8,7 +8,7 @@ define("ROOT_PATH", realpath(dirname(__FILE__, 2)));
 
 // Include necessary files
 require(ROOT_PATH . '/fpdf/fpdf.php'); // Include FPDF library
-require(ROOT_PATH . '/app/database/connection.php'); // Include your database connection file
+require(ROOT_PATH . '/database/connection.php'); // Include your database connection file
 
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     // Initialize debugging log file (optional)
