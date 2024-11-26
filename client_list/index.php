@@ -37,6 +37,19 @@ redirectIfNotLoggedIn();
             <h2 class="mt-4">
                 Client List
             </h2>
+            <form style="padding: 20px;">
+                <div class="input-group">
+                    <span class="input-group-text bg-white border-end-0" style="margin-right: -10px;">
+                        <i class="bi bi-search text-secondary"></i>
+                    </span>
+                    <input 
+                        type="text" 
+                        class="form-control border-start-0" 
+                        id="search_bar" 
+                        placeholder="Search QA Comment..."
+                    >
+                </div>
+            </form>
             <hr>
 
             <table class="table table-hover">
