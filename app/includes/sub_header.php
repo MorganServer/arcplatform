@@ -296,7 +296,7 @@ $pageName = ucwords($pageName);
                                     <div><?php echo $dc_client_name; ?></div>
                                 </div>
                                 <div>
-                                    <a href="" data-bs-target="#edit_client" data-bs-toggle="modal" data-dc-id="<?php echo $dc_id; ?>">
+                                    <a href="?edit_dc_id=<?PHP echo $dc_id;?>" data-bs-target="#edit_client" data-bs-toggle="modal" data-dc-id="<?php echo $dc_id; ?>">
                                         <i class="bi bi-pencil-square" style="color: #005382; cursor: pointer;"></i>
                                     </a> &nbsp;&nbsp;
                                     <a href="?action=delete&dc_id=<?php echo $dc_id; ?>" onclick="return confirm('Are you sure you want to delete this client?');">
@@ -330,7 +330,7 @@ $pageName = ucwords($pageName);
                 <input type="text" id="edit_dc_id" name="edit_dc_id" value="<?php echo $dc_id; ?>">
 
                 <?php
-                $ec_id = $_POST['edit_dc_id'];
+                $ec_id = $_GET['edit_dc_id'];
                 $ec_sql = "SELECT * FROM clients WHERE client_id = '$ec_id'";
                 $ec_result = mysqli_query($conn, $ec_sql);
                 if ($ec_result) {
