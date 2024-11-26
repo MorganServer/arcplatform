@@ -76,38 +76,44 @@ redirectIfNotLoggedIn();
                                 <tr>
                                     <td><?php echo $client_name ? $client_name : '-'; ?></td>
                                     <td>
-                                        <?php 
-                                        $e_sql = "SELECT * FROM engagement WHERE client_name='$client_name'";
-                                        $e_result = mysqli_query($conn, $e_sql);
+    <?php 
+    $e_sql = "SELECT * FROM engagement WHERE client_name='$client_name'";
+    $e_result = mysqli_query($conn, $e_sql);
 
-                                        if ($e_result) {
-                                            $e_num_rows = mysqli_num_rows($e_result);
-                                            if ($e_num_rows > 0) {
-                                                while ($e_row = mysqli_fetch_assoc($e_result)) {
-                                                    $engagement_type = $e_row['engagement_type'];
-                                                
-                                                    // Check for specific engagement types and print them
-                                                    if (strpos($engagement_type, 'SOC 2') !== false) {
-                                                        echo "SOC 2";
-                                                    } elseif (strpos($engagement_type, 'SOC 1') !== false) {
-                                                        echo "SOC 1";
-                                                    } elseif (strpos($engagement_type, 'PCI') !== false) {
-                                                        echo "PCI";
-                                                    } elseif (strpos($engagement_type, 'HIPAA') !== false) {
-                                                        echo "HIPAA";
-                                                    } else {
-                                                        echo "Other: " . htmlspecialchars($engagement_type);
-                                                    }
-                                                    echo "<br>"; // Add a line break for multiple rows
-                                                }
-                                            } else {
-                                                echo "No engagement types found.";
-                                            }
-                                        } else {
-                                            echo "Error executing query.";
-                                        }
-                                        ?>
-                                    </td>
+    if ($e_result) {
+        $e_num_rows = mysqli_num_rows($e_result);
+        if ($e_num_rows > 0) {
+            $badges = []; // Array to hold all engagement types as badges
+
+            while ($e_row = mysqli_fetch_assoc($e_result)) {
+                $engagement_type = $e_row['engagement_type'];
+
+                // Check for specific engagement types and add them as badges
+                if (strpos($engagement_type, 'SOC 2') !== false) {
+                    $badges[] = '<span class="badge bg-primary">SOC 2</span>';
+                }
+                if (strpos($engagement_type, 'SOC 1') !== false) {
+                    $badges[] = '<span class="badge bg-success">SOC 1</span>';
+                }
+                if (strpos($engagement_type, 'PCI') !== false) {
+                    $badges[] = '<span class="badge bg-danger">PCI</span>';
+                }
+                if (strpos($engagement_type, 'HIPAA') !== false) {
+                    $badges[] = '<span class="badge bg-warning text-dark">HIPAA</span>';
+                }
+            }
+
+            // Print all badges inline
+            echo implode(' ', $badges);
+        } else {
+            echo "No engagement types found.";
+        }
+    } else {
+        echo "Error executing query.";
+    }
+    ?>
+</td>
+
                                     
 
                                     <td style="width: 100px; text-align: center;">
