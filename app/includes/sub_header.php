@@ -34,45 +34,45 @@ $pageName = ucwords($pageName);
 
 
 <!-- add-client -->
-<div class="modal fade" id="add_client" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
-    <div class="modal-dialog">
-        <div class="modal-content">
-            <div class="modal-header">
-                <h1 class="modal-title fs-5" id="exampleModalLabel">Add Client</h1>
-                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-            </div>
-            <div class="modal-body">
-
-                <form method="POST" class="row g-3">
-                    <div class="col-md-6">
-                        <label for="c_client_name" class="form-label">Client Name</label>
-                        <input type="text" class="form-control" id="c_client_name" name="c_client_name" required>
-                    </div>
-                    <div class="col-md-6">
-                        <label for="c_primary_contact" class="form-label">Primary Contact</label>
-                        <input type="text" class="form-control" id="c_primary_contact" name="c_primary_contact" required>
-                    </div>
-                    <div class="col-md-6">
-                        <label for="c_contact_email" class="form-label">Contact Email</label>
-                        <input type="email" class="form-control" id="c_contact_email" name="c_contact_email" required>
-                    </div>
-                    <div class="col-12">
-                        <div class="form-check">
-                            <input class="form-check-input" type="checkbox" value="1" id="has_logo" name="has_logo">
-                            <label class="form-check-label" for="has_logo">
-                                Client has a logo
-                            </label>
+    <div class="modal fade" id="add_client" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h1 class="modal-title fs-5" id="exampleModalLabel">Add Client</h1>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+    
+                    <form method="POST" class="row g-3">
+                        <div class="col-md-6">
+                            <label for="c_client_name" class="form-label">Client Name</label>
+                            <input type="text" class="form-control" id="c_client_name" name="c_client_name" required>
                         </div>
-                    </div>
-                    <div class="col-12">
-                        <button type="submit" name="add_client" class="btn btn-primary">Submit</button>
-                    </div>
-                </form>
-
+                        <div class="col-md-6">
+                            <label for="c_primary_contact" class="form-label">Primary Contact</label>
+                            <input type="text" class="form-control" id="c_primary_contact" name="c_primary_contact" required>
+                        </div>
+                        <div class="col-md-6">
+                            <label for="c_contact_email" class="form-label">Contact Email</label>
+                            <input type="email" class="form-control" id="c_contact_email" name="c_contact_email" required>
+                        </div>
+                        <div class="col-12">
+                            <div class="form-check">
+                                <input class="form-check-input" type="checkbox" value="1" id="has_logo" name="has_logo">
+                                <label class="form-check-label" for="has_logo">
+                                    Client has a logo
+                                </label>
+                            </div>
+                        </div>
+                        <div class="col-12">
+                            <button type="submit" name="add_client" class="btn btn-primary">Submit</button>
+                        </div>
+                    </form>
+    
+                </div>
             </div>
         </div>
     </div>
-</div>
 <!-- end add-client -->
 
 <!-- add-engagement --> 
