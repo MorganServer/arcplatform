@@ -421,6 +421,7 @@ $pageName = ucwords($pageName);
                    
 
                 <form class="row g-3" method="POST">
+                    <input type="hidden" name="me_edit_engagement_id" id="me_edit_engagement_id">
     <div class="col-md-6">
         <label for="me_edit_client_name" class="form-label">Client Name</label>
         <select id="me_edit_client_name" name="e_client_name" class="form-select">
