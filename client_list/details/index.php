@@ -79,7 +79,7 @@ redirectIfNotLoggedIn();
                     <p class="card-text">
                         <div style="padding-top: 15px; padding-left: 25px;">
                             <h6>
-                                Primary Contact
+                                Primary Contacts (1)
                             </h6>
 
                             <div class="auditor-info">
