@@ -78,7 +78,7 @@ redirectIfNotLoggedIn();
                                 ?>
 
                                 <tr class="client-list-row">
-                                    <a class="text-secondary" href="<?php echo BASE_URL; ?>/asset/view/?id=<?php echo $id; ?>">
+                                    <a href="<?php echo BASE_URL; ?>/asset/view/?id=<?php echo $id; ?>">
                                     <td>
                                         <img class="me-2" src="<?php ROOT_PATH; ?>/assets/images/client_images/<?php echo $logo; ?>.png" width="50" alt="" style="border-radius: 15px;">
                                         <?php echo $client_name ? $client_name : '-'; ?>
@@ -128,7 +128,7 @@ redirectIfNotLoggedIn();
                                         ?>
                                     </td>
                                     <td>
-                                        <i class="bi bi-chevron-right"></i>
+                                        <i class="bi bi-chevron-right text-secondary"></i>
                                     </td>
                                     </a>
                                                                         
