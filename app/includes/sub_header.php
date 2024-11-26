@@ -341,6 +341,8 @@ $pageName = ucwords($pageName);
                         $ec_contact_email = $ec_row['contact_email'];
                         $ec_has_logo = $ec_row['logo'];
                     }
+                } else {
+                    echo "No client ID provided!";
                 }
                 ?>
 
@@ -374,6 +376,7 @@ $pageName = ucwords($pageName);
     </div>
 </div>
 <!-- end edit-client -->
+
 
 
 
