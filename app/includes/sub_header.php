@@ -405,7 +405,7 @@ $pageName = ucwords($pageName);
         var button = event.relatedTarget;
         
         // Get the client ID from the data-dc-id attribute
-        var dc_id = button.getAttribute('data-dc-id');
+        var ec_id = button.getAttribute('data-dc-id');
         
         // Optionally, you can now make an AJAX request to update the modal content dynamically
         console.log('Editing client with ID:', dc_id);
