@@ -64,9 +64,9 @@ redirectIfNotLoggedIn();
                     $last_initial = isset($name_parts[1]) ? strtoupper($name_parts[1][0]) : '';
                     $primary_contact_initials = $first_initial . $last_initial;                    
 
-                    $formatted_start = date("m/d/Y", strtotime($off_report_start));
-                    $formatted_end = date("m/d/Y", strtotime($off_report_end));
-                    $formatted_as_of = date("m/d/Y", strtotime($off_report_as_of));
+                    // $formatted_start = date("m/d/Y", strtotime($off_report_start));
+                    // $formatted_end = date("m/d/Y", strtotime($off_report_end));
+                    // $formatted_as_of = date("m/d/Y", strtotime($off_report_as_of));
                 }}}
             // }}
             ?>
