@@ -366,7 +366,7 @@ body {
 
 
 .accordion-button {
-    background-color: transparent !important;
+    background-color: #f2f2f2 !important;
     border: none !important; /* Optional: removes the border */
     color: #000; /* Optional: adjust the text color */
 }
