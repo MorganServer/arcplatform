@@ -169,7 +169,7 @@ redirectIfNotLoggedIn();
                                                                     </span>
                                                                     <br>
                                                                     <!-- Adjusted spacing here with mt-1 for smaller margin -->
-                                                                    <span class="d-block" style="font-size: 14px !important; margin-top: -11px;">
+                                                                    <span class="d-block" style="font-size: 14px !important; margin-top: -12px;">
                                                                         <span class="text-secondary"><strong>Leadsheets Due:&nbsp;&nbsp;</strong></span><?php echo $formatted_leadsheets_due; ?>
                                                                     </span>
                                                                 </p>
