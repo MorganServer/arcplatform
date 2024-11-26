@@ -44,7 +44,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             $client_name = $engagement['client_name'];
             $engagement_type = $engagement['engagement_type'];
             $year = $engagement['year'];
-            $enegagment_name = $client_name . " - " . $year . " " . $engagement_type;
+            $engagement_name = $client_name . " - " . $year . " " . $engagement_type;
         } else {
             throw new Exception('Engagement not found.');
         }
