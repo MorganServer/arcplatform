@@ -39,7 +39,7 @@ redirectIfNotLoggedIn();
             </h2>
             <form style="width: 350px;">
                 <div class="input-group">
-                    <span class="input-group-text bg-white border-end-0" style="margin-right: -10px;">
+                    <span class="input-group-text bg-white border-end-0" style="margin-right: -10px; border: 1px solid black;">
                         <i class="bi bi-search text-secondary"></i>
                     </span>
                     <input 
