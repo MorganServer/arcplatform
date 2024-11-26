@@ -95,16 +95,60 @@ redirectIfNotLoggedIn();
             </div>
 
 
+
+            
+
+
             <div class="accordion" id="accordionExample">
               <div class="accordion-item">
                 <h2 class="accordion-header">
                   <button class="accordion-button" type="button" data-bs-toggle="collapse" data-bs-target="#collapseOne" aria-expanded="true" aria-controls="collapseOne">
-                    Accordion Item #1
+                    Active Engagements
                   </button>
                 </h2>
                 <div id="collapseOne" class="accordion-collapse collapse show" data-bs-parent="#accordionExample">
                   <div class="accordion-body">
-                    <strong>This is the first item's accordion body.</strong> It is shown by default, until the collapse plugin adds the appropriate classes that we use to style each element. These classes control the overall appearance, as well as the showing and hiding via CSS transitions. You can modify any of this with custom CSS or overriding our default variables. It's also worth noting that just about any HTML can go within the <code>.accordion-body</code>, though the transition does limit overflow.
+                    
+
+                  <?php
+                    $off_sql = "SELECT * FROM engagement WHERE client_name = $client_client_name";
+                    $off_result = mysqli_query($conn, $off_sql);
+                    if($off_result) {
+                    $num_rows = mysqli_num_rows($off_result);
+                    if($num_rows > 0) {
+                        while ($off_row = mysqli_fetch_assoc($off_result)) {
+                            $off_id                     = $off_row['engagement_id']; 
+                            $off_client_name            = $off_row['client_name']; 
+                            $off_engagement_type        = $off_row['engagement_type']; 
+                            $off_year                   = $off_row['year']; 
+                            $off_report_start           = $off_row['report_start']; 
+                            $off_report_end             = $off_row['report_end']; 
+                            $off_report_as_of           = $off_row['report_as_of']; 
+                        
+                        
+                            // Split the name into parts and get initials
+                        
+
+                        
+                            $formatted_start = date("m/d/Y", strtotime($off_report_start));
+                            $formatted_end = date("m/d/Y", strtotime($off_report_end));
+                            $formatted_as_of = date("m/d/Y", strtotime($off_report_as_of));
+                        
+                    // }}
+                    ?>
+
+                        <div class="card" style="width: 30rem;">
+                          <div class="card-body">
+                            <h5 class="card-title">Card title</h5>
+                            <h6 class="card-subtitle mb-2 text-body-secondary">Card subtitle</h6>
+                            <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
+                            <a href="#" class="card-link">Card link</a>
+                            <a href="#" class="card-link">Another link</a>
+                          </div>
+                        </div>
+
+
+                    <?php }}} ?>
                   </div>
                 </div>
               </div>
@@ -135,37 +179,7 @@ redirectIfNotLoggedIn();
             </div>
 
 
-            <?php
-            $id = $_GET['id'];
-            $off_sql = "SELECT * FROM engagement WHERE engagement_id = $id";
-            $off_result = mysqli_query($conn, $off_sql);
-            if($off_result) {
-            $num_rows = mysqli_num_rows($off_result);
-            if($num_rows > 0) {
-                while ($off_row = mysqli_fetch_assoc($off_result)) {
-                    $off_id                     = $off_row['engagement_id']; 
-                    $off_client_name            = $off_row['client_name']; 
-                    $off_engagement_type        = $off_row['engagement_type']; 
-                    $off_year                   = $off_row['year']; 
-                    $off_report_start           = $off_row['report_start']; 
-                    $off_report_end             = $off_row['report_end']; 
-                    $off_report_as_of           = $off_row['report_as_of']; 
-                    $off_manager                = $off_row['manager']; 
-                    $off_senior                 = $off_row['senior']; 
-                    $off_staff                  = $off_row['staff']; 
-                    $off_status                 = $off_row['status']; 
-
-
-                    // Split the name into parts and get initials
-
-                    
-
-                    $formatted_start = date("m/d/Y", strtotime($off_report_start));
-                    $formatted_end = date("m/d/Y", strtotime($off_report_end));
-                    $formatted_as_of = date("m/d/Y", strtotime($off_report_as_of));
-                }}}
-            // }}
-            ?>
+            
                 
 
         </div>
