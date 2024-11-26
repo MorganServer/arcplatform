@@ -451,58 +451,52 @@ $pageName = ucwords($pageName);
 <!-- end edit-client -->
 
 <script>
-        document.getElementById('edit_engagement').addEventListener('show.bs.modal', function (event) {
+    document.getElementById('edit_engagement').addEventListener('show.bs.modal', function (event) {
         // Get the button that triggered the modal
         var button = event.relatedTarget;
-        
-        // Get the client ID from the data-dc-id attribute
+
+        // Get the engagement ID from the data-me-id attribute
         var engagementId = button.getAttribute('data-me-id');
-        
-        // Log the client ID for debugging
         console.log('Engagement ID passed to modal:', engagementId);
 
-        // Now, make an AJAX request to fetch client data
+        // Make an AJAX request to fetch engagement data
         var xhr = new XMLHttpRequest();
-        xhr.open("GET", "<?php echo BASE_URL;?>/app/fetch_engagement_data.php?engagement_id=" + engagementId, true);
-        
-        // Log before sending the request
+        xhr.open("GET", "<?php echo BASE_URL; ?>/app/fetch_engagement_data.php?engagement_id=" + encodeURIComponent(engagementId), true);
+
         console.log('Sending AJAX request to fetch engagement data for ID:', engagementId);
 
         xhr.onload = function () {
-            if (xhr.status == 200) {
-                // Log the server response for debugging
+            if (xhr.status === 200) {
                 console.log('AJAX Response:', xhr.responseText);
 
                 try {
                     // Parse the JSON response
                     var engagementData = JSON.parse(xhr.responseText);
-
-                    // Log the parsed data for debugging
-                    console.log('Parsed client data:', engagementData);
+                    console.log('Parsed engagement data:', engagementData);
 
                     // Populate the modal fields with the fetched data
-                    if(engagementData) {
+                    if (engagementData) {
                         document.getElementById('me_edit_engagement_id').value = engagementData.engagement_id || '';
                         document.getElementById('me_edit_client_name').value = engagementData.client_name || '';
                         document.getElementById('me_edit_engagement_type').value = engagementData.engagement_type || '';
-                        document.getElementById('edit_engagement_id').value = engagementData.engagement_id || '';
-                        document.getElementById('edit_engagement_id').value = engagementData.engagement_id || '';
-                        document.getElementById('edit_engagement_id').value = engagementData.engagement_id || '';
-                        document.getElementById('edit_engagement_id').value = engagementData.engagement_id || '';
-                        document.getElementById('edit_engagement_id').value = engagementData.engagement_id || '';
-                        document.getElementById('edit_engagement_id').value = engagementData.engagement_id || '';
-                        document.getElementById('edit_engagement_id').value = engagementData.engagement_id || '';
-                        document.getElementById('edit_engagement_id').value = engagementData.engagement_id || '';
-                        document.getElementById('edit_engagement_id').value = engagementData.engagement_id || '';
-                        document.getElementById('edit_engagement_id').value = engagementData.engagement_id || '';
-                        document.getElementById('edit_engagement_id').value = engagementData.engagement_id || '';
-                        document.getElementById('edit_engagement_id').value = engagementData.engagement_id || '';
+                        document.getElementById('me_edit_year').value = engagementData.year || '';
+                        document.getElementById('me_edit_report_start').value = engagementData.report_start || '';
+                        document.getElementById('me_edit_report_end').value = engagementData.report_end || '';
+                        document.getElementById('me_edit_report_as_of').value = engagementData.report_as_of || '';
+                        document.getElementById('me_edit_manager').value = engagementData.manager || '';
+                        document.getElementById('me_edit_senior').value = engagementData.senior || '';
+                        document.getElementById('me_edit_staff').value = engagementData.staff || '';
+                        document.getElementById('me_edit_leadsheets_due').value = engagementData.leadsheets_due || '';
+                        document.getElementById('me_edit_field_work_week').value = engagementData.field_work_week || '';
+                        document.getElementById('me_edit_senior_dol').value = engagementData.senior_dol || '';
+                        document.getElementById('me_edit_staff_1_dol').value = engagementData.staff_1_dol || '';
+                        document.getElementById('me_edit_staff_2_dol').value = engagementData.staff_2_dol || '';
                     }
                 } catch (e) {
                     console.error('Error parsing response:', e);
                 }
             } else {
-                console.error('Failed to fetch client data, status:', xhr.status);
+                console.error('Failed to fetch engagement data, status:', xhr.status);
             }
         };
 
@@ -512,9 +506,6 @@ $pageName = ucwords($pageName);
 
         xhr.send();
     });
-
-
-
 </script>
 
 <script>

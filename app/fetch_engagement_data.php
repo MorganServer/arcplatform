@@ -1,35 +1,33 @@
 <?php
-// Enable error reporting
+// Enable error reporting for debugging
 ini_set('display_errors', 1);
-error_reporting(E_ALL);  // Report all errors
+error_reporting(E_ALL);
 
-// Include your database connection
-include('database/connection.php'); // Update this to the correct path
+// Include database connection
+include('database/connection.php'); // Adjust the path as needed
 
-// Check if the client_id is passed via GET request
+header('Content-Type: application/json');
+
+// Check if the engagement_id is provided
 if (isset($_GET['engagement_id'])) {
-    $engagement_id = $_GET['engagement_id'];
+    $engagement_id = mysqli_real_escape_string($conn, $_GET['engagement_id']); // Sanitize input
 
-    // Debug: Log the client_id received in the GET request
-    error_log("Received engagement_id: " . $engagement_id);
+    // Debug: Log the engagement ID
+    error_log("Received engagement_id: $engagement_id");
 
-    // Query to get client details based on client_id
+    // Prepare and execute the SQL query
     $sql = "SELECT * FROM engagement WHERE engagement_id = '$engagement_id'";
-    
-    // Debug: Log the SQL query for verification
-    error_log("SQL Query: " . $sql);
-    
-    // Run the query
+    error_log("SQL Query: $sql");
+
     $result = mysqli_query($conn, $sql);
 
-    // Check if the query is successful and if there are any results
     if ($result && mysqli_num_rows($result) > 0) {
         $engagement = mysqli_fetch_assoc($result);
 
-        // Debug: Log the fetched client data
-        error_log("Fetched client data: " . print_r($engagement, true));
+        // Debug: Log fetched engagement data
+        error_log("Fetched engagement data: " . print_r($engagement, true));
 
-        // Return client data as JSON
+        // Return engagement data as JSON
         echo json_encode([
             'engagement_id' => $engagement['engagement_id'],
             'client_name' => $engagement['client_name'],
@@ -45,17 +43,16 @@ if (isset($_GET['engagement_id'])) {
             'field_work_week' => $engagement['field_work_week'],
             'senior_dol' => $engagement['senior_dol'],
             'staff_1_dol' => $engagement['staff_1_dol'],
-            'staff_2_dol' => $engagement['staff_2_dol']
+            'staff_2_dol' => $engagement['staff_2_dol'],
         ]);
-        
     } else {
-        // Log an error if no client is found
-        error_log("No client found with ID: " . $client_id);
-        echo json_encode(['error' => 'Client not found']);
+        // Log error and return message if no results
+        error_log("No engagement found with ID: $engagement_id");
+        echo json_encode(['error' => 'Engagement not found']);
     }
 } else {
-    // Log an error if client_id is not provided
-    error_log("Client ID not provided");
-    echo json_encode(['error' => 'Client ID not provided']);
+    // Log error and return message if engagement_id is not provided
+    error_log("Engagement ID not provided");
+    echo json_encode(['error' => 'Engagement ID not provided']);
 }
 ?>
