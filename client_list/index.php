@@ -77,8 +77,7 @@ redirectIfNotLoggedIn();
 
                                 ?>
 
-                                <tr class="client-list-row">
-                                    <a href="<?php echo BASE_URL; ?>/asset/view/?id=<?php echo $id; ?>">
+                                <tr class="client-list-row" onclick="window.location.href='<?php echo BASE_URL; ?>/asset/view/?id=<?php echo $id; ?>'">
                                     <td>
                                         <img class="me-2" src="<?php ROOT_PATH; ?>/assets/images/client_images/<?php echo $logo; ?>.png" width="50" alt="" style="border-radius: 15px;">
                                         <?php echo $client_name ? $client_name : '-'; ?>
@@ -93,15 +92,14 @@ redirectIfNotLoggedIn();
                                         <?php 
                                         $e_sql = "SELECT * FROM engagement WHERE client_name='$client_name'";
                                         $e_result = mysqli_query($conn, $e_sql);
-
+                                                            
                                         if ($e_result) {
                                             $e_num_rows = mysqli_num_rows($e_result);
                                             if ($e_num_rows > 0) {
                                                 $badges = []; // Array to hold all engagement types as badges
-                                            
                                                 while ($e_row = mysqli_fetch_assoc($e_result)) {
                                                     $engagement_type = $e_row['engagement_type'];
-                                                
+                                                    
                                                     // Check for specific engagement types and add them as badges
                                                     if (strpos($engagement_type, 'SOC 2') !== false) {
                                                         $badges[] = '<span class="badge soc-2-badge">SOC 2</span>';
@@ -116,8 +114,6 @@ redirectIfNotLoggedIn();
                                                         $badges[] = '<span class="badge hipaa-badge">HIPAA</span>';
                                                     }
                                                 }
-                                            
-                                                // Print all badges inline
                                                 echo implode(' ', $badges);
                                             } else {
                                                 echo "No engagement types found.";
@@ -130,9 +126,8 @@ redirectIfNotLoggedIn();
                                     <td>
                                         <i class="bi bi-chevron-right text-secondary"></i>
                                     </td>
-                                    </a>
-                                                                        
                                 </tr>
+
                                 <?php
                             }
                         } else {
