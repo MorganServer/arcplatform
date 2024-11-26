@@ -20,7 +20,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         $e_id = isset($_POST['e_id']) ? intval($_POST['e_id']) : null; // Ensure it's an integer
 
         // Debugging output
-        file_put_contents($logFile, "Received Data: " . print_r($_POST, true) . "\n", FILE_APPEND);
+        // file_put_contents($logFile, "Received Data: " . print_r($_POST, true) . "\n", FILE_APPEND);
 
         // Check if options are selected
         if (empty($options)) {
