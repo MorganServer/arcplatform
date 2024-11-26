@@ -8,15 +8,13 @@ ini_set('log_errors', 1); // Enable error logging
 ini_set('error_log', __DIR__ . '/php_errors.log'); // Log errors to a file
 
 // Use absolute paths for includes
-// Use an absolute path to include connection.php
 require_once $_SERVER['DOCUMENT_ROOT'] . '/app/database/connection.php'; 
-
 
 // Handle the form submission
 if ($_SERVER["REQUEST_METHOD"] === "POST") {
     // Get the input data safely
     $email = filter_input(INPUT_POST, 'email', FILTER_SANITIZE_EMAIL);
-    $password = md5($_POST['password']); // Keep password in plain form for verification
+    $password = $_POST['password']; // Keep password in plain form for MD5 hashing
 
     // Validate the email
     if (filter_var($email, FILTER_VALIDATE_EMAIL)) {
@@ -31,8 +29,8 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
                 // User exists, fetch their details
                 $user = $result->fetch_assoc();
 
-                // Verify the password using password_verify
-                if (password_verify($password, $user['password'])) {
+                // Hash the entered password with MD5 and compare with the stored hash
+                if (md5($password) === $user['password']) {
                     // Password matches, update the user's logged_in status
                     $userId = $user['user_id'];
                     $updateSql = "UPDATE users SET logged_in = 1 WHERE user_id = ?";
