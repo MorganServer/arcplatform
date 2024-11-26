@@ -328,15 +328,15 @@ $pageName = ucwords($pageName);
                 <form id="editClientForm" method="POST" class="row g-3">
                     <div class="col-md-6">
                         <label for="c_client_name" class="form-label">Client Name</label>
-                        <input type="text" class="form-control" id="c_client_name" name="c_client_name" required>
+                        <input type="text" class="form-control" id="e_client_name" name="c_client_name" required>
                     </div>
                     <div class="col-md-6">
                         <label for="c_primary_contact" class="form-label">Primary Contact</label>
-                        <input type="text" class="form-control" id="c_primary_contact" name="c_primary_contact" required>
+                        <input type="text" class="form-control" id="e_primary_contact" name="c_primary_contact" required>
                     </div>
                     <div class="col-md-6">
                         <label for="c_contact_email" class="form-label">Contact Email</label>
-                        <input type="email" class="form-control" id="c_contact_email" name="c_contact_email" required>
+                        <input type="email" class="form-control" id="e_contact_email" name="c_contact_email" required>
                     </div>
                     <div class="col-12">
                         <div class="form-check">
@@ -394,9 +394,9 @@ $pageName = ucwords($pageName);
                         console.error('Error: ' + clientData.error);
                     } else {
                         // Populate the form fields
-                        document.getElementById('c_client_name').value = clientData.client_name || '';
-                        document.getElementById('c_primary_contact').value = clientData.primary_contact || '';
-                        document.getElementById('c_contact_email').value = clientData.contact_email || '';
+                        document.getElementById('e_client_name').value = clientData.client_name || '';
+                        document.getElementById('e_primary_contact').value = clientData.primary_contact || '';
+                        document.getElementById('e_contact_email').value = clientData.contact_email || '';
                         
                         // Handle the checkbox population
                         if (clientData.has_logo === 1 || clientData.has_logo === '1' || clientData.has_logo === 'payabli') {
