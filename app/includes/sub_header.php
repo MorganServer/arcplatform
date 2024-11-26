@@ -316,7 +316,7 @@ $pageName = ucwords($pageName);
 <!-- end manage-client -->
 
 
-<!-- edit-client -->
+<!-- edit-client Modal -->
 <div class="modal fade" id="edit_client" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
     <div class="modal-dialog">
         <div class="modal-content">
@@ -354,7 +354,8 @@ $pageName = ucwords($pageName);
         </div>
     </div>
 </div>
-<!-- end edit-client -->
+<!-- end edit-client Modal -->
+
 
 
 <script>
