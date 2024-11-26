@@ -42,18 +42,50 @@ redirectIfNotLoggedIn();
         <div class="" style="padding: 0 20px 0 20px;">
             <div class="mt-4"></div>
             <a class="text-decoration-none" href="<?php BASE_URL; ?>/client_list"><i class="bi bi-arrow-left"></i>&nbsp; Back to Client List</a>
+
+
+            <?php
+            $id = $_GET['id'];
+            $client_sql = "SELECT * FROM clients WHERE client_id = $id";
+            $client_result = mysqli_query($conn, $client_sql);
+            if($client_result) {
+            $client_num_rows = mysqli_num_rows($client_result);
+            if($client_num_rows > 0) {
+                while ($client_row = mysqli_fetch_assoc($client_result)) {
+                    $client_id                     = $client_row['client_id']; 
+                    $client_client_name            = $client_row['client_name']; 
+                    $client_primary_contact        = $client_row['primary_contact']; 
+                    $client_contact_email          = $client_row['contact_email']; 
+
+
+                    // Split the name into parts and get initials
+                    $name_parts = explode(" ", $client_primary_contact);
+                    $first_initial = isset($name_parts[0]) ? strtoupper($name_parts[0][0]) : '';
+                    $last_initial = isset($name_parts[1]) ? strtoupper($name_parts[1][0]) : '';
+                    $primary_contact_initials = $first_initial . $last_initial;                    
+
+                    $formatted_start = date("m/d/Y", strtotime($off_report_start));
+                    $formatted_end = date("m/d/Y", strtotime($off_report_end));
+                    $formatted_as_of = date("m/d/Y", strtotime($off_report_as_of));
+                }}}
+            // }}
+            ?>
             
             <div class="mt-2"></div>
             <div class="card-container">
                 <div class="card details_card" style="width: 100%;">
                   <div class="card-body">
-                    <h5 class="card-title">Engagements Resources</h5>
-                    <p class="card-text">
+                    <h5 class="card-title"></h5>
+                    <p class="card-text" style="padding: 50px;">
                         <h6>
-                            QA Comment Report
+                            Primary Contact
                         </h6>
-                        <div class="btn-group mt-2">
-                          <button type="button" class="btn btn-outline-primary" data-bs-toggle="modal" data-bs-target="#download_modal"><i class="bi bi-download"></i> Comment Report</button>
+
+                        <div class="auditor-info">
+                            <div class="circle"><?php echo htmlspecialchars($primary_contact_initials); ?></div>
+                            <div class="name-bg">
+                                <span class="name"><?php echo htmlspecialchars($client_primary_contact); ?></span>
+                            </div>
                         </div>
 
                         
@@ -62,6 +94,52 @@ redirectIfNotLoggedIn();
                   </div>
                 </div>
             </div>
+
+
+            <?php
+            $id = $_GET['id'];
+            $off_sql = "SELECT * FROM engagement WHERE engagement_id = $id";
+            $off_result = mysqli_query($conn, $off_sql);
+            if($off_result) {
+            $num_rows = mysqli_num_rows($off_result);
+            if($num_rows > 0) {
+                while ($off_row = mysqli_fetch_assoc($off_result)) {
+                    $off_id                     = $off_row['engagement_id']; 
+                    $off_client_name            = $off_row['client_name']; 
+                    $off_engagement_type        = $off_row['engagement_type']; 
+                    $off_year                   = $off_row['year']; 
+                    $off_report_start           = $off_row['report_start']; 
+                    $off_report_end             = $off_row['report_end']; 
+                    $off_report_as_of           = $off_row['report_as_of']; 
+                    $off_manager                = $off_row['manager']; 
+                    $off_senior                 = $off_row['senior']; 
+                    $off_staff                  = $off_row['staff']; 
+                    $off_status                 = $off_row['status']; 
+
+
+                    // Split the name into parts and get initials
+                    $name_parts = explode(" ", $off_manager);
+                    $first_initial = isset($name_parts[0]) ? strtoupper($name_parts[0][0]) : '';
+                    $last_initial = isset($name_parts[1]) ? strtoupper($name_parts[1][0]) : '';
+                    $manager_initials = $first_initial . $last_initial;
+
+                    $name_parts = explode(" ", $off_senior);
+                    $first_initial = isset($name_parts[0]) ? strtoupper($name_parts[0][0]) : '';
+                    $last_initial = isset($name_parts[1]) ? strtoupper($name_parts[1][0]) : '';
+                    $senior_initials = $first_initial . $last_initial;
+
+                    $name_parts = explode(" ", $off_staff);
+                    $first_initial = isset($name_parts[0]) ? strtoupper($name_parts[0][0]) : '';
+                    $last_initial = isset($name_parts[1]) ? strtoupper($name_parts[1][0]) : '';
+                    $staff_initials = $first_initial . $last_initial;
+                    
+
+                    $formatted_start = date("m/d/Y", strtotime($off_report_start));
+                    $formatted_end = date("m/d/Y", strtotime($off_report_end));
+                    $formatted_as_of = date("m/d/Y", strtotime($off_report_as_of));
+                }}}
+            // }}
+            ?>
                 
 
         </div>
