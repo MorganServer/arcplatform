@@ -134,7 +134,7 @@ redirectIfNotLoggedIn();
                                             $formatted_as_of = date("m/d/Y", strtotime($off_report_as_of));
                                 ?>
                                             <div class="col-md-4 mb-4"> <!-- Make the cards responsive and inline -->
-                                                <div class="card" style="width: 25rem;">
+                                                <div class="card" style="width: 30rem;">
                                                     <div class="card-body">
                                                         <div class="d-flex align-items-center justify-content-between">
                                                             <!-- Left section for the image -->
