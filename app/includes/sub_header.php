@@ -288,7 +288,14 @@ $pageName = ucwords($pageName);
                                     $dc_client_name = $dc_row['client_name'];
                         ?>
 
-                        <li class="list-group-item"><?php echo $dc_client_name; ?></li>
+                        <li class="list-group-item">
+                            <strong><?php echo $dc_idno; ?></strong> &nbsp;&nbsp:
+                            <?php echo $dc_client_name; ?>
+                            <div class="float-right">
+                                <i class="bi bi-pencil-square" style="color:#005382;"></i> &nbsp;&nbsp;
+                                <i class="bi bi-trash" style="color:#941515;"></i>
+                            </div>
+                        </li>
   
                         <?php }}} ?>
                     </ul>
