@@ -150,15 +150,17 @@ redirectIfNotLoggedIn();
                                                                 <?php } ?>
                                                             </div>
                                                                 
-                                                            <!-- Right section for the text details -->
-<div class="right ms-3 d-flex flex-column align-items-start">
-    <h5 class="card-title text-start"><?php echo $off_engagement_type; ?></h5>
-    <h6 class="card-subtitle mb-2 text-muted text-start"><?php echo $off_client_name; ?> - <?php echo $off_year; ?></h6>
-    <p class="card-text text-start">
-        Report Period: <?php echo $formatted_start; ?> to <?php echo $formatted_end; ?><br>
-        Report As Of: <?php echo $formatted_as_of; ?>
-    </p>
-</div>
+                                                            
+                                                            <div class="right ms-3 d-flex flex-column align-items-start">
+                                                                <h5 class="card-title text-start"><?php echo $off_engagement_type; ?></h5>
+                                                                <p class="card-text text-start">
+                                                                    <?php if(!isset($off_report_as_of)) { ?>
+                                                                        <strong>Audit Period: </strong><br><?php echo $formatted_start; ?> - <?php echo $formatted_end; ?>
+                                                                    <?php } else { ?>
+                                                                        <strong>Audit Period: </strong><br>As of <?php echo $formatted_as_of; ?>
+                                                                    <?php } ?>
+                                                                </p>
+                                                            </div>
 
                                                         </div>
 
