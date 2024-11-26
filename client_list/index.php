@@ -88,7 +88,7 @@ redirectIfNotLoggedIn();
                                         // If no logo, create a circle with the first letter and a random background color
                                         $first_letter = strtoupper(substr($client_name, 0, 1)); // Get the first letter of the client name
                                         // Generate a random color
-                                        echo '<div class="client-avatar" style="background-color: ' . $random_color . '; width: 70px; height: 50px; border-radius: 50%; display: flex; justify-content: center; align-items: center; font-size: 30px; color: white;">' . $first_letter . '</div>';
+                                        echo '<div class="client-avatar" style="background-color: ' . $random_color . '; width: 50px; height: 50px; border-radius: 50%; display: flex; justify-content: center; align-items: center; font-size: 24px; color: white;">' . $first_letter . '</div>';
                                     }
                                     ?>
                                     <?php echo $client_name ? $client_name : '-'; ?>
