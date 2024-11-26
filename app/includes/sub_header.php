@@ -18,15 +18,15 @@ $pageName = ucwords($pageName);
             </a>
 
             <ul class="dropdown-menu">
-                <li><h6 class="dropdown-header">Manage Actions</h6></li>
-                <li><a class="dropdown-item" data-bs-toggle="modal" data-bs-target="#delete_clients">Delete Clients</a></li>
-                <li><a class="dropdown-item" data-bs-toggle="modal" data-bs-target="#add_engagement">Add Engagement</a></li>
-                <li><a class="dropdown-item" data-bs-toggle="modal" data-bs-target="#add_qa_comment">Add QA Comment</a></li>
+                <li><h6 class="dropdown-header">Manage</h6></li>
+                <li><a class="dropdown-item" data-bs-toggle="modal" data-bs-target="#manage_clients">Manage Clients</a></li>
+                <li><a class="dropdown-item" data-bs-toggle="modal" data-bs-target="#manage_engagement">Manage Engagement</a></li>
+                <li><a class="dropdown-item" data-bs-toggle="modal" data-bs-target="#manage_qa_comment">Manage QA Comment</a></li>
                 <hr>
                 <li><h6 class="dropdown-header">Backup Actions</h6></li>
-                <li><a class="dropdown-item" data-bs-toggle="modal" data-bs-target="#add_client"></a></li>
-                <li><a class="dropdown-item" data-bs-toggle="modal" data-bs-target="#add_engagement">Add Engagement</a></li>
-                <li><a class="dropdown-item" data-bs-toggle="modal" data-bs-target="#add_qa_comment">Add QA Comment</a></li>
+                <li><a class="dropdown-item" data-bs-toggle="modal" data-bs-target="#backup_scehdule">Backup Schedule</a></li>
+                <li><a class="dropdown-item" data-bs-toggle="modal" data-bs-target="#backup_notifications">Backup Notifications</a></li>
+                <li><a class="dropdown-item" data-bs-toggle="modal" data-bs-target="#manage_backups">Manage Backups</a></li>
             </ul>
         </div>
         <div class="dropdown header-icon">
@@ -264,7 +264,7 @@ $pageName = ucwords($pageName);
     </div>
 <!-- end add-qa-comment -->
 
-<!-- add-client -->
+<!-- manage-client -->
     <div class="modal fade" id="delete_clients" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
         <div class="modal-dialog">
             <div class="modal-content">
@@ -296,8 +296,10 @@ $pageName = ucwords($pageName);
                                     <div><?php echo $dc_client_name; ?></div>
                                 </div>
                                 <div>
-                                    <i class="bi bi-pencil-square" style="color: #005382; cursor: pointer;"></i> &nbsp;&nbsp;
-                                    <i class="bi bi-trash" style="color: #941515; cursor: pointer;"></i>
+                                    <a href=""><i class="bi bi-pencil-square" style="color: #005382; cursor: pointer;"></i></a> &nbsp;&nbsp;
+                                    <a href="?action=delete&dc_id=<?php echo $dc_id; ?>" onclick="return confirm('Are you sure you want to delete this client?');">
+                                        <i class="bi bi-trash" style="color: #941515; cursor: pointer;"></i>
+                                    </a>
                                 </div>
                             </div>
                         </li>
@@ -311,7 +313,37 @@ $pageName = ucwords($pageName);
             </div>
         </div>
     </div>
-<!-- end add-client --> 
+<!-- end manage-client --> 
+
+<!-- delete-client -->
+
+    <?php
+    if (isset($_GET['action']) && $_GET['action'] === 'delete' && isset($_GET['dc_id'])) {
+        $dc_id = intval($_GET['dc_id']); // Sanitize the input to prevent SQL injection
+    
+        // Prepare the SQL query
+        $sql = "DELETE FROM clients WHERE dc_id = ?";
+        if ($stmt = $conn->prepare($sql)) {
+            $stmt->bind_param("i", $dc_id);
+        
+            // Execute the statement
+            if ($stmt->execute()) {
+                // Redirect back to the same page after successful deletion
+                header("Location: " . $_SERVER['PHP_SELF']);
+                exit();
+            } else {
+                echo "<div class='alert alert-danger'>Error deleting client: " . $stmt->error . "</div>";
+            }
+        
+            $stmt->close();
+        } else {
+            echo "<div class='alert alert-danger'>Error preparing the statement: " . $conn->error . "</div>";
+        }
+    }
+    ?>
+
+
+<!-- end delete-client -->
 
 <script>
     document.addEventListener('DOMContentLoaded', function () {
