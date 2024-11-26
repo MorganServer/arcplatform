@@ -388,7 +388,7 @@ $pageName = ucwords($pageName);
                                 </div>
                                 <div>
                                     <!-- Pass the client_id as a data attribute for the edit modal -->
-                                    <a href="#" data-bs-target="#edit_engagement-<?php echo $me_id;?>" data-bs-toggle="modal">
+                                    <a href="#" data-bs-target="#edit_engagement" data-bs-toggle="modal" data-me-id="<?php echo $me_id; ?>">
                                         <i class="bi bi-pencil-square" style="color: #005382; cursor: pointer;"></i>
                                     </a> &nbsp;&nbsp;
                                     <a href="?action=delete&me_id=<?php echo $me_id; ?>" onclick="return confirm('Are you sure you want to delete this engagement?');">
@@ -410,7 +410,7 @@ $pageName = ucwords($pageName);
 <!-- end manage-engagements -->
 
 <!-- edit-engagement -->
-    <div class="modal fade" id="edit_engagement-<?php echo $me_id; ?>" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal fade" id="edit_engagement" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
         <div class="modal-dialog">
             <div class="modal-content">
                 <div class="modal-header">
