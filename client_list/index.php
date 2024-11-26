@@ -82,7 +82,7 @@ redirectIfNotLoggedIn();
                                 <td>
                                     <?php
                                     // Check if the logo exists
-                                    if (!empty($logo)) { ?>
+                                    if (!isset($logo)) { ?>
                                         <img class="me-2" src="<?php echo ROOT_PATH; ?>/assets/images/client_images/<?php echo $logo; ?>.png" width="50" alt="" style="border-radius: 15px;">
                                     <?php } else {
                                         $first_letter = strtoupper(substr($client_name, 0, 1));
