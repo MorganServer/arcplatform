@@ -277,7 +277,7 @@ $pageName = ucwords($pageName);
 
                         <?php
                         // Query to get clients, the total number of engagements, and open QA comments for each client
-                        $dc_sql = "SELECT * FROM clients ORDER BY client_created ASC LIMIT $limit OFFSET $offset";
+                        $dc_sql = "SELECT * FROM clients ORDER BY client_created ASC";
                         $dc_result = mysqli_query($conn, $dc_sql);
                         if ($dc_result) {
                             $dc_num_rows = mysqli_num_rows($dc_result);
