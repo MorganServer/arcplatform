@@ -367,29 +367,49 @@ $pageName = ucwords($pageName);
     var clientId = button.getAttribute('data-dc-id');
     
     // Log the client ID for debugging
-    console.log('Editing client with ID:', clientId);
+    console.log('Client ID passed to modal:', clientId);
 
     // Now, make an AJAX request to fetch client data
     var xhr = new XMLHttpRequest();
     xhr.open("GET", "<?php echo BASE_URL;?>/app/fetch_client_data.php?client_id=" + clientId, true);
+    
+    // Log before sending the request
+    console.log('Sending AJAX request to fetch client data for ID:', clientId);
+
     xhr.onload = function () {
         if (xhr.status == 200) {
-            // Handle the response (assuming the response is the client data)
-            var clientData = JSON.parse(xhr.responseText);
-            
-            // Populate the modal fields with the fetched data
-            if(clientData) {
-                document.getElementById('c_client_name').value = clientData.client_name || '';
-                document.getElementById('c_primary_contact').value = clientData.primary_contact || '';
-                document.getElementById('c_contact_email').value = clientData.contact_email || '';
-                document.getElementById('has_logo').checked = clientData.has_logo === 1;
+            // Log the server response for debugging
+            console.log('AJAX Response:', xhr.responseText);
+
+            try {
+                // Parse the JSON response
+                var clientData = JSON.parse(xhr.responseText);
+                
+                // Log the parsed data for debugging
+                console.log('Parsed client data:', clientData);
+                
+                // Populate the modal fields with the fetched data
+                if(clientData) {
+                    document.getElementById('c_client_name').value = clientData.client_name || '';
+                    document.getElementById('c_primary_contact').value = clientData.primary_contact || '';
+                    document.getElementById('c_contact_email').value = clientData.contact_email || '';
+                    document.getElementById('has_logo').checked = clientData.has_logo === 1;
+                }
+            } catch (e) {
+                console.error('Error parsing response:', e);
             }
         } else {
-            console.error('Failed to fetch client data');
+            console.error('Failed to fetch client data, status:', xhr.status);
         }
     };
+
+    xhr.onerror = function () {
+        console.error('AJAX request failed');
+    };
+
     xhr.send();
 });
+
 
 
 </script>
