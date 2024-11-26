@@ -20,8 +20,8 @@ $pageName = ucwords($pageName);
             <ul class="dropdown-menu">
                 <li><h6 class="dropdown-header">Manage</h6></li>
                 <li><a class="dropdown-item" data-bs-toggle="modal" data-bs-target="#manage_clients">Manage Clients</a></li>
-                <li><a class="dropdown-item" data-bs-toggle="modal" data-bs-target="#manage_engagement">Manage Engagement</a></li>
-                <li><a class="dropdown-item" data-bs-toggle="modal" data-bs-target="#manage_qa_comment">Manage QA Comment</a></li>
+                <li><a class="dropdown-item" data-bs-toggle="modal" data-bs-target="#manage_engagements">Manage Engagements</a></li>
+                <li><a class="dropdown-item" data-bs-toggle="modal" data-bs-target="#manage_qa_comments">Manage QA Comments</a></li>
                 <hr>
                 <li><h6 class="dropdown-header">Backup Actions</h6></li>
                 <li><a class="dropdown-item" data-bs-toggle="modal" data-bs-target="#backup_scehdule">Backup Schedule</a></li>
@@ -265,56 +265,55 @@ $pageName = ucwords($pageName);
 <!-- end add-qa-comment -->
 
 <!-- manage-client -->
-<div class="modal fade" id="manage_clients" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
-    <div class="modal-dialog">
-        <div class="modal-content">
-            <div class="modal-header">
-                <h1 class="modal-title fs-5" id="exampleModalLabel">Manage Clients</h1>
-                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-            </div>
-            <div class="modal-body">
-                <ul class="list-group list-group-flush">
-                    <?php
-                    // Query to get clients
-                    $dc_sql = "SELECT * FROM clients ORDER BY client_created ASC";
-                    $dc_result = mysqli_query($conn, $dc_sql);
-                    if ($dc_result) {
-                        $dc_num_rows = mysqli_num_rows($dc_result);
-                        if ($dc_num_rows > 0) {
-                            while ($dc_row = mysqli_fetch_assoc($dc_result)) {
-                                $dc_idno = $dc_row['idno'];
-                                $dc_id = $dc_row['client_id'];
-                                $dc_client_name = $dc_row['client_name'];
-                    ?>
-                    <li class="list-group-item">
-                        <div class="d-flex justify-content-between align-items-center">
-                            <div>
-                                <div><strong><?php echo $dc_idno; ?></strong></div>
-                                <div><?php echo $dc_client_name; ?></div>
+    <div class="modal fade" id="manage_clients" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h1 class="modal-title fs-5" id="exampleModalLabel">Manage Clients</h1>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                    <ul class="list-group list-group-flush">
+                        <?php
+                        // Query to get clients
+                        $dc_sql = "SELECT * FROM clients ORDER BY client_created ASC";
+                        $dc_result = mysqli_query($conn, $dc_sql);
+                        if ($dc_result) {
+                            $dc_num_rows = mysqli_num_rows($dc_result);
+                            if ($dc_num_rows > 0) {
+                                while ($dc_row = mysqli_fetch_assoc($dc_result)) {
+                                    $dc_idno = $dc_row['idno'];
+                                    $dc_id = $dc_row['client_id'];
+                                    $dc_client_name = $dc_row['client_name'];
+                        ?>
+                        <li class="list-group-item">
+                            <div class="d-flex justify-content-between align-items-center">
+                                <div>
+                                    <div><strong><?php echo $dc_idno; ?></strong></div>
+                                    <div><?php echo $dc_client_name; ?></div>
+                                </div>
+                                <div>
+                                    <!-- Pass the client_id as a data attribute for the edit modal -->
+                                    <a href="#" data-bs-target="#edit_client" data-bs-toggle="modal" data-dc-id="<?php echo $dc_id; ?>">
+                                        <i class="bi bi-pencil-square" style="color: #005382; cursor: pointer;"></i>
+                                    </a> &nbsp;&nbsp;
+                                    <a href="?action=delete&dc_id=<?php echo $dc_id; ?>" onclick="return confirm('Are you sure you want to delete this client?');">
+                                        <i class="bi bi-trash" style="color: #941515; cursor: pointer;"></i>
+                                    </a>
+                                </div>
                             </div>
-                            <div>
-                                <!-- Pass the client_id as a data attribute for the edit modal -->
-                                <a href="#" data-bs-target="#edit_client" data-bs-toggle="modal" data-dc-id="<?php echo $dc_id; ?>">
-                                    <i class="bi bi-pencil-square" style="color: #005382; cursor: pointer;"></i>
-                                </a> &nbsp;&nbsp;
-                                <a href="?action=delete&dc_id=<?php echo $dc_id; ?>" onclick="return confirm('Are you sure you want to delete this client?');">
-                                    <i class="bi bi-trash" style="color: #941515; cursor: pointer;"></i>
-                                </a>
-                            </div>
-                        </div>
-                    </li>
-                    <?php
+                        </li>
+                        <?php
+                                }
                             }
                         }
-                    }
-                    ?>
-                </ul>
+                        ?>
+                    </ul>
+                </div>
             </div>
         </div>
     </div>
-</div>
 <!-- end manage-client -->
-
 
 <!-- edit-client -->
     <div class="modal fade" id="edit_client" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
@@ -357,7 +356,100 @@ $pageName = ucwords($pageName);
     </div>
 <!-- end edit-client -->
 
+<!-- manage-engagements -->
+<div class="modal fade" id="manage_engagements" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h1 class="modal-title fs-5" id="exampleModalLabel">Manage Engagements</h1>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                    <ul class="list-group list-group-flush">
+                        <?php
+                        // Query to get clients
+                        $me_sql = "SELECT * FROM engagement ORDER BY engagement_created ASC";
+                        $me_result = mysqli_query($conn, $me_sql);
+                        if ($me_result) {
+                            $me_num_rows = mysqli_num_rows($me_result);
+                            if ($me_num_rows > 0) {
+                                while ($me_row = mysqli_fetch_assoc($me_result)) {
+                                    $me_id = $me_row['engagement_id'];
+                                    $me_idno = $me_row['idno'];
+                                    $me_id = $me_row['client_id'];
+                                    $me_client_name = $me_row['client_name'];
+                                    $me_engagement_type = $me_row['engagement_type'];
+                                    $me_year = $me_row['year'];
+                        ?>
+                        <li class="list-group-item">
+                            <div class="d-flex justify-content-between align-items-center">
+                                <div>
+                                    <div><strong><?php echo $me_idno; ?></strong></div>
+                                    <div><?php echo $me_client_name; ?> - <?php echo $me_year; ?> <?php echo $me_engagement_type; ?></div>
+                                </div>
+                                <div>
+                                    <!-- Pass the client_id as a data attribute for the edit modal -->
+                                    <a href="#" data-bs-target="#edit_engagement" data-bs-toggle="modal" data-me-id="<?php echo $me_id; ?>">
+                                        <i class="bi bi-pencil-square" style="color: #005382; cursor: pointer;"></i>
+                                    </a> &nbsp;&nbsp;
+                                    <a href="?action=delete&me_id=<?php echo $me_id; ?>" onclick="return confirm('Are you sure you want to delete this engagement?');">
+                                        <i class="bi bi-trash" style="color: #941515; cursor: pointer;"></i>
+                                    </a>
+                                </div>
+                            </div>
+                        </li>
+                        <?php
+                                }
+                            }
+                        }
+                        ?>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+<!-- end manage-engagements -->
 
+<!-- edit-engagement -->
+    <div class="modal fade" id="edit_client" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h1 class="modal-title fs-5" id="exampleModalLabel">Edit Client</h1>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                    <form id="editClientForm" method="POST" class="row g-3">
+                        <input type="hidden" name="edit_client_id" id="edit_client_id">
+                        <div class="col-md-6">
+                            <label for="c_client_name" class="form-label">Client Name</label>
+                            <input type="text" class="form-control" id="me_edit_client_name" name="me_edit_client_name" required>
+                        </div>
+                        <div class="col-md-6">
+                            <label for="c_primary_contact" class="form-label">Primary Contact</label>
+                            <input type="text" class="form-control" id="me_edit_primary_contact" name="me_edit_primary_contact" required>
+                        </div>
+                        <div class="col-md-6">
+                            <label for="c_contact_email" class="form-label">Contact Email</label>
+                            <input type="email" class="form-control" id="edit_contact_email" name="edit_contact_email" required>
+                        </div>
+                        <div class="col-12">
+                            <div class="form-check">
+                                <input class="form-check-input" type="checkbox" value="1" id="edit_has_logo" name="edit_has_logo">
+                                <label class="form-check-label" for="has_logo">
+                                    Client has a logo
+                                </label>
+                            </div>
+                        </div>
+                        <div class="col-12">
+                            <button type="submit" name="edit_client" class="btn btn-primary">Submit</button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+<!-- end edit-client -->
 
 
 <script>
@@ -416,7 +508,6 @@ $pageName = ucwords($pageName);
 
 
 </script>
-
 
 <script>
     document.addEventListener('DOMContentLoaded', function () {
