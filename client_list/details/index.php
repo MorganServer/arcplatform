@@ -151,7 +151,7 @@ redirectIfNotLoggedIn();
                                                             </div>
                                                                 
                                                             
-                                                            <div class="right ms-3 d-flex flex-column align-items-start">
+                                                            <div class="right ms-4 d-flex flex-column align-items-start">
                                                                 <h5 class="card-title text-start"><?php echo $off_engagement_type; ?></h5>
                                                                 <p class="card-text text-start">
                                                                     <?php if(!isset($off_report_as_of)) { ?>
