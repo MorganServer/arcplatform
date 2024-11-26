@@ -269,29 +269,29 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['followup_owner'])) {
                                   </div>
                                   <div class="modal-body">
 
-                                    <form class="row g-3 p-3">
-                                        <div class="form-check">
-                                            <input class="form-check-input" type="checkbox" value="" id="flexCheckDefault">
-                                            <label class="form-check-label" for="flexCheckDefault">
-                                                New Comments
-                                            </label>
-                                        </div>
-                                        <div class="form-check">
-                                            <input class="form-check-input" type="checkbox" value="" id="flexCheckDefault">
-                                            <label class="form-check-label" for="flexCheckDefault">
-                                                Follow-Up Comments
-                                            </label>
-                                        </div>
-                                        <div class="form-check">
-                                            <input class="form-check-input" type="checkbox" value="" id="flexCheckChecked">
-                                            <label class="form-check-label" for="flexCheckChecked">
-                                                Completed Comments
-                                            </label>
-                                        </div>
-                                        <div class="col-12 pt-3">
-                                            <button type="submit" class="btn btn-primary"><i class="bi bi-download"></i>&nbsp;&nbsp;Comment Report</button>
-                                        </div>
-                                    </form>
+                                  <form action="comment_report.php" method="POST" class="row g-3 p-3">
+    <div class="form-check">
+        <input class="form-check-input" type="checkbox" value="new" id="newComments" name="options[]">
+        <label class="form-check-label" for="newComments">
+            New Comments
+        </label>
+    </div>
+    <div class="form-check">
+        <input class="form-check-input" type="checkbox" value="follow-up" id="followUpComments" name="options[]">
+        <label class="form-check-label" for="followUpComments">
+            Follow-Up Comments
+        </label>
+    </div>
+    <div class="form-check">
+        <input class="form-check-input" type="checkbox" value="completed" id="completedComments" name="options[]">
+        <label class="form-check-label" for="completedComments">
+            Completed Comments
+        </label>
+    </div>
+    <div class="col-12 pt-3">
+        <button type="submit" class="btn btn-primary"><i class="bi bi-download"></i>&nbsp;&nbsp;Comment Report</button>
+    </div>
+</form>
                                     
 
                                   </div>
@@ -724,50 +724,6 @@ updateProgressCircle(<?php echo $percentage_completed; ?>); // Update to 75% pro
 </script>
 
 <script>
-//     document.addEventListener('submit', function(e) {
-
-//     // Ensure the form has the followup-comment-form class
-//     if (e.target.classList.contains('followup-comment-form')) {
-//         e.preventDefault(); // Prevent the form from submitting normally
-
-//         // Gather form data using FormData
-//         const formData = new FormData(e.target);
-
-//         // Log form data for debugging
-//         for (const [key, value] of formData.entries()) {
-//             console.log(key + ": " + value);
-//         }
-
-//         // Send an AJAX request to the server
-//         fetch(window.location.href, { // Use current URL for the request
-//             method: 'POST',
-//             body: formData
-//         })
-//         .then(response => {
-//             if (!response.ok) {
-//                 throw new Error("Network response was not ok");
-//             }
-//             return response.text(); // Expect only the comment HTML snippet
-//         })
-//         .then(data => {
-//             // Get the qa_id from the form data
-//             const qaId = formData.get('qa_id');
-            
-//             // Find the container element where comments are displayed
-//             const container = document.getElementById('followup-comments-container-' + qaId);
-
-//             // Append the new comment to the container
-//             container.insertAdjacentHTML('afterbegin', data);
-
-//             // Clear the form fields after submission
-//             document.getElementById('followup_comment-' + qaId).value = '';
-//             document.getElementById('followup_owner-' + qaId).value = '';
-//         })
-//         .catch(error => {
-//             console.error('Error:', error);
-//         });
-//     }
-// });
 
 document.querySelectorAll('.followup-comment-form').forEach(form => {
     form.addEventListener('submit', function(e) {
@@ -791,6 +747,7 @@ document.querySelectorAll('.followup-comment-form').forEach(form => {
 
 
 </script>
+
 
 
 
