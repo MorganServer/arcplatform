@@ -16,87 +16,117 @@ if (isset($_GET['logout']) && $_GET['logout'] == 1) {
 
 redirectIfNotLoggedIn();
 
-// Ensure the script runs only when needed
-if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['followup_owner'])) {
-    // Connect to your database (ensure $conn is initialized)
-    // require_once 'db_connection.php';
+// Complete Engagement                  
+    if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['complete_engagement'])) {
+        $engagement_id = intval($_POST['engagement_id']);
+        $status = $_POST['status'];
 
-    $qaId = intval($_POST['qa_id']);
-    $comment = trim($_POST['followup_comment']);
-    $owner = trim($_POST['followup_owner']);
-    $engagement_id = intval($_POST['engagement_id']);
+        // Prepare the SQL query
+        $sql = "UPDATE engagement SET status = ? WHERE engagement_id = ?";
+        if ($stmt = $conn->prepare($sql)) {
+            $stmt->bind_param("si", $status, $engagement_id);
+        
+            // Execute the statement
+            if ($stmt->execute()) {
+                // Redirect to the same page after successful update
+                header("Location: " . $_SERVER['PHP_SELF']);
+                exit();
+            } else {
+                // Log the error for debugging purposes (optional)
+                error_log("Error executing statement: " . $stmt->error);
+            }
+        
+            $stmt->close();
+        } else {
+            // Log the error for debugging purposes (optional)
+            error_log("Error preparing the SQL statement: " . $conn->error);
+        }
+    }               
+// end Complete Engagement PHP
 
-    // Input validation
-    if (!$qaId || !$engagement_id || empty($comment) || empty($owner)) {
-        die("Invalid input. Please provide all required data.");
-    }
+// Add Followup Comment
+    // Ensure the script runs only when needed
+    if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['followup_owner'])) {
+        // Connect to your database (ensure $conn is initialized)
+        // require_once 'db_connection.php';
 
-    // Generate a unique random idno
-    $idno = null;
-    do {
-        $idno = rand(100000, 999999);
-        $checkQuery = "SELECT idno FROM followup_qa_comments WHERE idno = ?";
-        $stmt = $conn->prepare($checkQuery);
+        $qaId = intval($_POST['qa_id']);
+        $comment = trim($_POST['followup_comment']);
+        $owner = trim($_POST['followup_owner']);
+        $engagement_id = intval($_POST['engagement_id']);
+
+        // Input validation
+        if (!$qaId || !$engagement_id || empty($comment) || empty($owner)) {
+            die("Invalid input. Please provide all required data.");
+        }
+
+        // Generate a unique random idno
+        $idno = null;
+        do {
+            $idno = rand(100000, 999999);
+            $checkQuery = "SELECT idno FROM followup_qa_comments WHERE idno = ?";
+            $stmt = $conn->prepare($checkQuery);
+            if (!$stmt) {
+                die("SQL prepare failed (check idno): (" . $conn->errno . ") " . $conn->error);
+            }
+            $stmt->bind_param("i", $idno);
+            $stmt->execute();
+            $stmt->store_result();
+            $isDuplicate = $stmt->num_rows > 0;
+            $stmt->close();
+        } while ($isDuplicate);
+
+        // Prepare SQL to insert the follow-up comment
+        $insertQuery = "INSERT INTO followup_qa_comments (idno, qa_id, engagement_id, followup_comment, followup_owner) 
+                        VALUES (?, ?, ?, ?, ?)";
+        $stmt = $conn->prepare($insertQuery);
         if (!$stmt) {
-            die("SQL prepare failed (check idno): (" . $conn->errno . ") " . $conn->error);
+            die("SQL prepare failed (insert comment): (" . $conn->errno . ") " . $conn->error);
+        }
+
+        $stmt->bind_param("iiiss", $idno, $qaId, $engagement_id, $comment, $owner);
+
+        // Execute the insert query
+        if (!$stmt->execute()) {
+            die("Execution failed (insert comment): (" . $stmt->errno . ") " . $stmt->error);
+        }
+        $stmt->close();
+
+        // Fetch the newly inserted follow-up comment
+        $fetchQuery = "SELECT * FROM followup_qa_comments WHERE idno = ?";
+        $stmt = $conn->prepare($fetchQuery);
+        if (!$stmt) {
+            die("SQL prepare failed (fetch comment): (" . $conn->errno . ") " . $conn->error);
         }
         $stmt->bind_param("i", $idno);
         $stmt->execute();
-        $stmt->store_result();
-        $isDuplicate = $stmt->num_rows > 0;
+        $result = $stmt->get_result();
+        $row = $result->fetch_assoc();
         $stmt->close();
-    } while ($isDuplicate);
 
-    // Prepare SQL to insert the follow-up comment
-    $insertQuery = "INSERT INTO followup_qa_comments (idno, qa_id, engagement_id, followup_comment, followup_owner) 
-                    VALUES (?, ?, ?, ?, ?)";
-    $stmt = $conn->prepare($insertQuery);
-    if (!$stmt) {
-        die("SQL prepare failed (insert comment): (" . $conn->errno . ") " . $conn->error);
+        if (!$row) {
+            die("Failed to fetch the newly inserted comment.");
+        }
+
+        // Escape the comment for display
+        $commentText = htmlspecialchars($row['followup_comment']);
+        $createdAt = date("F j, Y, g:i a", strtotime($row['followup_created']));
+        $followupOwner = htmlspecialchars($row['followup_owner']);
+
+        // Return the new comment HTML
+        echo "<div class='comment'>
+            <div class='comment-header'>
+                <span class='comment-time'>$createdAt</span>
+                <span class='comment-author'>$followupOwner</span>
+            </div>
+            <div class='comment-body mt-2'>
+                <p>$commentText</p>
+            </div>
+        </div>";
+
+        exit;
     }
-
-    $stmt->bind_param("iiiss", $idno, $qaId, $engagement_id, $comment, $owner);
-
-    // Execute the insert query
-    if (!$stmt->execute()) {
-        die("Execution failed (insert comment): (" . $stmt->errno . ") " . $stmt->error);
-    }
-    $stmt->close();
-
-    // Fetch the newly inserted follow-up comment
-    $fetchQuery = "SELECT * FROM followup_qa_comments WHERE idno = ?";
-    $stmt = $conn->prepare($fetchQuery);
-    if (!$stmt) {
-        die("SQL prepare failed (fetch comment): (" . $conn->errno . ") " . $conn->error);
-    }
-    $stmt->bind_param("i", $idno);
-    $stmt->execute();
-    $result = $stmt->get_result();
-    $row = $result->fetch_assoc();
-    $stmt->close();
-
-    if (!$row) {
-        die("Failed to fetch the newly inserted comment.");
-    }
-
-    // Escape the comment for display
-    $commentText = htmlspecialchars($row['followup_comment']);
-    $createdAt = date("F j, Y, g:i a", strtotime($row['followup_created']));
-    $followupOwner = htmlspecialchars($row['followup_owner']);
-
-    // Return the new comment HTML
-    echo "<div class='comment'>
-        <div class='comment-header'>
-            <span class='comment-time'>$createdAt</span>
-            <span class='comment-author'>$followupOwner</span>
-        </div>
-        <div class='comment-body mt-2'>
-            <p>$commentText</p>
-        </div>
-    </div>";
-
-    exit;
-}
+// End Followup Comment
 ?>
 
 
@@ -205,35 +235,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['followup_owner'])) {
                         </button>
                     </form>
 
-                    <!-- Complete Engagement PHP -->
-                        <?php
-                        if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['complete_engagement'])) {
-                            $engagement_id = intval($_POST['engagement_id']);
-                            $status = $_POST['status'];
-                        
-                            // Prepare the SQL query
-                            $sql = "UPDATE engagement SET status = ? WHERE engagement_id = ?";
-                            if ($stmt = $conn->prepare($sql)) {
-                                $stmt->bind_param("si", $status, $engagement_id);
-                            
-                                // Execute the statement
-                                if ($stmt->execute()) {
-                                    // Redirect to the same page after successful update
-                                    header("Location: " . $_SERVER['PHP_SELF']);
-                                    exit();
-                                } else {
-                                    // Log the error for debugging purposes (optional)
-                                    error_log("Error executing statement: " . $stmt->error);
-                                }
-                            
-                                $stmt->close();
-                            } else {
-                                // Log the error for debugging purposes (optional)
-                                error_log("Error preparing the SQL statement: " . $conn->error);
-                            }
-                        }
-                        ?>
-                    <!-- end Complete Engagement PHP -->
+                    
                     
                 </div>
                 <?php } else { ?>
