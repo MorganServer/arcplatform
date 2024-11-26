@@ -8,7 +8,7 @@ include('database/connection.php'); // Update this to the correct path
 
 // Check if the client_id is passed via GET request
 if (isset($_GET['engagement_id'])) {
-    $client_id = $_GET['engagement_id'];
+    $engagement_id = $_GET['engagement_id'];
 
     // Debug: Log the client_id received in the GET request
     error_log("Received engagement_id: " . $engagement_id);
