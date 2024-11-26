@@ -32,7 +32,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         $statuses = "'$statuses'";
 
         // Log the prepared query
-        $sql = "SELECT comment FROM qa_comments WHERE status IN ($statuses) AND engagement_id = ?";
+        $sql = "SELECT qa_comment FROM qa_comments WHERE status IN ($statuses) AND engagement_id = ?";
         file_put_contents($logFile, "SQL Query: $sql\n", FILE_APPEND);
 
         // Prepare and execute the statement
