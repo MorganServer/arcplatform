@@ -3,7 +3,7 @@
 ini_set('display_errors', 1);
 error_reporting(E_ALL);
 
-require(ROOT_PATH . '/app/fpdf/fpdf.php');
+require(BASE_URL . '/app/fpdf/fpdf.php');
 require(ROOT_PATH . '/app/database/connection.php'); // Include your database connection file
 
 // Debugging: Check if POST data is being received correctly
