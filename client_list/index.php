@@ -33,7 +33,7 @@ redirectIfNotLoggedIn();
     <?php include(ROOT_PATH . "/app/includes/sub_header.php"); ?>
 
     <!-- main-container -->
-    <!-- <div class="container" style="padding: 0 5px 0 5px;"> -->
+    <div class="" style="padding: 0 5px 0 5px;">
             <h2 class="mt-4">
                 Client List
             </h2>
@@ -150,7 +150,7 @@ redirectIfNotLoggedIn();
             echo '</ul>';
         ?>
 
-        <!-- </div> -->
+        </div>
     <!-- END main-container -->
 
 </body>
