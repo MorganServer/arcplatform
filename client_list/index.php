@@ -80,22 +80,22 @@ redirectIfNotLoggedIn();
 
                                 <tr class="client-list-row" onclick="window.location.href='<?php echo BASE_URL; ?>/client_list/details/?id=<?php echo $id; ?>'">
                                 <td>
-    <?php
-    // Check if the logo exists and display it, otherwise show a circle with the first letter
-    if (!empty($logo)) { ?>
-        <img class="me-2" src="<?php echo BASE_URL; ?>/assets/images/client_images/<?php echo $logo; ?>.png" width="50" style="border-radius: 15px;">
-        <?php echo $client_name ? $client_name : '-'; ?>
-    <?php } else {
-        $first_letter = strtoupper(substr($client_name, 0, 1));
-    ?>
-        <div class="d-flex align-items-center">
-            <div class="me-2" style="background-color: <?php echo $random_color; ?>; width: 50px; height: 50px; border-radius: 15px; display: flex; justify-content: center; align-items: center; font-size: 24px; color: white;">
-                <?php echo $first_letter; ?>
-            </div>
-            <span><?php echo $client_name ? $client_name : '-'; ?></span>
-        </div>
-    <?php } ?>
-</td>
+                                    <?php
+                                    // Check if the logo exists and display it, otherwise show a circle with the first letter
+                                    if (!empty($logo)) { ?>
+                                        <img class="me-2" src="<?php echo BASE_URL; ?>/assets/images/client_images/<?php echo $logo; ?>.png" width="50" style="border-radius: 15px;">
+                                        <?php echo $client_name ? $client_name : '-'; ?>
+                                    <?php } else {
+                                        $first_letter = strtoupper(substr($client_name, 0, 1));
+                                    ?>
+                                        <div class="d-flex align-items-center">
+                                            <div class="me-2" style="background-color: <?php echo $random_color; ?>; width: 50px; height: 50px; border-radius: 15px; display: flex; justify-content: center; align-items: center; font-size: 24px; color: white;">
+                                                <?php echo $first_letter; ?>
+                                            </div>
+                                            <span><?php echo $client_name ? $client_name : '-'; ?></span>
+                                        </div>
+                                    <?php } ?>
+                                </td>
 
 
                                     <td>
@@ -157,23 +157,28 @@ redirectIfNotLoggedIn();
         </table>
         <br>
         <?php
-            // Pagination links
-            $sql_total = "SELECT COUNT(*) as total FROM clients";
-            $result_total = mysqli_query($conn, $sql_total);
-            if ($result_total) {
-                $row = mysqli_fetch_assoc($result_total);
-                $total_pages = ceil($row["total"] / $limit);
-            } else {
-                $total_pages = 1;
-            }
+    // Pagination logic
+    $sql_total = "SELECT COUNT(*) as total FROM clients";
+    $result_total = mysqli_query($conn, $sql_total);
+    if ($result_total) {
+        $row = mysqli_fetch_assoc($result_total);
+        $total_records = $row["total"];
+        $total_pages = ceil($total_records / $limit);
+    } else {
+        $total_pages = 1; // If there is an error, default to 1 page
+    }
 
-            echo '<ul class="pagination justify-content-center">';
-            for ($i = 1; $i <= $total_pages; $i++) {
-                $active = ($page == $i) ? "active" : "";
-                echo "<li class='page-item {$active}'><a class='page-link' href='?page={$i}'>{$i}</a></li>";
-            }
-            echo '</ul>';
-        ?>
+    // Display pagination if there are more than 10 records
+    if ($total_records > $limit) {
+        echo '<ul class="pagination justify-content-center">';
+        for ($i = 1; $i <= $total_pages; $i++) {
+            $active = ($page == $i) ? "active" : "";
+            echo "<li class='page-item {$active}'><a class='page-link' href='?page={$i}'>{$i}</a></li>";
+        }
+        echo '</ul>';
+    }
+?>
+
 
         </div>
     <!-- END main-container -->
