@@ -73,7 +73,7 @@ redirectIfNotLoggedIn();
             
             <div class="mt-2"></div>
             <div class="card-container">
-                <div class="card details_card" style="width: 100%;">
+                <div class="card details_card" style="width: 100%; height: 250px;">
                   <div class="card-body">
                     <h5 class="card-title"></h5>
                     <p class="card-text">
