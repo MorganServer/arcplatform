@@ -77,7 +77,7 @@ redirectIfNotLoggedIn();
 
                                 ?>
 
-                                <tr class="client-list-row">
+                                <tr class="client-list-row" style="height: 70px !important; position: relative;">
                                     <td>
                                         <img class="me-2" src="<?php ROOT_PATH; ?>/assets/images/client_images/<?php echo $logo; ?>.png" width="50" alt="" style="border-radius: 15px;">
                                         <?php echo $client_name ? $client_name : '-'; ?>
@@ -126,11 +126,12 @@ redirectIfNotLoggedIn();
                                         }
                                         ?>
                                     </td>
-                                    <td style="width: 100px; text-align: center; position: relative;">
-                                        <a class="text-secondary stretched-link" href="<?php echo BASE_URL; ?>/asset/view/?id=<?php echo $id; ?>">
+                                    <td style="width: 100px; text-align: center;">
                                             <i class="bi bi-chevron-right"></i>
-                                        </a>
-                                    </td>
+                                        </td>
+                                        <!-- Stretched link covers the whole row -->
+                                        <a class="stretched-link" href="<?php echo BASE_URL; ?>/asset/view/?id=<?php echo $id; ?>"></a>
+                                    </tr>
                                                                         
                                 </tr>
                                 <?php
