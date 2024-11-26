@@ -164,11 +164,15 @@ redirectIfNotLoggedIn();
                                                                         <span class="text-secondary"><strong>Audit Period:&nbsp;&nbsp;</strong></span>As of <?php echo $formatted_as_of; ?>
                                                                     <?php } ?> 
                                                                     <br>
-                                                                    <div class="mt-2"></div>
-                                                                    <span style="font-size: 14px !important;"><span class="text-secondary"><strong>Fieldwork Week:&nbsp;&nbsp;</strong></span><?php echo $formatted_fw_week; ?></span>
+                                                                    <span class="d-block mt-2" style="font-size: 14px !important;">
+                                                                        <span class="text-secondary"><strong>Fieldwork Week:&nbsp;&nbsp;</strong></span><?php echo $formatted_fw_week; ?>
+                                                                    </span>
                                                                     <br>
-                                                                    <span style="font-size: 14px !important;"><span class="text-secondary"><strong>Leadsheets Due:&nbsp;&nbsp;</strong></span><?php echo $formatted_leadsheets_due; ?></span>
+                                                                    <span class="d-block mt-2" style="font-size: 14px !important;">
+                                                                        <span class="text-secondary"><strong>Leadsheets Due:&nbsp;&nbsp;</strong></span><?php echo $formatted_leadsheets_due; ?>
+                                                                    </span>
                                                                 </p>
+
                                                                     
                                                             </div>
 
