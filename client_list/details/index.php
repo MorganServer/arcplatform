@@ -142,12 +142,13 @@ redirectIfNotLoggedIn();
                                                             Report Period: <?php echo $formatted_start; ?> to <?php echo $formatted_end; ?><br>
                                                             Report As Of: <?php echo $formatted_as_of; ?>
                                                         </p>
-                                                        <div class="card-footer">
+                                                        
+                                                        
+                                                    </div>
+                                                    <div class="card-footer">
                                                             <a href="#" class="card-link">View Details</a>
                                                             <a href="#" class="card-link">Another Action</a>
                                                         </div>
-                                                        
-                                                    </div>
                                                 </div>
                                             </div>
                                 <?php
