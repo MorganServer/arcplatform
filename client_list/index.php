@@ -42,13 +42,13 @@ redirectIfNotLoggedIn();
             <table class="table">
             <thead style="bg-dark text-white">
                 <tr>
-                    <th scope="col">ID</th>
-                    <th scope="col">Name</th>
-                    <th scope="col">Number of Engagements</th>
-                    <th scope="col">Open QA Comments</th>
-                    <th style="width: 100px; text-align: center;">View</th>
-                    <th style="width: 100px; text-align: center;">Edit</th>
-                    <th style="width: 100px; text-align: center;">Delete</th>
+                    <!-- <th scope="col">ID</th> -->
+                    <th scope="col">Client</th>
+                    <th scope="col">Current Frameworks</th>
+                    <!-- <th scope="col">Open QA Comments</th> -->
+                    <th style="width: 100px; text-align: center;"><i class="bi bi-chevron-right"></i></th>
+                    <!-- <th style="width: 100px; text-align: center;">Edit</th> -->
+                    <!-- <th style="width: 100px; text-align: center;">Delete</th> -->
                 </tr>
             </thead>
 
@@ -70,37 +70,46 @@ redirectIfNotLoggedIn();
                                 $idno = $row['idno'];
                                 $id = $row['client_id'];
                                 $client_name = $row['client_name'];
+
                                 ?>
 
                                 <tr>
                                     <th scope="row"><?php echo $idno; ?></th>
                                     <td><?php echo $client_name ? $client_name : '-'; ?></td>
                                     <td>
-                                        <?php
-                                            // Counting engagements for the client
-                                            $sql_engagements = "SELECT COUNT(*) FROM engagement WHERE client_name='$client_name'";
-                                            $result_engagements = mysqli_query($conn, $sql_engagements);
-                                            if ($result_engagements) {
-                                                $rowtotal = mysqli_fetch_array($result_engagements);
-                                                echo ($rowtotal[0] < 10) ? "0$rowtotal[0]" : "$rowtotal[0]";
+                                        <?php 
+                                        $e_sql = "SELECT * FROM engagement WHERE client_name='$client_name'";
+                                        $e_result = mysqli_query($conn, $e_sql);
+
+                                        if ($e_result) {
+                                            $e_num_rows = mysqli_num_rows($e_result);
+                                            if ($e_num_rows > 0) {
+                                                while ($e_row = mysqli_fetch_assoc($e_result)) {
+                                                    $engagement_type = $e_row['engagement_type'];
+                                                
+                                                    // Check for specific engagement types and print them
+                                                    if (strpos($engagement_type, 'SOC 2') !== false) {
+                                                        echo "SOC 2";
+                                                    } elseif (strpos($engagement_type, 'SOC 1') !== false) {
+                                                        echo "SOC 1";
+                                                    } elseif (strpos($engagement_type, 'PCI') !== false) {
+                                                        echo "PCI";
+                                                    } elseif (strpos($engagement_type, 'HIPAA') !== false) {
+                                                        echo "HIPAA";
+                                                    } else {
+                                                        echo "Other: " . htmlspecialchars($engagement_type);
+                                                    }
+                                                    echo "<br>"; // Add a line break for multiple rows
+                                                }
                                             } else {
-                                                echo "Error in query: " . mysqli_error($conn);
+                                                echo "No engagement types found.";
                                             }
+                                        } else {
+                                            echo "Error executing query.";
+                                        }
                                         ?>
                                     </td>
-                                    <td>
-                                        <?php
-                                            // Counting open QA comments for the client
-                                            $sql_qa = "SELECT COUNT(*) FROM qa_comments WHERE client_name='$client_name' AND status!='Completed'";
-                                            $result_qa = mysqli_query($conn, $sql_qa);
-                                            if ($result_qa) {
-                                                $rowtotal = mysqli_fetch_array($result_qa);
-                                                echo ($rowtotal[0] < 10) ? "0$rowtotal[0]" : "$rowtotal[0]";
-                                            } else {
-                                                echo "Error in query: " . mysqli_error($conn);
-                                            }
-                                        ?>
-                                    </td>
+                                    
 
                                     <td style="width: 100px; text-align: center;">
                                         <a href="<?php echo BASE_URL; ?>/asset/view/?id=<?php echo $id; ?>" class="view">
