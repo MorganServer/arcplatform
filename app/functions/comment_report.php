@@ -7,15 +7,12 @@ ini_set('display_errors', 1);
 error_reporting(E_ALL);
 
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
-    // Initialize debugging log file (optional)
-    $logFile = ROOT_PATH . '/logs/debug.log';
-    file_put_contents($logFile, "---- Debug Log Start ----\n", FILE_APPEND);
-
     try {
         // Get selected options (statuses) from the request
         $options = isset($_POST['options']) ? $_POST['options'] : [];
         $e_id = isset($_POST['e_id']) ? intval($_POST['e_id']) : null; // Ensure it's an integer
 
+        // Validate inputs
         if (empty($options)) {
             throw new Exception('No statuses selected. Please choose at least one option.');
         }
@@ -24,18 +21,12 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             throw new Exception('Engagement ID missing. Please provide a valid engagement ID.');
         }
 
-        // Log inputs
-        file_put_contents($logFile, "Selected Options: " . implode(',', $options) . "\nEngagement ID: $e_id\n", FILE_APPEND);
-
         // Sanitize and prepare statuses for SQL
         $statuses = implode("','", array_map([$conn, 'real_escape_string'], $options));
         $statuses = "'$statuses'";
 
-        // Log the prepared query
+        // Prepare and execute the SQL query
         $sql = "SELECT qa_comment FROM qa_comments WHERE status IN ($statuses) AND engagement_id = ?";
-        file_put_contents($logFile, "SQL Query: $sql\n", FILE_APPEND);
-
-        // Prepare and execute the statement
         $stmt = $conn->prepare($sql);
         if (!$stmt) {
             throw new Exception('SQL statement preparation failed: ' . $conn->error);
@@ -57,9 +48,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 
         $stmt->close();
 
-        // Log the fetched comments
-        file_put_contents($logFile, "Fetched Comments: " . print_r($comments, true) . "\n", FILE_APPEND);
-
+        // Check if comments were fetched
         if (empty($comments)) {
             throw new Exception('No comments found for the selected options.');
         }
@@ -83,21 +72,12 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             $pdf->Ln(5);
         }
 
-        // Log PDF creation success
-        file_put_contents($logFile, "PDF created successfully.\n", FILE_APPEND);
-
         // Output the PDF
         $pdf->Output('D', 'Comment_Report.pdf'); // Forces download
 
     } catch (Exception $e) {
-        // Log error
-        file_put_contents($logFile, "Error: " . $e->getMessage() . "\n", FILE_APPEND);
-
         // Display error message to user
         die('Error: ' . $e->getMessage());
     }
-
-    // Log end
-    file_put_contents($logFile, "---- Debug Log End ----\n", FILE_APPEND);
 }
 ?>
