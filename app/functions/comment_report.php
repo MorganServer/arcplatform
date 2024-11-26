@@ -105,7 +105,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
                     $pdf->Rect($pdf->GetX(), $pdf->GetY(), 180, 50, 'D'); // Draw rectangle around the section
                     
                     // Print comment details inside the border
-                    $pdf->SetXY($pdf->GetX(), $pdf->GetY()); // Adjust for padding inside the box
+                    $pdf->SetXY($pdf->GetX() + 10, $pdf->GetY() + 10); // Adjust for padding inside the box
                     $pdf->Cell(0, 10, "Control Reference: " . $comment['control_ref'], 0, 1);
                     $pdf->Cell(0, 10, "Cell Reference: " . $comment['cell_reference'], 0, 1);
                     $pdf->Cell(0, 10, "Comment By: " . $comment['comment_by'], 0, 1);
