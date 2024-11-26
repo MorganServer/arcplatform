@@ -363,3 +363,15 @@ body {
     cursor: pointer;
 }
 
+
+
+.accordion-button {
+    background-color: transparent !important;
+    border: none !important; /* Optional: removes the border */
+    color: #000; /* Optional: adjust the text color */
+}
+
+/* Optional: Change hover effect to have no background */
+.accordion-button:hover {
+    background-color: transparent !important;
+}
