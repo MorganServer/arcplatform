@@ -132,7 +132,7 @@ redirectIfNotLoggedIn();
                                         $formatted_as_of = date("m/d/Y", strtotime($off_report_as_of));
                             ?>
                                         <div class="col-md-4 mb-4"> <!-- Make the cards responsive and inline -->
-                                            <div class="card" style="width: 18rem;">
+                                            <div class="card" style="width: 25rem;">
                                                 <div class="card-body">
                                                     <h5 class="card-title"><?php echo $off_engagement_type; ?></h5>
                                                     <h6 class="card-subtitle mb-2 text-muted"><?php echo $off_client_name; ?> - <?php echo $off_year; ?></h6>
