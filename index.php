@@ -8,7 +8,9 @@ ini_set('log_errors', 1); // Enable error logging
 ini_set('error_log', __DIR__ . '/php_errors.log'); // Log errors to a file
 
 // Use absolute paths for includes
-require_once __DIR__ . '/../database/connection.php'; // Ensure correct path
+// Use an absolute path to include connection.php
+require_once $_SERVER['DOCUMENT_ROOT'] . '/database/connection.php'; 
+
 
 // Handle the form submission
 if ($_SERVER["REQUEST_METHOD"] === "POST") {
