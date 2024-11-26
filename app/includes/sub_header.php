@@ -330,22 +330,31 @@ $pageName = ucwords($pageName);
                 <input type="text" id="edit_dc_id" name="edit_dc_id" value="<?php echo $dc_id; ?>">
 
                 <?php
-                $ec_id = $_GET['edit_dc_id'];
-                $ec_sql = "SELECT * FROM clients WHERE client_id = '$ec_id'";
-                $ec_result = mysqli_query($conn, $ec_sql);
-                if ($ec_result) {
-                    $ec_num_rows = mysqli_num_rows($ec_result);
-                    if ($ec_num_rows > 0) {
-                        while ($ec_row = mysqli_fetch_assoc($ec_result)) {
-                            $ec_idno = $ec_row['idno'];
-                            $ec_client_name = $ec_row['client_name'];
-                            $ec_primary_contact = $ec_row['primary_contact'];
-                            $ec_contact_email = $ec_row['contact_email'];
-                            $ec_has_logo = $ec_row['logo'];
-                        }
-                    }
-                }
-                ?>
+// Check if the variable is set and capture the value
+if (isset($_POST['ec_id_capture'])) {
+    $ec_id_capture = $_POST['ec_id_capture'];
+
+    // Now you can use this variable for your SQL query or whatever logic you need
+    echo "Captured ID: " . $ec_id_capture;
+
+    // Example SQL query using $ec_id_capture
+    $ec_sql = "SELECT * FROM clients WHERE client_id = '$ec_id_capture'";
+    $ec_result = mysqli_query($conn, $ec_sql);
+    if ($ec_result) {
+        $ec_num_rows = mysqli_num_rows($ec_result);
+        if ($ec_num_rows > 0) {
+            while ($ec_row = mysqli_fetch_assoc($ec_result)) {
+                $ec_idno = $ec_row['idno'];
+                $ec_client_name = $ec_row['client_name'];
+                $ec_primary_contact = $ec_row['primary_contact'];
+                $ec_contact_email = $ec_row['contact_email'];
+                $ec_has_logo = $ec_row['logo'];
+            }
+        }
+    }
+}
+?>
+
 
 
                 <form method="POST" class="row g-3">
@@ -399,15 +408,28 @@ $pageName = ucwords($pageName);
 </script>
 
 <script>
-    // When the modal is about to be shown
-    var editClientModal = document.getElementById('edit_client');
-    editClientModal.addEventListener('show.bs.modal', function (event) {
-        // Get the clicked button (triggering the modal)
-        var button = event.relatedTarget;
-        var dc_id = button.getAttribute('data-dc-id'); // Get client ID from the clicked link
-        
-        // Set the value of the hidden input field
-        document.getElementById('edit_dc_id').value = dc_id;
-    });
+    // Grab the content of the <p> element with id="edit_dc_id"
+    var dc_id_content = document.getElementById("edit_dc_id").innerText;
+
+    // Send the data to a PHP script using AJAX
+    function sendDataToPHP() {
+        var xhr = new XMLHttpRequest();
+        xhr.open("POST", "your_php_file.php", true);
+        xhr.setRequestHeader("Content-Type", "application/x-www-form-urlencoded");
+
+        // Send the content to the server
+        xhr.send("ec_id_capture=" + encodeURIComponent(dc_id_content));
+
+        // Handle the response (optional)
+        xhr.onload = function() {
+            if (xhr.status == 200) {
+                console.log("Data sent successfully!");
+            }
+        };
+    }
+
+    // Call the function when needed, for example when a button is clicked
+    sendDataToPHP();
 </script>
+
 
