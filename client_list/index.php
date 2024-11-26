@@ -73,12 +73,13 @@ redirectIfNotLoggedIn();
                                 $client_name = $row['client_name'];
                                 $logo = $row['logo'];
                                 $primary_contact = $row['primary_contact'];
+                                $contact_email = $row['contact_email'];
 
                                 ?>
 
                                 <tr class="" style="height: 70px !important; vertical-align: middle;">
                                     <td><img class="me-2" src="<?php ROOT_PATH; ?>/assets/images/client_images/<?php echo $logo; ?>.png" width="50" alt="" style="border-radius: 15px;"><?php echo $client_name ? $client_name : '-'; ?></td>
-                                    <td><?php echo $primary_contact ? $primary_contact : '-'; ?></td>
+                                    <td><?php echo $primary_contact ? $primary_contact : '-'; ?><br><?php echo $contact_email ? $contact_email : '-'; ?></td>
                                     <td class="">
                                         <?php 
                                         $e_sql = "SELECT * FROM engagement WHERE client_name='$client_name'";
