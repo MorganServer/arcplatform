@@ -111,7 +111,7 @@ redirectIfNotLoggedIn();
                     
 
                   <?php
-                    $off_sql = "SELECT * FROM engagement WHERE client_name = $client_client_name";
+                    $off_sql = "SELECT * FROM engagement WHERE client_name = '$client_client_name'";
                     $off_result = mysqli_query($conn, $off_sql);
                     if($off_result) {
                     $num_rows = mysqli_num_rows($off_result);
