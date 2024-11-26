@@ -359,10 +359,9 @@ body {
 .client-list-row {
     height: 70px !important; 
     vertical-align: middle;
+    transition: background-color 0.3s ease; /* Smooth transition effect */
 }
 
-
 .client-list-row:hover {
-    background-color: #c7c7c7 !important; /* Change to your desired hover color */
-    cursor: pointer; /* Optional: to indicate interactivity */
+    background-color: #f0f8ff; /* Light blue shade */
 }
