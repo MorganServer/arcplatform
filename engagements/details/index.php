@@ -288,7 +288,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['followup_owner'])) {
                                                 Completed Comments
                                             </label>
                                         </div>
-                                        <div class="col-12 mt-3">
+                                        <div class="col-12 pt-3">
                                             <button type="submit" class="btn btn-primary"><i class="bi bi-download"></i> Comment Report</button>
                                         </div>
                                     </form>
