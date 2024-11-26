@@ -7,23 +7,32 @@ error_reporting(E_ALL);
     if (isset($_POST['add_client'])) {
         // Generate a random ID number
         $idno = rand(1000000, 9999999);
-
+    
         // Sanitize input data
         $client_name = isset($_POST['c_client_name']) ? trim($_POST['c_client_name']) : "";
-
+        $primary_contact = isset($_POST['primary_contact']) ? trim($_POST['primary_contact']) : "";
+        $contact_email = isset($_POST['contact_email']) ? trim($_POST['contact_email']) : "";
+    
+        // Convert client_name to lowercase and replace spaces with underscores for logo
+        $logo = strtolower(str_replace(' ', '_', $client_name));
+    
+        // Generate a random color
+        $random_color = sprintf('#%06X', mt_rand(0, 0xFFFFFF));
+    
         // Check if client already exists
         $select = $conn->prepare("SELECT idno FROM clients WHERE idno = ?");
         $select->bind_param("i", $idno); // "i" for integer
         $select->execute();
         $result = $select->get_result();
-
+    
         if ($result->num_rows > 0) {
             $error[] = 'Client already exists!';
         } else {
             // Insert the new client into the database
-            $insert = $conn->prepare("INSERT INTO clients (idno, client_name) VALUES (?, NULLIF(?, ''))");
-            $insert->bind_param("is", $idno, $client_name); // "i" for integer, "s" for string
-
+            $insert = $conn->prepare("INSERT INTO clients (idno, client_name, primary_contact, contact_email, logo, random_color) 
+                                      VALUES (?, NULLIF(?, ''), NULLIF(?, ''), NULLIF(?, ''), ?, ?)");
+            $insert->bind_param("isssss", $idno, $client_name, $primary_contact, $contact_email, $logo, $random_color); // "i" for integer, "s" for string
+        
             if ($insert->execute()) {
                 header('location:' . BASE_URL . '/');
                 exit; // Ensure script stops execution after redirecting
@@ -31,7 +40,7 @@ error_reporting(E_ALL);
                 $error[] = 'Error: ' . $conn->error;
             }
         }
-
+    
         // Close prepared statements
         $select->close();
         if (isset($insert)) $insert->close();

@@ -48,6 +48,14 @@ $pageName = ucwords($pageName);
                         <label for="c_client_name" class="form-label">Client Name</label>
                         <input type="text" class="form-control" id="c_client_name" name="c_client_name">
                     </div>
+                    <div class="col-md-6">
+                        <label for="c_primary_contact" class="form-label">Primary Contact</label>
+                        <input type="text" class="form-control" id="c_primary_contact" name="c_primary_contact">
+                    </div>
+                    <div class="col-md-6">
+                        <label for="c_contact_email" class="form-label">Contact Email</label>
+                        <input type="email" class="form-control" id="c_contact_email" name="c_contact_email">
+                    </div>
                     <div class="col-12">
                         <button type="submit" name="add_client" class="btn btn-primary">Submit</button>
                     </div>
