@@ -93,16 +93,23 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         foreach ($options as $option) {
             if (isset($comments_by_status[$option])) {
                 $pdf->SetFont('Arial', 'B', 14);
-                $pdf->Cell(0, 10, ucfirst($option) . ' Comments:', 0, 1);
+                $pdf->SetFillColor(200, 220, 255); // Light blue background for the header
+                $pdf->Cell(0, 10, ucfirst($option) . ' Comments:', 0, 1, 'L', true);
                 $pdf->SetFont('Arial', '', 12);
+                $pdf->SetFillColor(255, 255, 255); // White background for comment boxes
 
                 foreach ($comments_by_status[$option] as $comment) {
+                    // Draw a box around each comment for distinction
+                    $pdf->SetDrawColor(200, 200, 200); // Light gray border
+                    $pdf->SetLineWidth(0.5);
                     $pdf->Cell(0, 10, "Control Reference: " . $comment['control_ref'], 0, 1);
                     $pdf->Cell(0, 10, "Cell Reference: " . $comment['cell_reference'], 0, 1);
                     $pdf->Cell(0, 10, "Comment By: " . $comment['comment_by'], 0, 1);
                     $pdf->MultiCell(0, 10, "Comment: " . $comment['qa_comment']);
                     $pdf->Ln(5);
                 }
+
+                $pdf->Ln(10); // Add space after each status section
             }
         }
 
