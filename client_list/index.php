@@ -39,7 +39,7 @@ redirectIfNotLoggedIn();
             </h2>
             <hr>
 
-            <table class="table">
+            <table class="table table-hover">
             <thead style="bg-dark text-white">
                 <tr>
                     <!-- <th scope="col">ID</th> -->
