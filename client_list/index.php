@@ -48,7 +48,7 @@ redirectIfNotLoggedIn();
                         id="search_bar" 
                         placeholder="Search clients..."
 
-                        style="border: 1px solid black;"
+                        style="border: 1px solid black; font-size: 12px;"
                     >
                 </div>
             </form>
