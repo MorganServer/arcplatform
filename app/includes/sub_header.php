@@ -296,7 +296,7 @@ $pageName = ucwords($pageName);
                                     <div><?php echo $dc_client_name; ?></div>
                                 </div>
                                 <div>
-                                    <a href="" data-bs-target="#edit_client" data-bs-toggle="modal">
+                                    <a href="" data-bs-target="#edit_client" data-bs-toggle="modal" data-dc-id="<?php echo $dc_id; ?>">
                                         <i class="bi bi-pencil-square" style="color: #005382; cursor: pointer;"></i>
                                     </a> &nbsp;&nbsp;
                                     <a href="?action=delete&dc_id=<?php echo $dc_id; ?>" onclick="return confirm('Are you sure you want to delete this client?');">
@@ -306,7 +306,18 @@ $pageName = ucwords($pageName);
                             </div>
                         </li>
 
-                        <!-- edit-client -->
+
+  
+                        <?php }}} ?>
+                    </ul>
+
+                </div>
+            </div>
+        </div>
+    </div>
+<!-- end manage-client --> 
+
+<!-- edit-client -->
     <div class="modal fade" id="edit_client" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
         <div class="modal-dialog">
             <div class="modal-content">
@@ -316,12 +327,12 @@ $pageName = ucwords($pageName);
                 </div>
                 <div class="modal-body">
                     <!-- Hidden Input for Client ID -->
-                    <!-- <input type="text" id="edit_dc_id" name="edit_dc_id" value="<?php //echo $dc_id; ?>z"> -->
+                    <input type="text"  name="edit_dc_id" value="<?php echo $dc_id; ?>z">
 
                     <?php
                     if (isset($_POST['edit_client'])) {
                         // Get the client ID from the form submission
-                        // $dc_id = intval($_POST['edit_dc_id']); // Make sure to sanitize the input
+                        $dc_id = intval($_POST['edit_dc_id']); // Make sure to sanitize the input
 
                         // Query to fetch client details
                         $ec_sql = "SELECT * FROM clients WHERE client_id = ?";
@@ -370,19 +381,6 @@ $pageName = ucwords($pageName);
         </div>
     </div>
 <!-- end edit-client -->
-
-
-  
-                        <?php }}} ?>
-                    </ul>
-
-                </div>
-            </div>
-        </div>
-    </div>
-<!-- end manage-client --> 
-
-
 
 <script>
     document.addEventListener('DOMContentLoaded', function () {
