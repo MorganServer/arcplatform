@@ -82,7 +82,7 @@ redirectIfNotLoggedIn();
                                 Primary Contacts (1)
                             </h6>
 
-                            <div class="auditor-info">
+                            <div class="auditor-info" data-bs-toggle="tooltip" data-bs-placement="top" data-bs-title="Tooltip on top">
                                 <div class="circle"><?php echo htmlspecialchars($primary_contact_initials); ?></div>
                                 <div class="name-bg">
                                     <span class="name"><?php echo htmlspecialchars($client_primary_contact); ?></span>
