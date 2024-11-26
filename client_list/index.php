@@ -52,7 +52,7 @@ redirectIfNotLoggedIn();
                 </tr>
             </thead>
 
-            <tbody style="height: 50px;">
+            <tbody style="height: 50px !important;">
                     <?php
                     // Pagination variables
                     $limit = 10; 
