@@ -327,12 +327,12 @@ $pageName = ucwords($pageName);
                 </div>
                 <div class="modal-body">
                     <!-- Hidden Input for Client ID -->
-                    <input type="text" id="edit_dc_id" name="edit_dc_id" value="<?php echo $dc_id; ?>">
+                    <input type="text" id="edit_dc_id" name="edit_dc_id" value="<?php echo $dc_id; ?>z">
 
                     <?php
                     if (isset($_POST['edit_client'])) {
                         // Get the client ID from the form submission
-                        $dc_id = intval($_POST['edit_dc_id']); // Make sure to sanitize the input
+                        // $dc_id = intval($_POST['edit_dc_id']); // Make sure to sanitize the input
 
                         // Query to fetch client details
                         $ec_sql = "SELECT * FROM clients WHERE client_id = ?";
