@@ -151,7 +151,7 @@ redirectIfNotLoggedIn();
                                                             </div>
                                                                 
                                                             <!-- Right section for the text details -->
-                                                            <div class="right ms-3 flex-column"> <!-- "ms-3" adds left margin between the image and text -->
+                                                            <div class="right ms-3 flex-column justify-content-left"> <!-- "ms-3" adds left margin between the image and text -->
                                                                 <h5 class="card-title"><?php echo $off_engagement_type; ?></h5>
                                                                 <h6 class="card-subtitle mb-2 text-muted"><?php echo $off_client_name; ?> - <?php echo $off_year; ?></h6>
                                                                 <p class="card-text">
