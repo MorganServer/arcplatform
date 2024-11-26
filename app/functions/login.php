@@ -26,7 +26,7 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
             $_SESSION['full_name'] = $user['first_name'] . " " . $user["last_name"];
 
             // Redirect to a dashboard or homepage
-            header("Location: " . BASE_URL . "/dashboard");
+            header("Location: " . BASE_URL . "/client_list");
             exit();
         } else {
             $error = "Failed to update login status. Please try again.";

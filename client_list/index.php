@@ -25,7 +25,7 @@ redirectIfNotLoggedIn();
     <link rel="stylesheet" href="../assets/css/styles.css?v=<?php echo time(); ?>">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
-    <title>Clients - ARC Platform</title>
+    <title>Client List - ARC Platform</title>
 </head>
 <body>
 
@@ -35,7 +35,7 @@ redirectIfNotLoggedIn();
     <!-- main-container -->
     <div class="container" style="padding: 0 5px 0 5px;">
             <h2 class="mt-4">
-                Clients
+                Client List
             </h2>
             <hr>
 
