@@ -4,7 +4,7 @@ ini_set('display_errors', 1);
 error_reporting(E_ALL);  // Report all errors
 
 // Include your database connection
-include(ROOT_PATH . '/app/database/connection.php');
+// include(BASE_URL . '/app/database/connection.php');
 
 // Check if the client_id is passed via GET request
 if (isset($_GET['client_id'])) {
