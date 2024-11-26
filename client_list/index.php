@@ -46,7 +46,7 @@ redirectIfNotLoggedIn();
                     <th scope="col">Client</th>
                     <th scope="col">Current Frameworks</th>
                     <!-- <th scope="col">Open QA Comments</th> -->
-                    <th style="width: 100px; text-align: center;"><i class="bi bi-chevron-right"></i></th>
+                    <th style="width: 100px; text-align: center;"></th>
                     <!-- <th style="width: 100px; text-align: center;">Edit</th> -->
                     <!-- <th style="width: 100px; text-align: center;">Delete</th> -->
                 </tr>
@@ -112,14 +112,8 @@ redirectIfNotLoggedIn();
 
                                     <td style="width: 100px; text-align: center;">
                                         <a href="<?php echo BASE_URL; ?>/asset/view/?id=<?php echo $id; ?>" class="view">
-                                            <i class="bi bi-eye text-success"></i>
+                                        <i class="bi bi-chevron-right"></i>
                                         </a> 
-                                    </td>
-                                    <td style="width: 100px; text-align: center;">
-                                        <i class="bi bi-pencil-square" style="color:#005382;"></i>
-                                    </td>
-                                    <td style="width: 100px; text-align: center;">
-                                        <i class="bi bi-trash" style="color:#941515;"></i>
                                     </td>
                                 </tr>
                                 <?php
