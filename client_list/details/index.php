@@ -186,7 +186,7 @@ redirectIfNotLoggedIn();
                                                     </div>
                                                     <div class="card-footer" style="background-color: transparent; padding: 15px 15px;">
                                                         <a data-bs-toggle="modal" data-bs-target="#download_modal" class="card-link text-decoration-none" style="cursor: pointer;"><i class="bi bi-download"></i>  Summary Report</a>
-                                                        <a href="<?php echo BASE_URL; ?>/engagements/details/?id=<?php echo $off_id; ?>" class="card-link float-end text-decoration-none" style="cursor: pointer;">Open Engagement  <i class="bi bi-chevron-right"></i></a>
+                                                        <a href="<?php echo BASE_URL; ?>/engagements/details/?engagement_id=<?php echo $off_id; ?>" class="card-link float-end text-decoration-none" style="cursor: pointer;">Open Engagement  <i class="bi bi-chevron-right"></i></a>
                                                     </div>
                                                 </div>
                                             </div>
@@ -326,7 +326,7 @@ redirectIfNotLoggedIn();
                                                         
                                                     </div>
                                                     <div class="card-footer" style="background-color: transparent; padding: 15px 15px;">
-                                                        <a href="<?php echo BASE_URL; ?>/engagements/details/?id=<?php echo $off_id; ?>" class="card-link float-end text-decoration-none" style="cursor: pointer;">Open Engagement  <i class="bi bi-chevron-right"></i></a>
+                                                        <a href="<?php echo BASE_URL; ?>/engagements/details/?engagement_id=<?php echo $off_id; ?>" class="card-link float-end text-decoration-none" style="cursor: pointer;">Open Engagement  <i class="bi bi-chevron-right"></i></a>
                                                     </div>
                                                 </div>
                                             </div>
