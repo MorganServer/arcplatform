@@ -317,99 +317,99 @@ $pageName = ucwords($pageName);
 
 
 <!-- edit-client -->
-<div class="modal fade" id="edit_client" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
-    <div class="modal-dialog">
-        <div class="modal-content">
-            <div class="modal-header">
-                <h1 class="modal-title fs-5" id="exampleModalLabel">Edit Client</h1>
-                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-            </div>
-            <div class="modal-body">
-                <form id="editClientForm" method="POST" class="row g-3">
-                    <div class="col-md-6">
-                        <label for="c_client_name" class="form-label">Client Name</label>
-                        <input type="text" class="form-control" id="edit_client_name" name="c_client_name" required>
-                    </div>
-                    <div class="col-md-6">
-                        <label for="c_primary_contact" class="form-label">Primary Contact</label>
-                        <input type="text" class="form-control" id="edit_primary_contact" name="c_primary_contact" required>
-                    </div>
-                    <div class="col-md-6">
-                        <label for="c_contact_email" class="form-label">Contact Email</label>
-                        <input type="email" class="form-control" id="edit_contact_email" name="c_contact_email" required>
-                    </div>
-                    <div class="col-12">
-                        <div class="form-check">
-                            <input class="form-check-input" type="checkbox" value="1" id="edit_has_logo" name="has_logo">
-                            <label class="form-check-label" for="has_logo">
-                                Client has a logo
-                            </label>
+    <div class="modal fade" id="edit_client" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h1 class="modal-title fs-5" id="exampleModalLabel">Edit Client</h1>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                    <form id="editClientForm" method="POST" class="row g-3">
+                        <div class="col-md-6">
+                            <label for="c_client_name" class="form-label">Client Name</label>
+                            <input type="text" class="form-control" id="edit_client_name" name="edit_client_name" required>
                         </div>
-                    </div>
-                    <div class="col-12">
-                        <button type="submit" name="edit_client" class="btn btn-primary">Submit</button>
-                    </div>
-                </form>
+                        <div class="col-md-6">
+                            <label for="c_primary_contact" class="form-label">Primary Contact</label>
+                            <input type="text" class="form-control" id="edit_primary_contact" name="edit_primary_contact" required>
+                        </div>
+                        <div class="col-md-6">
+                            <label for="c_contact_email" class="form-label">Contact Email</label>
+                            <input type="email" class="form-control" id="edit_contact_email" name="edit_contact_email" required>
+                        </div>
+                        <div class="col-12">
+                            <div class="form-check">
+                                <input class="form-check-input" type="checkbox" value="1" id="edit_has_logo" name="edit_has_logo">
+                                <label class="form-check-label" for="has_logo">
+                                    Client has a logo
+                                </label>
+                            </div>
+                        </div>
+                        <div class="col-12">
+                            <button type="submit" name="edit_client" class="btn btn-primary">Submit</button>
+                        </div>
+                    </form>
+                </div>
             </div>
         </div>
     </div>
-</div>
 <!-- end edit-client -->
 
 
 
 
 <script>
-    document.getElementById('edit_client').addEventListener('show.bs.modal', function (event) {
-    // Get the button that triggered the modal
-    var button = event.relatedTarget;
-    
-    // Get the client ID from the data-dc-id attribute
-    var clientId = button.getAttribute('data-dc-id');
-    
-    // Log the client ID for debugging
-    console.log('Client ID passed to modal:', clientId);
+        document.getElementById('edit_client').addEventListener('show.bs.modal', function (event) {
+        // Get the button that triggered the modal
+        var button = event.relatedTarget;
+        
+        // Get the client ID from the data-dc-id attribute
+        var clientId = button.getAttribute('data-dc-id');
+        
+        // Log the client ID for debugging
+        console.log('Client ID passed to modal:', clientId);
 
-    // Now, make an AJAX request to fetch client data
-    var xhr = new XMLHttpRequest();
-    xhr.open("GET", "<?php echo BASE_URL;?>/app/fetch_client_data.php?client_id=" + clientId, true);
-    
-    // Log before sending the request
-    console.log('Sending AJAX request to fetch client data for ID:', clientId);
+        // Now, make an AJAX request to fetch client data
+        var xhr = new XMLHttpRequest();
+        xhr.open("GET", "<?php echo BASE_URL;?>/app/fetch_client_data.php?client_id=" + clientId, true);
+        
+        // Log before sending the request
+        console.log('Sending AJAX request to fetch client data for ID:', clientId);
 
-    xhr.onload = function () {
-        if (xhr.status == 200) {
-            // Log the server response for debugging
-            console.log('AJAX Response:', xhr.responseText);
+        xhr.onload = function () {
+            if (xhr.status == 200) {
+                // Log the server response for debugging
+                console.log('AJAX Response:', xhr.responseText);
 
-            try {
-                // Parse the JSON response
-                var clientData = JSON.parse(xhr.responseText);
-                
-                // Log the parsed data for debugging
-                console.log('Parsed client data:', clientData);
-                
-                // Populate the modal fields with the fetched data
-                if(clientData) {
-                    document.getElementById('edit_client_name').value = clientData.client_name || '';
-                    document.getElementById('edit_primary_contact').value = clientData.primary_contact || '';
-                    document.getElementById('edit_contact_email').value = clientData.contact_email || '';
-                    document.getElementById('edit_has_logo').checked = clientData.has_logo && clientData.has_logo !== '';
+                try {
+                    // Parse the JSON response
+                    var clientData = JSON.parse(xhr.responseText);
+
+                    // Log the parsed data for debugging
+                    console.log('Parsed client data:', clientData);
+
+                    // Populate the modal fields with the fetched data
+                    if(clientData) {
+                        document.getElementById('edit_client_name').value = clientData.client_name || '';
+                        document.getElementById('edit_primary_contact').value = clientData.primary_contact || '';
+                        document.getElementById('edit_contact_email').value = clientData.contact_email || '';
+                        document.getElementById('edit_has_logo').checked = clientData.has_logo && clientData.has_logo !== '';
+                    }
+                } catch (e) {
+                    console.error('Error parsing response:', e);
                 }
-            } catch (e) {
-                console.error('Error parsing response:', e);
+            } else {
+                console.error('Failed to fetch client data, status:', xhr.status);
             }
-        } else {
-            console.error('Failed to fetch client data, status:', xhr.status);
-        }
-    };
+        };
 
-    xhr.onerror = function () {
-        console.error('AJAX request failed');
-    };
+        xhr.onerror = function () {
+            console.error('AJAX request failed');
+        };
 
-    xhr.send();
-});
+        xhr.send();
+    });
 
 
 

@@ -31,6 +31,7 @@ if (isset($_GET['client_id'])) {
 
         // Return client data as JSON
         echo json_encode([
+            'client_id' => $client['client_id'],
             'client_name' => $client['client_name'],
             'primary_contact' => $client['primary_contact'],
             'contact_email' => $client['contact_email'],
