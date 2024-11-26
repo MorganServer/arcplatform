@@ -296,7 +296,7 @@ $pageName = ucwords($pageName);
                                     <div><?php echo $dc_client_name; ?></div>
                                 </div>
                                 <div>
-                                    <a href="" data-bs-target="#edit_client" data-bs-toggle="modal"><i class="bi bi-pencil-square" style="color: #005382; cursor: pointer;"></i></a> &nbsp;&nbsp;
+                                    <a href="" data-bs-target="#edit_client" data-bs-toggle="modal" data-dc-id="<?php echo $dc_id; ?>"><i class="bi bi-pencil-square" style="color: #005382; cursor: pointer;"></i></a> &nbsp;&nbsp;
                                     <a href="?action=delete&dc_id=<?php echo $dc_id; ?>" onclick="return confirm('Are you sure you want to delete this client?');">
                                         <i class="bi bi-trash" style="color: #941515; cursor: pointer;"></i>
                                     </a>
@@ -326,8 +326,8 @@ $pageName = ucwords($pageName);
                 <div class="modal-body">
                     <?php
                     // Query to get clients, the total number of engagements, and open QA comments for each client
-                    
-                    $ec_sql = "SELECT * FROM clients WHERE client_id = '$dc_id'";
+                    $ec_id = intval($_POST['edit_dc_id']);
+                    $ec_sql = "SELECT * FROM clients WHERE client_id = '$ec_id'";
                     $ec_result = mysqli_query($conn, $ec_sql);
                     if ($ec_result) {
                         $ec_num_rows = mysqli_num_rows($ec_result);
@@ -385,5 +385,23 @@ $pageName = ucwords($pageName);
                 clientNameInput.value = clientName || '';  // Set client name or empty if not selected
             });
         }
+    });
+</script>
+
+<script>
+    // When the modal is about to be shown
+    var editClientModal = document.getElementById('edit_client');
+    editClientModal.addEventListener('show.bs.modal', function (event) {
+        // Get the link that triggered the modal
+        var button = event.relatedTarget;
+        
+        // Retrieve the dc_id from the data-bs-dc-id attribute
+        var dc_id = button.getAttribute('data-dc-id');
+        
+        // Set the dc_id in a hidden field or as needed
+        document.getElementById('edit_dc_id').value = dc_id;
+
+        // Optionally, you can use dc_id to populate other fields dynamically using AJAX
+        // For example, you can fetch client data using dc_id and populate form fields
     });
 </script>
