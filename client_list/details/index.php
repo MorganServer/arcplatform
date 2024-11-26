@@ -118,20 +118,7 @@ redirectIfNotLoggedIn();
 
 
                     // Split the name into parts and get initials
-                    $name_parts = explode(" ", $off_manager);
-                    $first_initial = isset($name_parts[0]) ? strtoupper($name_parts[0][0]) : '';
-                    $last_initial = isset($name_parts[1]) ? strtoupper($name_parts[1][0]) : '';
-                    $manager_initials = $first_initial . $last_initial;
 
-                    $name_parts = explode(" ", $off_senior);
-                    $first_initial = isset($name_parts[0]) ? strtoupper($name_parts[0][0]) : '';
-                    $last_initial = isset($name_parts[1]) ? strtoupper($name_parts[1][0]) : '';
-                    $senior_initials = $first_initial . $last_initial;
-
-                    $name_parts = explode(" ", $off_staff);
-                    $first_initial = isset($name_parts[0]) ? strtoupper($name_parts[0][0]) : '';
-                    $last_initial = isset($name_parts[1]) ? strtoupper($name_parts[1][0]) : '';
-                    $staff_initials = $first_initial . $last_initial;
                     
 
                     $formatted_start = date("m/d/Y", strtotime($off_report_start));
