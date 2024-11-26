@@ -136,23 +136,29 @@ redirectIfNotLoggedIn();
                                             <div class="col-md-4 mb-4"> <!-- Make the cards responsive and inline -->
                                                 <div class="card" style="width: 25rem;">
                                                     <div class="card-body">
-                                                        <div class="left float-start">
-                                                            <?php if (strpos($off_engagement_type, 'SOC 2') !== false) { ?>
-                                                                <img src="<?php BASE_URL; ?>/assets/images/soc-2-icon.png" width="35" alt="">
-                                                            <?php } else if (strpos($off_engagement_type, 'SOC 1') !== false) { ?>
-                                                                <img src="<?php BASE_URL; ?>/assets/images/soc-1-icon.png" width="35" alt="">
-                                                            <?php } else if (strpos($off_engagement_type, 'HIPAA') !== false) { ?>
-                                                                <img src="<?php BASE_URL; ?>/assets/images/hipaa-icon.png" width="35" alt="">
-                                                            <?php } ?>
+                                                        <div class="d-flex align-items-center justify-content-between">
+                                                            <!-- Left section for the image -->
+                                                            <div class="left">
+                                                                <?php if (strpos($off_engagement_type, 'SOC 2') !== false) { ?>
+                                                                    <img src="<?php echo BASE_URL; ?>/assets/images/soc-2-icon.png" width="35" alt="">
+                                                                <?php } else if (strpos($off_engagement_type, 'SOC 1') !== false) { ?>
+                                                                    <img src="<?php echo BASE_URL; ?>/assets/images/soc-1-icon.png" width="35" alt="">
+                                                                <?php } else if (strpos($off_engagement_type, 'HIPAA') !== false) { ?>
+                                                                    <img src="<?php echo BASE_URL; ?>/assets/images/hipaa-icon.png" width="35" alt="">
+                                                                <?php } ?>
+                                                            </div>
+                                                                
+                                                            <!-- Right section for the text details -->
+                                                            <div class="right ms-3"> <!-- "ms-3" adds left margin between the image and text -->
+                                                                <h5 class="card-title"><?php echo $off_engagement_type; ?></h5>
+                                                                <h6 class="card-subtitle mb-2 text-muted"><?php echo $off_client_name; ?> - <?php echo $off_year; ?></h6>
+                                                                <p class="card-text">
+                                                                    Report Period: <?php echo $formatted_start; ?> to <?php echo $formatted_end; ?><br>
+                                                                    Report As Of: <?php echo $formatted_as_of; ?>
+                                                                </p>
+                                                            </div>
                                                         </div>
-                                                        <div class="right float-end">
-                                                            <h5 class="card-title"><?php echo $off_engagement_type; ?></h5>
-                                                            <h6 class="card-subtitle mb-2 text-muted"><?php echo $off_client_name; ?> - <?php echo $off_year; ?></h6>
-                                                            <p class="card-text">
-                                                                Report Period: <?php echo $formatted_start; ?> to <?php echo $formatted_end; ?><br>
-                                                                Report As Of: <?php echo $formatted_as_of; ?>
-                                                            </p>
-                                                        </div>
+
                                                         
                                                         
                                                         
