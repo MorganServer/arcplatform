@@ -29,7 +29,7 @@ redirectIfNotLoggedIn();
             // Execute the statement
             if ($stmt->execute()) {
                 // Redirect to the same page after successful update
-                header("Location: " . $_SERVER['PHP_SELF']);
+                header("Location: " . BASE_URL . '/engagements/details/?engagement_id=' . $engagement_id);
                 exit();
             } else {
                 // Log the error for debugging purposes (optional)
