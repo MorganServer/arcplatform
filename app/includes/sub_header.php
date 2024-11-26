@@ -289,15 +289,18 @@ $pageName = ucwords($pageName);
                         ?>
 
                         <li class="list-group-item">
-                            <span class="float-start">
-                                <strong><?php echo $dc_idno; ?></strong> &nbsp;&nbsp;
-                                <?php echo $dc_client_name; ?>
-                            </span>
-                            <span class="float-end">
-                                <i class="bi bi-pencil-square" style="color:#005382;"></i> &nbsp;&nbsp;
-                                <i class="bi bi-trash" style="color:#941515;"></i>
-                            </span>
+                            <div class="d-flex justify-content-between">
+                                <span>
+                                    <strong><?php echo $dc_idno; ?></strong> &nbsp;&nbsp;
+                                    <?php echo $dc_client_name; ?>
+                                </span>
+                                <span>
+                                    <i class="bi bi-pencil-square" style="color: #005382;"></i> &nbsp;&nbsp;
+                                    <i class="bi bi-trash" style="color: #941515;"></i>
+                                </span>
+                            </div>
                         </li>
+
   
                         <?php }}} ?>
                     </ul>
