@@ -27,7 +27,7 @@ redirectIfLoggedIn();
         <div class="login-box">
             <h2>Login</h2>
             <img src="assets/images/login_logo.png" width="150" alt="">
-            <form method="POST" action="">
+            <form method="POST" action="<?php echo BASE_URL;?>/app/functions/login.php">
                 <div class="form-group">
                     <label for="email">Email</label>
                     <input type="email" id="email" name="email" placeholder="Enter your email" required>
