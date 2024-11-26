@@ -34,10 +34,18 @@ if (isset($_GET['engagement_id'])) {
             'engagement_id' => $engagement['engagement_id'],
             'client_name' => $engagement['client_name'],
             'engagement_type' => $engagement['engagement_type'],
-            // 'client_name' => $engagement['client_name'],
-            // 'primary_contact' => $engagement['primary_contact'],
-            // 'contact_email' => $engagement['contact_email'],
-            // 'has_logo' => !empty($engagement['logo'])
+            'year' => $engagement['year'],
+            'report_start' => $engagement['report_start'],
+            'report_end' => $engagement['report_end'],
+            'report_as_of' => $engagement['report_as_of'],
+            'manager' => $engagement['manager'],
+            'senior' => $engagement['senior'],
+            'staff' => $engagement['staff'],
+            'leadsheets_due' => $engagement['leadsheets_due'],
+            'field_work_week' => $engagement['field_work_week'],
+            'senior_dol' => $engagement['senior_dol'],
+            'staff_1_dol' => $engagement['staff_1_dol'],
+            'staff_2_dol' => $engagement['staff_2_dol']
         ]);
         
     } else {

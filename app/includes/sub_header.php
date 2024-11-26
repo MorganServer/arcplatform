@@ -482,11 +482,21 @@ $pageName = ucwords($pageName);
 
                     // Populate the modal fields with the fetched data
                     if(engagementData) {
+                        document.getElementById('me_edit_engagement_id').value = engagementData.engagement_id || '';
+                        document.getElementById('me_edit_client_name').value = engagementData.client_name || '';
                         document.getElementById('edit_engagement_id').value = engagementData.engagement_id || '';
-                        document.getElementById('edit_client_name').value = engagementData.client_name || '';
-                        document.getElementById('edit_primary_contact').value = engagementData.primary_contact || '';
-                        document.getElementById('edit_contact_email').value = engagementData.contact_email || '';
-                        document.getElementById('edit_has_logo').checked = engagementData.has_logo && clientData.has_logo !== '';
+                        document.getElementById('edit_engagement_id').value = engagementData.engagement_id || '';
+                        document.getElementById('edit_engagement_id').value = engagementData.engagement_id || '';
+                        document.getElementById('edit_engagement_id').value = engagementData.engagement_id || '';
+                        document.getElementById('edit_engagement_id').value = engagementData.engagement_id || '';
+                        document.getElementById('edit_engagement_id').value = engagementData.engagement_id || '';
+                        document.getElementById('edit_engagement_id').value = engagementData.engagement_id || '';
+                        document.getElementById('edit_engagement_id').value = engagementData.engagement_id || '';
+                        document.getElementById('edit_engagement_id').value = engagementData.engagement_id || '';
+                        document.getElementById('edit_engagement_id').value = engagementData.engagement_id || '';
+                        document.getElementById('edit_engagement_id').value = engagementData.engagement_id || '';
+                        document.getElementById('edit_engagement_id').value = engagementData.engagement_id || '';
+                        document.getElementById('edit_engagement_id').value = engagementData.engagement_id || '';
                     }
                 } catch (e) {
                     console.error('Error parsing response:', e);
