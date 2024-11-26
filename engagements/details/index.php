@@ -269,7 +269,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['followup_owner'])) {
                                   </div>
                                   <div class="modal-body">
 
-                                  <form action="comment_report.php" method="POST" class="row g-3 p-3">
+                                  <form action="<?php BASE_URL; ?>/app/functions/comment_report.php" method="POST" class="row g-3 p-3">
     <div class="form-check">
         <input class="form-check-input" type="checkbox" value="new" id="newComments" name="options[]">
         <label class="form-check-label" for="newComments">
