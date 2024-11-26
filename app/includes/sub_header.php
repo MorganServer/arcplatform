@@ -397,7 +397,7 @@ $pageName = ucwords($pageName);
                         document.getElementById('c_client_name').value = clientData.client_name || '';
                         document.getElementById('c_primary_contact').value = clientData.primary_contact || '';
                         document.getElementById('c_contact_email').value = clientData.contact_email || '';
-                        document.getElementById('has_logo').checked = clientData.has_logo === 'payabli'; // Assuming 'payabli' indicates logo presence
+                        document.getElementById('has_logo').checked = clientData.has_logo === true; // Updated check for boolean true
                     }
                 } catch (e) {
                     console.error('Error parsing response:', e);
@@ -414,6 +414,7 @@ $pageName = ucwords($pageName);
         xhr.send();
     });
 </script>
+
 
 
 
