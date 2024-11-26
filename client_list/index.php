@@ -39,8 +39,8 @@ redirectIfNotLoggedIn();
             </h2>
             <hr>
 
-            <table class="">
-            <thead style="">
+            <table class="table">
+            <thead style="bg-dark text-white">
                 <tr>
                     <!-- <th scope="col">ID</th> -->
                     <th scope="col">Client</th>
@@ -52,7 +52,7 @@ redirectIfNotLoggedIn();
                 </tr>
             </thead>
 
-            <tbody style="height: 50px !important;">
+            <tbody>
                     <?php
                     // Pagination variables
                     $limit = 10; 
@@ -73,7 +73,7 @@ redirectIfNotLoggedIn();
 
                                 ?>
 
-                                <tr>
+                                <tr style="height: 50px !important;">
                                     <td><?php echo $client_name ? $client_name : '-'; ?></td>
                                     <td>
                                         <?php 
