@@ -271,27 +271,29 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['followup_owner'])) {
 
                                   <form action="<?php BASE_URL; ?>/app/functions/comment_report.php" method="POST" class="row g-3 p-3">
     <div class="form-check">
-        <input class="form-check-input" type="checkbox" value="new" id="newComments" name="options[]">
+        <input class="form-check-input" type="checkbox" value="New" id="newComments" name="options[]">
         <label class="form-check-label" for="newComments">
             New Comments
         </label>
     </div>
     <div class="form-check">
-        <input class="form-check-input" type="checkbox" value="follow-up" id="followUpComments" name="options[]">
+        <input class="form-check-input" type="checkbox" value="Follow-Up" id="followUpComments" name="options[]">
         <label class="form-check-label" for="followUpComments">
             Follow-Up Comments
         </label>
     </div>
     <div class="form-check">
-        <input class="form-check-input" type="checkbox" value="completed" id="completedComments" name="options[]">
+        <input class="form-check-input" type="checkbox" value="Completed" id="completedComments" name="options[]">
         <label class="form-check-label" for="completedComments">
             Completed Comments
         </label>
     </div>
+    <input type="hidden" name="e_id" value="<?php echo $off_id; ?>"> <!-- Replace with dynamic ID -->
     <div class="col-12 pt-3">
         <button type="submit" class="btn btn-primary"><i class="bi bi-download"></i>&nbsp;&nbsp;Comment Report</button>
     </div>
 </form>
+
                                     
 
                                   </div>
