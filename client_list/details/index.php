@@ -185,14 +185,14 @@ redirectIfNotLoggedIn();
                                                         
                                                     </div>
                                                     <div class="card-footer" style="background-color: transparent; padding: 15px 15px;">
-                                                        <a data-bs-toggle="modal" data-bs-target="#download_modal" class="card-link text-decoration-none"><i class="bi bi-download"></i>  Summary Report</a>
+                                                        <a data-bs-toggle="modal" data-bs-target="#completed_download_modal" class="card-link text-decoration-none"><i class="bi bi-download"></i>  Summary Report</a>
                                                         <a href="<?php echo BASE_URL; ?>/engagements/details/?id=<?php echo $off_id; ?>" class="card-link float-end text-decoration-none">Open Engagement  <i class="bi bi-chevron-right"></i></a>
                                                     </div>
                                                 </div>
                                             </div>
 
                                                                                         <!-- MODAL -->
-                                                                                        <div class="modal fade" id="download_modal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                                                                                        <div class="modal fade" id="completed_download_modal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
                                                   <div class="modal-dialog modal-dialog-centered">
                                                     <div class="modal-content">
                                                       <div class="modal-header">
