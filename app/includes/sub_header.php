@@ -328,10 +328,10 @@ $pageName = ucwords($pageName);
                 <?php
                 // Check if the client_id is set in the URL
                 if (isset($_GET['edit_dc_id'])) {
-                    $dc_id = $_GET['edit_dc_id']; // Capture the client_id from the URL
+                    $ec_id = $_GET['edit_dc_id']; // Capture the client_id from the URL
 
                     // Query the database to get the client details
-                    $ec_sql = "SELECT * FROM clients WHERE client_id = '$dc_id'";
+                    $ec_sql = "SELECT * FROM clients WHERE client_id = '$ec_id'";
                     $ec_result = mysqli_query($conn, $ec_sql);
                     if ($ec_result) {
                         $ec_row = mysqli_fetch_assoc($ec_result);
