@@ -421,12 +421,12 @@ $pageName = ucwords($pageName);
                     <form id="editClientForm" method="POST" class="row g-3">
                         <input type="hidden" name="edit_client_id" id="edit_client_id">
                         <div class="col-md-6">
-                            <label for="c_client_name" class="form-label">Client Name</label>
+                            <label for="me_edit_client_name" class="form-label">Client Name</label>
                             <input type="text" class="form-control" id="me_edit_client_name" name="me_edit_client_name" required>
                         </div>
                         <div class="col-md-6">
-                            <label for="c_primary_contact" class="form-label">Primary Contact</label>
-                            <input type="text" class="form-control" id="me_edit_primary_contact" name="me_edit_primary_contact" required>
+                            <label for="me_edit_engagement_type" class="form-label">Engagement Type</label>
+                            <input type="text" class="form-control" id="me_edit_engagement_type" name="me_edit_engagement_type" required>
                         </div>
                         <div class="col-md-6">
                             <label for="c_contact_email" class="form-label">Contact Email</label>
@@ -484,7 +484,7 @@ $pageName = ucwords($pageName);
                     if(engagementData) {
                         document.getElementById('me_edit_engagement_id').value = engagementData.engagement_id || '';
                         document.getElementById('me_edit_client_name').value = engagementData.client_name || '';
-                        document.getElementById('edit_engagement_id').value = engagementData.engagement_id || '';
+                        document.getElementById('me_edit_engagement_type').value = engagementData.engagement_type || '';
                         document.getElementById('edit_engagement_id').value = engagementData.engagement_id || '';
                         document.getElementById('edit_engagement_id').value = engagementData.engagement_id || '';
                         document.getElementById('edit_engagement_id').value = engagementData.engagement_id || '';
