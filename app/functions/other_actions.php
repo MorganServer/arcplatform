@@ -58,7 +58,7 @@
 
         // Execute the query and check if the update was successful
         if ($stmt->execute()) {
-            echo "Client updated successfully!";
+            header("Location: /");
         } else {
             echo "Error updating client: " . $stmt->error;
         }
