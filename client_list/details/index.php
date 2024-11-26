@@ -140,11 +140,11 @@ redirectIfNotLoggedIn();
                                                             <!-- Left section for the image -->
                                                             <div class="left">
                                                                 <?php if (strpos($off_engagement_type, 'SOC 2') !== false) { ?>
-                                                                    <img src="<?php echo BASE_URL; ?>/assets/images/soc-2-icon.png" width="35" alt="">
+                                                                    <img src="<?php echo BASE_URL; ?>/assets/images/soc-2-icon.png" width="60" alt="">
                                                                 <?php } else if (strpos($off_engagement_type, 'SOC 1') !== false) { ?>
-                                                                    <img src="<?php echo BASE_URL; ?>/assets/images/soc-1-icon.png" width="35" alt="">
+                                                                    <img src="<?php echo BASE_URL; ?>/assets/images/soc-1-icon.png" width="60" alt="">
                                                                 <?php } else if (strpos($off_engagement_type, 'HIPAA') !== false) { ?>
-                                                                    <img src="<?php echo BASE_URL; ?>/assets/images/hipaa-icon.png" width="35" alt="">
+                                                                    <img src="<?php echo BASE_URL; ?>/assets/images/hipaa-icon.png" width="60" alt="">
                                                                 <?php } ?>
                                                             </div>
                                                                 
