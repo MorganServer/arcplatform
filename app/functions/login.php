@@ -1,39 +1,58 @@
-<?php 
+<?php
+session_start(); // Ensure the session is started
 
 // Handle the form submission
 if ($_SERVER["REQUEST_METHOD"] === "POST") {
-    $email = $conn->real_escape_string($_POST['email']);
-    $password = md5($_POST['password']); // Hash the password using MD5
+    // Get the input data safely
+    $email = filter_input(INPUT_POST, 'email', FILTER_SANITIZE_EMAIL);
+    $password = $_POST['password']; // Keep password in plain form for verification
 
-    // Query to check the user's credentials
-    $sql = "SELECT * FROM users WHERE email = '$email' AND password = '$password'";
-    $result = $conn->query($sql);
+    // Validate the email
+    if (filter_var($email, FILTER_VALIDATE_EMAIL)) {
+        // Prepare the SQL statement to prevent SQL injection
+        $sql = "SELECT * FROM users WHERE email = ?";
+        $stmt = $conn->prepare($sql);
+        $stmt->bind_param("s", $email); // Bind the email parameter
 
-    if ($result->num_rows > 0) {
-        // User exists, fetch their details
-        $user = $result->fetch_assoc();
+        $stmt->execute();
+        $result = $stmt->get_result();
 
-        // Update the user's logged_in status
-        $userId = $user['user_id'];
-        $updateSql = "UPDATE users SET logged_in = 1 WHERE user_id = $userId";
-        if ($conn->query($updateSql) === TRUE) {
-            // Successfully updated logged_in status
+        if ($result->num_rows > 0) {
+            // User exists, fetch their details
+            $user = $result->fetch_assoc();
 
-            // Set session variables
-            $_SESSION['user_id'] = $user['user_id'];
-            $_SESSION['account_type'] = $user['account_type'];
-            $_SESSION['email'] = $user['email'];
-            $_SESSION['full_name'] = $user['first_name'] . " " . $user["last_name"];
+            // Verify the password using password_verify
+            if (password_verify($password, $user['password'])) {
+                // Password matches, update the user's logged_in status
+                $userId = $user['user_id'];
+                $updateSql = "UPDATE users SET logged_in = 1 WHERE user_id = ?";
+                $updateStmt = $conn->prepare($updateSql);
+                $updateStmt->bind_param("i", $userId);
+                $updateStmt->execute();
 
-            // Redirect to a dashboard or homepage
-            header("Location: " . BASE_URL . "/client_list");
-            exit();
+                if ($updateStmt->affected_rows > 0) {
+                    // Successfully updated logged_in status
+
+                    // Set session variables
+                    $_SESSION['user_id'] = $user['user_id'];
+                    $_SESSION['account_type'] = $user['account_type'];
+                    $_SESSION['email'] = $user['email'];
+                    $_SESSION['full_name'] = $user['first_name'] . " " . $user["last_name"];
+
+                    // Redirect to the dashboard or homepage
+                    header("Location: " . BASE_URL . "/client_list");
+                    exit();
+                } else {
+                    $error = "Failed to update login status. Please try again.";
+                }
+            } else {
+                $error = "Invalid email or password.";
+            }
         } else {
-            $error = "Failed to update login status. Please try again.";
+            $error = "Invalid email or password.";
         }
     } else {
-        $error = "Invalid email or password.";
+        $error = "Invalid email format.";
     }
 }
-
 ?>
