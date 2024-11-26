@@ -83,13 +83,13 @@ redirectIfNotLoggedIn();
                                     <?php
                                     // Check if the logo exists
                                     if (isset($logo)) { ?>
-                                        <img class="me-2" src="<?php echo ROOT_PATH; ?>/assets/images/client_images/<?php echo $logo; ?>.png" width="50" alt="" style="border-radius: 15px;">
+                                        <img class="me-2" src="<?php echo ROOT_PATH; ?>/assets/images/client_images/<?php echo $logo; ?>.png" width="50" alt="" style="border-radius: 15px;"> <?php echo $client_name ? $client_name : '-'; ?>
                                     <?php } else {
                                         $first_letter = strtoupper(substr($client_name, 0, 1));
                                     ?>
-                                        <div class="client-avatar d-flex me-2" style="background-color: <?php echo $random_color; ?>; width: 50px; height: 50px; border-radius: 50%; display: flex; justify-content: center; align-items: center; font-size: 24px; color: white;"><?php echo $first_letter; ?></div>
+                                        <div class="client-avatar d-flex me-2" style="background-color: <?php echo $random_color; ?>; width: 50px; height: 50px; border-radius: 50%; display: flex; justify-content: center; align-items: center; font-size: 24px; color: white;"><?php echo $first_letter; ?> <?php echo $client_name ? $client_name : '-'; ?></div>
                                     <?php } ?>
-                                    <?php echo $client_name ? $client_name : '-'; ?>
+                                    
                                 </td>
 
                                     <td>
