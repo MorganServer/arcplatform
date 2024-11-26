@@ -376,7 +376,6 @@ $pageName = ucwords($pageName);
                                 while ($me_row = mysqli_fetch_assoc($me_result)) {
                                     $me_id = $me_row['engagement_id'];
                                     $me_idno = $me_row['idno'];
-                                    $me_id = $me_row['client_id'];
                                     $me_client_name = $me_row['client_name'];
                                     $me_engagement_type = $me_row['engagement_type'];
                                     $me_year = $me_row['year'];
