@@ -40,11 +40,10 @@ redirectIfNotLoggedIn();
 
     <!-- main-container -->
         <div class="" style="padding: 0 20px 0 20px;">
+            <div class="mt-5"></div>
             <a class="text-decoration-none" href="<?php BASE_URL; ?>/client_list"><i class="bi bi-arrow-left"></i>&nbsp; Back to Client List</a>
             
-            <br>
-            <div class="mt-5"></div>
-
+            <div class="mt-1"></div>
             <div class="card-container">
                 <div class="card details_card" style="width: 100%;">
                   <div class="card-body">
