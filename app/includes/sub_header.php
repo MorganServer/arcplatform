@@ -370,23 +370,26 @@ $pageName = ucwords($pageName);
 
     // Now, make an AJAX request to fetch client data
     var xhr = new XMLHttpRequest();
-    xhr.open("GET", "<?php BASE_URL;?>/app/fetch_client_data.php?client_id=" + clientId, true);
+    xhr.open("GET", "<?php echo BASE_URL;?>/app/fetch_client_data.php?client_id=" + clientId, true);
     xhr.onload = function () {
         if (xhr.status == 200) {
             // Handle the response (assuming the response is the client data)
             var clientData = JSON.parse(xhr.responseText);
             
             // Populate the modal fields with the fetched data
-            document.getElementById('c_client_name').value = clientData.client_name;
-            document.getElementById('c_primary_contact').value = clientData.primary_contact;
-            document.getElementById('c_contact_email').value = clientData.contact_email;
-            document.getElementById('has_logo').checked = clientData.has_logo === 1;
+            if(clientData) {
+                document.getElementById('c_client_name').value = clientData.client_name || '';
+                document.getElementById('c_primary_contact').value = clientData.primary_contact || '';
+                document.getElementById('c_contact_email').value = clientData.contact_email || '';
+                document.getElementById('has_logo').checked = clientData.has_logo === 1;
+            }
         } else {
             console.error('Failed to fetch client data');
         }
     };
     xhr.send();
 });
+
 
 </script>
 
