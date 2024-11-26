@@ -100,58 +100,61 @@ redirectIfNotLoggedIn();
 
 
             <div class="accordion" id="accordionExample">
-              <div class="accordion-item">
+            <div class="accordion-item">
                 <h2 class="accordion-header">
-                  <button class="accordion-button" type="button" data-bs-toggle="collapse" data-bs-target="#collapseOne" aria-expanded="true" aria-controls="collapseOne">
-                    Active Engagements
-                  </button>
+                    <button class="accordion-button" type="button" data-bs-toggle="collapse" data-bs-target="#collapseOne" aria-expanded="true" aria-controls="collapseOne">
+                        Active Engagements
+                    </button>
                 </h2>
                 <div id="collapseOne" class="accordion-collapse collapse show" data-bs-parent="#accordionExample">
-                  <div class="accordion-body">
-                    
-
-                  <?php
-                    $off_sql = "SELECT * FROM engagement WHERE client_name = '$client_client_name'";
-                    $off_result = mysqli_query($conn, $off_sql);
-                    if($off_result) {
-                    $num_rows = mysqli_num_rows($off_result);
-                    if($num_rows > 0) {
-                        while ($off_row = mysqli_fetch_assoc($off_result)) {
-                            $off_id                     = $off_row['engagement_id']; 
-                            $off_client_name            = $off_row['client_name']; 
-                            $off_engagement_type        = $off_row['engagement_type']; 
-                            $off_year                   = $off_row['year']; 
-                            $off_report_start           = $off_row['report_start']; 
-                            $off_report_end             = $off_row['report_end']; 
-                            $off_report_as_of           = $off_row['report_as_of']; 
+                    <div class="accordion-body">
+                        <div class="row">
+                            <?php
+                            $off_sql = "SELECT * FROM engagement WHERE client_name = '$client_client_name'";
+                            $off_result = mysqli_query($conn, $off_sql);
                         
-                        
-                            // Split the name into parts and get initials
-                        
-
-                        
-                            $formatted_start = date("m/d/Y", strtotime($off_report_start));
-                            $formatted_end = date("m/d/Y", strtotime($off_report_end));
-                            $formatted_as_of = date("m/d/Y", strtotime($off_report_as_of));
-                        
-                    
-                    ?>
-
-                        <div class="card" style="width: 30rem;">
-                          <div class="card-body">
-                            <h5 class="card-title"><?php echo $off_engagement_type; ?></h5>
-                            <h6 class="card-subtitle mb-2 text-body-secondary">Card subtitle</h6>
-                            <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
-                            <a href="#" class="card-link">Card link</a>
-                            <a href="#" class="card-link">Another link</a>
-                          </div>
+                            if ($off_result) {
+                                $num_rows = mysqli_num_rows($off_result);
+                            
+                                if ($num_rows > 0) {
+                                    while ($off_row = mysqli_fetch_assoc($off_result)) {
+                                        $off_id = $off_row['engagement_id'];
+                                        $off_client_name = $off_row['client_name'];
+                                        $off_engagement_type = $off_row['engagement_type'];
+                                        $off_year = $off_row['year'];
+                                        $off_report_start = $off_row['report_start'];
+                                        $off_report_end = $off_row['report_end'];
+                                        $off_report_as_of = $off_row['report_as_of'];
+                                    
+                                        // Format the dates
+                                        $formatted_start = date("m/d/Y", strtotime($off_report_start));
+                                        $formatted_end = date("m/d/Y", strtotime($off_report_end));
+                                        $formatted_as_of = date("m/d/Y", strtotime($off_report_as_of));
+                            ?>
+                                        <div class="col-md-4 mb-4"> <!-- Make the cards responsive and inline -->
+                                            <div class="card">
+                                                <div class="card-body">
+                                                    <h5 class="card-title"><?php echo $off_engagement_type; ?></h5>
+                                                    <h6 class="card-subtitle mb-2 text-muted"><?php echo $off_client_name; ?> - <?php echo $off_year; ?></h6>
+                                                    <p class="card-text">
+                                                        Report Period: <?php echo $formatted_start; ?> to <?php echo $formatted_end; ?><br>
+                                                        Report As Of: <?php echo $formatted_as_of; ?>
+                                                    </p>
+                                                    <a href="#" class="card-link">View Details</a>
+                                                    <a href="#" class="card-link">Another Action</a>
+                                                </div>
+                                            </div>
+                                        </div>
+                            <?php
+                                    }
+                                }
+                            }
+                            ?>
                         </div>
-
-
-                    <?php }}} ?>
-                  </div>
+                    </div>
                 </div>
-              </div>
+            </div>
+
               <div class="accordion-item">
                 <h2 class="accordion-header">
                   <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseTwo" aria-expanded="false" aria-controls="collapseTwo">
