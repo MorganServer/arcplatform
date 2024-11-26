@@ -185,10 +185,4 @@ error_reporting(E_ALL);
     }
 // end Add QA Comment
 
-// Complete Engagement
-
-
-
-
-// end Complete Engagement
 ?>

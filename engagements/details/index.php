@@ -183,6 +183,8 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['followup_owner'])) {
                         <img src="<?php ROOT_PATH; ?>/assets/images/soc-1-icon.png" width="35" alt=""> &nbsp; <?php echo $off_client_name; ?> - <?php echo $off_year; ?> <?php echo $off_engagement_type; ?>
                     <?php } else if (strpos($off_engagement_type, 'HIPAA') !== false) { ?>
                         <img src="<?php ROOT_PATH; ?>/assets/images/hipaa-icon.png" width="35" alt=""> &nbsp; <?php echo $off_client_name; ?> - <?php echo $off_year; ?> <?php echo $off_engagement_type; ?>
+                    <?php } else if (strpos($off_engagement_type, 'PCI') !== false) { ?>
+                        <img src="<?php ROOT_PATH; ?>/assets/images/pci-icon.png" width="35" alt=""> &nbsp; <?php echo $off_client_name; ?> - <?php echo $off_year; ?> <?php echo $off_engagement_type; ?>
                     <?php } ?>
                 </div>
                 <div class="audit-period">
