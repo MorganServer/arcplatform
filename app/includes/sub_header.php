@@ -296,7 +296,7 @@ $pageName = ucwords($pageName);
                                     <div><?php echo $dc_client_name; ?></div>
                                 </div>
                                 <div>
-                                    <a href="" data-bs-target="#edit_client" data-bs-toggle="modal" data-dc-id="<?php echo $dc_id; ?>">
+                                    <a href="" data-bs-target="#edit_client" data-bs-toggle="modal">
                                         <i class="bi bi-pencil-square" style="color: #005382; cursor: pointer;"></i>
                                     </a> &nbsp;&nbsp;
                                     <a href="?action=delete&dc_id=<?php echo $dc_id; ?>" onclick="return confirm('Are you sure you want to delete this client?');">
@@ -316,7 +316,7 @@ $pageName = ucwords($pageName);
                 </div>
                 <div class="modal-body">
                     <!-- Hidden Input for Client ID -->
-                    <input type="text" id="edit_dc_id" name="edit_dc_id" value="<?php echo $dc_id; ?>z">
+                    <!-- <input type="text" id="edit_dc_id" name="edit_dc_id" value="<?php //echo $dc_id; ?>z"> -->
 
                     <?php
                     if (isset($_POST['edit_client'])) {
