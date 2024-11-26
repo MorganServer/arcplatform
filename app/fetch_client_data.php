@@ -34,7 +34,7 @@ if (isset($_GET['client_id'])) {
             'client_name' => $client['client_name'],
             'primary_contact' => $client['primary_contact'],
             'contact_email' => $client['contact_email'],
-            'has_logo' => !empty($client['logo']) // Check if logo has a value (not null or empty)
+            'has_logo' => !empty($client['logo'])
         ]);
         
     } else {
