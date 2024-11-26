@@ -4,7 +4,7 @@ ini_set('display_errors', 1);
 error_reporting(E_ALL);
 
 // Include database connection
-include('database/connection.php'); // Adjust the path as needed
+include('database/connection.php');
 
 header('Content-Type: application/json');
 
