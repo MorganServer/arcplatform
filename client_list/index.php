@@ -44,6 +44,7 @@ redirectIfNotLoggedIn();
                 <tr>
                     <!-- <th scope="col">ID</th> -->
                     <th scope="col">Client</th>
+                    <th scope="col">Primary Contact</th>
                     <th scope="col">Current Frameworks</th>
                     <!-- <th scope="col">Open QA Comments</th> -->
                     <th style="width: 100px; text-align: center;"></th>
@@ -71,11 +72,13 @@ redirectIfNotLoggedIn();
                                 $id = $row['client_id'];
                                 $client_name = $row['client_name'];
                                 $logo = $row['logo'];
+                                $primary_contact = $row['primary_contact'];
 
                                 ?>
 
                                 <tr class="" style="height: 70px !important; vertical-align: middle;">
-                                    <td><img class="me-3" src="<?php ROOT_PATH; ?>/assets/images/client_images/<?php echo $logo; ?>.png" width="50" alt="" style="border-radius: 15px;"><?php echo $client_name ? $client_name : '-'; ?></td>
+                                    <td><img class="me-2" src="<?php ROOT_PATH; ?>/assets/images/client_images/<?php echo $logo; ?>.png" width="50" alt="" style="border-radius: 15px;"><?php echo $client_name ? $client_name : '-'; ?></td>
+                                    <td><?php echo $primary_contact ? $primary_contact : '-'; ?></td>
                                     <td class="">
                                         <?php 
                                         $e_sql = "SELECT * FROM engagement WHERE client_name='$client_name'";
