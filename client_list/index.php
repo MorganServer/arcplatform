@@ -74,7 +74,6 @@ redirectIfNotLoggedIn();
                                 ?>
 
                                 <tr>
-                                    <th scope="row"><?php echo $idno; ?></th>
                                     <td><?php echo $client_name ? $client_name : '-'; ?></td>
                                     <td>
                                         <?php 
