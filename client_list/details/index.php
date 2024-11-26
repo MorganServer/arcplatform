@@ -157,7 +157,7 @@ redirectIfNotLoggedIn();
                                                                     <?php if(!isset($off_report_as_of)) { ?>
                                                                         <span class="text-secondary">Audit Period: </span><?php echo $formatted_start; ?> - <?php echo $formatted_end; ?>
                                                                     <?php } else { ?>
-                                                                        <strong>Audit Period: </strong><br>As of <?php echo $formatted_as_of; ?>
+                                                                        <span class="text-secondary">Audit Period: </span>As of <?php echo $formatted_as_of; ?>
                                                                     <?php } ?>
                                                                 </p>
                                                             </div>
