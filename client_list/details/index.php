@@ -210,6 +210,93 @@ redirectIfNotLoggedIn();
                 </h2>
                 <div id="collapseTwo" class="accordion-collapse collapse" data-bs-parent="#accordionExample">
                   <div class="accordion-body">
+
+                  <div class="row">
+                                <?php
+                                $off_sql = "SELECT * FROM engagement WHERE client_name = '$client_client_name'";
+                                $off_result = mysqli_query($conn, $off_sql);
+
+                                if ($off_result) {
+                                    $num_rows = mysqli_num_rows($off_result);
+                                
+                                    if ($num_rows > 0) {
+                                        while ($off_row = mysqli_fetch_assoc($off_result)) {
+                                            $off_id = $off_row['engagement_id'];
+                                            $off_client_name = $off_row['client_name'];
+                                            $off_engagement_type = $off_row['engagement_type'];
+                                            $off_year = $off_row['year'];
+                                            $off_report_start = $off_row['report_start'];
+                                            $off_report_end = $off_row['report_end'];
+                                            $off_report_as_of = $off_row['report_as_of'];
+                                            $off_fieldwork_week = $off_row['field_work_week'];
+                                            $off_leadsheets_due = $off_row['leadsheets_due'];
+                                        
+                                            // Format the dates
+                                            $formatted_start = date("m/d/Y", strtotime($off_report_start));
+                                            $formatted_end = date("m/d/Y", strtotime($off_report_end));
+                                            $formatted_as_of = date("m/d/Y", strtotime($off_report_as_of));
+                                            $formatted_fw_week = date("m/d/Y", strtotime($off_fieldwork_week));
+                                            $formatted_leadsheets_due = date("m/d/Y", strtotime($off_leadsheets_due));
+                                ?>
+                                            <div class="col-md-4 mb-4"> <!-- Make the cards responsive and inline -->
+                                                <div class="card" style="width: 30rem;">
+                                                    <div class="card-body">
+                                                        <div class="d-flex align-items-center">
+                                                            <!-- Left section for the image -->
+                                                            <div class="left">
+                                                                <?php if (strpos($off_engagement_type, 'SOC 2') !== false) { ?>
+                                                                    <img src="<?php echo BASE_URL; ?>/assets/images/soc-2-icon.png" width="90" alt="">
+                                                                <?php } else if (strpos($off_engagement_type, 'SOC 1') !== false) { ?>
+                                                                    <img src="<?php echo BASE_URL; ?>/assets/images/soc-1-icon.png" width="90" alt="">
+                                                                <?php } else if (strpos($off_engagement_type, 'HIPAA') !== false) { ?>
+                                                                    <img src="<?php echo BASE_URL; ?>/assets/images/hipaa-icon.png" width="90" alt="">
+                                                                <?php } else if (strpos($off_engagement_type, 'PCI') !== false) { ?>
+                                                                    <img src="<?php echo BASE_URL; ?>/assets/images/pci-icon.png" width="90" alt="">
+                                                                <?php } ?>
+                                                            </div>
+                                                                
+                                                            
+                                                            <div class="right ms-4 d-flex flex-column align-items-start">
+                                                                <h5 class="card-title text-start" style="margin-bottom: -15px;"><?php echo $off_engagement_type; ?></h5>
+                                                                <p class="card-text text-start" style="font-size: 14px !important;">
+                                                                    <?php if(!isset($off_report_as_of)) { ?>
+                                                                        <span class="text-secondary"><strong>Audit Period:&nbsp;&nbsp;</strong></span><?php echo $formatted_start; ?> - <?php echo $formatted_end; ?>
+                                                                    <?php } else { ?>
+                                                                        <span class="text-secondary"><strong>Audit Period:&nbsp;&nbsp;</strong></span>As of <?php echo $formatted_as_of; ?>
+                                                                    <?php } ?> 
+                                                                    <br>
+                                                                    <span class="d-block mt-2" style="font-size: 14px !important;">
+                                                                        <span class="text-secondary"><strong>Fieldwork Week:&nbsp;&nbsp;</strong></span><?php echo $formatted_fw_week; ?>
+                                                                    </span>
+                                                                    <br>
+                                                                    <!-- Adjusted spacing here with mt-1 for smaller margin -->
+                                                                    <span class="d-block" style="font-size: 14px !important; margin-top: -12px;">
+                                                                        <span class="text-secondary"><strong>Leadsheets Due:&nbsp;&nbsp;</strong></span><?php echo $formatted_leadsheets_due; ?>
+                                                                    </span>
+                                                                </p>
+
+
+                                                                    
+                                                            </div>
+
+                                                        </div>
+
+                                                        
+                                                        
+                                                        
+                                                    </div>
+                                                    <div class="card-footer" style="background-color: transparent; padding: 15px 15px;">
+                                                            <a href="#" class="card-link text-decoration-none">View Details</a>
+                                                            <a href="#" class="card-link float-end text-decoration-none">Another Action</a>
+                                                        </div>
+                                                </div>
+                                            </div>
+                                <?php
+                                        }
+                                    }
+                                }
+                                ?>
+                            </div>
                     
                   
 
