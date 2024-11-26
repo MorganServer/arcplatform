@@ -357,39 +357,6 @@ body {
 
 
 
-
-  /* .circle-progress {
-    width: 120px;
-    height: 120px;
-    position: relative;
-  }
-  
-  .circle-progress svg {
-    transform: rotate(-90deg);
-  } 
-  
-  .circle-progress .background-circle {
-    fill: none;
-    stroke: #e6e6e6;
-    stroke-width: 12;
-  } 
-  
-  .circle-progress .progress-circle {
-    fill: none;
-    stroke: #007bff;
-    stroke-width: 12;
-    stroke-dasharray: 339.292; 
-    stroke-dashoffset: 0; 
-    transition: stroke-dashoffset 1s ease;
-  }
-
-  .circle-progress .percentage-text {
-    position: absolute;
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%, -50%);
-    font-size: 20px;
-    font-weight: bold;
-    color: #007bff;
-  } */
-  
+.client-list-row:hover {
+    background-color: #f2f2f2;
+}
