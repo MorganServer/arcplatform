@@ -291,6 +291,46 @@ redirectIfNotLoggedIn();
                                                     </div>
                                                 </div>
                                             </div>
+
+                                            <!-- MODAL -->
+                                                <div class="modal fade" id="download_modal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                                                  <div class="modal-dialog modal-dialog-centered">
+                                                    <div class="modal-content">
+                                                      <div class="modal-header">
+                                                        <h1 class="modal-title fs-5" id="exampleModalLabel">Download QA Comment Report</h1>
+                                                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                                                      </div>
+                                                      <div class="modal-body">
+                                                        <form action="<?php BASE_URL; ?>/app/comment_report.php" method="POST" class="row g-3 p-3">
+                                                            <div class="form-check">
+                                                                <input class="form-check-input" type="checkbox" value="New" id="newComments" name="options[]">
+                                                                <label class="form-check-label" for="newComments">
+                                                                    New Comments
+                                                                </label>
+                                                            </div>
+                                                            <div class="form-check">
+                                                                <input class="form-check-input" type="checkbox" value="Follow-Up" id="followUpComments" name="options[]">
+                                                                <label class="form-check-label" for="followUpComments">
+                                                                    Follow-Up Comments
+                                                                </label>
+                                                            </div>
+                                                            <div class="form-check">
+                                                                <input class="form-check-input" type="checkbox" value="Completed" id="completedComments" name="options[]">
+                                                                <label class="form-check-label" for="completedComments">
+                                                                    Completed Comments
+                                                                </label>
+                                                            </div>
+                                                            <input type="hidden" name="e_id" value="<?php echo $off_id; ?>"> <!-- Replace with dynamic ID -->
+                                                            <div class="col-12 pt-3">
+                                                                <button type="submit" class="btn btn-primary"><i class="bi bi-download"></i>&nbsp;&nbsp;Comment Report</button>
+                                                            </div>
+                                                        </form>
+
+                                                      </div>
+                                                    </div>
+                                                  </div>
+                                                </div>
+                                            <!-- end MODAL -->
                                 <?php
                                         }
                                     }
@@ -305,45 +345,7 @@ redirectIfNotLoggedIn();
               </div>
             </div>
 
-            <!-- MODAL -->
-                <div class="modal fade" id="download_modal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
-                  <div class="modal-dialog modal-dialog-centered">
-                    <div class="modal-content">
-                      <div class="modal-header">
-                        <h1 class="modal-title fs-5" id="exampleModalLabel">Download QA Comment Report</h1>
-                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-                      </div>
-                      <div class="modal-body">
-                        <form action="<?php BASE_URL; ?>/app/comment_report.php" method="POST" class="row g-3 p-3">
-                            <div class="form-check">
-                                <input class="form-check-input" type="checkbox" value="New" id="newComments" name="options[]">
-                                <label class="form-check-label" for="newComments">
-                                    New Comments
-                                </label>
-                            </div>
-                            <div class="form-check">
-                                <input class="form-check-input" type="checkbox" value="Follow-Up" id="followUpComments" name="options[]">
-                                <label class="form-check-label" for="followUpComments">
-                                    Follow-Up Comments
-                                </label>
-                            </div>
-                            <div class="form-check">
-                                <input class="form-check-input" type="checkbox" value="Completed" id="completedComments" name="options[]">
-                                <label class="form-check-label" for="completedComments">
-                                    Completed Comments
-                                </label>
-                            </div>
-                            <input type="hidden" name="e_id" value="<?php echo $off_id; ?>"> <!-- Replace with dynamic ID -->
-                            <div class="col-12 pt-3">
-                                <button type="submit" class="btn btn-primary"><i class="bi bi-download"></i>&nbsp;&nbsp;Comment Report</button>
-                            </div>
-                        </form>
-                        
-                      </div>
-                    </div>
-                  </div>
-                </div>
-            <!-- end MODAL -->
+
 
 
             
