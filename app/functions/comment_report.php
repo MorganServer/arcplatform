@@ -96,17 +96,21 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
                 $pdf->SetFillColor(200, 220, 255); // Light blue background for the header
                 $pdf->Cell(0, 10, ucfirst($option) . ' Comments:', 0, 1, 'L', true);
                 $pdf->SetFont('Arial', '', 12);
-                $pdf->SetFillColor(255, 255, 255); // White background for comment boxes
+                $pdf->SetFillColor(240, 240, 240); // Light gray background for comment boxes
 
                 foreach ($comments_by_status[$option] as $comment) {
-                    // Draw a box around each comment for distinction
-                    $pdf->SetDrawColor(200, 200, 200); // Light gray border
+                    // Draw a rounded border around the comment section
+                    $pdf->SetDrawColor(180, 180, 180); // Light gray border
                     $pdf->SetLineWidth(0.5);
+                    $pdf->Rect($pdf->GetX(), $pdf->GetY(), 180, 50, 'D'); // Draw rectangle around the section
+                    
+                    // Print comment details inside the border
+                    $pdf->SetXY($pdf->GetX() + 5, $pdf->GetY() + 5); // Adjust for padding inside the box
                     $pdf->Cell(0, 10, "Control Reference: " . $comment['control_ref'], 0, 1);
                     $pdf->Cell(0, 10, "Cell Reference: " . $comment['cell_reference'], 0, 1);
                     $pdf->Cell(0, 10, "Comment By: " . $comment['comment_by'], 0, 1);
                     $pdf->MultiCell(0, 10, "Comment: " . $comment['qa_comment']);
-                    $pdf->Ln(5);
+                    $pdf->Ln(5); // Add some space after the comment
                 }
 
                 $pdf->Ln(10); // Add space after each status section
