@@ -325,43 +325,22 @@ $pageName = ucwords($pageName);
                 <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
             </div>
             <div class="modal-body">
-                <?php
-                // Check if the client_id is set in the URL
-                if (isset($_GET['data-dc-id'])) {
-                    $ec_id = $_GET['data-dc-id']; // Capture the client_id from the URL
-
-                    // Query the database to get the client details
-                    $ec_sql = "SELECT * FROM clients WHERE client_id = '$ec_id'";
-                    $ec_result = mysqli_query($conn, $ec_sql);
-                    if ($ec_result) {
-                        $ec_row = mysqli_fetch_assoc($ec_result);
-                        $ec_idno = $ec_row['idno'];
-                        $ec_client_name = $ec_row['client_name'];
-                        $ec_primary_contact = $ec_row['primary_contact'];
-                        $ec_contact_email = $ec_row['contact_email'];
-                        $ec_has_logo = $ec_row['logo'];
-                    }
-                } else {
-                    echo "No client ID provided!";
-                }
-                ?>
-
                 <form method="POST" class="row g-3">
                     <div class="col-md-6">
                         <label for="c_client_name" class="form-label">Client Name</label>
-                        <input type="text" class="form-control" id="c_client_name" name="c_client_name" value="<?php echo isset($ec_client_name) ? $ec_client_name : ''; ?>" required>
+                        <input type="text" class="form-control" id="c_client_name" name="c_client_name" required>
                     </div>
                     <div class="col-md-6">
                         <label for="c_primary_contact" class="form-label">Primary Contact</label>
-                        <input type="text" class="form-control" id="c_primary_contact" name="c_primary_contact" value="<?php echo isset($ec_primary_contact) ? $ec_primary_contact : ''; ?>" required>
+                        <input type="text" class="form-control" id="c_primary_contact" name="c_primary_contact" required>
                     </div>
                     <div class="col-md-6">
                         <label for="c_contact_email" class="form-label">Contact Email</label>
-                        <input type="email" class="form-control" id="c_contact_email" name="c_contact_email" value="<?php echo isset($ec_contact_email) ? $ec_contact_email : ''; ?>" required>
+                        <input type="email" class="form-control" id="c_contact_email" name="c_contact_email" required>
                     </div>
                     <div class="col-12">
                         <div class="form-check">
-                            <input class="form-check-input" type="checkbox" value="1" id="has_logo" name="has_logo" <?php echo (isset($ec_has_logo) && $ec_has_logo == 1) ? 'checked' : ''; ?>>
+                            <input class="form-check-input" type="checkbox" value="1" id="has_logo" name="has_logo">
                             <label class="form-check-label" for="has_logo">
                                 Client has a logo
                             </label>
@@ -378,6 +357,38 @@ $pageName = ucwords($pageName);
 <!-- end edit-client -->
 
 
+<script>
+    document.getElementById('edit_client').addEventListener('show.bs.modal', function (event) {
+    // Get the button that triggered the modal
+    var button = event.relatedTarget;
+    
+    // Get the client ID from the data-dc-id attribute
+    var clientId = button.getAttribute('data-dc-id');
+    
+    // Log the client ID for debugging
+    console.log('Editing client with ID:', clientId);
+
+    // Now, make an AJAX request to fetch client data
+    var xhr = new XMLHttpRequest();
+    xhr.open("GET", "fetch_client_data.php?client_id=" + clientId, true);
+    xhr.onload = function () {
+        if (xhr.status == 200) {
+            // Handle the response (assuming the response is the client data)
+            var clientData = JSON.parse(xhr.responseText);
+            
+            // Populate the modal fields with the fetched data
+            document.getElementById('c_client_name').value = clientData.client_name;
+            document.getElementById('c_primary_contact').value = clientData.primary_contact;
+            document.getElementById('c_contact_email').value = clientData.contact_email;
+            document.getElementById('has_logo').checked = clientData.has_logo === 1;
+        } else {
+            console.error('Failed to fetch client data');
+        }
+    };
+    xhr.send();
+});
+
+</script>
 
 
 <script>
@@ -398,19 +409,7 @@ $pageName = ucwords($pageName);
     });
 </script>
 
-<script>
-    // When the modal is shown, set the client_id
-    document.getElementById('edit_client').addEventListener('show.bs.modal', function (event) {
-        // Get the button that triggered the modal
-        var button = event.relatedTarget;
-        
-        // Get the client ID from the data-dc-id attribute
-        var ec_id = button.getAttribute('data-dc-id');
-        
-        // Optionally, you can now make an AJAX request to update the modal content dynamically
-        console.log('Editing client with ID:', ec_id);
-    });
-</script>
+
 
 
 
