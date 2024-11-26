@@ -370,7 +370,7 @@ $pageName = ucwords($pageName);
 
     // Now, make an AJAX request to fetch client data
     var xhr = new XMLHttpRequest();
-    xhr.open("GET", "fetch_client_data.php?client_id=" + clientId, true);
+    xhr.open("GET", "<?php BASE_URL;?>/app/fetch_client_data.php?client_id=" + clientId, true);
     xhr.onload = function () {
         if (xhr.status == 200) {
             // Handle the response (assuming the response is the client data)
