@@ -327,29 +327,32 @@ $pageName = ucwords($pageName);
             </div>
             <div class="modal-body">
                 <!-- Hidden Input for Client ID -->
-                <input type="hidden" id="edit_dc_id" name="edit_dc_id" value="<?php echo $dc_id; ?>">
+                <!-- Hidden input field -->
+<input type="hidden" id="edit_dc_id" name="edit_dc_id" value="<?php echo $dc_id; ?>">
 
-                <?php
-                if (isset($_GET['dc_id'])) {
-                    // Fetch client ID from the URL or hidden field
-                    $ec_id = intval($_POST['edit_dc_id']); // Sanitize input
-                    
-                    // Query to fetch client details
-                    $ec_sql = "SELECT * FROM clients WHERE client_id = ?";
-                    if ($stmt = $conn->prepare($ec_sql)) {
-                        $stmt->bind_param("i", $ec_id); // Bind the client ID
-                        $stmt->execute();
-                        $result = $stmt->get_result();
-                        if ($row = $result->fetch_assoc()) {
-                            $ec_idno = $row['idno'];
-                            $ec_client_name = $row['client_name'];
-                            $ec_primary_contact = $row['primary_contact'];
-                            $ec_contact_email = $row['contact_email'];
-                            $ec_has_logo = $row['has_logo'];
-                        }
-                    }
-                }
-                ?>
+<?php
+// Check if the form is submitted and fetch the client ID from the form data
+if (isset($_POST['edit_client'])) {
+    // Fetch the client ID from the hidden field in the submitted form
+    $ec_id = intval($_POST['edit_dc_id']); // Sanitize the input
+
+    // Query to fetch client details
+    $ec_sql = "SELECT * FROM clients WHERE client_id = ?";
+    if ($stmt = $conn->prepare($ec_sql)) {
+        $stmt->bind_param("i", $ec_id); // Bind the client ID
+        $stmt->execute();
+        $result = $stmt->get_result();
+        if ($row = $result->fetch_assoc()) {
+            $ec_idno = $row['idno'];
+            $ec_client_name = $row['client_name'];
+            $ec_primary_contact = $row['primary_contact'];
+            $ec_contact_email = $row['contact_email'];
+            $ec_has_logo = $row['has_logo'];
+        }
+    }
+}
+?>
+
 
                 <form method="POST" class="row g-3">
                     <div class="col-md-6">
