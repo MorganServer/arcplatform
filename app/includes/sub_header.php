@@ -332,7 +332,7 @@ $pageName = ucwords($pageName);
                 <?php
                 if (isset($_GET['dc_id'])) {
                     // Fetch client ID from the URL or hidden field
-                    $ec_id = intval($_GET['edit_dc_id']); // Sanitize input
+                    $ec_id = intval($_POST['edit_dc_id']); // Sanitize input
                     
                     // Query to fetch client details
                     $ec_sql = "SELECT * FROM clients WHERE client_id = ?";
