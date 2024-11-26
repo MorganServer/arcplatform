@@ -18,7 +18,6 @@ $pageName = ucwords($pageName);
             </a>
 
             <ul class="dropdown-menu">
-                <hr>
                 <li><h6 class="dropdown-header">Manage Actions</h6></li>
                 <li><a class="dropdown-item" data-bs-toggle="modal" data-bs-target="#delete_clients">Delete Clients</a></li>
                 <li><a class="dropdown-item" data-bs-toggle="modal" data-bs-target="#add_engagement">Add Engagement</a></li>
