@@ -1,6 +1,6 @@
 <?php
 
-include(BASE_URL . 'database/connection.php');
+require_once '../database/connection.php';  // Include your database connection file
 
 error_reporting(E_ALL);
 ini_set('display_errors', 1);
