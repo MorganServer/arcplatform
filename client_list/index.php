@@ -90,16 +90,16 @@ redirectIfNotLoggedIn();
 
                 // Check for specific engagement types and add them as badges
                 if (strpos($engagement_type, 'SOC 2') !== false) {
-                    $badges[] = '<span class="badge bg-primary">SOC 2</span>';
+                    $badges[] = '<span class="badge soc-2-badge">SOC 2</span>';
                 }
                 if (strpos($engagement_type, 'SOC 1') !== false) {
-                    $badges[] = '<span class="badge bg-success">SOC 1</span>';
+                    $badges[] = '<span class="badge soc-1-badge">SOC 1</span>';
                 }
                 if (strpos($engagement_type, 'PCI') !== false) {
-                    $badges[] = '<span class="badge" style="background-color: #5A50BC; color: #AD91DD;">PCI</span>';
+                    $badges[] = '<span class="badge pci-badge">PCI</span>';
                 }
                 if (strpos($engagement_type, 'HIPAA') !== false) {
-                    $badges[] = '<span class="badge bg-warning text-dark">HIPAA</span>';
+                    $badges[] = '<span class="badge hipaa-badge">HIPAA</span>';
                 }
             }
 
