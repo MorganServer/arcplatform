@@ -127,11 +127,15 @@ redirectIfNotLoggedIn();
                                             $off_report_start = $off_row['report_start'];
                                             $off_report_end = $off_row['report_end'];
                                             $off_report_as_of = $off_row['report_as_of'];
+                                            $off_fieldwork_week = $off_row['field_work_week'];
+                                            $off_leadsheets_due = $off_row['leadsheets_due'];
                                         
                                             // Format the dates
                                             $formatted_start = date("m/d/Y", strtotime($off_report_start));
                                             $formatted_end = date("m/d/Y", strtotime($off_report_end));
                                             $formatted_as_of = date("m/d/Y", strtotime($off_report_as_of));
+                                            $formatted_fw_week = date("m/d/Y", strtotime($off_fieldwork_week));
+                                            $formatted_leadsheets_due = date("m/d/Y", strtotime($off_leadsheets_due));
                                 ?>
                                             <div class="col-md-4 mb-4"> <!-- Make the cards responsive and inline -->
                                                 <div class="card" style="width: 30rem;">
@@ -159,6 +163,8 @@ redirectIfNotLoggedIn();
                                                                     <?php } else { ?>
                                                                         <span class="text-secondary"><strong>Audit Period:&nbsp;&nbsp;</strong></span>As of <?php echo $formatted_as_of; ?>
                                                                     <?php } ?>
+                                                                    <span class="text-secondary"><strong>Fieldwork Week:&nbsp;&nbsp;</strong></span><?php echo $formatted_fw_week; ?>
+                                                                    <span class="text-secondary"><strong>Fieldwork Week:&nbsp;&nbsp;</strong></span><?php echo $formatted_leadsheets_due; ?>
                                                                 </p>
                                                             </div>
 
