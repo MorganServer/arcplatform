@@ -119,8 +119,14 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             }
         }
 
-        // Output the PDF
-        $pdf->Output('D', 'Comment_Report.pdf'); // Forces download
+        // Set the timezone to Central Time (America/Chicago)
+        date_default_timezone_set('America/Chicago');
+            
+        // Get the current date and time in the desired format
+        $current_date = date("Y-m-d_H-i"); // Format as: Year-Month-Day_Hour-Minute
+            
+        // Output the PDF with the formatted date
+        $pdf->Output('D', 'Comment Report - ' . $engagement_name . ' (' . $current_date . ').pdf'); // Forces download
 
     } catch (Exception $e) {
         // Display error message to user
