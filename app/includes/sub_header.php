@@ -410,7 +410,7 @@ $pageName = ucwords($pageName);
 <!-- end manage-engagements -->
 
 <!-- edit-engagement -->
-    <div class="modal fade" id="edit_client" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal fade" id="edit_engagement" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
         <div class="modal-dialog">
             <div class="modal-content">
                 <div class="modal-header">
