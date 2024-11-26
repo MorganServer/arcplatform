@@ -316,7 +316,7 @@ $pageName = ucwords($pageName);
 <!-- end manage-client -->
 
 
-<!-- edit-client Modal -->
+<!-- edit-client -->
 <div class="modal fade" id="edit_client" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
     <div class="modal-dialog">
         <div class="modal-content">
@@ -325,7 +325,7 @@ $pageName = ucwords($pageName);
                 <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
             </div>
             <div class="modal-body">
-                <form method="POST" class="row g-3">
+                <form id="editClientForm" method="POST" class="row g-3">
                     <div class="col-md-6">
                         <label for="c_client_name" class="form-label">Client Name</label>
                         <input type="text" class="form-control" id="c_client_name" name="c_client_name" required>
@@ -354,7 +354,8 @@ $pageName = ucwords($pageName);
         </div>
     </div>
 </div>
-<!-- end edit-client Modal -->
+<!-- end edit-client -->
+
 
 
 
