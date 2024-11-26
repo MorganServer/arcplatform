@@ -156,7 +156,7 @@ redirectIfNotLoggedIn();
                                                                 
                                                             
                                                             <div class="right ms-4 d-flex flex-column align-items-start">
-                                                                <h5 class="card-title text-start"><?php echo $off_engagement_type; ?></h5>
+                                                                <h5 class="card-title text-start" style="margin-bottom: -15px;"><?php echo $off_engagement_type; ?></h5>
                                                                 <p class="card-text text-start" style="font-size: 14px !important;">
                                                                     <?php if(!isset($off_report_as_of)) { ?>
                                                                         <span class="text-secondary"><strong>Audit Period:&nbsp;&nbsp;</strong></span><?php echo $formatted_start; ?> - <?php echo $formatted_end; ?>
