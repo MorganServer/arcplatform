@@ -322,14 +322,14 @@ $pageName = ucwords($pageName);
         $dc_id = intval($_GET['dc_id']); // Sanitize the input to prevent SQL injection
 
         // Prepare the SQL query
-        $sql = "DELETE FROM clients WHERE dc_id = ?";
+        $sql = "DELETE FROM clients WHERE id = ?";
         if ($stmt = $conn->prepare($sql)) {
             $stmt->bind_param("i", $dc_id);
 
             // Execute the statement
             if ($stmt->execute()) {
                 // Redirect back to the same page after successful deletion
-                header("Location: " . $_SERVER['PHP_SELF']);
+                header("Location: /");
                 exit();
             } else {
                 echo "<div class='alert alert-danger'>Error deleting client: " . $stmt->error . "</div>";
