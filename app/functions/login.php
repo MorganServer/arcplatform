@@ -1,6 +1,6 @@
 <?php
-
-require_once '../database/connection.php';  // Include your database connection file
+// Using absolute path to include connection.php
+require_once __DIR__ . '/../database/connection.php'; // This resolves to the correct path
 
 error_reporting(E_ALL);
 ini_set('display_errors', 1);
