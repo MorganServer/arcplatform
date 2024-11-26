@@ -96,7 +96,7 @@ redirectIfNotLoggedIn();
                     $badges[] = '<span class="badge bg-success">SOC 1</span>';
                 }
                 if (strpos($engagement_type, 'PCI') !== false) {
-                    $badges[] = '<span class="badge bg-danger">PCI</span>';
+                    $badges[] = '<span class="badge" style="background-color: #5A50BC; color: #AD91DD;">PCI</span>';
                 }
                 if (strpos($engagement_type, 'HIPAA') !== false) {
                     $badges[] = '<span class="badge bg-warning text-dark">HIPAA</span>';
