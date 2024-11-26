@@ -340,7 +340,7 @@ if ($ec_result) {
             $ec_client_name = $ec_row['client_name'];
             $ec_primary_contact = $ec_row['primary_contact'];
             $ec_contact_email = $ec_row['contact_email'];
-            $ec_has_logo = $ec_row['has_logo'];
+            $ec_has_logo = $ec_row['logo'];
         }
     }
 }
