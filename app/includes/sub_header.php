@@ -329,7 +329,7 @@ $pageName = ucwords($pageName);
             // Execute the statement
             if ($stmt->execute()) {
                 // Redirect back to the same page after successful deletion
-                header("Location: /");
+                // header("Location: /");
                 exit();
             } else {
                 echo "<div class='alert alert-danger'>Error deleting client: " . $stmt->error . "</div>";
