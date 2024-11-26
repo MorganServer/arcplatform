@@ -1,4 +1,5 @@
 <?php
+
 // Enable error reporting for debugging (development only)
 ini_set('display_errors', 1);
 error_reporting(E_ALL);
@@ -11,8 +12,6 @@ require(ROOT_PATH . '/fpdf/fpdf.php'); // Include FPDF library
 require(ROOT_PATH . '/database/connection.php'); // Include your database connection file
 
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
-    // Initialize debugging log file (optional)
-  
 
     try {
         // Get selected options (statuses) from the request
@@ -20,8 +19,6 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         $e_id = isset($_POST['e_id']) ? intval($_POST['e_id']) : null; // Ensure it's an integer
 
         // Debugging output
-        // file_put_contents($logFile, "Received Data: " . print_r($_POST, true) . "\n", FILE_APPEND);
-
         // Check if options are selected
         if (empty($options)) {
             throw new Exception('No statuses selected. Please choose at least one option.');
@@ -32,16 +29,12 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             throw new Exception('Invalid Engagement ID.');
         }
 
-        // Log inputs
-        // file_put_contents($logFile, "Selected Options: " . implode(',', $options) . "\nEngagement ID: $e_id\n", FILE_APPEND);
-
         // Sanitize and prepare statuses for SQL query
         $statuses = implode("','", array_map([$conn, 'real_escape_string'], $options));
         $statuses = "'$statuses'"; // Prepare for SQL query
 
         // Log the prepared query
         $sql = "SELECT qa_comment FROM qa_comments WHERE status IN ($statuses) AND engagement_id = ?";
-        // file_put_contents($logFile, "SQL Query: $sql\n", FILE_APPEND);
 
         // Prepare and execute the statement
         $stmt = $conn->prepare($sql);
@@ -64,9 +57,6 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         }
 
         $stmt->close();
-
-        // Log the fetched comments
-        // file_put_contents($logFile, "Fetched Comments: " . print_r($comments, true) . "\n", FILE_APPEND);
 
         // Check if no comments were found
         if (empty($comments)) {
@@ -92,22 +82,13 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             $pdf->Ln(5);
         }
 
-        // Log PDF creation success
-        // file_put_contents($logFile, "PDF created successfully.\n", FILE_APPEND);
-
         // Output the PDF
         $pdf->Output('D', 'Comment_Report.pdf'); // Forces download
 
     } catch (Exception $e) {
-        // Log error
-        // file_put_contents($logFile, "Error: " . $e->getMessage() . "\n", FILE_APPEND);
-
         // Display error message to user
         die('Error: ' . $e->getMessage());
     }
-
-    // Log end
-    // file_put_contents($logFile, "---- Debug Log End ----\n", FILE_APPEND);
 }
 
 ?>
