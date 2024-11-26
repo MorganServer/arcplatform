@@ -134,7 +134,7 @@ redirectIfNotLoggedIn();
                             $formatted_end = date("m/d/Y", strtotime($off_report_end));
                             $formatted_as_of = date("m/d/Y", strtotime($off_report_as_of));
                         
-                    }
+                    
                     ?>
 
                         <div class="card" style="width: 30rem;">
@@ -148,7 +148,7 @@ redirectIfNotLoggedIn();
                         </div>
 
 
-                    <?php }} ?>
+                    <?php }}} ?>
                   </div>
                 </div>
               </div>
