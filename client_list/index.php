@@ -38,7 +38,7 @@ redirectIfNotLoggedIn();
                 Client List
             </h2>
             <form style="width: 350px;">
-                <div class="input-group" style="border: 1px solid black;">
+                <div class="input-group">
                     <span class="input-group-text bg-white border-end-0" style="margin-right: -10px;">
                         <i class="bi bi-search text-secondary"></i>
                     </span>
@@ -46,7 +46,9 @@ redirectIfNotLoggedIn();
                         type="text" 
                         class="form-control border-start-0" 
                         id="search_bar" 
-                        placeholder="Search QA Comment..."
+                        placeholder="Search clients..."
+
+                        style="border: 1px solid black;"
                     >
                 </div>
             </form>
