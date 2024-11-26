@@ -185,8 +185,8 @@ redirectIfNotLoggedIn();
                                                         
                                                     </div>
                                                     <div class="card-footer" style="background-color: transparent; padding: 15px 15px;">
-                                                            <a href="#" class="card-link text-decoration-none">View Details</a>
-                                                            <a href="#" class="card-link float-end text-decoration-none">Another Action</a>
+                                                            <a href="#" class="card-link text-decoration-none"><i class="bi bi-download"></i>  Summary Report</a>
+                                                            <a href="#" class="card-link float-end text-decoration-none">Open Engagement  <i class="bi bi-chevron-right"></i></a>
                                                         </div>
                                                 </div>
                                             </div>
