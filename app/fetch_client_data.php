@@ -34,8 +34,9 @@ if (isset($_GET['client_id'])) {
             'client_name' => $client['client_name'],
             'primary_contact' => $client['primary_contact'],
             'contact_email' => $client['contact_email'],
-            'has_logo' => $client['logo'] == 1 // Ensure it's 1 (true) or 0 (false)
+            'has_logo' => !empty($client['logo']) // Check if logo has a value (not null or empty)
         ]);
+        
     } else {
         // Log an error if no client is found
         error_log("No client found with ID: " . $client_id);
