@@ -186,7 +186,7 @@ redirectIfNotLoggedIn();
                                                     </div>
                                                     <div class="card-footer" style="background-color: transparent; padding: 15px 15px;">
                                                             <a href="#" class="card-link text-decoration-none"><i class="bi bi-download"></i>  Summary Report</a>
-                                                            <a href="#" class="card-link float-end text-decoration-none">Open Engagement  <i class="bi bi-chevron-right"></i></a>
+                                                            <a href="<?php echo BASE_URL; ?>/engagements/details/?id=<?php echo $off_id; ?>" class="card-link float-end text-decoration-none">Open Engagement  <i class="bi bi-chevron-right"></i></a>
                                                         </div>
                                                 </div>
                                             </div>
