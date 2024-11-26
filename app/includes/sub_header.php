@@ -450,6 +450,62 @@ $pageName = ucwords($pageName);
     </div>
 <!-- end edit-client -->
 
+<script>
+        document.getElementById('edit_engagement').addEventListener('show.bs.modal', function (event) {
+        // Get the button that triggered the modal
+        var button = event.relatedTarget;
+        
+        // Get the client ID from the data-dc-id attribute
+        var engagementId = button.getAttribute('data-me-id');
+        
+        // Log the client ID for debugging
+        console.log('Engagement ID passed to modal:', engagementId);
+
+        // Now, make an AJAX request to fetch client data
+        var xhr = new XMLHttpRequest();
+        xhr.open("GET", "<?php echo BASE_URL;?>/app/fetch_engagement_data.php?engagement_id=" + engagementId, true);
+        
+        // Log before sending the request
+        console.log('Sending AJAX request to fetch engagement data for ID:', engagementId);
+
+        xhr.onload = function () {
+            if (xhr.status == 200) {
+                // Log the server response for debugging
+                console.log('AJAX Response:', xhr.responseText);
+
+                try {
+                    // Parse the JSON response
+                    var engagementData = JSON.parse(xhr.responseText);
+
+                    // Log the parsed data for debugging
+                    console.log('Parsed client data:', engagementData);
+
+                    // Populate the modal fields with the fetched data
+                    if(engagementData) {
+                        document.getElementById('edit_engagement_id').value = engagementData.engagement_id || '';
+                        document.getElementById('edit_client_name').value = engagementData.client_name || '';
+                        document.getElementById('edit_primary_contact').value = engagementData.primary_contact || '';
+                        document.getElementById('edit_contact_email').value = engagementData.contact_email || '';
+                        document.getElementById('edit_has_logo').checked = engagementData.has_logo && clientData.has_logo !== '';
+                    }
+                } catch (e) {
+                    console.error('Error parsing response:', e);
+                }
+            } else {
+                console.error('Failed to fetch client data, status:', xhr.status);
+            }
+        };
+
+        xhr.onerror = function () {
+            console.error('AJAX request failed');
+        };
+
+        xhr.send();
+    });
+
+
+
+</script>
 
 <script>
         document.getElementById('edit_client').addEventListener('show.bs.modal', function (event) {
