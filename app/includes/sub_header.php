@@ -326,8 +326,7 @@ $pageName = ucwords($pageName);
                 <div class="modal-body">
                     <?php
                     // Query to get clients, the total number of engagements, and open QA comments for each client
-                    $ec_id = intval($_POST['edit_dc_id']);
-                    $ec_sql = "SELECT * FROM clients WHERE client_id = '$ec_id'";
+                    $ec_sql = "SELECT * FROM clients WHERE client_id = '$dc_id'";
                     $ec_result = mysqli_query($conn, $ec_sql);
                     if ($ec_result) {
                         $ec_num_rows = mysqli_num_rows($ec_result);
