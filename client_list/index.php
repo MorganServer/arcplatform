@@ -73,9 +73,9 @@ redirectIfNotLoggedIn();
 
                                 ?>
 
-                                <tr class="my-auto" style="height: 70px !important;">
+                                <tr class="" style="height: 70px !important; vertical-align: middle;">
                                     <td><?php echo $client_name ? $client_name : '-'; ?></td>
-                                    <td class="text-center">
+                                    <td class="">
                                         <?php 
                                         $e_sql = "SELECT * FROM engagement WHERE client_name='$client_name'";
                                         $e_result = mysqli_query($conn, $e_sql);
