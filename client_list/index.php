@@ -126,11 +126,12 @@ redirectIfNotLoggedIn();
                                         }
                                         ?>
                                     </td>
-                                    <td style="width: 100px; text-align: center;">
-                                        <a class="text-secondary stretched-link" href="<?php echo BASE_URL; ?>/asset/view/?id=<?php echo $id; ?>" class="view">
-                                        <i class="bi bi-chevron-right"></i>
-                                        </a> 
+                                    <td style="width: 100px; text-align: center; position: relative;">
+                                        <a class="text-secondary stretched-link" href="<?php echo BASE_URL; ?>/asset/view/?id=<?php echo $id; ?>">
+                                            <i class="bi bi-chevron-right"></i>
+                                        </a>
                                     </td>
+                                                                        
                                 </tr>
                                 <?php
                             }
