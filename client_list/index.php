@@ -78,10 +78,23 @@ redirectIfNotLoggedIn();
                                 ?>
 
                                 <tr class="client-list-row" onclick="window.location.href='<?php echo BASE_URL; ?>/client_list/details/?id=<?php echo $id; ?>'">
-                                    <td>
-                                        <img class="me-2" src="<?php ROOT_PATH; ?>/assets/images/client_images/<?php echo $logo; ?>.png" width="50" alt="" style="border-radius: 15px;">
-                                        <?php echo $client_name ? $client_name : '-'; ?>
-                                    </td>
+                                <td>
+                                    <?php
+                                    // Check if the logo exists
+                                    if (!empty($logo)) {
+                                        // If logo exists, display it
+                                        echo '<img class="me-2" src="' . ROOT_PATH . '/assets/images/client_images/' . $logo . '.png" width="50" alt="" style="border-radius: 15px;">';
+                                    } else {
+                                        // If no logo, create a circle with the first letter and a random background color
+                                        $first_letter = strtoupper(substr($client_name, 0, 1)); // Get the first letter of the client name
+                                        // Generate a random color
+                                        $random_color = sprintf('#%06X', mt_rand(0, 0xFFFFFF)); 
+                                        echo '<div class="client-avatar" style="background-color: ' . $random_color . '; width: 70px; height: 70px; border-radius: 50%; display: flex; justify-content: center; align-items: center; font-size: 30px; color: white;">' . $first_letter . '</div>';
+                                    }
+                                    ?>
+                                    <?php echo $client_name ? $client_name : '-'; ?>
+                                </td>
+
                                     <td>
                                         <?php echo $primary_contact ? $primary_contact : '-'; ?><br>
                                         <a style="color: #3c6caa; text-decoration: none;" href="mailto:<?php echo $contact_email; ?>">
