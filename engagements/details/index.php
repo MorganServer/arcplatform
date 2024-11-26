@@ -207,19 +207,9 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['followup_owner'])) {
 
                     <!-- Complete Engagement PHP -->
                         <?php
-
                         if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['complete_engagement'])) {
                             $engagement_id = intval($_POST['engagement_id']);
                             $status = $_POST['status'];
-                        
-                            // Debugging: Check variables
-                            echo "Engagement ID: $engagement_id<br>";
-                            echo "Status: $status<br>";
-                        
-                            // Debugging: Check connection
-                            if ($conn->connect_error) {
-                                die("Connection failed: " . $conn->connect_error);
-                            }
                         
                             // Prepare the SQL query
                             $sql = "UPDATE engagement SET status = ? WHERE engagement_id = ?";
@@ -228,14 +218,18 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['followup_owner'])) {
                             
                                 // Execute the statement
                                 if ($stmt->execute()) {
-                                    echo "<div class='alert alert-success'>Engagement status updated to Completed successfully.</div>";
+                                    // Redirect to the same page after successful update
+                                    header("Location: " . $_SERVER['PHP_SELF']);
+                                    exit();
                                 } else {
-                                    echo "<div class='alert alert-danger'>Error executing statement: " . $stmt->error . "</div>";
+                                    // Log the error for debugging purposes (optional)
+                                    error_log("Error executing statement: " . $stmt->error);
                                 }
                             
                                 $stmt->close();
                             } else {
-                                echo "<div class='alert alert-danger'>Error preparing the SQL statement: " . $conn->error . "</div>";
+                                // Log the error for debugging purposes (optional)
+                                error_log("Error preparing the SQL statement: " . $conn->error);
                             }
                         }
                         ?>
