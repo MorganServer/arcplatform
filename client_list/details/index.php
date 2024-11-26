@@ -112,7 +112,7 @@ redirectIfNotLoggedIn();
                             <?php
                             $off_sql = "SELECT * FROM engagement WHERE client_name = '$client_client_name'";
                             $off_result = mysqli_query($conn, $off_sql);
-
+                        
                             if ($off_result) {
                                 $num_rows = mysqli_num_rows($off_result);
                             
@@ -131,8 +131,8 @@ redirectIfNotLoggedIn();
                                         $formatted_end = date("m/d/Y", strtotime($off_report_end));
                                         $formatted_as_of = date("m/d/Y", strtotime($off_report_as_of));
                             ?>
-                                        <div class="col-md-8 mb-4"> <!-- Make the cards responsive and inline -->
-                                            <div class="card">
+                                        <div class="col-md-4 mb-4"> <!-- Make the cards responsive and inline -->
+                                            <div class="card" style="width: 18rem;">
                                                 <div class="card-body">
                                                     <h5 class="card-title"><?php echo $off_engagement_type; ?></h5>
                                                     <h6 class="card-subtitle mb-2 text-muted"><?php echo $off_client_name; ?> - <?php echo $off_year; ?></h6>
