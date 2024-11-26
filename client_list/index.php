@@ -77,7 +77,7 @@ redirectIfNotLoggedIn();
 
                                 ?>
 
-                                <tr class="client-list-row" style="height: 70px !important; vertical-align: middle;">
+                                <tr class="client-list-row">
                                     <td>
                                         <img class="me-2" src="<?php ROOT_PATH; ?>/assets/images/client_images/<?php echo $logo; ?>.png" 
                                              width="50" alt="" style="border-radius: 15px;">
