@@ -69,6 +69,15 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
         $error = "Invalid email format.";
     }
 }
+
+// Trigger the logout function
+if (isset($_GET['logout']) && $_GET['logout'] == 1) {
+    logoutUser($conn);
+}
+
+redirectIfNotLoggedIn();
+
+
 ?>
 
 <!DOCTYPE html>
