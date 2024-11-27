@@ -397,6 +397,7 @@ a {
     color: #275ba1 !important;
 }
 
-.dropdown-item {
+.dropdown-item,
+.header-icon {
     color: black !important;
 }
