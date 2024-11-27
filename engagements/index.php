@@ -533,9 +533,12 @@ redirectIfNotLoggedIn();
                                             <?php echo $control_ref; ?> &nbsp; <p class="badge hipaa-badge">HIPAA</p>
                                         <?php } ?>
                                     </h5>
-                                    <a href="?action=delete&qa_id=<?php echo $mid; ?>" class="float-end" onclick="return confirm('Are you sure you want to delete this QA Comment?');">
+                                    <div class="float-end">
+                                    <a href="?action=delete&qa_id=<?php echo $mid; ?>" class="" onclick="return confirm('Are you sure you want to delete this QA Comment?');">
                                         <i class="bi bi-trash" style="color: #941515; cursor: pointer;"></i>
                                     </a>
+                                    </div>
+                                    
                                     <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                                 </div>
                                 <div class="modal-body">
