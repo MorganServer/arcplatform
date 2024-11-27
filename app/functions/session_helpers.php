@@ -37,7 +37,7 @@ function redirectIfLoggedIn()
 function setUserLoggedInStatus($email, $status)
 {
     // Connect to the database
-    $db = new mysqli('localhost', 'username', 'password', 'database_name'); // Replace with your database credentials
+    $db = new mysqli('localhost', 'dbuser', 'DBuser123!', 'aarcplatform'); // Replace with your database credentials
 
     if ($db->connect_error) {
         die("Connection failed: " . $db->connect_error);
