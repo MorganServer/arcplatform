@@ -152,9 +152,7 @@
 
         // Execute the query and check if it was successful
         if ($stmt->execute()) {
-            echo "Engagement updated successfully!";
-            // Redirect or refresh if needed
-            // header("Location: engagements.php");
+            header("Location: /");
         } else {
             echo "Error executing statement: " . $stmt->error;
         }
