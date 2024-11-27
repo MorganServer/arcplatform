@@ -406,3 +406,7 @@ a {
     color: white !important;
     background-color: #275ba1 !important;
 }
+.page-link:active {
+    color: white !important;
+    background-color: #6881a2 !important;
+}
