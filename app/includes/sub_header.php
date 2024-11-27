@@ -1,4 +1,12 @@
 <?php
+
+$files = glob(BASE_URL . "/app/functions/*.php");
+foreach ($files as $file) {
+    require_once $file;
+}
+
+
+
 // Get the current script directory name (e.g., "dashboard" or "user_profile")
 $currentDirectory = basename(dirname($_SERVER['SCRIPT_FILENAME']));
 // Replace underscores with spaces
