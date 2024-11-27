@@ -391,3 +391,8 @@ body {
     background-color: #f2f2f2 !important; /* Ensure no background color on focus */
 }
 
+
+a {
+    text-decoration: none;
+    color: #275ba1;
+}
