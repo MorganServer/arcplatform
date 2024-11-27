@@ -21,7 +21,6 @@ $pageName = ucwords($pageName);
                 <li><h6 class="dropdown-header">Manage</h6></li>
                 <li><a class="dropdown-item" data-bs-toggle="modal" data-bs-target="#manage_clients">Manage Clients</a></li>
                 <li><a class="dropdown-item" data-bs-toggle="modal" data-bs-target="#manage_engagements">Manage Engagements</a></li>
-                <li><a class="dropdown-item" data-bs-toggle="modal" data-bs-target="#manage_qa_comments">Manage QA Comments</a></li>
                 <hr>
                 <li><h6 class="dropdown-header">Backup Actions</h6></li>
                 <li><a class="dropdown-item" data-bs-toggle="modal" data-bs-target="#backup_scehdule">Backup Schedule</a></li>
@@ -430,7 +429,7 @@ $pageName = ucwords($pageName);
                                 $stmt = $conn->prepare("SELECT client_name FROM clients");
                                 $stmt->execute();
                                 $result = $stmt->get_result();
-                                        
+
                                 if ($result->num_rows > 0) {
                                     while ($row = $result->fetch_assoc()) {
                                         $e_client_name = htmlspecialchars($row['client_name']);
