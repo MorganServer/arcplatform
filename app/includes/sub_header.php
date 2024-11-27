@@ -192,74 +192,69 @@ $pageName = ucwords($pageName);
     </div>
 <!-- end add-engagement -->
 
-<!-- add-qa-comment -->
-    <div class="modal fade" id="add_qa_comment" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
-      <div class="modal-dialog">
-        <div class="modal-content">
-            <div class="modal-header">
-                <h1 class="modal-title fs-5" id="exampleModalLabel">Add QA Comment</h1>
-                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-            </div>
-            <div class="modal-body">
-            <form class="row g-3" method="POST" action="">
-                <div class="col-md-6">
-                    <label for="qa_engagement_id" class="form-label">Engagement</label>
-                    <select id="qa_engagement_id" name="qa_engagement_id" class="form-select" required>
-                        <option value="">Choose...</option>
-                        <?php
-                        $qa_sql = "SELECT * FROM engagement";
-                        $qa_result = mysqli_query($conn, $qa_sql);
-                        if (mysqli_num_rows($qa_result) > 0) {
-                            while ($qa_row = mysqli_fetch_assoc($qa_result)) { 
-                                $qa_id = $qa_row['engagement_id'];
-                                $qa_client_name = htmlspecialchars($qa_row['client_name']);
-                                $qa_year = htmlspecialchars($qa_row['year']);
-                                $qa_engagement_type = htmlspecialchars($qa_row['engagement_type']);
-                        ?>
-                            <option value="<?php echo $qa_id; ?>" 
-                                    data-client-name="<?php echo $qa_client_name; ?>">
-                                <?php echo $qa_client_name; ?> - <?php echo $qa_year; ?> <?php echo $qa_engagement_type; ?>
-                            </option>
-                        <?php 
-                            }
-                        }
-                        ?>
-                    </select>
-                </div>
-                    
-                <div class="col-md-6 mt-3">
-                    <label for="qa_client_name" class="form-label">Client Name</label>
-                    <input type="text" id="qa_client_name" name="qa_client_name" class="form-control" readonly>
-                </div>
-                <div class="col-md-6">
-                    <label for="control_ref" class="form-label">Control Reference</label>
-                    <input type="text" class="form-control" id="control_ref" name="control_ref" required>
-                </div>
-                <div class="col-md-6">
-                    <label for="cell_reference" class="form-label">Cell Reference</label>
-                    <input type="text" class="form-control" id="cell_reference" name="cell_reference" required>
-                </div>
-                <div class="col-md-6">
-                    <label for="comment_by" class="form-label">Comment By</label>
-                    <input type="text" class="form-control" id="comment_by" name="comment_by" required>
-                </div>
-                <div class="mb-3">
-                    <label for="control" class="form-label">Control</label>
-                    <textarea class="form-control" id="control" name="control" rows="3" required></textarea>
-                </div>
-                <div class="mb-3">
-                    <label for="qa_comment" class="form-label">QA Comment</label>
-                    <textarea class="form-control" id="qa_comment" name="qa_comment" rows="3" required></textarea>
-                </div>
-                <div class="col-12">
-                    <button type="submit" name="submit_qa_comment" class="btn btn-primary">Submit</button>
-                </div>
-            </form>
-            </div>
-        </div>
+<!-- Add QA Comment Modal -->
+<div class="modal fade" id="add_qa_comment" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h1 class="modal-title fs-5" id="exampleModalLabel">Add QA Comment</h1>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+      <div class="modal-body">
+        <form class="row g-3" method="POST" action="">
+          <div class="col-md-6">
+            <label for="qa_engagement_id" class="form-label">Engagement</label>
+            <select id="qa_engagement_id" name="qa_engagement_id" class="form-select" required>
+              <option value="">Choose...</option>
+              <?php
+              $qa_sql = "SELECT * FROM engagement";
+              $qa_result = mysqli_query($conn, $qa_sql);
+              if ($qa_result && mysqli_num_rows($qa_result) > 0) {
+                  while ($qa_row = mysqli_fetch_assoc($qa_result)) { 
+                      $qa_id = htmlspecialchars($qa_row['engagement_id']);
+                      $qa_client_name = htmlspecialchars($qa_row['client_name']);
+                      $qa_year = htmlspecialchars($qa_row['year']);
+                      $qa_engagement_type = htmlspecialchars($qa_row['engagement_type']);
+              ?>
+              <option value="<?php echo $qa_id; ?>" data-client-name="<?php echo $qa_client_name; ?>">
+                <?php echo "$qa_client_name - $qa_year $qa_engagement_type"; ?>
+              </option>
+              <?php } } ?>
+            </select>
+          </div>
+          <div class="col-md-6">
+            <label for="qa_client_name" class="form-label">Client Name</label>
+            <input type="text" id="qa_client_name" name="qa_client_name" class="form-control" readonly>
+          </div>
+          <div class="col-md-6">
+            <label for="control_ref" class="form-label">Control Reference</label>
+            <input type="text" class="form-control" id="control_ref" name="control_ref" required>
+          </div>
+          <div class="col-md-6">
+            <label for="cell_reference" class="form-label">Cell Reference</label>
+            <input type="text" class="form-control" id="cell_reference" name="cell_reference" required>
+          </div>
+          <div class="col-md-6">
+            <label for="comment_by" class="form-label">Comment By</label>
+            <input type="text" class="form-control" id="comment_by" name="comment_by" required>
+          </div>
+          <div class="mb-3">
+            <label for="control" class="form-label">Control</label>
+            <textarea class="form-control" id="control" name="control" rows="3" required></textarea>
+          </div>
+          <div class="mb-3">
+            <label for="qa_comment" class="form-label">QA Comment</label>
+            <textarea class="form-control" id="qa_comment" name="qa_comment" rows="3" required></textarea>
+          </div>
+          <div class="col-12">
+            <button type="submit" name="submit_qa_comment" class="btn btn-primary">Submit</button>
+          </div>
+        </form>
       </div>
     </div>
-<!-- end add-qa-comment -->
+  </div>
+</div>
+<!-- end add qa comment -->
 
 
 <!-- manage-client -->
@@ -628,21 +623,16 @@ $pageName = ucwords($pageName);
 </script>
 
 <script>
-    document.addEventListener('DOMContentLoaded', function () {
-        // Handle dropdown selection and update client name
-        const engagementDropdown = document.getElementById('qa_engagement_id');
-        const clientNameInput = document.getElementById('qa_client_name');
-
-        if (engagementDropdown && clientNameInput) {
-            engagementDropdown.addEventListener('change', function () {
-                const selectedOption = this.options[this.selectedIndex];
-                const clientName = selectedOption.getAttribute('data-client-name');
-
-                // Set the client name input field in real-time
-                clientNameInput.value = clientName || '';  // Set client name or empty if not selected
-            });
-        }
-    });
+  document.addEventListener('DOMContentLoaded', function () {
+    const engagementDropdown = document.getElementById('qa_engagement_id');
+    const clientNameInput = document.getElementById('qa_client_name');
+    if (engagementDropdown && clientNameInput) {
+      engagementDropdown.addEventListener('change', function () {
+        const selectedOption = this.options[this.selectedIndex];
+        clientNameInput.value = selectedOption.getAttribute('data-client-name') || '';
+      });
+    }
+  });
 </script>
 
 
