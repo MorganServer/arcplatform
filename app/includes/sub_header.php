@@ -255,7 +255,7 @@ $pageName = ucwords($pageName);
                 <textarea class="form-control" id="qa_comment" name="qa_comment" rows="3" required></textarea>
               </div>
               <div class="col-12">
-                <button type="submit" name="submit_qa_comment" class="btn btn-primary">Add QA Comment</button>
+                <button type="submit" name="add_qa_comment" class="btn btn-primary">Add QA Comment</button>
               </div>
             </form>
           </div>
