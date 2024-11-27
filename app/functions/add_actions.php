@@ -123,25 +123,27 @@ error_reporting(E_ALL);
 // end Add Engagement
 
 // add QA Comment
-    if (isset($_POST['submit_qa_comment'])) {
-        // Generate a unique ID for the comment
-        $idno = rand(1000000, 9999999);
 
-        // Sanitize input data
-        $qa_engagement_id = isset($_POST['qa_engagement_id']) ? trim($_POST['qa_engagement_id']) : "";
-        $qa_client_name = isset($_POST['qa_client_name']) ? trim($_POST['qa_client_name']) : "";
-        $control_ref = isset($_POST['control_ref']) ? trim($_POST['control_ref']) : "";
-        $cell_reference = isset($_POST['cell_reference']) ? trim($_POST['cell_reference']) : "";
-        $comment_by = isset($_POST['comment_by']) ? trim($_POST['comment_by']) : "";
-        $control = isset($_POST['control']) ? trim($_POST['control']) : "";
-        $qa_comment = isset($_POST['qa_comment']) ? trim($_POST['qa_comment']) : "";
+$error = [];
 
-        // Check if QA comment already exists using prepared statement
-        $stmt = $conn->prepare("SELECT * FROM qa_comments WHERE idno = ?");
-        if (!$stmt) {
-            die("Prepare failed: " . $conn->error);
-        }
+if (isset($_POST['submit_qa_comment'])) {
+    // Generate a unique ID for the comment
+    $idno = rand(1000000, 9999999);
 
+    // Sanitize input data
+    $qa_engagement_id = isset($_POST['qa_engagement_id']) ? trim($_POST['qa_engagement_id']) : "";
+    $qa_client_name = isset($_POST['qa_client_name']) ? trim($_POST['qa_client_name']) : "";
+    $control_ref = isset($_POST['control_ref']) ? trim($_POST['control_ref']) : "";
+    $cell_reference = isset($_POST['cell_reference']) ? trim($_POST['cell_reference']) : "";
+    $comment_by = isset($_POST['comment_by']) ? trim($_POST['comment_by']) : "";
+    $control = isset($_POST['control']) ? trim($_POST['control']) : "";
+    $qa_comment = isset($_POST['qa_comment']) ? trim($_POST['qa_comment']) : "";
+
+    // Check if QA comment already exists using prepared statement
+    $stmt = $conn->prepare("SELECT * FROM qa_comments WHERE idno = ?");
+    if (!$stmt) {
+        $error[] = 'Prepare failed: ' . $conn->error;
+    } else {
         $stmt->bind_param("s", $idno);
         $stmt->execute();
         $result = $stmt->get_result();
@@ -156,33 +158,35 @@ error_reporting(E_ALL);
             );
 
             if (!$stmt) {
-                die("Prepare failed: " . $conn->error);
-            }
-
-            // Bind parameters to the prepared statement
-            $stmt->bind_param(
-                "ssssssss",
-                $idno,
-                $qa_engagement_id,
-                $qa_client_name,
-                $control_ref,
-                $cell_reference,
-                $comment_by,
-                $control,
-                $qa_comment
-            );
-
-            // Execute the query
-            if ($stmt->execute()) {
-                header('location: ' . BASE_URL . '/');
-                exit; // Ensure script stops execution after redirecting
+                $error[] = 'Prepare failed: ' . $conn->error;
             } else {
-                $error[] = 'Error: ' . $stmt->error; // Display error from the statement
-            }
+                // Bind parameters to the prepared statement
+                $stmt->bind_param(
+                    "ssssssss",
+                    $idno,
+                    $qa_engagement_id,
+                    $qa_client_name,
+                    $control_ref,
+                    $cell_reference,
+                    $comment_by,
+                    $control,
+                    $qa_comment
+                );
 
-            $stmt->close();
+                // Execute the query
+                if ($stmt->execute()) {
+                    header('location: ' . BASE_URL . '/');
+                    exit; // Ensure script stops execution after redirecting
+                } else {
+                    $error[] = 'Error: ' . $stmt->error; // Display error from the statement
+                }
+
+                $stmt->close();
+            }
         }
     }
+}
+
 // end Add QA Comment
 
 ?>
