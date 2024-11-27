@@ -123,5 +123,56 @@ error_reporting(E_ALL);
 // end Add Engagement
 
 
+// add Engagement
+    if (isset($_POST['submit_qa_comment'])) {
+        error_reporting(E_ALL);
+        ini_set('display_errors', 1);
+
+        // Generate a unique ID
+        $qa_idno = rand(1000000, 9999999);
+
+        // Sanitize and validate input data
+        $qa_engagement_id = isset($_POST['qa_engagement_id']) ? trim($_POST['qa_engagement_id']) : ""; 
+        $qa_client_name = isset($_POST['qa_client_name']) ? trim($_POST['qa_client_name']) : "";
+        $control_ref = isset($_POST['control_ref']) ? trim($_POST['control_ref']) : "";
+        $cell_reference = isset($_POST['cell_reference']) ? trim($_POST['cell_reference']) : "";
+        $comment_by = isset($_POST['comment_by']) ? trim($_POST['comment_by']) : "";
+        $control = isset($_POST['control']) ? trim($_POST['control']) : "";
+        $qa_comment = isset($_POST['qa_comment']) ? trim($_POST['qa_comment']) : "";
+
+        // Prepare query
+        $stmt = $conn->prepare(
+            "INSERT INTO qa_comments (idno, engagement_id, client_name, control_ref, cell_reference, comment_by, control, qa_comment)
+            VALUES (?, NULLIF(?, ''), NULLIF(?, ''), NULLIF(?, ''), NULLIF(?, ''), NULLIF(?, ''), NULLIF(?, ''), NULLIF(?, ''))"
+        );
+
+        if (!$stmt) {
+            die("Prepare failed: " . $conn->error);
+        }
+
+        $stmt->bind_param(
+            "sssssssssssssss",
+            $qa_idno,
+            $qa_engagement_id,
+            $qa_client_name,
+            $control_ref,
+            $cell_reference,
+            $comment_by,
+            $control,
+            $qa_comment
+        );
+
+        if ($stmt->execute()) {
+            header('Location: ' . BASE_URL . '/');
+            exit;
+        } else {
+            echo "Execute failed: " . $stmt->error;
+        }
+
+        $stmt->close();
+    }
+// end Add Engagement
+
+
 
 ?>
