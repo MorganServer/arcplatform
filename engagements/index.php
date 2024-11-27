@@ -316,53 +316,34 @@ redirectIfNotLoggedIn();
                                   </div>
                                   <div class="modal-body">
                                     <form class="row g-3" method="POST" action="">
-                                      <div class="col-md-6">
-                                        <label for="qa_engagement_id" class="form-label">Engagement</label>
-                                        <select id="qa_engagement_id" name="qa_engagement_id" class="form-select" required>
-                                          <option value="">Choose...</option>
-                                          <?php
-                                          $qa_sql = "SELECT * FROM engagement";
-                                          $qa_result = mysqli_query($conn, $qa_sql);
-                                          if ($qa_result && mysqli_num_rows($qa_result) > 0) {
-                                              while ($qa_row = mysqli_fetch_assoc($qa_result)) { 
-                                                  $qa_engagement_id = htmlspecialchars($qa_row['engagement_id']);
-                                                  $qa_client_name = htmlspecialchars($qa_row['client_name']);
-                                                  $qa_year = htmlspecialchars($qa_row['year']);
-                                                  $qa_engagement_type = htmlspecialchars($qa_row['engagement_type']);
-                                          ?>
-                                          <option value="<?php echo $qa_engagement_id; ?>" data-client-name="<?php echo $qa_client_name; ?>">
-                                            <?php echo "$qa_client_name - $qa_year $qa_engagement_type"; ?>
-                                          </option>
-                                          <?php } } ?>
-                                        </select>
-                                      </div>
-                                      <div class="col-md-6">
-                                        <label for="qa_client_name" class="form-label">Client Name</label>
-                                        <input type="text" id="qa_client_name" name="qa_client_name" class="form-control" readonly>
-                                      </div>
-                                      <div class="col-md-6">
-                                        <label for="control_ref" class="form-label">Control Reference</label>
-                                        <input type="text" class="form-control" id="control_ref" name="control_ref" required>
-                                      </div>
-                                      <div class="col-md-6">
-                                        <label for="cell_reference" class="form-label">Cell Reference</label>
-                                        <input type="text" class="form-control" id="cell_reference" name="cell_reference" required>
-                                      </div>
-                                      <div class="col-md-6">
-                                        <label for="comment_by" class="form-label">Comment By</label>
-                                        <input type="text" class="form-control" id="comment_by" name="comment_by" required>
-                                      </div>
-                                      <div class="mb-3">
-                                        <label for="control" class="form-label">Control</label>
-                                        <textarea class="form-control" id="control" name="control" rows="3" required></textarea>
-                                      </div>
-                                      <div class="mb-3">
-                                        <label for="qa_comment" class="form-label">QA Comment</label>
-                                        <textarea class="form-control" id="qa_comment" name="qa_comment" rows="3" required></textarea>
-                                      </div>
-                                      <div class="col-12">
-                                        <button type="submit" name="submit_qa_comment" class="btn btn-primary">Add QA Comment</button>
-                                      </div>
+                                        <input type="text" name="qa_engagement_id" value="<?php echo $off_id; ?> ">
+                                        <div class="col-md-6">
+                                          <label for="qa_client_name" class="form-label">Client Name</label>
+                                          <input type="text" id="qa_client_name" name="qa_client_name" class="form-control" readonly>
+                                        </div>
+                                        <div class="col-md-6">
+                                          <label for="control_ref" class="form-label">Control Reference</label>
+                                          <input type="text" class="form-control" id="control_ref" name="control_ref" required>
+                                        </div>
+                                        <div class="col-md-6">
+                                          <label for="cell_reference" class="form-label">Cell Reference</label>
+                                          <input type="text" class="form-control" id="cell_reference" name="cell_reference" required>
+                                        </div>
+                                        <div class="col-md-6">
+                                          <label for="comment_by" class="form-label">Comment By</label>
+                                          <input type="text" class="form-control" id="comment_by" name="comment_by" required>
+                                        </div>
+                                        <div class="mb-3">
+                                          <label for="control" class="form-label">Control</label>
+                                          <textarea class="form-control" id="control" name="control" rows="3" required></textarea>
+                                        </div>
+                                        <div class="mb-3">
+                                          <label for="qa_comment" class="form-label">QA Comment</label>
+                                          <textarea class="form-control" id="qa_comment" name="qa_comment" rows="3" required></textarea>
+                                        </div>
+                                        <div class="col-12">
+                                          <button type="submit" name="submit_qa_comment" class="btn btn-primary">Add QA Comment</button>
+                                        </div>
                                     </form>
                                   </div>
                                 </div>
