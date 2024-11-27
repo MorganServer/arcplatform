@@ -12,6 +12,13 @@ ini_set('error_log', __DIR__ . '/php_errors.log'); // Log errors to a file
 // Use absolute paths for includes
 require_once $_SERVER['DOCUMENT_ROOT'] . '/app/database/connection.php'; 
 
+// Check if the user is already logged in
+if (isset($_SESSION['user_id'])) {
+    // Redirect to client list if logged in
+    header("Location: " . BASE_URL . "/client_list");
+    exit();
+}
+
 // Handle the form submission
 if ($_SERVER["REQUEST_METHOD"] === "POST") {
     // Get the input data safely
@@ -74,7 +81,6 @@ $files = glob("../app/functions/*.php");
 foreach ($files as $file) {
     require_once $file;
 }
-
 
 ?>
 
