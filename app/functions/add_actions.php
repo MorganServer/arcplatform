@@ -125,6 +125,7 @@ error_reporting(E_ALL);
 // add QA Comment
 
 $error = [];
+$success = false;
 
 if (isset($_POST['submit_qa_comment'])) {
     $idno = rand(1000000, 9999999);
@@ -147,14 +148,14 @@ if (isset($_POST['submit_qa_comment'])) {
         // Check if QA comment ID already exists
         $stmt = $conn->prepare("SELECT * FROM qa_comments WHERE idno = ?");
         if (!$stmt) {
-            $error[] = "Prepare failed: " . $conn->error;
+            $error[] = "Prepare failed (Select): " . $conn->error;
         } else {
             $stmt->bind_param("s", $idno);
             $stmt->execute();
             $result = $stmt->get_result();
 
             if ($result->num_rows > 0) {
-                $error[] = "QA Comment already exists!";
+                $error[] = "QA Comment with this ID already exists!";
             } else {
                 // Insert new QA comment
                 $stmt = $conn->prepare(
@@ -173,19 +174,32 @@ if (isset($_POST['submit_qa_comment'])) {
                         $control,
                         $qa_comment
                     );
+
                     if ($stmt->execute()) {
-                        header('Location: ' . BASE_URL . '/');
-                        exit;
+                        $success = true; // Indicate success
                     } else {
                         $error[] = "Insert failed: " . $stmt->error;
                     }
                 } else {
-                    $error[] = "Prepare failed: " . $conn->error;
+                    $error[] = "Prepare failed (Insert): " . $conn->error;
                 }
                 $stmt->close();
             }
         }
     }
+}
+
+// Display errors or success
+if (!empty($error)) {
+    foreach ($error as $err) {
+        echo "<script>console.error('Error: " . addslashes($err) . "');</script>";
+        echo "<div class='alert alert-danger'>$err</div>";
+    }
+}
+
+if ($success) {
+    echo "<script>console.log('QA Comment successfully added with ID: $idno');</script>";
+    echo "<div class='alert alert-success'>QA Comment added successfully!</div>";
 }
 
 // end Add QA Comment
