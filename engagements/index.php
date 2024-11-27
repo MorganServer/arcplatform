@@ -316,7 +316,7 @@ redirectIfNotLoggedIn();
                                   </div>
                                   <div class="modal-body">
                                     <form class="row g-3" method="POST" action="">
-                                        <input type="text" name="qa_engagement_id" value="<?php echo $off_id; ?> ">
+                                        <input type="hidden" name="qa_engagement_id" value="<?php echo $off_id; ?> ">
                                         <div class="col-md-6">
                                           <label for="qa_client_name" class="form-label">Client Name</label>
                                           <input type="text" id="qa_client_name" name="qa_client_name" class="form-control" readonly>
