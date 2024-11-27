@@ -167,6 +167,7 @@
 // delete qa_comment
     if (isset($_GET['action']) && $_GET['action'] === 'delete_qa_comment' && isset($_GET['qa_id'])) {
         $qa_id = intval($_GET['qa_id']); // Sanitize the input to prevent SQL injection
+        $e_id = intval($_GET['e_id']); // Sanitize the input to prevent SQL injection
 
         // Prepare the SQL query
         $sql = "DELETE FROM qa_comments WHERE qa_id = ?";
@@ -176,7 +177,7 @@
             // Execute the statement
             if ($stmt->execute()) {
                 // Redirect back to the same page after successful deletion
-                header("Location: /");
+                header('Location: ' . BASE_URL . '/engagements/?engagement_id=' . $e_id);
                 exit();
             } else {
                 echo "<div class='alert alert-danger'>Error deleting qa_comment: " . $stmt->error . "</div>";
