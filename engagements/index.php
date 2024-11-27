@@ -2,13 +2,15 @@
 date_default_timezone_set('America/Denver');
 require_once "../app/database/connection.php"; // Ensure this is correct
 require_once "../path.php";
-require_once "../app/functions/logout.php";
-require_once "../app/functions/session_helpers.php";
-require_once "../app/functions/add_actions.php";
 session_start();
 
 ini_set('display_errors', 1);
 error_reporting(E_ALL);
+
+$files = glob("../app/functions/*.php");
+foreach ($files as $file) {
+    require_once $file;
+}
 
 // Trigger the logout function
 if (isset($_GET['logout']) && $_GET['logout'] == 1) {
@@ -251,7 +253,7 @@ redirectIfNotLoggedIn();
             <div class="card-container">
                 <div class="card details_card" style="width: 20rem;">
                   <div class="card-body">
-                    <h5 class="card-title">Engagement Resources</h5>
+                    <h5 class="card-title">Engagements Resources</h5>
                     <p class="card-text">
                         <h6>
                             QA Comment Report
@@ -305,49 +307,7 @@ redirectIfNotLoggedIn();
 
 
                         <!-- end Download MODAL -->
-                        <a class="btn btn-outline-secondary" data-bs-toggle="modal" data-bs-target="#add_qa_comment">Add QA Comment</a></li>
-
-                        <!-- Add QA Comment Modal -->
-                            <div class="modal fade" id="add_qa_comment" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
-                              <div class="modal-dialog">
-                                <div class="modal-content">
-                                  <div class="modal-header">
-                                    <h1 class="modal-title fs-5" id="exampleModalLabel">Add QA Comment</h1>
-                                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-                                  </div>
-                                  <div class="modal-body">
-                                    <form class="row g-3" method="POST" action="">
-                                        <input type="hidden" name="qa_engagement_id" value="<?php echo $off_id; ?> ">
-                                        <input type="hidden" name="qa_client_name" value="<?php echo $off_client_name; ?>">
-                                        <div class="col-md-6">
-                                          <label for="control_ref" class="form-label">Control Reference</label>
-                                          <input type="text" class="form-control" id="control_ref" name="control_ref" required>
-                                        </div>
-                                        <div class="col-md-6">
-                                          <label for="cell_reference" class="form-label">Cell Reference</label>
-                                          <input type="text" class="form-control" id="cell_reference" name="cell_reference" required>
-                                        </div>
-                                        <div class="col-md-6">
-                                          <label for="comment_by" class="form-label">Comment By</label>
-                                          <input type="text" class="form-control" id="comment_by" name="comment_by" required>
-                                        </div>
-                                        <div class="mb-3">
-                                          <label for="control" class="form-label">Control</label>
-                                          <textarea class="form-control" id="control" name="control" rows="3" required></textarea>
-                                        </div>
-                                        <div class="mb-3">
-                                          <label for="qa_comment" class="form-label">QA Comment</label>
-                                          <textarea class="form-control" id="qa_comment" name="qa_comment" rows="3" required></textarea>
-                                        </div>
-                                        <div class="col-12">
-                                          <button type="submit" name="add_qa_comment" class="btn btn-primary">Add QA Comment</button>
-                                        </div>
-                                    </form>
-                                  </div>
-                                </div>
-                              </div>
-                            </div>
-                        <!-- end add qa comment -->
+                        
                     </p>
                   </div>
                 </div>
@@ -804,7 +764,6 @@ document.querySelectorAll('.followup-comment-form').forEach(form => {
 
 
 </script>
-
 
 
 
