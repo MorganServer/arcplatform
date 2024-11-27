@@ -2,13 +2,15 @@
 date_default_timezone_set('America/Denver');
 require_once "../app/database/connection.php"; // Ensure this is correct
 require_once "../path.php";
-require_once "../app/functions/add_actions.php";
 session_start();
 
 ini_set('display_errors', 1);
 error_reporting(E_ALL);
 
-
+$files = glob("../../app/functions/*.php");
+foreach ($files as $file) {
+    require_once $file;
+}
 
 // Trigger the logout function
 if (isset($_GET['logout']) && $_GET['logout'] == 1) {
