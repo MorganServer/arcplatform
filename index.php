@@ -70,9 +70,9 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
     }
 }
 
-// Trigger the logout function
-if (isset($_GET['logout']) && $_GET['logout'] == 1) {
-    logoutUser($conn);
+$files = glob("../app/functions/*.php");
+foreach ($files as $file) {
+    require_once $file;
 }
 
 
