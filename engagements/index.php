@@ -653,19 +653,32 @@ redirectIfNotLoggedIn();
         </table>
         <br>
         <?php
-            // Pagination links
-            $sql = "SELECT COUNT(*) as total FROM qa_comments WHERE engagement_id = '$off_id'";
-            $result = mysqli_query($conn, $sql);
-            $row = mysqli_fetch_assoc($result);
-            $total_pages = ceil($row["total"] / $limit);
+// Get the current query string
+$query_string = $_SERVER['QUERY_STRING'];
+parse_str($query_string, $query_array);
 
-                echo '<ul class="pagination justify-content-center">';
-                for ($i = 1; $i <= $total_pages; $i++) {
-                    $active = ($page == $i) ? "active" : "";
-                    echo "<li class='page-item {$active}'><a class='page-link' href='?page={$i}'>{$i}</a></li>";
-                }
-                echo '</ul>';
-        ?>
+// Remove 'page' from the query array (to avoid duplicates when appending)
+unset($query_array['page']);
+
+// Generate the base URL with the current query parameters
+$base_url = $_SERVER['PHP_SELF'] . '?' . http_build_query($query_array);
+
+// Pagination links
+$sql = "SELECT COUNT(*) as total FROM qa_comments WHERE engagement_id = '$off_id'";
+$result = mysqli_query($conn, $sql);
+$row = mysqli_fetch_assoc($result);
+$total_pages = ceil($row["total"] / $limit);
+
+echo '<ul class="pagination justify-content-center">';
+for ($i = 1; $i <= $total_pages; $i++) {
+    $active = ($page == $i) ? "active" : "";
+    // Append the page parameter to the base URL
+    $page_url = $base_url . "&page={$i}";
+    echo "<li class='page-item {$active}'><a class='page-link' href='{$page_url}'>{$i}</a></li>";
+}
+echo '</ul>';
+?>
+
 
 
 
