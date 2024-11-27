@@ -524,22 +524,26 @@ redirectIfNotLoggedIn();
                                 
                             <div class="modal-content" style="background-color: #f2f2f2;">
                                 <div class="modal-header">
-                                    <h5 class="modal-title" id="exampleModalLabel">
-                                        <?php if (strpos($off_engagement_type, 'SOC 2') !== false) { ?>
-                                            <?php echo $control_ref; ?> &nbsp; <p class="badge soc-2-badge">SOC 2</p>
-                                        <?php } else if (strpos($off_engagement_type, 'SOC 1') !== false) { ?>
-                                            <?php echo $control_ref; ?> &nbsp; <p class="badge soc-1-badge">SOC 1</p>
-                                        <?php } else if (strpos($off_engagement_type, 'HIPAA') !== false) { ?>
-                                            <?php echo $control_ref; ?> &nbsp; <p class="badge hipaa-badge">HIPAA</p>
-                                        <?php } ?>
-                                    </h5>
-                                    <div class="float-end">
-                                    <a href="?action=delete&qa_id=<?php echo $mid; ?>" class="" onclick="return confirm('Are you sure you want to delete this QA Comment?');">
-                                        <i class="bi bi-trash" style="color: #941515; cursor: pointer;"></i>
-                                    </a>
+                                    <div class="float-start">
+                                        <h5 class="modal-title" id="exampleModalLabel">
+                                            <?php if (strpos($off_engagement_type, 'SOC 2') !== false) { ?>
+                                                <?php echo $control_ref; ?> &nbsp; <p class="badge soc-2-badge">SOC 2</p>
+                                            <?php } else if (strpos($off_engagement_type, 'SOC 1') !== false) { ?>
+                                                <?php echo $control_ref; ?> &nbsp; <p class="badge soc-1-badge">SOC 1</p>
+                                            <?php } else if (strpos($off_engagement_type, 'HIPAA') !== false) { ?>
+                                                <?php echo $control_ref; ?> &nbsp; <p class="badge hipaa-badge">HIPAA</p>
+                                            <?php } ?>
+                                        </h5>
                                     </div>
                                     
-                                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                                    <div class="float-end">
+                                        <a href="?action=delete&qa_id=<?php echo $mid; ?>" class="" onclick="return confirm('Are you sure you want to delete this QA Comment?');">
+                                            <i class="bi bi-trash" style="color: #941515; cursor: pointer;"></i>
+                                        </a>
+                                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                                    </div>
+                                    
+                                    
                                 </div>
                                 <div class="modal-body">
                                     <div class="qa-comment-details">
