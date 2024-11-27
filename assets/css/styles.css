@@ -404,9 +404,11 @@ a {
 
 .page-link {
     color: white !important;
-    background-color: #275ba1;
 }
-.page-link:active {
+.page-item {
+    background-color: #2b4567 !important;
+}
+.page-item:active {
     color: white !important;
     background-color: #6881a2 !important;
 }
