@@ -396,3 +396,7 @@ a {
     text-decoration: none !important;
     color: #275ba1 !important;
 }
+
+.dropdown-item {
+    color: black !important;
+}
