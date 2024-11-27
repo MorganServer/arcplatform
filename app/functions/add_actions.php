@@ -151,7 +151,7 @@ error_reporting(E_ALL);
         }
 
         $stmt->bind_param(
-            "sssssssssssssss",
+            "ssssssss",
             $qa_idno,
             $qa_engagement_id,
             $qa_client_name,
