@@ -164,4 +164,30 @@
 // end edit engagement
 
 
+// delete engagement
+    if (isset($_GET['action']) && $_GET['action'] === 'delete' && isset($_GET['mqa_id'])) {
+        $mqa_id = intval($_GET['mqa_id']); // Sanitize the input to prevent SQL injection
+
+        // Prepare the SQL query
+        $sql = "DELETE FROM qa_comments WHERE qa_id = ?";
+        if ($stmt = $conn->prepare($sql)) {
+            $stmt->bind_param("i", $mqa_id);
+
+            // Execute the statement
+            if ($stmt->execute()) {
+                // Redirect back to the same page after successful deletion
+                header("Location: /");
+                exit();
+            } else {
+                echo "<div class='alert alert-danger'>Error deleting qa_comment: " . $stmt->error . "</div>";
+            }
+
+            $stmt->close();
+        } else {
+            echo "<div class='alert alert-danger'>Error preparing the statement: " . $conn->error . "</div>";
+        }
+    }
+// end delete engagement
+
+
 ?>
