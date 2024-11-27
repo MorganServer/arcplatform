@@ -406,7 +406,15 @@ a {
     color: white !important;
     background-color: #2b4567 !important;
 }
-.page-link:active {
+
+.page-item.active .page-link {
     color: white !important;
     background-color: #6881a2 !important;
+    border-color: #6881a2 !important; /* Matches the border with background */
+}
+
+.page-link:hover {
+    color: white !important;
+    background-color: #3a567a !important; /* Slightly lighter color for hover */
+    text-decoration: none;
 }
