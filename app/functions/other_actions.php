@@ -165,7 +165,7 @@
 
 
 // delete qa_comment
-    if (isset($_GET['action']) && $_GET['action'] === 'delete' && isset($_GET['qa_id'])) {
+    if (isset($_GET['action']) && $_GET['action'] === 'delete_qa_comment' && isset($_GET['qa_id'])) {
         $qa_id = intval($_GET['qa_id']); // Sanitize the input to prevent SQL injection
 
         // Prepare the SQL query

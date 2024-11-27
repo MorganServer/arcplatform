@@ -32,7 +32,7 @@ redirectIfNotLoggedIn();
             // Execute the statement
             if ($stmt->execute()) {
                 // Redirect to the same page after successful update
-                header("Location: " . BASE_URL . '/engagements/details/?engagement_id=' . $engagement_id);
+                header("Location: " . BASE_URL . '/engagements/?engagement_id=' . $engagement_id);
                 exit();
             } else {
                 // Log the error for debugging purposes (optional)
@@ -513,7 +513,7 @@ redirectIfNotLoggedIn();
                             $mnum_rows = mysqli_num_rows($modalresult);
                             if($mnum_rows > 0) {
                                 while ($mrow = mysqli_fetch_assoc($modalresult)) {
-                                    $mid                     = $mrow['qa_id'];
+                                    $mqa_id                     = $mrow['qa_id'];
                                     $midno                   = $mrow['idno'];
                                     $mengagement_id          = $mrow['engagement_id'];
                                     $mcontrol_ref            = $mrow['control_ref'];
@@ -539,7 +539,7 @@ redirectIfNotLoggedIn();
                                     </h5>
                                         
                                     <div class="d-flex">
-                                        <a class="me-5" style="color: #941515; cursor: pointer; text-decoration: none;" href="?action=delete&qa_id=<?php echo $mid; ?>" onclick="return confirm('Are you sure you want to delete this QA Comment?');" class="me-2">
+                                        <a class="me-5" style="color: #941515; cursor: pointer; text-decoration: none;" href="?action=delete_qa_comment&qa_id=<?php echo $mqa_id; ?>" onclick="return confirm('Are you sure you want to delete this QA Comment?');" class="me-2">
                                             <i class="bi bi-trash"></i> Delete Comment
                                         </a>
                                         <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
