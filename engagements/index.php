@@ -525,7 +525,7 @@ redirectIfNotLoggedIn();
                             <div class="modal-content" style="background-color: #f2f2f2;">
                                 <div class="modal-header">
                                     <div class="d-flex">
-                                        <div class="float-start">
+                                        <div class="justify-content-start">
                                             <h5 class="modal-title" id="exampleModalLabel">
                                                 <?php if (strpos($off_engagement_type, 'SOC 2') !== false) { ?>
                                                     <?php echo $control_ref; ?> &nbsp; <p class="badge soc-2-badge">SOC 2</p>
@@ -537,7 +537,7 @@ redirectIfNotLoggedIn();
                                             </h5>
                                         </div>
                                                 
-                                        <div class="float-end">
+                                        <div class="justify-content-end">
                                             <a href="?action=delete&qa_id=<?php echo $mid; ?>" class="" onclick="return confirm('Are you sure you want to delete this QA Comment?');">
                                                 <i class="bi bi-trash" style="color: #941515; cursor: pointer;"></i>
                                             </a>
