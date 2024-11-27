@@ -78,7 +78,7 @@ redirectIfNotLoggedIn();
             <div class="card-container">
                 <div class="card details_card" style="width: 100%; height: 220px;">
                   <div class="card-body">
-                    <h5 class="card-title"><?php echo $client_client_name; ?></h5>
+                    <h5 class="card-title" style="padding-top: 15px; padding-left: 25px;"><?php echo $client_client_name; ?></h5>
                     <p class="card-text">
                         <div style="padding-top: 15px; padding-left: 25px;">
                             <h6 class="mb-4" style="font-weight: bold;">
