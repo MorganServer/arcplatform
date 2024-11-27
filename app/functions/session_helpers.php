@@ -1,6 +1,5 @@
 <?php
-session_start();
-define('BASE_URL', 'your_base_url'); // Replace with your base URL.
+
 
 function redirectIfNotLoggedIn()
 {
