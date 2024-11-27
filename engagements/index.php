@@ -539,7 +539,7 @@ redirectIfNotLoggedIn();
                                     </h5>
                                         
                                     <div class="d-flex">
-                                        <a class="me-5" style="color: #941515; cursor: pointer; text-decoration: none;" href="?action=delete_qa_comment&qa_id=<?php echo $mqa_id; ?>&e_id=<?php echo $mengagement_id; ?>" onclick="return confirm('Are you sure you want to delete this QA Comment?');" class="me-2">
+                                        <a class="me-5" style="color: #941515 !important; cursor: pointer; text-decoration: none;" href="?action=delete_qa_comment&qa_id=<?php echo $mqa_id; ?>&e_id=<?php echo $mengagement_id; ?>" onclick="return confirm('Are you sure you want to delete this QA Comment?');" class="me-2">
                                             <i class="bi bi-trash"></i> Delete Comment
                                         </a>
                                         <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
