@@ -211,12 +211,12 @@ $pageName = ucwords($pageName);
               $qa_result = mysqli_query($conn, $qa_sql);
               if ($qa_result && mysqli_num_rows($qa_result) > 0) {
                   while ($qa_row = mysqli_fetch_assoc($qa_result)) { 
-                      $qa_enagement_id = htmlspecialchars($qa_row['engagement_id']);
+                      $qa_engagement_id = htmlspecialchars($qa_row['engagement_id']);
                       $qa_client_name = htmlspecialchars($qa_row['client_name']);
                       $qa_year = htmlspecialchars($qa_row['year']);
                       $qa_engagement_type = htmlspecialchars($qa_row['engagement_type']);
               ?>
-              <option value="<?php echo $qa_enagement_id; ?>" data-client-name="<?php echo $qa_client_name; ?>">
+              <option value="<?php echo $qa_engagement_id; ?>" data-client-name="<?php echo $qa_client_name; ?>">
                 <?php echo "$qa_client_name - $qa_year $qa_engagement_type"; ?>
               </option>
               <?php } } ?>

@@ -123,7 +123,7 @@ error_reporting(E_ALL);
 // end Add Engagement
 
 
-// add Engagement
+// add qa comment
     if (isset($_POST['submit_qa_comment'])) {
         error_reporting(E_ALL);
         ini_set('display_errors', 1);
@@ -171,7 +171,7 @@ error_reporting(E_ALL);
 
         $stmt->close();
     }
-// end Add Engagement
+// end Add qa comment
 
 
 
