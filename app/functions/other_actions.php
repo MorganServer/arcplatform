@@ -102,22 +102,22 @@
     if (isset($_POST['edit_engagement'])) {
         // Get the form data
         $engagement_id = $_POST['me_edit_engagement_id'];
-        $client_name = $_POST['e_client_name'];
-        $engagement_type = $_POST['e_engagement_type'];
-        $year = $_POST['year'];
-        $report_start = $_POST['report_start'];
-        $report_end = $_POST['report_end'];
-        $report_as_of = $_POST['report_as_of'];
-        $manager = $_POST['manager'];
-        $senior = $_POST['senior'];
-        $staff = $_POST['staff'];
-        $leadsheets_due = $_POST['leadsheet_due'];
-        $field_work_week = $_POST['field_work_week'];
-        $senior_dol = $_POST['senior_dol'];
-        $staff_1_dol = $_POST['staff_1_dol'];
-        $staff_2_dol = $_POST['staff_2_dol'];
+        $client_name = empty($_POST['e_client_name']) ? null : $_POST['e_client_name'];
+        $engagement_type = empty($_POST['e_engagement_type']) ? null : $_POST['e_engagement_type'];
+        $year = empty($_POST['year']) ? null : $_POST['year'];
+        $report_start = empty($_POST['report_start']) ? null : $_POST['report_start'];
+        $report_end = empty($_POST['report_end']) ? null : $_POST['report_end'];
+        $report_as_of = empty($_POST['report_as_of']) ? null : $_POST['report_as_of'];
+        $manager = empty($_POST['manager']) ? null : $_POST['manager'];
+        $senior = empty($_POST['senior']) ? null : $_POST['senior'];
+        $staff = empty($_POST['staff']) ? null : $_POST['staff'];
+        $leadsheets_due = empty($_POST['leadsheet_due']) ? null : $_POST['leadsheet_due'];
+        $field_work_week = empty($_POST['field_work_week']) ? null : $_POST['field_work_week'];
+        $senior_dol = empty($_POST['senior_dol']) ? null : $_POST['senior_dol'];
+        $staff_1_dol = empty($_POST['staff_1_dol']) ? null : $_POST['staff_1_dol'];
+        $staff_2_dol = empty($_POST['staff_2_dol']) ? null : $_POST['staff_2_dol'];
 
-        // Validate input data
+        // Validate required fields
         if (empty($engagement_id) || empty($client_name) || empty($engagement_type) || empty($year)) {
             echo "Engagement ID, Client Name, Engagement Type, and Year are required!";
             exit;
@@ -145,7 +145,7 @@
             $client_name, $engagement_type, $year, 
             $report_start, $report_end, $report_as_of, 
             $manager, $senior, $staff, 
-            $leadsheet_due, $field_work_week, 
+            $leadsheets_due, $field_work_week, 
             $senior_dol, $staff_1_dol, $staff_2_dol, 
             $engagement_id
         );
