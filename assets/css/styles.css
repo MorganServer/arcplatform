@@ -404,7 +404,7 @@ a {
 
 .page-link {
     color: white !important;
-    background-color: #275ba1 !important;
+    background-color: #275ba1;
 }
 .page-link:active {
     color: white !important;
