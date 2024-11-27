@@ -401,3 +401,7 @@ a {
 .header-icon {
     color: black !important;
 }
+
+.page-link {
+    color: white !important;
+}
