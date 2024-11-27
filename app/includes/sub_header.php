@@ -30,10 +30,8 @@ $pageName = ucwords($pageName);
                 <li><a class="dropdown-item" data-bs-toggle="modal" data-bs-target="#manage_clients">Manage Clients</a></li>
                 <li><a class="dropdown-item" data-bs-toggle="modal" data-bs-target="#manage_engagements">Manage Engagements</a></li>
                 <hr>
-                <li><h6 class="dropdown-header">Backup Actions</h6></li>
-                <li><a class="dropdown-item" data-bs-toggle="modal" data-bs-target="#backup_scehdule">Backup Schedule</a></li>
-                <li><a class="dropdown-item" data-bs-toggle="modal" data-bs-target="#backup_notifications">Backup Notifications</a></li>
-                <li><a class="dropdown-item" data-bs-toggle="modal" data-bs-target="#manage_backups">Manage Backups</a></li>
+                <li><h6 class="dropdown-header">Backups</h6></li>
+                <li><a class="dropdown-item" href="<?php echo $BASE_URL; ?>/backups">Backup Configurations</a></li>
             </ul>
         </div>
         <div class="dropdown header-icon">
@@ -642,6 +640,7 @@ $pageName = ucwords($pageName);
     }
   });
 </script>
+
 
 
 
