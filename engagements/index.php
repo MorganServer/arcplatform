@@ -259,7 +259,7 @@ redirectIfNotLoggedIn();
                           <button type="button" class="btn btn-outline-primary" data-bs-toggle="modal" data-bs-target="#download_modal"><i class="bi bi-download"></i> Comment Report</button>
                         </div>
 
-                        <!-- MODAL -->
+                        <!-- Download MODAL -->
 
                             <div class="modal fade" id="download_modal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
                               <div class="modal-dialog modal-dialog-centered">
@@ -303,7 +303,7 @@ redirectIfNotLoggedIn();
                             </div>
 
 
-                        <!-- end MODAL -->
+                        <!-- end Download MODAL -->
                         
                     </p>
                   </div>
@@ -533,6 +533,9 @@ redirectIfNotLoggedIn();
                                             <?php echo $control_ref; ?> &nbsp; <p class="badge hipaa-badge">HIPAA</p>
                                         <?php } ?>
                                     </h5>
+                                    <a href="?action=delete&qa_id=<?php echo $mid; ?>" onclick="return confirm('Are you sure you want to delete this QA Comment?');">
+                                        <i class="bi bi-trash" style="color: #941515; cursor: pointer;"></i>
+                                    </a>
                                     <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                                 </div>
                                 <div class="modal-body">

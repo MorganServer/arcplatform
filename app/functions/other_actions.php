@@ -164,14 +164,14 @@
 // end edit engagement
 
 
-// delete engagement
-    if (isset($_GET['action']) && $_GET['action'] === 'delete' && isset($_GET['mqa_id'])) {
-        $mqa_id = intval($_GET['mqa_id']); // Sanitize the input to prevent SQL injection
+// delete qa_comment
+    if (isset($_GET['action']) && $_GET['action'] === 'delete' && isset($_GET['qa_id'])) {
+        $qa_id = intval($_GET['qa_id']); // Sanitize the input to prevent SQL injection
 
         // Prepare the SQL query
         $sql = "DELETE FROM qa_comments WHERE qa_id = ?";
         if ($stmt = $conn->prepare($sql)) {
-            $stmt->bind_param("i", $mqa_id);
+            $stmt->bind_param("i", $qa_id);
 
             // Execute the statement
             if ($stmt->execute()) {
@@ -187,7 +187,7 @@
             echo "<div class='alert alert-danger'>Error preparing the statement: " . $conn->error . "</div>";
         }
     }
-// end delete engagement
+// end delete qa_comment
 
 
 ?>
