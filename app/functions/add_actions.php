@@ -163,7 +163,7 @@ error_reporting(E_ALL);
         );
 
         if ($stmt->execute()) {
-            header('Location: ' . BASE_URL . '/');
+            header('Location: ' . BASE_URL . '/engagements/?engagement_id=' . $qa_engagement_id);
             exit;
         } else {
             echo "Execute failed: " . $stmt->error;
