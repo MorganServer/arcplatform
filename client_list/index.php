@@ -29,7 +29,7 @@ redirectIfNotLoggedIn();
 </head>
 <body>
 
-<?php echo $_SESSION['email']; ?>
+
     <?php include(ROOT_PATH . "/app/includes/header.php"); ?>
     <?php include(ROOT_PATH . "/app/includes/sub_header.php"); ?>
 
