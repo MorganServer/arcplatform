@@ -317,7 +317,7 @@ redirectIfNotLoggedIn();
                                   <div class="modal-body">
                                     <form class="row g-3" method="POST" action="">
                                         <input type="hidden" name="qa_engagement_id" value="<?php echo $off_id; ?> ">
-                                        <input type="text" name="qa_client_name" value="<?php echo $off_client_name; ?>">
+                                        <input type="hidden" name="qa_client_name" value="<?php echo $off_client_name; ?>">
                                         <div class="col-md-6">
                                           <label for="control_ref" class="form-label">Control Reference</label>
                                           <input type="text" class="form-control" id="control_ref" name="control_ref" required>
@@ -339,7 +339,7 @@ redirectIfNotLoggedIn();
                                           <textarea class="form-control" id="qa_comment" name="qa_comment" rows="3" required></textarea>
                                         </div>
                                         <div class="col-12">
-                                          <button type="submit" name="submit_qa_comment" class="btn btn-primary">Add QA Comment</button>
+                                          <button type="submit" name="add_qa_comment" class="btn btn-primary">Add QA Comment</button>
                                         </div>
                                     </form>
                                   </div>
