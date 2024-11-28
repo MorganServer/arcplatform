@@ -259,6 +259,7 @@ redirectIfNotLoggedIn();
         return new bootstrap.Tooltip(tooltipTriggerEl, {
             html: true, // Enable HTML rendering for line breaks
             placement: 'bottom', // Position the tooltip on the right side
+            offset: [0,10]
         });
     });
 </script>
