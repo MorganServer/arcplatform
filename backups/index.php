@@ -268,6 +268,7 @@ redirectIfNotLoggedIn();
     var tooltipList = tooltipTriggerList.map(function (tooltipTriggerEl) {
         return new bootstrap.Tooltip(tooltipTriggerEl, {
             html: true // Enable HTML parsing for the tooltip content
+            placement: 'right'
         });
     });
 </script>
