@@ -107,7 +107,7 @@
         // Check if notification_type is slack or email
         if ($notification_type === 'slack' && !empty($webhook)) {
             // Prepare SQL for Slack notification with webhook
-            $insert = $conn->prepare("INSERT INTO backup_configs (notification_type, webhook) 
+            $insert = $conn->prepare("INSERT INTO backup_notifications (notification_type, webhook) 
                                       VALUES (?, ?)");
             if ($insert === false) {
                 die('Error preparing SQL statement: ' . $conn->error);
@@ -117,7 +117,7 @@
             $insert->bind_param("ss", $notification_type, $webhook);
         } elseif ($notification_type === 'email' && $user_id > 0 && !empty($user_email)) {
             // Prepare SQL for Email notification with user_id
-            $insert = $conn->prepare("INSERT INTO backup_configs (notification_type, user_id, email) 
+            $insert = $conn->prepare("INSERT INTO backup_notifications (notification_type, user_id, email) 
                                       VALUES (?, ?, ?)");
             if ($insert === false) {
                 die('Error preparing SQL statement: ' . $conn->error);
