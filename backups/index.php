@@ -236,7 +236,7 @@ redirectIfNotLoggedIn();
             if (count($users) > 0) { ?>
                 <p>
                     <strong><?php echo $notification_type; ?>:&nbsp;</strong><?php echo $users[0]; ?>
-                </p>
+                
                 
                 
                 <?php
@@ -247,6 +247,7 @@ redirectIfNotLoggedIn();
                     $tooltip_content = implode('<br>', array_merge([$users[0]], $additional_users)); 
                 ?>
                 <span class='badge bg-secondary' style="width: 35px;" data-bs-toggle='tooltip' title='<?php echo $tooltip_content; ?>'>+<?php echo $additional_count; ?></span>
+                </p>
 
                 <?php
                 }
