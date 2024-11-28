@@ -186,112 +186,162 @@ redirectIfNotLoggedIn();
                     <h5 class="card-title">
                         Backup Notifications
                         <div class="float-end">
-                            <a href=""><i class="bi bi-plus-circle-fill"></i></a>
+                            <a data-bs-toggle="modal" data-bs-target="#add_backup_notification"><i class="bi bi-plus-circle-fill"></i></a>
                         </div>
                     </h5>
                     <p class="card-text">
 
 
                         <!-- backup config ul list -->
-                        <ul class="list-group list-group-flush">
-    <?php
-    // Fetch distinct notification types and associated emails
-    $bun_sql = "SELECT notification_type, GROUP_CONCAT(email) AS emails FROM backup_notifications GROUP BY notification_type";
-    $bun_result = mysqli_query($conn, $bun_sql);
+                            <ul class="list-group list-group-flush">
+                                <?php
+                                // Fetch distinct notification types and associated emails
+                                $bun_sql = "SELECT notification_type, GROUP_CONCAT(email) AS emails FROM backup_notifications GROUP BY notification_type";
+                                $bun_result = mysqli_query($conn, $bun_sql);
 
-    // Initialize states for Slack and Email
-    $email_enabled = false;
-    $slack_enabled = false;
-    $email_list = "";
+                                // Initialize states for Slack and Email
+                                $email_enabled = false;
+                                $slack_enabled = false;
+                                $email_list = "";
 
-    if ($bun_result) {
-        while ($bun_row = mysqli_fetch_assoc($bun_result)) {
-            if ($bun_row['notification_type'] === 'email') {
-                $email_enabled = true;
-                $email_list = $bun_row['emails'];
-            } elseif ($bun_row['notification_type'] === 'slack') {
-                $slack_enabled = true;
-            }
-        }
-    }
+                                if ($bun_result) {
+                                    while ($bun_row = mysqli_fetch_assoc($bun_result)) {
+                                        if ($bun_row['notification_type'] === 'email') {
+                                            $email_enabled = true;
+                                            $email_list = $bun_row['emails'];
+                                        } elseif ($bun_row['notification_type'] === 'slack') {
+                                            $slack_enabled = true;
+                                        }
+                                    }
+                                }
+                            
+                                // Format email list with line breaks
+                                $formatted_email_list = str_replace(',', '<br>', htmlspecialchars($email_list));
+                                ?>
 
-    // Format email list with line breaks
-    $formatted_email_list = str_replace(',', '<br>', htmlspecialchars($email_list));
-    ?>
+                                <!-- Email Notification -->
+                                <li class="list-group-item">
+                                    <div class="float-start">Email</div>
+                                    <div class="float-end">
+                                        <?php if ($email_enabled): ?>
+                                            <span class="badge bg-success" data-bs-toggle="tooltip" title="Recipients:<br><?php echo $formatted_email_list; ?>">Enabled</span>
+                                        <?php else: ?>
+                                            <span class="badge bg-danger">Disabled</span>
+                                        <?php endif; ?>
+                                    </div>
+                                </li>
+                                        
+                                <!-- Slack Notification -->
+                                <li class="list-group-item">
+                                    <div class="float-start">Slack</div>
+                                    <div class="float-end">
+                                        <?php if ($slack_enabled): ?>
+                                            <span class="badge bg-success">Enabled</span>
+                                        <?php else: ?>
+                                            <span class="badge bg-danger">Disabled</span>
+                                        <?php endif; ?>
+                                    </div>
+                                </li>
+                            </ul>
+                                        
+                            <style>
+                                /* Customize tooltip appearance */
+                                .tooltip-inner {
+                                    max-width: 300px; /* Adjust tooltip width */
+                                    white-space: pre-wrap; /* Preserve line breaks */
+                                }
+                            </style>
 
-    <!-- Email Notification -->
-    <li class="list-group-item">
-        <div class="float-start">Email</div>
-        <div class="float-end">
-            <?php if ($email_enabled): ?>
-                <span class="badge bg-success" data-bs-toggle="tooltip" title="Recipients:<br><?php echo $formatted_email_list; ?>">Enabled</span>
-            <?php else: ?>
-                <span class="badge bg-danger">Disabled</span>
-            <?php endif; ?>
-        </div>
-    </li>
-
-    <!-- Slack Notification -->
-    <li class="list-group-item">
-        <div class="float-start">Slack</div>
-        <div class="float-end">
-            <?php if ($slack_enabled): ?>
-                <span class="badge bg-success">Enabled</span>
-            <?php else: ?>
-                <span class="badge bg-danger">Disabled</span>
-            <?php endif; ?>
-        </div>
-    </li>
-</ul>
-
-<style>
-    /* Customize tooltip appearance */
-    .tooltip-inner {
-        max-width: 300px; /* Adjust tooltip width */
-        white-space: pre-wrap; /* Preserve line breaks */
-    }
-</style>
-
-<script>
-    // Initialize Bootstrap tooltips
-    var tooltipTriggerList = Array.from(document.querySelectorAll('[data-bs-toggle="tooltip"]'));
-    var tooltipList = tooltipTriggerList.map(function (tooltipTriggerEl) {
-        return new bootstrap.Tooltip(tooltipTriggerEl, {
-            html: true, // Enable HTML rendering for line breaks
-            placement: 'bottom', // Position the tooltip on the right side
-            offset: [0,10]
-        });
-    });
-</script>
-
-
-
+                            <script>
+                                // Initialize Bootstrap tooltips
+                                var tooltipTriggerList = Array.from(document.querySelectorAll('[data-bs-toggle="tooltip"]'));
+                                var tooltipList = tooltipTriggerList.map(function (tooltipTriggerEl) {
+                                    return new bootstrap.Tooltip(tooltipTriggerEl, {
+                                        html: true, // Enable HTML rendering for line breaks
+                                        placement: 'bottom', // Position the tooltip on the right side
+                                        offset: [0,10]
+                                    });
+                                });
+                            </script>
 
                         <!-- end backup config ul list -->
 
-                        <!-- add-configuration -->
-                            <div class="modal fade" id="add_backup_config" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                        <!-- add-notification -->
+                            <div class="modal fade" id="add_backup_notification" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
                                 <div class="modal-dialog">
                                     <div class="modal-content">
                                         <div class="modal-header">
-                                            <h1 class="modal-title fs-5" id="exampleModalLabel">Add Backup Configuration</h1>
+                                            <h1 class="modal-title fs-5" id="exampleModalLabel">Add Notification Method</h1>
                                             <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                                         </div>
                                         <div class="modal-body">
 
-                                            <form method="POST" class="row g-3">
-                                                <div class="col-md-6">
-                                                    <label for="config_name" class="form-label">Configuration Name</label>
-                                                    <input type="text" class="form-control" id="config_name" name="config_name">
-                                                </div>
-                                                <div class="col-md-6">
-                                                    <label for="value" class="form-label">Primary Contact</label>
-                                                    <input type="text" class="form-control" id="value" name="value" >
-                                                </div>
-                                                <div class="col-12">
-                                                    <button type="submit" name="add_backup_config" class="btn btn-primary">Add Configuration</button>
-                                                </div>
-                                            </form>
+                                        <?php
+// Fetch users and their emails from the users table
+$user_sql = "SELECT user_id, email FROM users";
+$user_result = mysqli_query($conn, $user_sql);
+$users = [];
+if ($user_result) {
+    while ($user_row = mysqli_fetch_assoc($user_result)) {
+        $users[] = $user_row;
+    }
+}
+?>
+
+<form method="POST" class="row g-3">
+    <!-- Notification Type -->
+    <div class="col-md-6">
+        <label for="notification_type" class="form-label">Notification Type</label>
+        <select class="form-control" id="notification_type" name="notification_type" onchange="toggleFields()">
+            <option value="slack">Slack</option>
+            <option value="email">Email</option>
+        </select>
+    </div>
+
+    <!-- Webhook (only visible if Slack is selected) -->
+    <div class="col-md-6" id="webhook_field" style="display: none;">
+        <label for="webhook" class="form-label">Webhook</label>
+        <input type="text" class="form-control" id="webhook" name="webhook">
+    </div>
+
+    <!-- User ID (only visible if Email is selected) -->
+    <div class="col-md-6" id="user_id_field" style="display: none;">
+        <label for="user_id" class="form-label">User</label>
+        <select class="form-control" id="user_id" name="user_id">
+            <option value="">Select a User</option>
+            <?php foreach ($users as $user): ?>
+                <option value="<?php echo $user['user_id']; ?>"><?php echo $user['email']; ?></option>
+            <?php endforeach; ?>
+        </select>
+    </div>
+
+    <div class="col-12">
+        <button type="submit" name="add_backup_config" class="btn btn-primary">Add Configuration</button>
+    </div>
+</form>
+
+<script>
+    // Function to toggle visibility of Webhook and User ID fields based on notification type
+    function toggleFields() {
+        var notificationType = document.getElementById("notification_type").value;
+        var webhookField = document.getElementById("webhook_field");
+        var userIdField = document.getElementById("user_id_field");
+
+        // Show webhook field only if Slack is selected
+        if (notificationType === "slack") {
+            webhookField.style.display = "block";
+            userIdField.style.display = "none";
+        } 
+        // Show user_id field only if Email is selected
+        else if (notificationType === "email") {
+            webhookField.style.display = "none";
+            userIdField.style.display = "block";
+        }
+    }
+
+    // Call toggleFields initially to set the correct field visibility on page load
+    window.onload = toggleFields;
+</script>
 
                                         </div>
                                     </div>
