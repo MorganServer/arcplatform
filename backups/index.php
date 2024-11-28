@@ -51,13 +51,24 @@ redirectIfNotLoggedIn();
                         </div>
                     </h5>
                     <p class="card-text">
-                                                
+                        <ul class="list-group list-group-flush">
+                          <li class="list-group-item">An item</li>
+                          <li class="list-group-item">A second item</li>
+                          <li class="list-group-item">A third item</li>
+                          <li class="list-group-item">A fourth item</li>
+                          <li class="list-group-item">And a fifth one</li>
+                        </ul>
                     </p>
                   </div>
                 </div>
                 <div class="card details_card" style="width: 38rem;">
                   <div class="card-body">
-                    <h5 class="card-title">Backup Notifications</h5>
+                    <h5 class="card-title">
+                        Backup Notifications
+                        <div class="float-end">
+                            <a href=""><i class="bi bi-plus-circle-fill"></i></a>
+                        </div>
+                    </h5>
                     <p class="card-text">
                         
                     </p>
