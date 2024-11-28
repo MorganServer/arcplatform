@@ -193,105 +193,64 @@ redirectIfNotLoggedIn();
 
 
                         <!-- backup config ul list -->
-                            <ul class="list-group list-group-flush">
-                                <?php
-                                // Join backup_notifications with the users table to fetch the user's first and last name
-                                $bun_sql = "SELECT * FROM backup_notifications";
+                        <ul class="list-group list-group-flush">
+    <?php
+    // Fetch distinct notification types and associated emails
+    $bun_sql = "SELECT notification_type, GROUP_CONCAT(email) AS emails FROM backup_notifications GROUP BY notification_type";
+    $bun_result = mysqli_query($conn, $bun_sql);
 
-                                $bun_result = mysqli_query($conn, $bun_sql);
-                                if ($bun_result) {
-                                    $bun_num_rows = mysqli_num_rows($bun_result);
-                                    if ($bun_num_rows > 0) {
-                                        while ($bun_row = mysqli_fetch_assoc($bun_result)) {
-                                            $bun_id                    = $bun_row['backup_notification_id']; 
-                                            $bun_user_id               = $bun_row['user_id'];
-                                            $bun_email                 = $bun_row['email'];
-                                            $bun_notification_type     = $bun_row['notification_type']
-                                
-                                            // Get user's first and last name
-                                            // $user_first_name = $bun_row['first_name'];
-                                            // $user_last_name = $bun_row['last_name'];
+    // Initialize states for Slack and Email
+    $email_enabled = false;
+    $slack_enabled = false;
+    $email_list = "";
+    $slack_list = "";
 
-                                            // $user_full_name = $user_first_name . " " . $user_last_name;
-                                ?>
-                                <li class="list-group-item">
-                                <?php
-// Assuming $bun_notification_types is an array of all notification types from the database
-$displayed_types = []; // Array to track displayed types
-
-foreach ($bun_notification_type as $bun_notification_type) {
-    if (!in_array($bun_notification_type, $displayed_types)) {
-        // Display the notification type if not already displayed
-        echo '<div class="float-start">' . htmlspecialchars($bun_notification_type) . '</div>';
-        $displayed_types[] = $bun_notification_type; // Mark as displayed
+    if ($bun_result) {
+        while ($bun_row = mysqli_fetch_assoc($bun_result)) {
+            if ($bun_row['notification_type'] === 'email') {
+                $email_enabled = true;
+                $email_list = $bun_row['emails'];
+            } elseif ($bun_row['notification_type'] === 'slack') {
+                $slack_enabled = true;
+                $slack_list = $bun_row['emails'];
+            }
+        }
     }
-}
-?>
-                                    <div class="float-end">
-                                        <a data-bs-toggle="modal" data-bs-target="#edit_backup_config-<?php echo $bu_id; ?>" style="color: #156194 !important; cursor: pointer; text-decoration: none;" class="me-2">
-                                            <i class="bi bi-pencil-square"></i>
-                                        </a>
-                                        <!-- edit-configuration -->
-                                            <div class="modal fade" id="edit_backup_config-<?php echo $bu_id; ?>" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
-                                                <div class="modal-dialog">
-                                                    <div class="modal-content">
-                                                        <div class="modal-header">
-                                                            <h1 class="modal-title fs-5" id="exampleModalLabel">Edit Backup Configuration</h1>
-                                                            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-                                                        </div>
-                                                        <div class="modal-body">
-                                                            <?php
-                                                            $one_bu_sql = "SELECT * FROM backup_configs WHERE backup_config_id = '$bu_id'";
-                                                            $one_bu_result = mysqli_query($conn, $one_bu_sql);
-                                                            if (!$one_bu_result) {
-                                                                die('Error executing query: ' . mysqli_error($conn));
-                                                            }
-                                                        
-                                                            $one_bu_num_rows = mysqli_num_rows($one_bu_result);
-                                                            if ($one_bu_num_rows > 0) {
-                                                                while ($one_bu_row = mysqli_fetch_assoc($one_bu_result)) {
-                                                                    $one_bu_id = $one_bu_row['backup_config_id']; 
-                                                                    $one_bu_config_name = $one_bu_row['config_name'];
-                                                                    $one_bu_value = $one_bu_row['value'];
-                                                                
-                                                                    $formatted_one_bu_config_name = ucwords(str_replace('_', ' ', $one_bu_config_name));
-                                                            ?>
-                                                            <form method="POST" class="row g-3">
-                                                                <input type="hidden" name="bu_id" value="<?php echo htmlspecialchars($one_bu_id); ?>">
-                                                                <div class="col-md-6">
-                                                                    <label for="config_name" class="form-label">Configuration Name</label>
-                                                                    <input type="text" class="form-control" id="config_name" name="config_name" value="<?php echo htmlspecialchars($one_bu_config_name); ?>">
-                                                                </div>
-                                                                <div class="col-md-6">
-                                                                    <label for="value" class="form-label">Primary Contact</label>
-                                                                    <input type="text" class="form-control" id="value" name="value" value="<?php echo htmlspecialchars($one_bu_value); ?>">
-                                                                </div>
-                                                                <div class="col-12">
-                                                                    <button type="submit" name="edit_backup_config" class="btn btn-primary">Update Configuration</button>
-                                                                </div>
-                                                            </form>
-                                                            <?php
-                                                                }
-                                                            }
-                                                            ?>
-                                                        </div>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                        <!-- end edit-configuration -->
-                                        <a style="color: #941515 !important; cursor: pointer; text-decoration: none;" href="?action=delete_backup_config&bu_id=<?php echo $bu_id; ?>" onclick="return confirm('Are you sure you want to delete this Backup Configuration?');" class="me-2">
-                                            <i class="bi bi-trash"></i>
-                                        </a>
-                                    </div>
-                                </li>
+    ?>
 
+    <!-- Email Notification -->
+    <li class="list-group-item">
+        <div class="float-start">Email</div>
+        <div class="float-end">
+            <?php if ($email_enabled): ?>
+                <span class="badge bg-success" data-bs-toggle="tooltip" title="Recipients: <?php echo htmlspecialchars($email_list); ?>">Enabled</span>
+            <?php else: ?>
+                <span class="badge bg-danger">Disabled</span>
+            <?php endif; ?>
+        </div>
+    </li>
 
-                                <?php
-                                        }
-                                    }
-                                }
-                                ?>
-                            </ul>
+    <!-- Slack Notification -->
+    <li class="list-group-item">
+        <div class="float-start">Slack</div>
+        <div class="float-end">
+            <?php if ($slack_enabled): ?>
+                <span class="badge bg-success" data-bs-toggle="tooltip" title="Recipients: <?php echo htmlspecialchars($slack_list); ?>">Enabled</span>
+            <?php else: ?>
+                <span class="badge bg-danger">Disabled</span>
+            <?php endif; ?>
+        </div>
+    </li>
+</ul>
+
+<script>
+    // Initialize Bootstrap tooltips
+    var tooltipTriggerList = [].slice.call(document.querySelectorAll('[data-bs-toggle="tooltip"]'))
+    var tooltipList = tooltipTriggerList.map(function (tooltipTriggerEl) {
+        return new bootstrap.Tooltip(tooltipTriggerEl)
+    });
+</script>
+
                         <!-- end backup config ul list -->
 
                         <!-- add-configuration -->
