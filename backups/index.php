@@ -236,7 +236,7 @@ redirectIfNotLoggedIn();
                 echo '<a data-bs-toggle="modal" data-bs-target="#edit_backup_config-<?php echo $bu_id; ?>" style="color: #156194 !important; cursor: pointer; text-decoration: none;" class="me-2">
                         <i class="bi bi-pencil-square"></i>
                     </a>';
-                echo '<a style="color: #941515 !important; cursor: pointer; text-decoration: none;" href="?action=delete_backup_config&bu_id=<?php echo $bu_id; ?>" onclick="return confirm('Are you sure you want to delete this Backup Configuration?');" class="me-2">
+                echo '<a style="color: #941515 !important; cursor: pointer; text-decoration: none;" href="?action=delete_backup_config&bu_id=<?php echo $bu_id; ?>" onclick="return confirm("Are you sure you want to delete this Backup Configuration?");" class="me-2">
                         <i class="bi bi-trash"></i>
                     </a>';
                 echo '</div>';
