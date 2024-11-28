@@ -190,6 +190,32 @@ redirectIfNotLoggedIn();
                         </div>
                     </h5>
                     <p class="card-text">
+
+                        <?php
+                        $notify_sql = "SELECT * FROM backup_configs WHERE config_name = 'notification_frequency";
+                        $notify_result= mysqli_query($conn, $notify_sql);
+                        if ($notify_result) {
+                            $notify_num_rows = mysqli_num_rows($notify_result);
+                            if ($notify_num_rows > 0) {
+                                while ($notify_row = mysqli_fetch_assoc($notify_result)) {
+                                    $notify_id        = $notify_row['backup_config_id']; 
+                                    $notify_value     = $notify_row['value'];
+                        ?>
+                        <p>
+                            <strong>
+                                Notification Frequency:&nbsp;
+                            </strong>
+                            <?php echo $notify_value; ?>
+                        </p>
+
+                        <?php
+                                }
+                            }
+                        }
+                        ?>
+
+
+
                         <!-- backup config ul list -->
                             <ul class="list-group list-group-flush">
                                 <?php
