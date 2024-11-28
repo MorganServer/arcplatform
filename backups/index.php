@@ -321,7 +321,7 @@ if ($user_result) {
     <input type="hidden" id="user_email" name="user_email">
 
     <div class="col-12 mt-5">
-        <button type="submit" name="add_backup_config" class="btn btn-primary">Add Notification Method</button>
+        <button type="submit" name="add_backup_notification" class="btn btn-primary">Add Notification Method</button>
     </div>
 </form>
 

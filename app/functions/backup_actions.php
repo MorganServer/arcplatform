@@ -94,4 +94,54 @@
 
 // end update client
 
+
+// add backup config
+    if (isset($_POST['add_backup_notification'])) {
+
+        // Sanitize input data
+        $notification_type = isset($_POST['notification_type']) ? trim($_POST['notification_type']) : "";
+        $webhook = isset($_POST['webhook']) ? trim($_POST['webhook']) : "";
+        $user_id = isset($_POST['user_id']) ? (int) $_POST['user_id'] : 0; // Sanitize user_id
+        $user_email = isset($_POST['user_email']) ? trim($_POST['user_email']) : "";
+
+        // Check if notification_type is slack or email
+        if ($notification_type === 'slack' && !empty($webhook)) {
+            // Prepare SQL for Slack notification with webhook
+            $insert = $conn->prepare("INSERT INTO backup_configs (notification_type, webhook) 
+                                      VALUES (?, ?)");
+            if ($insert === false) {
+                die('Error preparing SQL statement: ' . $conn->error);
+            }
+
+            // Bind parameters for Slack (webhook)
+            $insert->bind_param("ss", $notification_type, $webhook);
+        } elseif ($notification_type === 'email' && $user_id > 0 && !empty($user_email)) {
+            // Prepare SQL for Email notification with user_id
+            $insert = $conn->prepare("INSERT INTO backup_configs (notification_type, user_id, email) 
+                                      VALUES (?, ?, ?)");
+            if ($insert === false) {
+                die('Error preparing SQL statement: ' . $conn->error);
+            }
+
+            // Bind parameters for Email (user_id and email)
+            $insert->bind_param("sis", $notification_type, $user_id, $user_email);
+        } else {
+            $error[] = 'Invalid input data or missing required fields.';
+        }
+
+        // Execute the statement
+        if (isset($insert) && $insert->execute()) {
+            header('Location: ' . BASE_URL . '/backups');
+            exit; // Ensure script stops execution after redirecting
+        } else {
+            $error[] = 'Error: ' . $conn->error;
+        }
+
+        // Close prepared statements
+        if (isset($insert)) {
+            $insert->close();
+        }
+    }
+// end add backup config
+
 ?>
