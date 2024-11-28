@@ -44,7 +44,12 @@ redirectIfNotLoggedIn();
             <div class="card-container">
                 <div class="card details_card" style="width: 38rem;">
                   <div class="card-body">
-                    <h5 class="card-title">Backup Configurations</h5>
+                    <h5 class="card-title">
+                        Backup Configurations
+                        <div class="float-end">
+                            <a href=""><i class="bi bi-plus-circle-fill"></i></a>
+                        </div>
+                    </h5>
                     <p class="card-text">
                                                 
                     </p>
