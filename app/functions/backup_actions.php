@@ -57,4 +57,41 @@
     }
 // end delete client
 
+// update client
+    // Check if the form is submitted
+    if (isset($_POST['edit_backup_config'])) {
+        // Get the form data
+        $bu_id = $_POST['bu_id'];
+        $config_name = $_POST['config_name'];
+        $value = $_POST['value'];
+
+        // Validate input data (simple example, you can add more validation as needed)
+        if (empty($config_name) || empty($value)) {
+            echo "All fields are required!";
+            exit;
+        }
+
+        // Update query to modify client data
+        $sql = "UPDATE backup_configs SET config_name = ?, value = ? WHERE backup_config_id = ?";
+        $stmt = $conn->prepare($sql);
+
+        // Bind the parameters
+        $stmt->bind_param("ssi", $config_name, $value, $bu_id);
+
+        // Execute the query and check if the update was successful
+        if ($stmt->execute()) {
+            header("Location: " . BASE_URL . "/backups");
+        } else {
+            echo "Error updating client: " . $stmt->error;
+        }
+
+        // Close the statement and connection
+        $stmt->close();
+        $conn->close();
+    }
+
+
+
+// end update client
+
 ?>
