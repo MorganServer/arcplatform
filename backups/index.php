@@ -212,9 +212,7 @@ redirectIfNotLoggedIn();
                     $bun_user_id = $bun_row['user_id'];
                     $bun_notification_type = strtolower($bun_row['notification_type']); // Normalize to lowercase
                     $user_full_name = $bun_row['first_name'] . " " . $bun_row['last_name'];
-                    
-                    // Debug: Check the notification type
-                    echo "Notification Type: " . $bun_notification_type . "<br>";
+                
                     
                     // Group users by notification type
                     if ($bun_notification_type == 'success') {
