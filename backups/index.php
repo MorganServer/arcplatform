@@ -197,15 +197,18 @@ redirectIfNotLoggedIn();
                 LEFT JOIN users u ON bn.user_id = u.user_id";
                 
     $bun_result = mysqli_query($conn, $bun_sql);
-    
-    if ($bun_result) {
+
+    // Debugging: Check if the query executed correctly
+    if (!$bun_result) {
+        echo "Error: " . mysqli_error($conn); // Output the SQL error if query fails
+    } else {
         $bun_rows = [];
-        
+
         // Group users by notification type
         while ($bun_row = mysqli_fetch_assoc($bun_result)) {
             $bun_notification_type = $bun_row['notification_type'];
             $user_full_name = $bun_row['first_name'] . " " . $bun_row['last_name'];
-            
+
             // Create an array for each notification type
             $bun_rows[$bun_notification_type][] = $user_full_name;
         }
@@ -231,12 +234,12 @@ redirectIfNotLoggedIn();
 
                 echo '</div>';
 
-                echo '<div class="float-end">';
                 // Edit and Delete buttons (These are placeholders for your modal and delete actions)
-                echo '<a data-bs-toggle="modal" data-bs-target="#edit_backup_config-<?php echo $bu_id; ?>" style="color: #156194 !important; cursor: pointer; text-decoration: none;" class="me-2">
+                echo '<div class="float-end">';
+                echo '<a data-bs-toggle="modal" data-bs-target="#edit_backup_config-' . $bun_row['backup_notification_id'] . '" style="color: #156194 !important; cursor: pointer; text-decoration: none;" class="me-2">
                         <i class="bi bi-pencil-square"></i>
                     </a>';
-                echo '<a style="color: #941515 !important; cursor: pointer; text-decoration: none;" href="?action=delete_backup_config&bu_id=<?php echo $bu_id; ?>" onclick="return confirm("Are you sure you want to delete this Backup Configuration?");" class="me-2">
+                echo '<a style="color: #941515 !important; cursor: pointer; text-decoration: none;" href="?action=delete_backup_config&bu_id=' . $bun_row['backup_notification_id'] . '" onclick="return confirm(\'Are you sure you want to delete this Backup Configuration?\');" class="me-2">
                         <i class="bi bi-trash"></i>
                     </a>';
                 echo '</div>';
@@ -252,6 +255,7 @@ redirectIfNotLoggedIn();
     var tooltipTriggerList = document.querySelectorAll('[data-bs-toggle="tooltip"]');
     var tooltipList = [...tooltipTriggerList].map(tooltipTriggerEl => new bootstrap.Tooltip(tooltipTriggerEl));
 </script>
+
                         <!-- end backup config ul list -->
 
                         <!-- add-notification -->
