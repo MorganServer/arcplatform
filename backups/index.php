@@ -191,127 +191,18 @@ redirectIfNotLoggedIn();
                     </h5>
                     <p class="card-text">
 
-                        <?php
-                        $notify_sql = "SELECT * FROM backup_configs WHERE config_name = 'notification_frequency'";
-                        $notify_result= mysqli_query($conn, $notify_sql);
-                        if ($notify_result) {
-                            $notify_num_rows = mysqli_num_rows($notify_result);
-                            if ($notify_num_rows > 0) {
-                                while ($notify_row = mysqli_fetch_assoc($notify_result)) {
-                                    $notify_id        = $notify_row['backup_config_id']; 
-                                    $notify_value     = $notify_row['value'];
-                        ?>
-                        <p>
-                            <strong>
-                                Notification Frequency:&nbsp;
-                            </strong>
-                            <?php echo $notify_value; ?>
-                        </p>
-
-                        <?php
-                                }
-                            }
-                        }
-                        ?>
-
-                        <br>
-
-                        <h5>
-                            Notification Reciepents
-                        </h5>
-                        <hr>
 
                         <!-- backup config ul list -->
                             <ul class="list-group list-group-flush">
-                                <?php
-                                // Join backup_notifications with the users table to fetch the user's first and last name
-                                $bun_sql = "SELECT bn.backup_notification_id, bn.user_id, u.first_name, u.last_name, u.email
-                                FROM backup_notifications bn
-                                LEFT JOIN users u ON bn.user_id = u.user_id";
-
-                                $bun_result = mysqli_query($conn, $bun_sql);
-                                if ($bun_result) {
-                                    $bun_num_rows = mysqli_num_rows($bun_result);
-                                    if ($bun_num_rows > 0) {
-                                        while ($bun_row = mysqli_fetch_assoc($bun_result)) {
-                                            $bun_id        = $bun_row['backup_notification_id']; 
-                                            $bun_user_id   = $bun_row['user_id'];
-                                            $bun_email     = $bun_row['email'];
                                 
-                                            // Get user's first and last name
-                                            $user_first_name = $bun_row['first_name'];
-                                            $user_last_name = $bun_row['last_name'];
-
-                                            $user_full_name = $user_first_name . " " . $user_last_name;
-                                ?>
                                 <li class="list-group-item">
-                                    <div class="float-start">
-                                        <?php echo $user_full_name; ?>
-                                    </div>
-                                    <div class="float-end">
-                                        <a data-bs-toggle="modal" data-bs-target="#edit_backup_config-<?php echo $bu_id; ?>" style="color: #156194 !important; cursor: pointer; text-decoration: none;" class="me-2">
-                                            <i class="bi bi-pencil-square"></i>
-                                        </a>
-                                        <!-- edit-configuration -->
-                                            <div class="modal fade" id="edit_backup_config-<?php echo $bu_id; ?>" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
-                                                <div class="modal-dialog">
-                                                    <div class="modal-content">
-                                                        <div class="modal-header">
-                                                            <h1 class="modal-title fs-5" id="exampleModalLabel">Edit Backup Configuration</h1>
-                                                            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-                                                        </div>
-                                                        <div class="modal-body">
-                                                            <?php
-                                                            $one_bu_sql = "SELECT * FROM backup_configs WHERE backup_config_id = '$bu_id'";
-                                                            $one_bu_result = mysqli_query($conn, $one_bu_sql);
-                                                            if (!$one_bu_result) {
-                                                                die('Error executing query: ' . mysqli_error($conn));
-                                                            }
-                                                        
-                                                            $one_bu_num_rows = mysqli_num_rows($one_bu_result);
-                                                            if ($one_bu_num_rows > 0) {
-                                                                while ($one_bu_row = mysqli_fetch_assoc($one_bu_result)) {
-                                                                    $one_bu_id = $one_bu_row['backup_config_id']; 
-                                                                    $one_bu_config_name = $one_bu_row['config_name'];
-                                                                    $one_bu_value = $one_bu_row['value'];
-                                                                
-                                                                    $formatted_one_bu_config_name = ucwords(str_replace('_', ' ', $one_bu_config_name));
-                                                            ?>
-                                                            <form method="POST" class="row g-3">
-                                                                <input type="hidden" name="bu_id" value="<?php echo htmlspecialchars($one_bu_id); ?>">
-                                                                <div class="col-md-6">
-                                                                    <label for="config_name" class="form-label">Configuration Name</label>
-                                                                    <input type="text" class="form-control" id="config_name" name="config_name" value="<?php echo htmlspecialchars($one_bu_config_name); ?>">
-                                                                </div>
-                                                                <div class="col-md-6">
-                                                                    <label for="value" class="form-label">Primary Contact</label>
-                                                                    <input type="text" class="form-control" id="value" name="value" value="<?php echo htmlspecialchars($one_bu_value); ?>">
-                                                                </div>
-                                                                <div class="col-12">
-                                                                    <button type="submit" name="edit_backup_config" class="btn btn-primary">Update Configuration</button>
-                                                                </div>
-                                                            </form>
-                                                            <?php
-                                                                }
-                                                            }
-                                                            ?>
-                                                        </div>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                        <!-- end edit-configuration -->
-                                        <a style="color: #941515 !important; cursor: pointer; text-decoration: none;" href="?action=delete_backup_config&bu_id=<?php echo $bu_id; ?>" onclick="return confirm('Are you sure you want to delete this Backup Configuration?');" class="me-2">
-                                            <i class="bi bi-trash"></i>
-                                        </a>
-                                    </div>
+                                    Slack Integration:
+                                </li>
+                                <li class="list-group-item">
+                                    Email Notifications:
                                 </li>
 
-
-                                <?php
-                                        }
-                                    }
-                                }
-                                ?>
+                            
                             </ul>
                         <!-- end backup config ul list -->
 
