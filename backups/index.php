@@ -253,12 +253,16 @@ redirectIfNotLoggedIn();
 </style>
 
 <script>
-    // Initialize Bootstrap tooltips for Email
-    var tooltipTriggerList = [].slice.call(document.querySelectorAll('[data-bs-toggle="tooltip"]'))
+    var tooltipTriggerList = Array.from(document.querySelectorAll('[data-bs-toggle="tooltip"]'));
     var tooltipList = tooltipTriggerList.map(function (tooltipTriggerEl) {
-        return new bootstrap.Tooltip(tooltipTriggerEl)
+        return new bootstrap.Tooltip(tooltipTriggerEl, {
+            html: true, // Enable HTML parsing for the tooltip content
+            placement: 'right', // Position the tooltip on the right side
+            offset: [10, 0] // Move the tooltip 10px to the right (horizontal), and 0px vertically
+        });
     });
 </script>
+
 
 
                         <!-- end backup config ul list -->
