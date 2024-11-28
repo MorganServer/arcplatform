@@ -288,7 +288,7 @@ if ($user_result) {
 }
 ?>
 
-<form method="POST" class="">
+<form method="POST" class="row g-3">
     <!-- Notification Type -->
     <div class="col-md-6">
         <label for="notification_type" class="form-label">Notification Type</label>
@@ -315,8 +315,8 @@ if ($user_result) {
         </select>
     </div>
 
-    <div class="col-12">
-        <button type="submit" name="add_backup_config" class="btn btn-primary">Add Configuration</button>
+    <div class="col-12 mt-5">
+        <button type="submit" name="add_backup_config" class="btn btn-primary">Add Notification Method</button>
     </div>
 </form>
 
