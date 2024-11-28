@@ -243,7 +243,7 @@ redirectIfNotLoggedIn();
                     $additional_users = array_slice($users, 1); // Get the users starting from index 1
                     $additional_count = count($additional_users); // Count the additional users
                     $tooltip_content = implode('<br>', array_merge([$users[0]], $additional_users)); // Include the first user
-                    echo "<span class='badge bg-secondary' data-bs-toggle='tooltip' title='$tooltip_content'>+{$additional_count}</span>";
+                    echo "<p class='badge bg-secondary' data-bs-toggle='tooltip' title='$tooltip_content'>+{$additional_count}</p>";
                 }
                 
                 echo "<br><br>"; // Spacing between notification groups
