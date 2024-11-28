@@ -224,7 +224,7 @@ redirectIfNotLoggedIn();
         <div class="float-start">Email</div>
         <div class="float-end">
             <?php if ($email_enabled): ?>
-                <span class="badge bg-success" data-bs-toggle="tooltip" title="Recipients:\n<?php echo $formatted_email_list; ?>">Enabled</span>
+                <span class="badge bg-success" data-bs-toggle="tooltip" title="Recipients: <?php echo $formatted_email_list; ?>">Enabled</span>
             <?php else: ?>
                 <span class="badge bg-danger">Disabled</span>
             <?php endif; ?>
