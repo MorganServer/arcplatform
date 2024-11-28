@@ -277,8 +277,8 @@ redirectIfNotLoggedIn();
                                         <div class="modal-body">
 
                                         <?php
-// Fetch users and their emails from the users table
-$user_sql = "SELECT user_id, email FROM users";
+// Fetch users' ids, names (first_name, last_name), and emails from the users table
+$user_sql = "SELECT user_id, first_name, last_name, email FROM users";
 $user_result = mysqli_query($conn, $user_sql);
 $users = [];
 if ($user_result) {
@@ -307,13 +307,18 @@ if ($user_result) {
     <!-- User ID (only visible if Email is selected) -->
     <div class="col-md-6" id="user_id_field" style="display: none;">
         <label for="user_id" class="form-label">User</label>
-        <select class="form-control" id="user_id" name="user_id">
+        <select class="form-control" id="user_id" name="user_id" onchange="updateEmailField()">
             <option value="">Select a User</option>
             <?php foreach ($users as $user): ?>
-                <option value="<?php echo $user['user_id']; ?>"><?php echo $user['email']; ?></option>
+                <option value="<?php echo $user['user_id']; ?>" data-email="<?php echo $user['email']; ?>">
+                    <?php echo $user['first_name'] . ' ' . $user['last_name']; ?>
+                </option>
             <?php endforeach; ?>
         </select>
     </div>
+
+    <!-- Email (hidden field to populate with the selected user's email) -->
+    <input type="hidden" id="user_email" name="user_email">
 
     <div class="col-12 mt-5">
         <button type="submit" name="add_backup_config" class="btn btn-primary">Add Notification Method</button>
@@ -339,9 +344,20 @@ if ($user_result) {
         }
     }
 
+    // Function to update the hidden email field when a user is selected
+    function updateEmailField() {
+        var userSelect = document.getElementById("user_id");
+        var selectedOption = userSelect.options[userSelect.selectedIndex];
+        var userEmail = selectedOption.getAttribute("data-email");
+
+        // Set the hidden email field value
+        document.getElementById("user_email").value = userEmail;
+    }
+
     // Call toggleFields initially to set the correct field visibility on page load
     window.onload = toggleFields;
 </script>
+
 
                                         </div>
                                     </div>
