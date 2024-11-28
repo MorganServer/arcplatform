@@ -60,8 +60,8 @@ redirectIfNotLoggedIn();
                 </div>
             </div>
 
-            <div class="mt-5"></div>
-            
+            <div class="mt-3"></div>
+
             <div class="card details_card" style="width: 100%;">
               <div class="card-body">
                 <h5 class="card-title">Backup Logs</h5>
