@@ -258,7 +258,7 @@ redirectIfNotLoggedIn();
     var tooltipList = tooltipTriggerList.map(function (tooltipTriggerEl) {
         return new bootstrap.Tooltip(tooltipTriggerEl, {
             html: true, // Enable HTML rendering for line breaks
-            placement: 'right', // Position the tooltip on the right side
+            placement: 'bottom', // Position the tooltip on the right side
         });
     });
 </script>
