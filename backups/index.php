@@ -60,14 +60,16 @@ redirectIfNotLoggedIn();
                             if($bu_num_rows > 0) {
                                 while ($bu_row = mysqli_fetch_assoc($bu_result)) {
                                     $bu_id                     = $bu_row['backup_config_id']; 
-                                    $bu_config_name            = ucwords(str_replace('_', ' ', $bu_row['config_name']));
+                                    $bu_config_name            = $bu_row['config_name'];
                                     $bu_value                  = $bu_row['value'];
+
+                                    $formatted_bu_config_name            = ucwords(str_replace('_', ' ', $bu_config_name));
                             
                             ?>
                             <li class="list-group-item">
                                 <div class="float-start">
                                     <strong>
-                                        <?php echo $bu_config_name . ": "; ?>
+                                        <?php echo $formatted_bu_config_name; ?>:&nbsp;
                                     </strong>
                                     <?php echo $bu_value; ?>
                                 </div>
