@@ -34,7 +34,7 @@ redirectIfNotLoggedIn();
     <?php include(ROOT_PATH . "/app/includes/sub_header.php"); ?>
 
     <!-- main-container -->
-        <div class="container" style="padding: 0 20px 0 20px;">
+        <div class="container"  style="background-color: #f2f2f2 !important; padding: 0 20px 0 20px;">
             <h2 class="mt-4">
                 Backup Configurations
             </h2>
