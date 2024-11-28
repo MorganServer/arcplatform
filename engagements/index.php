@@ -251,7 +251,7 @@ redirectIfNotLoggedIn();
             <div class="mt-5"></div>
 
             <div class="card-container">
-                <div class="card details_card me-5" style="width: 20rem;">
+                <div class="card details_card" style="width: 20rem;">
                   <div class="card-body">
                     <h5 class="card-title">Engagements Resources</h5>
                     <p class="card-text">
@@ -311,7 +311,7 @@ redirectIfNotLoggedIn();
                     </p>
                   </div>
                 </div>
-                <div class="card details_card me-5" style="width: 20rem;">
+                <div class="card details_card" style="width: 20rem;">
                   <div class="card-body">
                     <h5 class="card-title">Auditors</h5>
                     <p class="card-text">
