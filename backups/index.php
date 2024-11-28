@@ -203,7 +203,6 @@ redirectIfNotLoggedIn();
     $email_enabled = false;
     $slack_enabled = false;
     $email_list = "";
-    $slack_list = "";
 
     if ($bun_result) {
         while ($bun_row = mysqli_fetch_assoc($bun_result)) {
@@ -212,7 +211,6 @@ redirectIfNotLoggedIn();
                 $email_list = $bun_row['emails'];
             } elseif ($bun_row['notification_type'] === 'slack') {
                 $slack_enabled = true;
-                $slack_list = $bun_row['emails'];
             }
         }
     }
@@ -235,7 +233,7 @@ redirectIfNotLoggedIn();
         <div class="float-start">Slack</div>
         <div class="float-end">
             <?php if ($slack_enabled): ?>
-                <span class="badge bg-success" data-bs-toggle="tooltip" title="Recipients: <?php echo htmlspecialchars($slack_list); ?>">Enabled</span>
+                <span class="badge bg-success">Enabled</span>
             <?php else: ?>
                 <span class="badge bg-danger">Disabled</span>
             <?php endif; ?>
@@ -244,12 +242,13 @@ redirectIfNotLoggedIn();
 </ul>
 
 <script>
-    // Initialize Bootstrap tooltips
+    // Initialize Bootstrap tooltips for Email
     var tooltipTriggerList = [].slice.call(document.querySelectorAll('[data-bs-toggle="tooltip"]'))
     var tooltipList = tooltipTriggerList.map(function (tooltipTriggerEl) {
         return new bootstrap.Tooltip(tooltipTriggerEl)
     });
 </script>
+
 
                         <!-- end backup config ul list -->
 
