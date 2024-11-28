@@ -42,7 +42,7 @@ redirectIfNotLoggedIn();
             <hr>
 
             <div class="card-container">
-                <div class="card details_card me-5" style="width: 20rem;">
+                <div class="card details_card me-5" style="width: 35rem;">
                   <div class="card-body">
                     <h5 class="card-title">Backup Configurations</h5>
                     <p class="card-text">
@@ -50,20 +50,7 @@ redirectIfNotLoggedIn();
                     </p>
                   </div>
                 </div>
-                
-                <div class="card details_card me-5" style="width: 38rem;">
-                  <div class="card-body">
-                    <h5 class="card-title">Backup Logs</h5>
-                    <div class="mt-3"></div>
-                    <p class="card-text">
-                        <div class="">
-                        
-
-                        </div>
-                    </p>
-                  </div>
-                </div>
-                <div class="card details_card" style="width: 20rem;">
+                <div class="card details_card" style="width: 35rem;">
                   <div class="card-body">
                     <h5 class="card-title">Backup Notifications</h5>
                     <p class="card-text">
@@ -71,6 +58,18 @@ redirectIfNotLoggedIn();
                     </p>
                   </div>
                 </div>
+            </div>
+
+            <div class="card details_card me-5" style="width: 38rem;">
+              <div class="card-body">
+                <h5 class="card-title">Backup Logs</h5>
+                <div class="mt-3"></div>
+                <p class="card-text">
+                    <div class="">
+                    
+                    </div>
+                </p>
+              </div>
             </div>
             
 
