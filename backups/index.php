@@ -250,7 +250,7 @@ redirectIfNotLoggedIn();
                 <?php
                 }
                 
-                echo "<br><br>"; // Spacing between notification groups
+                echo "<br>"; // Spacing between notification groups
             }
         }
         
