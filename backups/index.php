@@ -216,7 +216,7 @@ redirectIfNotLoggedIn();
     }
 
     // Format email list with line breaks
-    $formatted_email_list = str_replace(',', "\n", htmlspecialchars($email_list));
+    $formatted_email_list = str_replace(',', "<br>", htmlspecialchars($email_list));
     ?>
 
     <!-- Email Notification -->
