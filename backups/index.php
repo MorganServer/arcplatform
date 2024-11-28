@@ -77,7 +77,9 @@ redirectIfNotLoggedIn();
                                                     <?php echo $bu_value; ?>
                                                 </div>
                                                 <div class="float-end">
-                                        
+                                                    <a class="me-5" style="color: #941515 !important; cursor: pointer; text-decoration: none;" href="?action=delete_backup_config&bu_id=<?php echo $bu_id; ?>" onclick="return confirm('Are you sure you want to delete this Backup Configuration?');" class="me-2">
+                                                        <i class="bi bi-trash"></i>
+                                                    </a>
                                                 </div>
                                             </li>
                                 <?php
