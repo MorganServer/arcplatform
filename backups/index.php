@@ -219,7 +219,7 @@ redirectIfNotLoggedIn();
 // Assuming $bun_notification_types is an array of all notification types from the database
 $displayed_types = []; // Array to track displayed types
 
-foreach ($bun_notification_types as $bun_notification_type) {
+foreach ($bun_notification_type as $bun_notification_types) {
     if (!in_array($bun_notification_type, $displayed_types)) {
         // Display the notification type if not already displayed
         echo '<div class="float-start">' . htmlspecialchars($bun_notification_type) . '</div>';
