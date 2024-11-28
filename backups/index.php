@@ -242,13 +242,12 @@ redirectIfNotLoggedIn();
                 
                 // If there are more than 1 user, show the circle with the count
                 if (count($users) > 1) {
-                    $additional_users = array_slice($users, 0);
-                    $additional_count = count($additional_users);
-                    $tooltip_content = implode('<br>', $additional_users);
+                    $additional_users = array_slice($users, 1); // Get the users starting from index 1
+                    $additional_count = count($additional_users); // Count the additional users
+                    $tooltip_content = implode('<br>', array_merge([$users[0]], $additional_users)); // Include the first user
                     echo "<div class='float-start ms-2'>
-                            <span class='badge bg-secondary' data-bs-toggle='tooltip' title='<?php echo $tooltip_content; ?>'>+<?php echo $additional_count; ?></span>
-                        </div>
-                        ";
+                            <span class='badge bg-secondary' data-bs-toggle='tooltip' title='$tooltip_content'>+{$additional_count}</span>
+                          </div>";
                 }
                 
                 echo "<br><br>"; // Spacing between notification groups
@@ -268,8 +267,8 @@ redirectIfNotLoggedIn();
     var tooltipTriggerList = Array.from(document.querySelectorAll('[data-bs-toggle="tooltip"]'));
     var tooltipList = tooltipTriggerList.map(function (tooltipTriggerEl) {
         return new bootstrap.Tooltip(tooltipTriggerEl, {
-            html: true // Enable HTML parsing for the tooltip content
-            placement: 'right'
+            html: true, // Enable HTML parsing for the tooltip content
+            placement: 'right' // Set tooltip position to the right of the element
         });
     });
 </script>
