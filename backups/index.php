@@ -216,7 +216,7 @@ redirectIfNotLoggedIn();
     }
 
     // Format email list with line breaks
-    $formatted_email_list = str_replace(',', "<br>", htmlspecialchars($email_list));
+    $formatted_email_list = str_replace(',', '<br>', htmlspecialchars($email_list));
     ?>
 
     <!-- Email Notification -->
@@ -224,7 +224,7 @@ redirectIfNotLoggedIn();
         <div class="float-start">Email</div>
         <div class="float-end">
             <?php if ($email_enabled): ?>
-                <span class="badge bg-success" data-bs-toggle="tooltip" title="Recipients: <?php echo $formatted_email_list; ?>">Enabled</span>
+                <span class="badge bg-success" data-bs-toggle="tooltip" title="Recipients:<br><?php echo $formatted_email_list; ?>">Enabled</span>
             <?php else: ?>
                 <span class="badge bg-danger">Disabled</span>
             <?php endif; ?>
@@ -247,21 +247,22 @@ redirectIfNotLoggedIn();
 <style>
     /* Customize tooltip appearance */
     .tooltip-inner {
-        max-width: 300px; /* Adjust width as needed */
+        max-width: 300px; /* Adjust tooltip width */
         white-space: pre-wrap; /* Preserve line breaks */
     }
 </style>
 
 <script>
+    // Initialize Bootstrap tooltips
     var tooltipTriggerList = Array.from(document.querySelectorAll('[data-bs-toggle="tooltip"]'));
     var tooltipList = tooltipTriggerList.map(function (tooltipTriggerEl) {
         return new bootstrap.Tooltip(tooltipTriggerEl, {
-            html: true, // Enable HTML parsing for the tooltip content
+            html: true, // Enable HTML rendering for line breaks
             placement: 'right', // Position the tooltip on the right side
-            offset: [10, 0] // Move the tooltip 10px to the right (horizontal), and 0px vertically
         });
     });
 </script>
+
 
 
 
