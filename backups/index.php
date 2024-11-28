@@ -216,7 +216,16 @@ redirectIfNotLoggedIn();
                     $failure_users[] = $user_full_name;
                 }
             }
+        } else {
+            // Check for query errors
+            echo "Error in query: " . mysqli_error($conn);
         }
+
+        // Debug: Check the contents of the user arrays
+        echo '<pre>';
+        var_dump($success_users);
+        var_dump($failure_users);
+        echo '</pre>';
         
         // Function to display users and handle the circle for additional users
         function displayUsers($users, $notification_type) {
