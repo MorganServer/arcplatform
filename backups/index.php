@@ -85,6 +85,54 @@ redirectIfNotLoggedIn();
                                                     </a>
                                                 </div>
                                             </li>
+                                            
+                                            <!-- edit-configuration -->
+                                                <div class="modal fade" id="edit_backup_config-<?php echo $bu_id; ?>" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                                                    <div class="modal-dialog">
+                                                        <div class="modal-content">
+                                                            <div class="modal-header">
+                                                                <h1 class="modal-title fs-5" id="exampleModalLabel">Edit Backup Configuration</h1>
+                                                                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                                                            </div>
+                                                            <div class="modal-body">
+
+                                                                <?php
+                                                                $one_bu_sql = "SELECT * FROM backup_configs WHERE backup_config_id = '$bu_id";
+                                                                $one_bu_result = mysqli_query($conn, $one_bu_sql);
+                                                                if ($one_bu_result) {
+                                                                    $one_bu_num_rows = mysqli_num_rows($one_bu_result);
+                                                                    if ($one_bu_num_rows > 0) {
+                                                                        while ($one_bu_row = mysqli_fetch_assoc($one_bu_result)) {
+                                                                            $one_bu_id = $one_bu_row['backup_config_id']; 
+                                                                            $one_bu_config_name = $one_bu_row['config_name'];
+                                                                            $one_bu_value = $one_bu_row['value'];
+                                                                        
+                                                                            $formatted_one_bu_config_name = ucwords(str_replace('_', ' ', $one_bu_config_name));
+                                                                ?>
+                                                                <form method="POST" class="row g-3">
+                                                                    <input type="hidden" name="bu_id" value="<?php echo $one_bu_id; ?>">
+                                                                    <div class="col-md-6">
+                                                                        <label for="config_name" class="form-label">Configuration Name</label>
+                                                                        <input type="text" class="form-control" id="config_name" name="config_name" value="<?php echo $one_bu_config_name; ?>">
+                                                                    </div>
+                                                                    <div class="col-md-6">
+                                                                        <label for="value" class="form-label">Primary Contact</label>
+                                                                        <input type="text" class="form-control" id="value" name="value" value="<?php echo $one_bu_value; ?>">
+                                                                    </div>
+                                                                    <div class="col-12">
+                                                                        <button type="submit" name="edit_backup_config" class="btn btn-primary">Update Configuration</button>
+                                                                    </div>
+                                                                </form>
+                                                                    <?php
+                                                                        }
+                                                                    }
+                                                                }
+                                                                ?>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            <!-- end edit-configuration -->
                                 <?php
                                         }
                                     }
