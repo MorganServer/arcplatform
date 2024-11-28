@@ -191,7 +191,7 @@ redirectIfNotLoggedIn();
                         <!-- backup config ul list -->
                             <ul class="list-group list-group-flush">
                                 <?php
-                                    $bun_sql = "SELECT bn.backup_notification_id, bn.user_id, bn.notification_type, u.first_name, u.last_name
+                                    $bun_sql = "SELECT bn.backup_notification_id, bn.user_id, bn.notification_type, u.first_name, u.last_name, u.email
                                     FROM backup_notifications bn
                                     LEFT JOIN users u ON bn.user_id = u.user_id";
                     
