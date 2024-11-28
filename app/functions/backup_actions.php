@@ -10,8 +10,8 @@
 
         // Insert the new client into the database
         $insert = $conn->prepare("INSERT INTO backup_configs (config_name, value) 
-                                      VALUES (?, NULLIF(?, ''), NULLIF(?, ''), NULLIF(?, ''), ?, ?)");
-        $insert->bind_param("ss", $config_name, $value); // "i" for integer, "s" for string
+                                      VALUES (NULLIF(?, ''), NULLIF(?, '')");
+        $insert->bind_param("ss", $config_name, $value);
         
         if ($insert->execute()) {
             header('location:' . BASE_URL . '/backups');
