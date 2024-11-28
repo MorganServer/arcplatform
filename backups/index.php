@@ -242,7 +242,7 @@ redirectIfNotLoggedIn();
                 
                 // If there are more than 1 user, show the circle with the count
                 if (count($users) > 1) {
-                    $additional_users = array_slice($users, 1);
+                    $additional_users = array_slice($users, 0);
                     $additional_count = count($additional_users);
                     $tooltip_content = implode(', ', $additional_users);
                     echo "<div class='float-start ms-2'>
