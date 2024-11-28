@@ -214,6 +214,9 @@ redirectIfNotLoggedIn();
             }
         }
     }
+
+    // Format email list with line breaks
+    $formatted_email_list = str_replace(',', "\n", htmlspecialchars($email_list));
     ?>
 
     <!-- Email Notification -->
@@ -221,7 +224,7 @@ redirectIfNotLoggedIn();
         <div class="float-start">Email</div>
         <div class="float-end">
             <?php if ($email_enabled): ?>
-                <span class="badge bg-success" data-bs-toggle="tooltip" title="Recipients: <?php echo htmlspecialchars($email_list); ?>">Enabled</span>
+                <span class="badge bg-success" data-bs-toggle="tooltip" title="Recipients:\n<?php echo $formatted_email_list; ?>">Enabled</span>
             <?php else: ?>
                 <span class="badge bg-danger">Disabled</span>
             <?php endif; ?>
@@ -242,10 +245,10 @@ redirectIfNotLoggedIn();
 </ul>
 
 <style>
-    /* Customize tooltip width */
+    /* Customize tooltip appearance */
     .tooltip-inner {
-        max-width: 300px; /* Adjust this value for a wider tooltip */
-        white-space: pre-wrap; /* Allows line breaks for long content */
+        max-width: 300px; /* Adjust width as needed */
+        white-space: pre-wrap; /* Preserve line breaks */
     }
 </style>
 
