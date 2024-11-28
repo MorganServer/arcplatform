@@ -234,7 +234,9 @@ redirectIfNotLoggedIn();
         // Function to display users and handle the circle for additional users
         function displayUsers($users, $notification_type) {
             if (count($users) > 0) { ?>
-                <strong><?php echo $notification_type; ?>:&nbsp;</strong><?php echo $users[0]; ?>
+                <p>
+                    <strong><?php echo $notification_type; ?>:&nbsp;</strong><?php echo $users[0]; ?>
+                </p>
                 
                 
                 <?php
