@@ -203,18 +203,26 @@ redirectIfNotLoggedIn();
         $failure_users = [];
 
         if ($bun_result) {
-            while ($bun_row = mysqli_fetch_assoc($bun_result)) {
-                $bun_id = $bun_row['backup_notification_id']; 
-                $bun_user_id = $bun_row['user_id'];
-                $bun_notification_type = $bun_row['notification_type'];
-                $user_full_name = $bun_row['first_name'] . " " . $bun_row['last_name'];
-                
-                // Group users by notification type
-                if ($bun_notification_type == 'Success') {
-                    $success_users[] = $user_full_name;
-                } elseif ($bun_notification_type == 'Failure') {
-                    $failure_users[] = $user_full_name;
+            // Check if any data is returned
+            if (mysqli_num_rows($bun_result) > 0) {
+                while ($bun_row = mysqli_fetch_assoc($bun_result)) {
+                    $bun_id = $bun_row['backup_notification_id']; 
+                    $bun_user_id = $bun_row['user_id'];
+                    $bun_notification_type = strtolower($bun_row['notification_type']); // Normalize to lowercase
+                    $user_full_name = $bun_row['first_name'] . " " . $bun_row['last_name'];
+                    
+                    // Debug: Check the notification type
+                    echo "Notification Type: " . $bun_notification_type . "<br>";
+                    
+                    // Group users by notification type
+                    if ($bun_notification_type == 'success') {
+                        $success_users[] = $user_full_name;
+                    } elseif ($bun_notification_type == 'failure') {
+                        $failure_users[] = $user_full_name;
+                    }
                 }
+            } else {
+                echo "No records found in backup_notifications table.<br>";
             }
         } else {
             // Check for query errors
@@ -257,12 +265,6 @@ redirectIfNotLoggedIn();
         displayUsers($failure_users, 'Failure');
     ?>
 </ul>
-
-<script>
-    // Initialize Bootstrap tooltips
-    var tooltipTriggerList = document.querySelectorAll('[data-bs-toggle="tooltip"]');
-    var tooltipList = [...tooltipTriggerList].map(tooltipTriggerEl => new bootstrap.Tooltip(tooltipTriggerEl));
-</script>
 
                         <!-- end backup config ul list -->
 
