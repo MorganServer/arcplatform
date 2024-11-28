@@ -269,7 +269,7 @@ redirectIfNotLoggedIn();
         return new bootstrap.Tooltip(tooltipTriggerEl, {
             html: true, // Enable HTML parsing for the tooltip content
             placement: 'right', // Position the tooltip on the right side
-            offset: [25, 0] // Move the tooltip 10px to the right (horizontal), and 0px vertically
+            offset: [5, 10] // Move the tooltip 10px to the right (horizontal), and 0px vertically
         });
     });
 </script>
