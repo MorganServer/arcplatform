@@ -206,7 +206,7 @@ redirectIfNotLoggedIn();
                                             $bun_id                    = $bun_row['backup_notification_id']; 
                                             $bun_user_id               = $bun_row['user_id'];
                                             $bun_email                 = $bun_row['email'];
-                                            $bun_notification_type     = $bun_rom['notification_type']
+                                            $bun_notification_type     = $bun_row['notification_type']
                                 
                                             // Get user's first and last name
                                             // $user_first_name = $bun_row['first_name'];
