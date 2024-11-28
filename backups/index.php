@@ -191,67 +191,69 @@ redirectIfNotLoggedIn();
                         <!-- backup config ul list -->
                         <ul class="list-group list-group-flush">
     <?php
-    // Get all the notification users
-    $bun_sql = "SELECT bn.backup_notification_id, bn.user_id, bn.notification_type, u.first_name, u.last_name
+    // Fetch all backup notifications and user details
+    $bun_sql = "SELECT bn.backup_notification_id, bn.user_id, bn.notification_type, u.first_name, u.last_name, u.email
                 FROM backup_notifications bn
                 LEFT JOIN users u ON bn.user_id = u.user_id";
-                
+    
     $bun_result = mysqli_query($conn, $bun_sql);
-
-    // Debugging: Check if the query executed correctly
-    if (!$bun_result) {
-        echo "Error: " . mysqli_error($conn); // Output the SQL error if query fails
-    } else {
-        $bun_rows = [];
-
-        // Group users by notification type
-        while ($bun_row = mysqli_fetch_assoc($bun_result)) {
-            $bun_notification_type = $bun_row['notification_type'];
-            $user_full_name = $bun_row['first_name'] . " " . $bun_row['last_name'];
-
-            // Create an array for each notification type
-            $bun_rows[$bun_notification_type][] = $user_full_name;
-        }
-
-        // Loop through the grouped users and display the Success and Failure types
-        foreach (['Success', 'Failure'] as $type) {
-            if (isset($bun_rows[$type]) && count($bun_rows[$type]) > 0) {
-                echo '<li class="list-group-item">';
-                echo '<div class="float-start"><strong>' . $type . ':</strong>&nbsp;';
-
-                // Display the first user in the group
-                echo $bun_rows[$type][0];
-
-                // Check if there are more than 1 user in this group
-                if (count($bun_rows[$type]) > 1) {
-                    // Display the +# for additional users
-                    $extra_count = count($bun_rows[$type]) - 1;
-                    $extra_users = implode(', ', array_slice($bun_rows[$type], 1)); // Get the rest of the users
-
-                    // Create the circle with the number of extra users
-                    echo ' <span class="badge bg-secondary" data-bs-toggle="tooltip" data-bs-placement="top" title="' . htmlspecialchars($extra_users) . '">+ ' . $extra_count . '</span>';
+    
+    // Initialize arrays to store users by notification type
+    $success_users = [];
+    $failure_users = [];
+    
+    if ($bun_result) {
+        $bun_num_rows = mysqli_num_rows($bun_result);
+        if ($bun_num_rows > 0) {
+            // Group users by notification type (Success or Failure)
+            while ($bun_row = mysqli_fetch_assoc($bun_result)) {
+                $bun_user_id = $bun_row['user_id'];
+                $bun_notification_type = $bun_row['notification_type'];
+                $user_full_name = $bun_row['first_name'] . " " . $bun_row['last_name'];
+                
+                // Group users based on notification type
+                if ($bun_notification_type == 'Success') {
+                    $success_users[] = $user_full_name;
+                } elseif ($bun_notification_type == 'Failure') {
+                    $failure_users[] = $user_full_name;
                 }
-
-                echo '</div>';
-
-                // Edit and Delete buttons (These are placeholders for your modal and delete actions)
-                echo '<div class="float-end">';
-                echo '<a data-bs-toggle="modal" data-bs-target="#edit_backup_config-' . $bun_row['backup_notification_id'] . '" style="color: #156194 !important; cursor: pointer; text-decoration: none;" class="me-2">
-                        <i class="bi bi-pencil-square"></i>
-                    </a>';
-                echo '<a style="color: #941515 !important; cursor: pointer; text-decoration: none;" href="?action=delete_backup_config&bu_id=' . $bun_row['backup_notification_id'] . '" onclick="return confirm(\'Are you sure you want to delete this Backup Configuration?\');" class="me-2">
-                        <i class="bi bi-trash"></i>
-                    </a>';
-                echo '</div>';
-                echo '</li>';
             }
         }
     }
+    
+    // Function to display users
+    function display_users($users) {
+        $first_user = array_shift($users);  // Get the first user
+        $user_count = count($users);        // Get the remaining user count
+        
+        echo '<div class="float-start">';
+        echo '<strong>' . ucfirst($users[0] == 'Success' ? 'Success' : 'Failure') . ':</strong>&nbsp;';
+        echo $first_user;  // Display the first user
+        
+        // If there are more users, display "+#"
+        if ($user_count > 0) {
+            $tooltip_text = implode(", ", $users); // Join remaining users for tooltip
+            echo '<span class="badge bg-secondary ms-2" data-bs-toggle="tooltip" title="' . htmlspecialchars($tooltip_text) . '">+ ' . $user_count . '</span>';
+        }
+        
+        echo '</div>';
+    }
+
+    // Display Success Users
+    if (count($success_users) > 0) {
+        display_users($success_users);
+    }
+
+    // Display Failure Users
+    if (count($failure_users) > 0) {
+        display_users($failure_users);
+    }
+
     ?>
 </ul>
 
-<!-- Initialize Bootstrap Tooltip -->
 <script>
+    // Initialize Bootstrap tooltip for the "+#" elements
     var tooltipTriggerList = document.querySelectorAll('[data-bs-toggle="tooltip"]');
     var tooltipList = [...tooltipTriggerList].map(tooltipTriggerEl => new bootstrap.Tooltip(tooltipTriggerEl));
 </script>
