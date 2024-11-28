@@ -191,27 +191,25 @@ redirectIfNotLoggedIn();
                         <!-- backup config ul list -->
                         <ul class="list-group list-group-flush">
     <?php
-    // Fetch all backup notifications and user details
-    $bun_sql = "SELECT bn.backup_notification_id, bn.user_id, bn.notification_type, u.first_name, u.last_name, u.email
-                FROM backup_notifications bn
-                LEFT JOIN users u ON bn.user_id = u.user_id";
-    
-    $bun_result = mysqli_query($conn, $bun_sql);
-    
-    // Initialize arrays to store users by notification type
-    $success_users = [];
-    $failure_users = [];
-    
-    if ($bun_result) {
-        $bun_num_rows = mysqli_num_rows($bun_result);
-        if ($bun_num_rows > 0) {
-            // Group users by notification type (Success or Failure)
+        // Fetch backup notifications and user details
+        $bun_sql = "SELECT bn.backup_notification_id, bn.user_id, bn.notification_type, u.first_name, u.last_name, u.email
+                    FROM backup_notifications bn
+                    LEFT JOIN users u ON bn.user_id = u.user_id";
+        
+        $bun_result = mysqli_query($conn, $bun_sql);
+        
+        // Initialize arrays to group users by notification type
+        $success_users = [];
+        $failure_users = [];
+
+        if ($bun_result) {
             while ($bun_row = mysqli_fetch_assoc($bun_result)) {
+                $bun_id = $bun_row['backup_notification_id']; 
                 $bun_user_id = $bun_row['user_id'];
                 $bun_notification_type = $bun_row['notification_type'];
                 $user_full_name = $bun_row['first_name'] . " " . $bun_row['last_name'];
                 
-                // Group users based on notification type
+                // Group users by notification type
                 if ($bun_notification_type == 'Success') {
                     $success_users[] = $user_full_name;
                 } elseif ($bun_notification_type == 'Failure') {
@@ -219,41 +217,40 @@ redirectIfNotLoggedIn();
                 }
             }
         }
-    }
-    
-    // Function to display users
-    function display_users($users) {
-        $first_user = array_shift($users);  // Get the first user
-        $user_count = count($users);        // Get the remaining user count
         
-        echo '<div class="float-start">';
-        echo '<strong>' . ucfirst($users[0] == 'Success' ? 'Success' : 'Failure') . ':</strong>&nbsp;';
-        echo $first_user;  // Display the first user
-        
-        // If there are more users, display "+#"
-        if ($user_count > 0) {
-            $tooltip_text = implode(", ", $users); // Join remaining users for tooltip
-            echo '<span class="badge bg-secondary ms-2" data-bs-toggle="tooltip" title="' . htmlspecialchars($tooltip_text) . '">+ ' . $user_count . '</span>';
+        // Function to display users and handle the circle for additional users
+        function displayUsers($users, $notification_type) {
+            if (count($users) > 0) {
+                // Display the notification type
+                echo "<strong>$notification_type:</strong><br>";
+                
+                // Display the first user
+                echo "<div class='float-start'>" . $users[0] . "</div>";
+                
+                // If there are more than 1 user, show the circle with the count
+                if (count($users) > 1) {
+                    $additional_users = array_slice($users, 1);
+                    $additional_count = count($additional_users);
+                    $tooltip_content = implode(', ', $additional_users);
+                    echo "<div class='float-start ms-2'>
+                            <span class='badge bg-secondary' data-bs-toggle='tooltip' title='$tooltip_content'>+{$additional_count}</span>
+                          </div>";
+                }
+                
+                echo "<br><br>"; // Spacing between notification groups
+            }
         }
         
-        echo '</div>';
-    }
-
-    // Display Success Users
-    if (count($success_users) > 0) {
-        display_users($success_users);
-    }
-
-    // Display Failure Users
-    if (count($failure_users) > 0) {
-        display_users($failure_users);
-    }
-
+        // Display Success Users
+        displayUsers($success_users, 'Success');
+        
+        // Display Failure Users
+        displayUsers($failure_users, 'Failure');
     ?>
 </ul>
 
 <script>
-    // Initialize Bootstrap tooltip for the "+#" elements
+    // Initialize Bootstrap tooltips
     var tooltipTriggerList = document.querySelectorAll('[data-bs-toggle="tooltip"]');
     var tooltipList = [...tooltipTriggerList].map(tooltipTriggerEl => new bootstrap.Tooltip(tooltipTriggerEl));
 </script>
