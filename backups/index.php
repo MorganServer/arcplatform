@@ -58,30 +58,34 @@ redirectIfNotLoggedIn();
                             <?php
                             $bu_sql = "SELECT * FROM backup_configs";
                             $bu_result = mysqli_query($conn, $bu_sql);
-                            if($bu_result) {
-                            $bu_num_rows = mysqli_num_rows($bu_result);
-                            if($bu_num_rows > 0) {
-                                while ($bu_row = mysqli_fetch_assoc($bu_result)) {
-                                    $bu_id                     = $bu_row['backup_config_id']; 
-                                    $bu_config_name            = $bu_row['config_name'];
-                                    $bu_value                  = $bu_row['value'];
-
-                                    $formatted_bu_config_name            = ucwords(str_replace('_', ' ', $bu_config_name));
-                            
+                            if ($bu_result) {
+                                $bu_num_rows = mysqli_num_rows($bu_result);
+                                if ($bu_num_rows > 0) {
+                                    while ($bu_row = mysqli_fetch_assoc($bu_result)) {
+                                        $bu_id = $bu_row['backup_config_id']; 
+                                        $bu_config_name = $bu_row['config_name'];
+                                        $bu_value = $bu_row['value'];
+                                    
+                                        $formatted_bu_config_name = ucwords(str_replace('_', ' ', $bu_config_name));
                             ?>
-                            <li class="list-group-item">
-                                <div class="float-start">
-                                    <strong>
-                                        <?php echo $formatted_bu_config_name; ?>:&nbsp;
-                                    </strong>
-                                    <?php echo $bu_value; ?>
-                                </div>
-                                <div class="float-end">
-
-                                </div>
-                            </li>
-                            <? }}} ?>
+                                        <li class="list-group-item">
+                                            <div class="float-start">
+                                                <strong>
+                                                    <?php echo $formatted_bu_config_name; ?>:&nbsp;
+                                                </strong>
+                                                <?php echo $bu_value; ?>
+                                            </div>
+                                            <div class="float-end">
+                                    
+                                            </div>
+                                        </li>
+                            <?php
+                                    }
+                                }
+                            }
+                            ?>
                         </ul>
+
                     </p>
                   </div>
                 </div>
