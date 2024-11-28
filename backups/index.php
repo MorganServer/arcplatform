@@ -229,12 +229,6 @@ redirectIfNotLoggedIn();
             echo "Error in query: " . mysqli_error($conn);
         }
 
-        // Debug: Check the contents of the user arrays
-        echo '<pre>';
-        var_dump($success_users);
-        var_dump($failure_users);
-        echo '</pre>';
-        
         // Function to display users and handle the circle for additional users
         function displayUsers($users, $notification_type) {
             if (count($users) > 0) {
@@ -265,8 +259,9 @@ redirectIfNotLoggedIn();
         displayUsers($failure_users, 'Failure');
     ?>
 </ul>
+
+<!-- Initialize Bootstrap tooltips -->
 <script>
-    // Initialize all tooltips on the page
     var tooltipTriggerList = Array.from(document.querySelectorAll('[data-bs-toggle="tooltip"]'))
     var tooltipList = tooltipTriggerList.map(function (tooltipTriggerEl) {
         return new bootstrap.Tooltip(tooltipTriggerEl)
