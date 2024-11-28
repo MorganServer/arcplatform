@@ -288,7 +288,7 @@ if ($user_result) {
 }
 ?>
 
-<form method="POST" class="g-3">
+<form method="POST" class="">
     <!-- Notification Type -->
     <div class="col-md-6">
         <label for="notification_type" class="form-label">Notification Type</label>
