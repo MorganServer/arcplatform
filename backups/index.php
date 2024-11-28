@@ -246,7 +246,7 @@ redirectIfNotLoggedIn();
                     $additional_count = count($additional_users); // Count the additional users
                     $tooltip_content = implode('<br>', array_merge([$users[0]], $additional_users)); // Include the first user
                     echo "<div class='float-start ms-2'>
-                            <span class='ms-2 badge bg-secondary' data-bs-toggle='tooltip' title='$tooltip_content'>+{$additional_count}</span>
+                            <span class='badge bg-secondary' data-bs-toggle='tooltip' title='$tooltip_content'>+{$additional_count}</span>
                           </div>";
                 }
                 
@@ -268,10 +268,12 @@ redirectIfNotLoggedIn();
     var tooltipList = tooltipTriggerList.map(function (tooltipTriggerEl) {
         return new bootstrap.Tooltip(tooltipTriggerEl, {
             html: true, // Enable HTML parsing for the tooltip content
-            placement: 'right' // Set tooltip position to the right of the element
+            placement: 'right', // Position the tooltip on the right side
+            offset: [10, 0] // Move the tooltip 10px to the right (horizontal), and 0px vertically
         });
     });
 </script>
+
 
                         <!-- end backup config ul list -->
 
