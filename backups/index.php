@@ -214,7 +214,12 @@ redirectIfNotLoggedIn();
                         }
                         ?>
 
+                        <br>
 
+                        <h5>
+                            Notification Reciepents
+                        </h5>
+                        <hr>
 
                         <!-- backup config ul list -->
                             <ul class="list-group list-group-flush">
@@ -241,10 +246,7 @@ redirectIfNotLoggedIn();
                                 ?>
                                 <li class="list-group-item">
                                     <div class="float-start">
-                                        <strong>
-                                            <?php echo $formatted_bu_config_name; ?>:&nbsp;
-                                        </strong>
-                                        <?php echo $bu_value; ?>
+                                        <?php echo $user_full_name; ?>
                                     </div>
                                     <div class="float-end">
                                         <a data-bs-toggle="modal" data-bs-target="#edit_backup_config-<?php echo $bu_id; ?>" style="color: #156194 !important; cursor: pointer; text-decoration: none;" class="me-2">
