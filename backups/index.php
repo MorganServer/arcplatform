@@ -265,6 +265,13 @@ redirectIfNotLoggedIn();
         displayUsers($failure_users, 'Failure');
     ?>
 </ul>
+<script>
+    // Initialize all tooltips on the page
+    var tooltipTriggerList = Array.from(document.querySelectorAll('[data-bs-toggle="tooltip"]'))
+    var tooltipList = tooltipTriggerList.map(function (tooltipTriggerEl) {
+        return new bootstrap.Tooltip(tooltipTriggerEl)
+    })
+</script>
 
                         <!-- end backup config ul list -->
 
