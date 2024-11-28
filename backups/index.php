@@ -234,7 +234,7 @@ redirectIfNotLoggedIn();
         // Function to display users and handle the circle for additional users
         function displayUsers($users, $notification_type) {
             if (count($users) > 0) { ?>
-                strong><?php echo $notification_type; ?>:&nbsp;</strong>
+                <strong><?php echo $notification_type; ?>:&nbsp;</strong>
                 <?php echo $users[0]; ?>
                 
                 <?php
@@ -242,8 +242,11 @@ redirectIfNotLoggedIn();
                 if (count($users) > 1) {
                     $additional_users = array_slice($users, 1); // Get the users starting from index 1
                     $additional_count = count($additional_users); // Count the additional users
-                    $tooltip_content = implode('<br>', array_merge([$users[0]], $additional_users)); // Include the first user
-                    echo "<p class='badge bg-secondary' data-bs-toggle='tooltip' title='$tooltip_content'>+{$additional_count}</p>";
+                    $tooltip_content = implode('<br>', array_merge([$users[0]], $additional_users)); 
+                ?>
+                <span class='badge bg-secondary' data-bs-toggle='tooltip' title='$tooltip_content'>+{$additional_count}</span>";
+
+                <?php
                 }
                 
                 echo "<br><br>"; // Spacing between notification groups
