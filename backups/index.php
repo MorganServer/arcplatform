@@ -221,7 +221,7 @@ redirectIfNotLoggedIn();
 
                                 <!-- Email Notification -->
                                 <li class="list-group-item">
-                                    <div class="float-start"><i class="bi bi-envelope"></i> Email</div>
+                                    <div class="float-start"><i class="bi bi-envelope-fill"></i> Email</div>
                                     <div class="float-end">
                                         <?php if ($email_enabled): ?>
                                             <span class="badge bg-success" data-bs-toggle="tooltip" title="Recipients:<br><?php echo $formatted_email_list; ?>">Enabled</span>
