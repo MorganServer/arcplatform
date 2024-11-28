@@ -221,7 +221,7 @@ redirectIfNotLoggedIn();
 
                                 <!-- Email Notification -->
                                 <li class="list-group-item">
-                                    <div class="float-start">Email</div>
+                                    <div class="float-start"><i class="bi bi-envelope"></i> Email</div>
                                     <div class="float-end">
                                         <?php if ($email_enabled): ?>
                                             <span class="badge bg-success" data-bs-toggle="tooltip" title="Recipients:<br><?php echo $formatted_email_list; ?>">Enabled</span>
@@ -233,7 +233,7 @@ redirectIfNotLoggedIn();
                                         
                                 <!-- Slack Notification -->
                                 <li class="list-group-item">
-                                    <div class="float-start">Slack</div>
+                                    <div class="float-start"><i class="bi bi-slack"></i> Slack</div>
                                     <div class="float-end">
                                         <?php if ($slack_enabled): ?>
                                             <span class="badge bg-success">Enabled</span>
@@ -276,87 +276,87 @@ redirectIfNotLoggedIn();
                                         </div>
                                         <div class="modal-body">
 
-                                        <?php
-// Fetch users' ids, names (first_name, last_name), and emails from the users table
-$user_sql = "SELECT user_id, first_name, last_name, email FROM users";
-$user_result = mysqli_query($conn, $user_sql);
-$users = [];
-if ($user_result) {
-    while ($user_row = mysqli_fetch_assoc($user_result)) {
-        $users[] = $user_row;
-    }
-}
-?>
+                                                <?php
+                                                // Fetch users' ids, names (first_name, last_name), and emails from the users table
+                                                $user_sql = "SELECT user_id, first_name, last_name, email FROM users";
+                                                $user_result = mysqli_query($conn, $user_sql);
+                                                $users = [];
+                                                if ($user_result) {
+                                                    while ($user_row = mysqli_fetch_assoc($user_result)) {
+                                                        $users[] = $user_row;
+                                                    }
+                                                }
+                                                ?>
 
-<form method="POST" class="row g-3">
-    <!-- Notification Type -->
-    <div class="col-md-6">
-        <label for="notification_type" class="form-label">Notification Type</label>
-        <select class="form-control" id="notification_type" name="notification_type" onchange="toggleFields()">
-            <option value="slack">Slack</option>
-            <option value="email">Email</option>
-        </select>
-    </div>
+                                                <form method="POST" class="row g-3">
+                                                    <!-- Notification Type -->
+                                                    <div class="col-md-6">
+                                                        <label for="notification_type" class="form-label">Notification Type</label>
+                                                        <select class="form-control" id="notification_type" name="notification_type" onchange="toggleFields()">
+                                                            <option value="slack">Slack</option>
+                                                            <option value="email">Email</option>
+                                                        </select>
+                                                    </div>
 
-    <!-- Webhook (only visible if Slack is selected) -->
-    <div class="col-md-6" id="webhook_field" style="display: none;">
-        <label for="webhook" class="form-label">Webhook</label>
-        <input type="text" class="form-control" id="webhook" name="webhook">
-    </div>
+                                                    <!-- Webhook (only visible if Slack is selected) -->
+                                                    <div class="col-md-6" id="webhook_field" style="display: none;">
+                                                        <label for="webhook" class="form-label">Webhook</label>
+                                                        <input type="text" class="form-control" id="webhook" name="webhook">
+                                                    </div>
 
-    <!-- User ID (only visible if Email is selected) -->
-    <div class="col-md-6" id="user_id_field" style="display: none;">
-        <label for="user_id" class="form-label">User</label>
-        <select class="form-control" id="user_id" name="user_id" onchange="updateEmailField()">
-            <option value="">Select a User</option>
-            <?php foreach ($users as $user): ?>
-                <option value="<?php echo $user['user_id']; ?>" data-email="<?php echo $user['email']; ?>">
-                    <?php echo $user['first_name'] . ' ' . $user['last_name']; ?>
-                </option>
-            <?php endforeach; ?>
-        </select>
-    </div>
-
-    <!-- Email (hidden field to populate with the selected user's email) -->
-    <input type="hidden" id="user_email" name="user_email">
-
-    <div class="col-12 mt-5">
-        <button type="submit" name="add_backup_notification" class="btn btn-primary">Add Notification Method</button>
-    </div>
-</form>
-
-<script>
-    // Function to toggle visibility of Webhook and User ID fields based on notification type
-    function toggleFields() {
-        var notificationType = document.getElementById("notification_type").value;
-        var webhookField = document.getElementById("webhook_field");
-        var userIdField = document.getElementById("user_id_field");
-
-        // Show webhook field only if Slack is selected
-        if (notificationType === "slack") {
-            webhookField.style.display = "block";
-            userIdField.style.display = "none";
-        } 
-        // Show user_id field only if Email is selected
-        else if (notificationType === "email") {
-            webhookField.style.display = "none";
-            userIdField.style.display = "block";
-        }
-    }
-
-    // Function to update the hidden email field when a user is selected
-    function updateEmailField() {
-        var userSelect = document.getElementById("user_id");
-        var selectedOption = userSelect.options[userSelect.selectedIndex];
-        var userEmail = selectedOption.getAttribute("data-email");
-
-        // Set the hidden email field value
-        document.getElementById("user_email").value = userEmail;
-    }
-
-    // Call toggleFields initially to set the correct field visibility on page load
-    window.onload = toggleFields;
-</script>
+                                                    <!-- User ID (only visible if Email is selected) -->
+                                                    <div class="col-md-6" id="user_id_field" style="display: none;">
+                                                        <label for="user_id" class="form-label">User</label>
+                                                        <select class="form-control" id="user_id" name="user_id" onchange="updateEmailField()">
+                                                            <option value="">Select a User</option>
+                                                            <?php foreach ($users as $user): ?>
+                                                                <option value="<?php echo $user['user_id']; ?>" data-email="<?php echo $user['email']; ?>">
+                                                                    <?php echo $user['first_name'] . ' ' . $user['last_name']; ?>
+                                                                </option>
+                                                            <?php endforeach; ?>
+                                                        </select>
+                                                    </div>
+                                                            
+                                                    <!-- Email (hidden field to populate with the selected user's email) -->
+                                                    <input type="hidden" id="user_email" name="user_email">
+                                                            
+                                                    <div class="col-12 mt-5">
+                                                        <button type="submit" name="add_backup_notification" class="btn btn-primary">Add Notification Method</button>
+                                                    </div>
+                                                </form>
+                                                            
+                                                <script>
+                                                    // Function to toggle visibility of Webhook and User ID fields based on notification type
+                                                    function toggleFields() {
+                                                        var notificationType = document.getElementById("notification_type").value;
+                                                        var webhookField = document.getElementById("webhook_field");
+                                                        var userIdField = document.getElementById("user_id_field");
+                                                    
+                                                        // Show webhook field only if Slack is selected
+                                                        if (notificationType === "slack") {
+                                                            webhookField.style.display = "block";
+                                                            userIdField.style.display = "none";
+                                                        } 
+                                                        // Show user_id field only if Email is selected
+                                                        else if (notificationType === "email") {
+                                                            webhookField.style.display = "none";
+                                                            userIdField.style.display = "block";
+                                                        }
+                                                    }
+                                                
+                                                    // Function to update the hidden email field when a user is selected
+                                                    function updateEmailField() {
+                                                        var userSelect = document.getElementById("user_id");
+                                                        var selectedOption = userSelect.options[userSelect.selectedIndex];
+                                                        var userEmail = selectedOption.getAttribute("data-email");
+                                                    
+                                                        // Set the hidden email field value
+                                                        document.getElementById("user_email").value = userEmail;
+                                                    }
+                                                
+                                                    // Call toggleFields initially to set the correct field visibility on page load
+                                                    window.onload = toggleFields;
+                                                </script>
 
 
                                         </div>

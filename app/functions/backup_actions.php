@@ -95,7 +95,7 @@
 // end update client
 
 
-// add backup config
+// add backup notification
     if (isset($_POST['add_backup_notification'])) {
 
         // Sanitize input data
@@ -142,6 +142,6 @@
             $insert->close();
         }
     }
-// end add backup config
+// end add backup notification
 
 ?>
