@@ -244,7 +244,7 @@ redirectIfNotLoggedIn();
                 if (count($users) > 1) {
                     $additional_users = array_slice($users, 0);
                     $additional_count = count($additional_users);
-                    $tooltip_content = implode('\n', $additional_users);
+                    $tooltip_content = implode('<br>', $additional_users);
                     echo "<div class='float-start ms-2'>
                             <span class='badge bg-secondary' data-bs-toggle='tooltip' title='$tooltip_content'>+{$additional_count}</span>
                           </div>";
@@ -264,10 +264,12 @@ redirectIfNotLoggedIn();
 
 <!-- Initialize Bootstrap tooltips -->
 <script>
-    var tooltipTriggerList = Array.from(document.querySelectorAll('[data-bs-toggle="tooltip"]'))
+    var tooltipTriggerList = Array.from(document.querySelectorAll('[data-bs-toggle="tooltip"]'));
     var tooltipList = tooltipTriggerList.map(function (tooltipTriggerEl) {
-        return new bootstrap.Tooltip(tooltipTriggerEl)
-    })
+        return new bootstrap.Tooltip(tooltipTriggerEl, {
+            html: true // Enable HTML parsing for the tooltip content
+        });
+    });
 </script>
 
                         <!-- end backup config ul list -->
