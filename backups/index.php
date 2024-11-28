@@ -246,8 +246,9 @@ redirectIfNotLoggedIn();
                     $additional_count = count($additional_users);
                     $tooltip_content = implode('<br>', $additional_users);
                     echo "<div class='float-start ms-2'>
-                            <span class='badge bg-secondary' data-bs-toggle='tooltip' title='$tooltip_content'>+{$additional_count}</span>
-                          </div>";
+                            <span class='badge bg-secondary' data-bs-toggle='tooltip' title='<?php echo $tooltip_content; ?>'>+<?php echo $additional_count; ?></span>
+                        </div>
+                        ";
                 }
                 
                 echo "<br><br>"; // Spacing between notification groups
