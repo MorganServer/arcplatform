@@ -244,7 +244,7 @@ redirectIfNotLoggedIn();
                     $additional_count = count($additional_users); // Count the additional users
                     $tooltip_content = implode('<br>', array_merge([$users[0]], $additional_users)); 
                 ?>
-                <span class='badge bg-secondary' data-bs-toggle='tooltip' title='<?php echo $tooltip_content; ?>'>+<?php echo {$additional_count}; ?></span>
+                <span class='badge bg-secondary' data-bs-toggle='tooltip' title='<?php echo $tooltip_content; ?>'>+<?php {$additional_count}; ?></span>
 
                 <?php
                 }
