@@ -235,7 +235,7 @@ redirectIfNotLoggedIn();
         function displayUsers($users, $notification_type) {
             if (count($users) > 0) {
                 // Display the notification type
-                echo "<strong>$notification_type:</strong><br>";
+                echo "<strong>$notification_type: </strong>";
                 
                 // Display the first user
                 echo "<div class='float-start'>" . $users[0] . "</div>";
