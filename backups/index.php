@@ -241,6 +241,14 @@ redirectIfNotLoggedIn();
     </li>
 </ul>
 
+<style>
+    /* Customize tooltip width */
+    .tooltip-inner {
+        max-width: 300px; /* Adjust this value for a wider tooltip */
+        white-space: pre-wrap; /* Allows line breaks for long content */
+    }
+</style>
+
 <script>
     // Initialize Bootstrap tooltips for Email
     var tooltipTriggerList = [].slice.call(document.querySelectorAll('[data-bs-toggle="tooltip"]'))
