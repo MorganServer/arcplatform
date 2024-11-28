@@ -50,41 +50,73 @@ redirectIfNotLoggedIn();
                     <h5 class="card-title">
                         Backup Configurations
                         <div class="float-end">
-                            <a href=""><i class="bi bi-plus-circle-fill"></i></a>
+                            <a data-bs-toggle="modal" data-bs-target="#add_backup_config"><i class="bi bi-plus-circle-fill"></i></a>
                         </div>
                     </h5>
                     <p class="card-text">
-                        <ul class="list-group list-group-flush">
-                            <?php
-                            $bu_sql = "SELECT * FROM backup_configs";
-                            $bu_result = mysqli_query($conn, $bu_sql);
-                            if ($bu_result) {
-                                $bu_num_rows = mysqli_num_rows($bu_result);
-                                if ($bu_num_rows > 0) {
-                                    while ($bu_row = mysqli_fetch_assoc($bu_result)) {
-                                        $bu_id = $bu_row['backup_config_id']; 
-                                        $bu_config_name = $bu_row['config_name'];
-                                        $bu_value = $bu_row['value'];
-                                    
-                                        $formatted_bu_config_name = ucwords(str_replace('_', ' ', $bu_config_name));
-                            ?>
-                                        <li class="list-group-item">
-                                            <div class="float-start">
-                                                <strong>
-                                                    <?php echo $formatted_bu_config_name; ?>:&nbsp;
-                                                </strong>
-                                                <?php echo $bu_value; ?>
-                                            </div>
-                                            <div class="float-end">
-                                    
-                                            </div>
-                                        </li>
-                            <?php
+                        <!-- backup config ul list -->
+                            <ul class="list-group list-group-flush">
+                                <?php
+                                $bu_sql = "SELECT * FROM backup_configs";
+                                $bu_result = mysqli_query($conn, $bu_sql);
+                                if ($bu_result) {
+                                    $bu_num_rows = mysqli_num_rows($bu_result);
+                                    if ($bu_num_rows > 0) {
+                                        while ($bu_row = mysqli_fetch_assoc($bu_result)) {
+                                            $bu_id = $bu_row['backup_config_id']; 
+                                            $bu_config_name = $bu_row['config_name'];
+                                            $bu_value = $bu_row['value'];
+                                        
+                                            $formatted_bu_config_name = ucwords(str_replace('_', ' ', $bu_config_name));
+                                ?>
+                                            <li class="list-group-item">
+                                                <div class="float-start">
+                                                    <strong>
+                                                        <?php echo $formatted_bu_config_name; ?>:&nbsp;
+                                                    </strong>
+                                                    <?php echo $bu_value; ?>
+                                                </div>
+                                                <div class="float-end">
+                                        
+                                                </div>
+                                            </li>
+                                <?php
+                                        }
                                     }
                                 }
-                            }
-                            ?>
-                        </ul>
+                                ?>
+                            </ul>
+                        <!-- end backup config ul list -->
+
+                        <!-- add-configuration -->
+                            <div class="modal fade" id="add_backup_config" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                                <div class="modal-dialog">
+                                    <div class="modal-content">
+                                        <div class="modal-header">
+                                            <h1 class="modal-title fs-5" id="exampleModalLabel">Add Backup Config</h1>
+                                            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                                        </div>
+                                        <div class="modal-body">
+
+                                            <form method="POST" class="row g-3">
+                                                <div class="col-md-6">
+                                                    <label for="config_name" class="form-label">Configuration Name</label>
+                                                    <input type="text" class="form-control" id="config_name" name="config_name">
+                                                </div>
+                                                <div class="col-md-6">
+                                                    <label for="value" class="form-label">Primary Contact</label>
+                                                    <input type="text" class="form-control" id="value" name="value" >
+                                                </div>
+                                                <div class="col-12">
+                                                    <button type="submit" name="add_backup_config" class="btn btn-primary">Add Configuration</button>
+                                                </div>
+                                            </form>
+
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        <!-- end add-configuration -->
 
                     </p>
                   </div>
