@@ -1,8 +1,8 @@
 <?php
 // Database connection parameters
 $host = 'localhost';  // Database host
-$user = 'dbuser';       // Database username
-$password = 'DBuser123!';       // Database password
+$user = 'dbuser';     // Database username
+$password = 'DBuser123!'; // Database password
 $dbname = 'arcplatform'; // Database name
 
 // Connect to the database
@@ -14,6 +14,9 @@ if ($conn->connect_error) {
 // Retrieve backup configurations
 $configs = [];
 $result = $conn->query("SELECT config_name, value FROM backup_configs");
+if (!$result) {
+    die("Error: Failed to retrieve backup configurations. " . $conn->error);
+}
 while ($row = $result->fetch_assoc()) {
     $configs[$row['config_name']] = $row['value'];
 }
@@ -31,7 +34,6 @@ $backupSchedule = $configs['backup_schedule']; // Example: 'daily'
 if ($retentionPeriod <= 0) {
     die("Error: Invalid retention_period value. It must be greater than 0.");
 }
-
 if (!in_array($backupSchedule, ['daily', 'weekly', 'monthly'])) {
     die("Error: Invalid backup_schedule value. Allowed values are 'daily', 'weekly', or 'monthly'.");
 }
@@ -39,7 +41,9 @@ if (!in_array($backupSchedule, ['daily', 'weekly', 'monthly'])) {
 // Backup storage location
 $backupDir = __DIR__ . '/backup_files/';
 if (!is_dir($backupDir)) {
-    mkdir($backupDir, 0777, true); // Create the directory if it doesn't exist
+    if (!mkdir($backupDir, 0777, true)) {
+        die("Error: Failed to create backup directory.");
+    }
 }
 
 // Generate backup file name
@@ -56,6 +60,9 @@ $status = $result === 0 ? 'success' : 'failed';
 // Insert backup info into the database
 $backupTime = date('Y-m-d H:i:s');
 $stmt = $conn->prepare("INSERT INTO backups (backup_time, file_path, status) VALUES (?, ?, ?)");
+if (!$stmt) {
+    die("Error: Failed to prepare statement. " . $conn->error);
+}
 $stmt->bind_param("sss", $backupTime, $backupFile, $status);
 $stmt->execute();
 $stmt->close();
@@ -68,6 +75,10 @@ if ($status === 'success') {
 
 // Enforce retention policy
 $result = $conn->query("SELECT id, file_path FROM backups ORDER BY backup_time DESC");
+if (!$result) {
+    die("Error: Failed to fetch backups for retention policy. " . $conn->error);
+}
+
 $backups = [];
 while ($row = $result->fetch_assoc()) {
     $backups[] = $row;
@@ -80,10 +91,16 @@ if (count($backups) > $retentionPeriod) {
         // Delete backup file
         if (file_exists($backup['file_path'])) {
             unlink($backup['file_path']);
+        } else {
+            echo "Warning: Backup file not found: " . $backup['file_path'] . "\n";
         }
 
         // Remove entry from database
         $stmt = $conn->prepare("DELETE FROM backups WHERE id = ?");
+        if (!$stmt) {
+            echo "Error: Failed to prepare deletion statement for backup ID " . $backup['id'] . ". " . $conn->error . "\n";
+            continue;
+        }
         $stmt->bind_param("i", $backup['id']);
         $stmt->execute();
         $stmt->close();
@@ -93,6 +110,8 @@ if (count($backups) > $retentionPeriod) {
 // Close the database connection
 $conn->close();
 
+echo "Backup process completed.\n";
+
 // Schedule script execution using a cron job
-// Example cron: 15 1 * * * php /path/to/automated_backup.php
+// Example cron: 15 1 * * * php /path/to/backup_script.php
 ?>
