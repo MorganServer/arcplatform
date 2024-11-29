@@ -74,7 +74,7 @@ if ($status === 'success') {
 }
 
 // Enforce retention policy
-$result = $conn->query("SELECT id, file_path FROM backups ORDER BY backup_time DESC");
+$result = $conn->query("SELECT backup_id, file_path FROM backups ORDER BY backup_time DESC");
 if (!$result) {
     die("Error: Failed to fetch backups for retention policy. " . $conn->error);
 }
@@ -96,12 +96,12 @@ if (count($backups) > $retentionPeriod) {
         }
 
         // Remove entry from database
-        $stmt = $conn->prepare("DELETE FROM backups WHERE id = ?");
+        $stmt = $conn->prepare("DELETE FROM backups WHERE backup_id = ?");
         if (!$stmt) {
-            echo "Error: Failed to prepare deletion statement for backup ID " . $backup['id'] . ". " . $conn->error . "\n";
+            echo "Error: Failed to prepare deletion statement for backup ID " . $backup['backup_id'] . ". " . $conn->error . "\n";
             continue;
         }
-        $stmt->bind_param("i", $backup['id']);
+        $stmt->bind_param("i", $backup['backup_id']);
         $stmt->execute();
         $stmt->close();
     }
