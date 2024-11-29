@@ -37,7 +37,7 @@ if (!in_array($backupSchedule, ['daily', 'weekly', 'monthly'])) {
 }
 
 // Backup storage location
-$backupDir = __DIR__ . '/backup_files/';
+$backupDir = "~/Documents/backup_files/";
 if (!is_dir($backupDir)) {
     mkdir($backupDir, 0777, true); // Create the directory if it doesn't exist
 }
