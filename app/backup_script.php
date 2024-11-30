@@ -149,13 +149,23 @@ while ($row = $result->fetch_assoc()) {
     $backups[] = $row;
 }
 
+// Ensure backups are sorted by date (oldest first)
+usort($backups, function($a, $b) {
+    return strtotime($a['created_at']) - strtotime($b['created_at']);
+});
+
 // Remove older backups beyond retention period
 if (count($backups) > $retentionPeriod) {
-    $toDelete = array_slice($backups, $retentionPeriod);
+    $toDelete = array_slice($backups, $retentionPeriod); // Get backups beyond retention period
+    
     foreach ($toDelete as $backup) {
         // Delete backup file
         if (file_exists($backup['file_path'])) {
-            unlink($backup['file_path']);
+            if (unlink($backup['file_path'])) {
+                echo "Successfully deleted backup file: " . $backup['file_path'] . "\n";
+            } else {
+                echo "Error: Failed to delete backup file: " . $backup['file_path'] . "\n";
+            }
         } else {
             echo "Warning: Backup file not found: " . $backup['file_path'] . "\n";
         }
@@ -169,8 +179,11 @@ if (count($backups) > $retentionPeriod) {
         $stmt->bind_param("i", $backup['backup_id']);
         $stmt->execute();
         $stmt->close();
+        
+        echo "Successfully deleted backup record from database for ID: " . $backup['backup_id'] . "\n";
     }
 }
+
 
 // Close the database connection
 $conn->close();
@@ -178,6 +191,4 @@ $conn->close();
 // echo "Backup process completed.\n";
 
 
-// Schedule script execution using a cron job
-// Example cron: 15 1 * * * php /path/to/backup_script.php
 ?>
