@@ -149,10 +149,6 @@ while ($row = $result->fetch_assoc()) {
     $backups[] = $row;
 }
 
-// Ensure backups are sorted by date (oldest first)
-usort($backups, function($a, $b) {
-    return strtotime($a['created_at']) - strtotime($b['created_at']);
-});
 
 // Remove older backups beyond retention period
 if (count($backups) > $retentionPeriod) {
