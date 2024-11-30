@@ -4,7 +4,7 @@
 $host = 'localhost';  // Database host
 $user = 'dbuser';     // Database username
 $password = 'DBuser123!'; // Database password
-$dbname = 'arcplatform'; // Database name
+$dbname = 'invalid_database_name';
 
 // Connect to the database
 $conn = new mysqli($host, $user, $password, $dbname);
