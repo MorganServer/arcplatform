@@ -100,7 +100,7 @@ if ($slackResult && $slackResult->num_rows > 0) {
                             'type' => 'section',
                             'text' => [
                                 'type' => 'mrkdwn',
-                                'text' => $status === 'success' 
+                                'text' => $status === 'Success' 
                                     ? "*File Path:*\n`$backupFile`" 
                                     : "*Error:*\nBackup failed!"
                             ]
