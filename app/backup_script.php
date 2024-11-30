@@ -71,7 +71,12 @@ if ($slackResult && $slackResult->num_rows > 0) {
         $color = $status === 'Success' ? '#36a64f' : '#ff0000'; // Green for success, red for failure
 
         // Prepare the Slack message payload
+        $textPreview = $status === 'Success' 
+            ? "Backup Successful! File Path: $backupFile" 
+            : "Backup Failed! Time: $backupTime";
+
         $payload = [
+            'text' => $textPreview, // Plain-text preview
             'attachments' => [
                 [
                     'color' => $color, // Sets the vertical line color
@@ -130,12 +135,13 @@ if ($slackResult && $slackResult->num_rows > 0) {
         } elseif ($httpCode !== 200) {
             echo "Slack notification failed with HTTP code $httpCode. Response: $response\n";
         } else {
-            echo "";
+            echo "Slack notification sent successfully.\n";
         }
 
         curl_close($ch);
     }
 }
+
 
 
 
