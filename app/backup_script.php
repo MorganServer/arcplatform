@@ -27,7 +27,8 @@ if (!isset($configs['retention_period']) || !isset($configs['backup_schedule']))
 }
 
 // Parse configurations from the database
-$retentionPeriod = intval($configs['retention_period']); // Example: 7 days
+// Extract numeric value from retention_period (e.g., "7 days" -> 7)
+$retentionPeriod = intval(preg_replace('/\D/', '', $configs['retention_period']));
 $backupSchedule = $configs['backup_schedule']; // Example: 'daily'
 
 // Optional: Validate values
