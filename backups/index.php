@@ -371,17 +371,49 @@ redirectIfNotLoggedIn();
 
             <div class="mt-3"></div>
 
-            <div class="card details_card" style="width: 100%;">
-              <div class="card-body">
-                <h5 class="card-title">Backup Logs</h5>
-                <div class="mt-3"></div>
-                <p class="card-text">
-                    <div class="">
-                        
-                    </div>
-                </p>
-              </div>
-            </div>
+            <?php
+// Assuming you have already connected to the database with db.php
+// Fetch backup logs from the backups table
+$sql = "SELECT backup_id, backup_name, backup_time, status FROM backups ORDER BY backup_time DESC";
+$result = mysqli_query($conn, $sql);
+?>
+
+<div class="card details_card" style="width: 100%;">
+    <div class="card-body">
+        <h5 class="card-title">Backup Logs</h5>
+        <div class="mt-3"></div>
+        <p class="card-text">
+            <table class="table table-striped">
+                <thead>
+                    <tr>
+                        <th scope="col">Backup ID</th>
+                        <th scope="col">Backup Name</th>
+                        <th scope="col">Backup Time</th>
+                        <th scope="col">Status</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <?php
+                    if (mysqli_num_rows($result) > 0) {
+                        // Output each row of backup data
+                        while ($row = mysqli_fetch_assoc($result)) {
+                            echo "<tr>";
+                            echo "<td>" . $row['backup_id'] . "</td>";
+                            echo "<td>" . $row['backup_name'] . "</td>";
+                            echo "<td>" . $row['backup_time'] . "</td>";
+                            echo "<td>" . $row['status'] . "</td>";
+                            echo "</tr>";
+                        }
+                    } else {
+                        echo "<tr><td colspan='4'>No backup logs available.</td></tr>";
+                    }
+                    ?>
+                </tbody>
+            </table>
+        </p>
+    </div>
+</div>
+
             
 
 
