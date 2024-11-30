@@ -401,7 +401,7 @@ $result = mysqli_query($conn, $sql);
                             echo "<td>" . $row['backup_id'] . "</td>";
                             echo "<td>" . $row['backup_name'] . "</td>";
                             echo "<td>" . $row['backup_time'] . "</td>";
-                            echo "<td>" . $row['status'] . "</td>";
+                            echo "<td>" . ucfirst($row['status']) . "</td>";
                             echo "</tr>";
                         }
                     } else {

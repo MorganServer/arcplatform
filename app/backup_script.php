@@ -159,7 +159,7 @@ if (count($backups) > $retentionPeriod) {
         // Delete backup file
         if (file_exists($backup['file_path'])) {
             if (unlink($backup['file_path'])) {
-                echo "Successfully deleted backup file: " . $backup['file_path'] . "\n";
+                // echo "Successfully deleted backup file: " . $backup['file_path'] . "\n";
             } else {
                 echo "Error: Failed to delete backup file: " . $backup['file_path'] . "\n";
             }
@@ -177,7 +177,7 @@ if (count($backups) > $retentionPeriod) {
         $stmt->execute();
         $stmt->close();
         
-        echo "Successfully deleted backup record from database for ID: " . $backup['backup_id'] . "\n";
+        // echo "Successfully deleted backup record from database for ID: " . $backup['backup_id'] . "\n";
     }
 }
 
