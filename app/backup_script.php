@@ -67,7 +67,7 @@ if ($slackResult && $slackResult->num_rows > 0) {
         $webhookUrl = $row['webhook'];
 
         // Determine color based on backup status
-        $color = $status === 'success' ? '#36a64f' : '#ff0000'; // Green for success, red for failure
+        $color = $status === 'Success' ? '#36a64f' : '#ff0000'; // Green for success, red for failure
 
         // Prepare the Slack message payload
         $payload = [
