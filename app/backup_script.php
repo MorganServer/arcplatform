@@ -66,12 +66,48 @@ if ($slackResult && $slackResult->num_rows > 0) {
     while ($row = $slackResult->fetch_assoc()) {
         $webhookUrl = $row['webhook'];
 
+        // Determine color based on backup status
+        $color = $status === 'success' ? '#36a64f' : '#ff0000'; // Green for success, red for failure
+
         // Prepare the Slack message payload
         $payload = [
-            'text' => "Backup Notification:\n" .
-                      "Time: $backupTime\n" .
-                      "Status: $status\n" .
-                      ($status === 'success' ? "File Path: $backupFile" : "Error: Backup failed!")
+            'attachments' => [
+                [
+                    'color' => $color, // Sets the vertical line color
+                    'blocks' => [
+                        [
+                            'type' => 'header',
+                            'text' => [
+                                'type' => 'plain_text',
+                                'text' => "🚨 Backup Notification",
+                                'emoji' => true
+                            ]
+                        ],
+                        [
+                            'type' => 'section',
+                            'fields' => [
+                                [
+                                    'type' => 'mrkdwn',
+                                    'text' => "*Time:*\n$backupTime"
+                                ],
+                                [
+                                    'type' => 'mrkdwn',
+                                    'text' => "*Status:*\n$status"
+                                ]
+                            ]
+                        ],
+                        [
+                            'type' => 'section',
+                            'text' => [
+                                'type' => 'mrkdwn',
+                                'text' => $status === 'success' 
+                                    ? "*File Path:*\n`$backupFile`" 
+                                    : "*Error:*\nBackup failed!"
+                            ]
+                        ]
+                    ]
+                ]
+            ]
         ];
 
         // Initialize cURL for the Slack webhook
@@ -99,6 +135,7 @@ if ($slackResult && $slackResult->num_rows > 0) {
         curl_close($ch);
     }
 }
+
 
 
 // Enforce retention policy
