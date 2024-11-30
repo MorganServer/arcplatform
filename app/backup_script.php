@@ -70,15 +70,15 @@ if ($slackResult && $slackResult->num_rows > 0) {
         // Determine color based on backup status
         $color = $status === 'Success' ? '#36a64f' : '#ff0000'; // Green for success, red for failure
 
-        // Plain-text preview for notification
+        // Plain-text preview for notification (used for notification popups)
         $textPreview = $status === 'Success' 
             ? "Backup Successful!" 
             : "Backup Failed!";
 
         // Slack message payload
         $payload = [
-            'text' => $textPreview, // Used for notification previews only
-            'attachments' => [ // Message content only in attachments or blocks
+            'text' => $textPreview, // This is used for notification previews
+            'attachments' => [
                 [
                     'color' => $color,
                     'blocks' => [
@@ -107,8 +107,8 @@ if ($slackResult && $slackResult->num_rows > 0) {
                             'type' => 'section',
                             'text' => [
                                 'type' => 'mrkdwn',
-                                'text' => $status === 'Success' 
-                                    ? "*File Path:*\n`$backupFile`" 
+                                'text' => $status === 'Success'
+                                    ? "*File Path:*\n`$backupFile`"
                                     : "*Error:*\nBackup failed!"
                             ]
                         ]
@@ -116,6 +116,9 @@ if ($slackResult && $slackResult->num_rows > 0) {
                 ]
             ]
         ];
+
+        // Set the `text` field to a zero-width space for the actual Slack message
+        $payload['text'] = "\u200b";
 
         // Send Slack notification via cURL
         $ch = curl_init($webhookUrl);
