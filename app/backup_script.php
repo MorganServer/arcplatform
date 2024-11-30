@@ -61,28 +61,26 @@ $stmt->execute();
 $stmt->close();
 
 // Notify via Slack if configured
-$slackResult = $conn->query("SELECT webhook_url FROM backup_notifications WHERE notification_type = 'slack'");
+$slackResult = $conn->query("SELECT webhook FROM backup_notifications WHERE notification_type = 'slack'");
 if ($slackResult && $slackResult->num_rows > 0) {
     while ($row = $slackResult->fetch_assoc()) {
         $webhookUrl = $row['webhook_url'];
 
-        // Prepare the Slack message
-        $message = json_encode([
+        // Prepare the Slack message payload
+        $payload = [
             'text' => "Backup Notification:\n" .
                       "Time: $backupTime\n" .
                       "Status: $status\n" .
                       ($status === 'success' ? "File Path: $backupFile" : "Error: Backup failed!")
-        ]);
+        ];
 
-        // Send the Slack notification
-        $ch = curl_init();
-        curl_setopt($ch, CURLOPT_URL, $webhookUrl);
+        // Initialize cURL for the Slack webhook
+        $ch = curl_init($webhookUrl);
         curl_setopt($ch, CURLOPT_POST, true);
-        curl_setopt($ch, CURLOPT_POSTFIELDS, $message);
+        curl_setopt($ch, CURLOPT_POSTFIELDS, json_encode($payload)); // Slack expects JSON payload
         curl_setopt($ch, CURLOPT_RETURNTRANSFER, true); // Capture the response
         curl_setopt($ch, CURLOPT_HTTPHEADER, [
-            'Content-Type: application/json',
-            'Content-Length: ' . strlen($message)
+            'Content-Type: application/json', // Slack expects application/json
         ]);
 
         // Execute and capture the response
@@ -91,8 +89,7 @@ if ($slackResult && $slackResult->num_rows > 0) {
 
         // Check for errors
         if (curl_errno($ch)) {
-            $error = curl_error($ch);
-            echo "Slack notification failed: $error\n";
+            echo "Slack notification failed: " . curl_error($ch) . "\n";
         } elseif ($httpCode !== 200) {
             echo "Slack notification failed with HTTP code $httpCode. Response: $response\n";
         } else {
