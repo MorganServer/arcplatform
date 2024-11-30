@@ -4,7 +4,7 @@
 $host = 'localhost';  // Database host
 $user = 'dbuser';     // Database username
 $password = 'DBuser123!'; // Database password
-$dbname = 'invalid_database_name';
+$dbname = 'arcplatform'; // Database name
 
 // Connect to the database
 $conn = new mysqli($host, $user, $password, $dbname);
@@ -44,7 +44,8 @@ $date = date('Y-m-d_H-i-s');
 $backupFile = $backupDir . "backup_$date.sql";
 
 // Create backup using mysqldump
-$command = "mysqldump --host=$host --user=$user --password=$password $dbname > $backupFile";
+// $command = "mysqldump --host=$host --user=$user --password=$password $dbname > $backupFile";
+$command = "mysqldump --host=$host --user=wrong_user --password=wrong_password $dbname > $backupFile";
 exec($command, $output, $result);
 
 // Record backup status
