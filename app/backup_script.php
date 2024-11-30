@@ -108,7 +108,7 @@ if ($slackResult && $slackResult->num_rows > 0) {
         ];
 
         // Set the `text` field to a zero-width space for the actual Slack message
-        $payload['text'] = "\u200b";
+        // $payload['text'] = "\u200b";
 
         // Send Slack notification via cURL
         $ch = curl_init($webhookUrl);
