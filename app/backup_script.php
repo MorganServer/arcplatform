@@ -40,8 +40,9 @@ if (!is_dir($backupDir)) {
 }
 
 // Generate backup file name
-$date = date('Y-m-d_H-i-s');
-$backupFile = $backupDir . "backup_$date.sql";
+$date = date('Y-m-d');
+$backup_name = "arcplatform-backup-$date"
+$backupFile = $backupDir . "$backup_name.sql";
 
 // Create backup using mysqldump
 $command = "mysqldump --host=$host --user=$user --password=$password $dbname > $backupFile";
@@ -52,11 +53,11 @@ $status = ucfirst($result === 0 ? 'success' : 'failed');
 
 // Insert backup info into the database
 $backupTime = date('Y-m-d H:i:s');
-$stmt = $conn->prepare("INSERT INTO backups (backup_time, file_path, status) VALUES (?, ?, ?)");
+$stmt = $conn->prepare("INSERT INTO backups (backup_name, backup_time, file_path, status) VALUES (?, ?, ?, ?)");
 if (!$stmt) {
     die("Error: Failed to prepare statement. " . $conn->error);
 }
-$stmt->bind_param("sss", $backupTime, $backupFile, $status);
+$stmt->bind_param("ssss", $backup_name, $backupTime, $backupFile, $status);
 $stmt->execute();
 $stmt->close();
 

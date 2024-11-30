@@ -377,7 +377,7 @@ redirectIfNotLoggedIn();
                 <div class="mt-3"></div>
                 <p class="card-text">
                     <div class="">
-                    
+                        
                     </div>
                 </p>
               </div>
