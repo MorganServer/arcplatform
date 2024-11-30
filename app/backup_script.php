@@ -72,8 +72,8 @@ if ($slackResult && $slackResult->num_rows > 0) {
 
         // Prepare the Slack message payload
         $textPreview = $status === 'Success' 
-            ? "Backup Successful! File Path: $backupFile" 
-            : "Backup Failed! Time: $backupTime";
+            ? "Backup Successful!" 
+            : "Backup Failed!";
 
         $payload = [
             'text' => $textPreview, // Plain-text preview
