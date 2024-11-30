@@ -129,7 +129,7 @@ if ($slackResult && $slackResult->num_rows > 0) {
         } elseif ($httpCode !== 200) {
             echo "Slack notification failed with HTTP code $httpCode. Response: $response\n";
         } else {
-            echo "Slack notification sent successfully.\n";
+            echo "";
         }
 
         curl_close($ch);
@@ -175,7 +175,7 @@ if (count($backups) > $retentionPeriod) {
 // Close the database connection
 $conn->close();
 
-echo "Backup process completed.\n";
+// echo "Backup process completed.\n";
 
 
 // Schedule script execution using a cron job
