@@ -1,4 +1,5 @@
 <?php
+
 // Database connection parameters
 $host = 'localhost';  // Database host
 $user = 'dbuser';     // Database username
@@ -27,17 +28,8 @@ if (!isset($configs['retention_period']) || !isset($configs['backup_schedule']))
 }
 
 // Parse configurations from the database
-// Extract numeric value from retention_period (e.g., "7 days" -> 7)
 $retentionPeriod = intval(preg_replace('/\D/', '', $configs['retention_period']));
-$backupSchedule = $configs['backup_schedule']; // Example: 'daily'
-
-// Optional: Validate values
-if ($retentionPeriod <= 0) {
-    die("Error: Invalid retention_period value. It must be greater than 0.");
-}
-if (!in_array($backupSchedule, ['daily', 'weekly', 'monthly'])) {
-    die("Error: Invalid backup_schedule value. Allowed values are 'daily', 'weekly', or 'monthly'.");
-}
+$backupSchedule = $configs['backup_schedule'];
 
 // Backup storage location
 $backupDir = __DIR__ . '/backup_files/';
@@ -68,10 +60,28 @@ $stmt->bind_param("sss", $backupTime, $backupFile, $status);
 $stmt->execute();
 $stmt->close();
 
-if ($status === 'success') {
-    echo "Backup successfully created: $backupFile\n";
-} else {
-    echo "Backup failed!\n";
+// Notify via Slack if configured
+$slackResult = $conn->query("SELECT webhook_url FROM backup_notifications WHERE notification_type = 'slack'");
+if ($slackResult && $slackResult->num_rows > 0) {
+    while ($row = $slackResult->fetch_assoc()) {
+        $webhookUrl = $row['webhook_url'];
+
+        // Prepare the Slack message
+        $message = [
+            'text' => "Backup Notification:\n" .
+                      "Time: $backupTime\n" .
+                      "Status: $status\n" .
+                      ($status === 'success' ? "File Path: $backupFile" : "Error: Backup failed!")
+        ];
+
+        // Send the Slack notification
+        $ch = curl_init($webhookUrl);
+        curl_setopt($ch, CURLOPT_POST, true);
+        curl_setopt($ch, CURLOPT_POSTFIELDS, json_encode($message));
+        curl_setopt($ch, CURLOPT_HTTPHEADER, ['Content-Type: application/json']);
+        curl_exec($ch);
+        curl_close($ch);
+    }
 }
 
 // Enforce retention policy
@@ -112,6 +122,7 @@ if (count($backups) > $retentionPeriod) {
 $conn->close();
 
 echo "Backup process completed.\n";
+
 
 // Schedule script execution using a cron job
 // Example cron: 15 1 * * * php /path/to/backup_script.php
