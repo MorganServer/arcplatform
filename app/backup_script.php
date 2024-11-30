@@ -71,7 +71,7 @@ if ($slackResult && $slackResult->num_rows > 0) {
         $color = $status === 'Success' ? '#36a64f' : '#ff0000'; // Green for success, red for failure
 
         // Plain-text preview for notification (used for notification popups)
-        $textPreview = "🚨 Backup Notification"
+        $textPreview = "🚨 Backup Notification"; // Missing semicolon here
 
         // Slack message payload
         $payload = [
@@ -107,9 +107,6 @@ if ($slackResult && $slackResult->num_rows > 0) {
             ]
         ];
 
-        // Set the `text` field to a zero-width space for the actual Slack message
-        // $payload['text'] = "\u200b";
-
         // Send Slack notification via cURL
         $ch = curl_init($webhookUrl);
         curl_setopt($ch, CURLOPT_POST, true);
@@ -134,6 +131,7 @@ if ($slackResult && $slackResult->num_rows > 0) {
         curl_close($ch);
     }
 }
+
 
 
 
