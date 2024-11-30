@@ -70,16 +70,17 @@ if ($slackResult && $slackResult->num_rows > 0) {
         // Determine color based on backup status
         $color = $status === 'Success' ? '#36a64f' : '#ff0000'; // Green for success, red for failure
 
-        // Prepare the Slack message payload
+        // Plain-text preview for notification
         $textPreview = $status === 'Success' 
             ? "Backup Successful!" 
             : "Backup Failed!";
 
+        // Slack message payload
         $payload = [
-            'text' => $textPreview, // Plain-text preview
-            'attachments' => [
+            'text' => $textPreview, // Used for notification previews only
+            'attachments' => [ // Message content only in attachments or blocks
                 [
-                    'color' => $color, // Sets the vertical line color
+                    'color' => $color,
                     'blocks' => [
                         [
                             'type' => 'header',
@@ -116,20 +117,19 @@ if ($slackResult && $slackResult->num_rows > 0) {
             ]
         ];
 
-        // Initialize cURL for the Slack webhook
+        // Send Slack notification via cURL
         $ch = curl_init($webhookUrl);
         curl_setopt($ch, CURLOPT_POST, true);
-        curl_setopt($ch, CURLOPT_POSTFIELDS, json_encode($payload)); // Slack expects JSON payload
-        curl_setopt($ch, CURLOPT_RETURNTRANSFER, true); // Capture the response
+        curl_setopt($ch, CURLOPT_POSTFIELDS, json_encode($payload));
+        curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
         curl_setopt($ch, CURLOPT_HTTPHEADER, [
-            'Content-Type: application/json', // Slack expects application/json
+            'Content-Type: application/json',
         ]);
 
-        // Execute and capture the response
+        // Execute and check response
         $response = curl_exec($ch);
         $httpCode = curl_getinfo($ch, CURLINFO_HTTP_CODE);
 
-        // Check for errors
         if (curl_errno($ch)) {
             echo "Slack notification failed: " . curl_error($ch) . "\n";
         } elseif ($httpCode !== 200) {
@@ -141,6 +141,7 @@ if ($slackResult && $slackResult->num_rows > 0) {
         curl_close($ch);
     }
 }
+
 
 
 
