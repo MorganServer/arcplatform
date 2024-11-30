@@ -64,7 +64,7 @@ $stmt->close();
 $slackResult = $conn->query("SELECT webhook FROM backup_notifications WHERE notification_type = 'slack'");
 if ($slackResult && $slackResult->num_rows > 0) {
     while ($row = $slackResult->fetch_assoc()) {
-        $webhookUrl = $row['webhook_url'];
+        $webhookUrl = $row['webhook'];
 
         // Prepare the Slack message payload
         $payload = [
