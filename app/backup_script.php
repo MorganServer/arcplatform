@@ -71,9 +71,7 @@ if ($slackResult && $slackResult->num_rows > 0) {
         $color = $status === 'Success' ? '#36a64f' : '#ff0000'; // Green for success, red for failure
 
         // Plain-text preview for notification (used for notification popups)
-        $textPreview = $status === 'Success' 
-            ? "Backup Successful!" 
-            : "Backup Failed!";
+        $textPreview = "🚨 Backup Notification"
 
         // Slack message payload
         $payload = [
@@ -82,14 +80,6 @@ if ($slackResult && $slackResult->num_rows > 0) {
                 [
                     'color' => $color,
                     'blocks' => [
-                        [
-                            'type' => 'header',
-                            'text' => [
-                                'type' => 'plain_text',
-                                'text' => "🚨 Backup Notification",
-                                'emoji' => true
-                            ]
-                        ],
                         [
                             'type' => 'section',
                             'fields' => [
