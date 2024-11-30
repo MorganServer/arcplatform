@@ -41,7 +41,7 @@ if (!is_dir($backupDir)) {
 
 // Generate backup file name
 $date = date('Y-m-d');
-$backup_name = "arcplatform-backup-$date"
+$backup_name = "arcplatform-backup-$date"; // <-- Added semicolon here
 $backupFile = $backupDir . "$backup_name.sql";
 
 // Create backup using mysqldump
