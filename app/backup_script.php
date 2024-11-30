@@ -67,22 +67,42 @@ if ($slackResult && $slackResult->num_rows > 0) {
         $webhookUrl = $row['webhook_url'];
 
         // Prepare the Slack message
-        $message = [
+        $message = json_encode([
             'text' => "Backup Notification:\n" .
                       "Time: $backupTime\n" .
                       "Status: $status\n" .
                       ($status === 'success' ? "File Path: $backupFile" : "Error: Backup failed!")
-        ];
+        ]);
 
         // Send the Slack notification
-        $ch = curl_init($webhookUrl);
+        $ch = curl_init();
+        curl_setopt($ch, CURLOPT_URL, $webhookUrl);
         curl_setopt($ch, CURLOPT_POST, true);
-        curl_setopt($ch, CURLOPT_POSTFIELDS, json_encode($message));
-        curl_setopt($ch, CURLOPT_HTTPHEADER, ['Content-Type: application/json']);
-        curl_exec($ch);
+        curl_setopt($ch, CURLOPT_POSTFIELDS, $message);
+        curl_setopt($ch, CURLOPT_RETURNTRANSFER, true); // Capture the response
+        curl_setopt($ch, CURLOPT_HTTPHEADER, [
+            'Content-Type: application/json',
+            'Content-Length: ' . strlen($message)
+        ]);
+
+        // Execute and capture the response
+        $response = curl_exec($ch);
+        $httpCode = curl_getinfo($ch, CURLINFO_HTTP_CODE);
+
+        // Check for errors
+        if (curl_errno($ch)) {
+            $error = curl_error($ch);
+            echo "Slack notification failed: $error\n";
+        } elseif ($httpCode !== 200) {
+            echo "Slack notification failed with HTTP code $httpCode. Response: $response\n";
+        } else {
+            echo "Slack notification sent successfully.\n";
+        }
+
         curl_close($ch);
     }
 }
+
 
 // Enforce retention policy
 $result = $conn->query("SELECT backup_id, file_path FROM backups ORDER BY backup_time DESC");
