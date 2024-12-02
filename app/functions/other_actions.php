@@ -164,20 +164,27 @@
 // end edit engagement
 
 // complete qa comment
-if (isset($_GET['action']) && $_GET['action'] == 'mark_complete' && isset($_GET['qa_id'])) {
-    $qa_id = $_GET['qa_id'];
-    $engagement_id = $_GET['e_id'];
+if (isset($_GET['action']) && $_GET['action'] === 'mark_complete' && isset($_GET['qa_id'])) {
+    $qa_id = intval($_GET['qa_id']); // Sanitize the input
+    $e_id = intval($_GET['e_id']);   // Sanitize the input
 
-    // Update the QA comment status to complete
-    $updateQuery = "UPDATE qa_comments SET status = 'complete' WHERE id = ?";
-    $stmt = $pdo->prepare($updateQuery);
-    if ($stmt->execute([$qa_id])) {
-        echo "QA Comment marked as complete successfully.";
-        // Optionally, redirect back to the relevant page
-        header("Location: some_page.php?e_id=$engagement_id");
-        exit();
+    // Prepare the SQL query to update the status
+    $sql = "UPDATE qa_comments SET status = 'complete' WHERE qa_id = ?";
+    if ($stmt = $conn->prepare($sql)) {
+        $stmt->bind_param("i", $qa_id);
+
+        // Execute the statement
+        if ($stmt->execute()) {
+            // Redirect back to the engagements page after successful update
+            header('Location: ' . BASE_URL . '/engagements/?engagement_id=' . $e_id);
+            exit();
+        } else {
+            echo "<div class='alert alert-danger'>Error updating QA comment status: " . $stmt->error . "</div>";
+        }
+
+        $stmt->close();
     } else {
-        echo "Failed to mark QA Comment as complete.";
+        echo "<div class='alert alert-danger'>Error preparing the statement: " . $conn->error . "</div>";
     }
 }
 // end complete qa commment
