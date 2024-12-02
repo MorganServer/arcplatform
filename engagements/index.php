@@ -371,13 +371,14 @@ redirectIfNotLoggedIn();
     document.addEventListener('DOMContentLoaded', function () {
     const tooltipTriggerList = [].slice.call(document.querySelectorAll('[data-bs-toggle="tooltip"]'));
     const tooltipList = tooltipTriggerList.map(function (tooltipTriggerEl) {
-        return new bootstrap.Tooltip(tooltipTriggerEl), {
-            html: true, // Enable HTML rendering for line breaks
-            placement: 'bottom', // Position the tooltip on the right side
-            offset: [0,10]
-        }
+        return new bootstrap.Tooltip(tooltipTriggerEl, {
+            html: true, // Enable HTML rendering for the tooltip
+            placement: 'bottom', // Position the tooltip below the element
+            offset: [0, 10] // Add some spacing
+        });
     });
 });
+
 
 // Initialize Bootstrap tooltips
 // var tooltipTriggerList = Array.from(document.querySelectorAll('[data-bs-toggle="tooltip"]'));
