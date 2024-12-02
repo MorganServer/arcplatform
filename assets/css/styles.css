@@ -165,10 +165,10 @@ body {
     cursor: pointer;
 }
 
-.circle:hover::after, .name-bg:hover::after {
+/* .circle:hover::after, .name-bg:hover::after {
     content: attr(data-tooltip);
     position: absolute;
-    bottom: 100%; /* Position above the element */
+    bottom: 100%; 
     left: 100%;
     transform: translateX(-50%);
     background: rgba(0, 0, 0, 0.75);
@@ -186,7 +186,7 @@ body {
     opacity: 0;
     visibility: hidden;
     transition: opacity 0.2s ease-in-out;
-}
+} */
 
 
 .new-comments i {
