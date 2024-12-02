@@ -539,6 +539,12 @@ redirectIfNotLoggedIn();
                                     </h5>
                                         
                                     <div class="d-flex">
+                                        <a class="me-5" 
+                                           style="color: #157915 !important; cursor: pointer; text-decoration: none;" 
+                                           href="?action=mark_complete&qa_id=<?php echo $mqa_id; ?>&e_id=<?php echo $mengagement_id; ?>" 
+                                           onclick="return confirm('Are you sure you want to mark this QA Comment as complete?');">
+                                            <i class="bi bi-check-circle"></i> Mark as Complete
+                                        </a>
                                         <a class="me-5" style="color: #941515 !important; cursor: pointer; text-decoration: none;" href="?action=delete_qa_comment&qa_id=<?php echo $mqa_id; ?>&e_id=<?php echo $mengagement_id; ?>" onclick="return confirm('Are you sure you want to delete this QA Comment?');" class="me-2">
                                             <i class="bi bi-trash"></i> Delete Comment
                                         </a>
