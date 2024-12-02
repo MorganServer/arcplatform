@@ -320,41 +320,50 @@ redirectIfNotLoggedIn();
                   </div>
                 </div>
                 <div class="card details_card" style="width: 20rem;">
-                  <div class="card-body">
-                    <h5 class="card-title">Auditors</h5>
-                    <p class="card-text">
-                        <div class="auditor-info">
-                            <div class="circle"><?php echo htmlspecialchars($manager_initials); ?></div>
-                            <div class="name-bg">
-                                <span class="name"><?php echo htmlspecialchars($off_manager); ?></span>
-                            </div>
-                        </div>
-                        <div class="mt-2"></div>
-                        <div class="auditor-info">
-                            <div class="circle"><?php echo htmlspecialchars($senior_initials); ?></div>
-                            <div class="name-bg">
-                                <span class="name"><?php echo htmlspecialchars($off_senior); ?></span>
-                            </div>
-                        </div>
-                        <div class="mt-2"></div>
-                        <div class="auditor-info">
-                            <div class="circle"><?php echo htmlspecialchars($staff_1_initials); ?></div>
-                            <div class="name-bg">
-                                <span class="name"><?php echo htmlspecialchars($off_staff_1); ?></span>
-                            </div>
-                        </div>
-                        <?php if(isset($off_staff_2)) { ?>
-                        <div class="mt-2"></div>
-                        <div class="auditor-info">
-                            <div class="circle"><?php echo htmlspecialchars($staff_2_initials); ?></div>
-                            <div class="name-bg">
-                                <span class="name"><?php echo htmlspecialchars($off_staff_2); ?></span>
-                            </div>
-                        </div>
-                        <?php } else {} ?>
-                    </p>
-                  </div>
+    <div class="card-body">
+        <h5 class="card-title">Auditors</h5>
+        <p class="card-text">
+            <div class="auditor-info">
+                <div class="circle" data-tooltip="<?php echo htmlspecialchars($senior_dol); ?>">
+                    <?php echo htmlspecialchars($manager_initials); ?>
                 </div>
+                <div class="name-bg" data-tooltip="<?php echo htmlspecialchars($senior_dol); ?>">
+                    <span class="name"><?php echo htmlspecialchars($off_manager); ?></span>
+                </div>
+            </div>
+            <div class="mt-2"></div>
+            <div class="auditor-info">
+                <div class="circle" data-tooltip="<?php echo htmlspecialchars($staff_1_dol); ?>">
+                    <?php echo htmlspecialchars($senior_initials); ?>
+                </div>
+                <div class="name-bg" data-tooltip="<?php echo htmlspecialchars($staff_1_dol); ?>">
+                    <span class="name"><?php echo htmlspecialchars($off_senior); ?></span>
+                </div>
+            </div>
+            <div class="mt-2"></div>
+            <div class="auditor-info">
+                <div class="circle" data-tooltip="<?php echo htmlspecialchars($staff_2_dol); ?>">
+                    <?php echo htmlspecialchars($staff_1_initials); ?>
+                </div>
+                <div class="name-bg" data-tooltip="<?php echo htmlspecialchars($staff_2_dol); ?>">
+                    <span class="name"><?php echo htmlspecialchars($off_staff_1); ?></span>
+                </div>
+            </div>
+            <?php if(isset($off_staff_2)) { ?>
+            <div class="mt-2"></div>
+            <div class="auditor-info">
+                <div class="circle" data-tooltip="<?php echo htmlspecialchars($staff_2_dol); ?>">
+                    <?php echo htmlspecialchars($staff_2_initials); ?>
+                </div>
+                <div class="name-bg" data-tooltip="<?php echo htmlspecialchars($staff_2_dol); ?>">
+                    <span class="name"><?php echo htmlspecialchars($off_staff_2); ?></span>
+                </div>
+            </div>
+            <?php } ?>
+        </p>
+    </div>
+</div>
+
                 <div class="card details_card" style="width: 38rem;">
                   <div class="card-body">
                     <h5 class="card-title">Engagement Summary <span class="text-secondary" style="font-size: 12px;">(QA Comments)</span></h5>
