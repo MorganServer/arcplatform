@@ -379,17 +379,6 @@ redirectIfNotLoggedIn();
     });
 });
 
-
-// Initialize Bootstrap tooltips
-// var tooltipTriggerList = Array.from(document.querySelectorAll('[data-bs-toggle="tooltip"]'));
-// var tooltipList = tooltipTriggerList.map(function (tooltipTriggerEl) {
-//     return new bootstrap.Tooltip(tooltipTriggerEl, {
-//         html: true, // Enable HTML rendering for line breaks
-//         placement: 'bottom', // Position the tooltip on the right side
-//         offset: [0,10]
-//     });
-// });
-
 </script>
 
                 <div class="card details_card" style="width: 38rem;">
