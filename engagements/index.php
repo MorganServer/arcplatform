@@ -371,9 +371,23 @@ redirectIfNotLoggedIn();
     document.addEventListener('DOMContentLoaded', function () {
     const tooltipTriggerList = [].slice.call(document.querySelectorAll('[data-bs-toggle="tooltip"]'));
     const tooltipList = tooltipTriggerList.map(function (tooltipTriggerEl) {
-        return new bootstrap.Tooltip(tooltipTriggerEl);
+        return new bootstrap.Tooltip(tooltipTriggerEl), {
+            html: true, // Enable HTML rendering for line breaks
+            placement: 'bottom', // Position the tooltip on the right side
+            offset: [0,10]
+        }
     });
 });
+
+// Initialize Bootstrap tooltips
+// var tooltipTriggerList = Array.from(document.querySelectorAll('[data-bs-toggle="tooltip"]'));
+// var tooltipList = tooltipTriggerList.map(function (tooltipTriggerEl) {
+//     return new bootstrap.Tooltip(tooltipTriggerEl, {
+//         html: true, // Enable HTML rendering for line breaks
+//         placement: 'bottom', // Position the tooltip on the right side
+//         offset: [0,10]
+//     });
+// });
 
 </script>
 
