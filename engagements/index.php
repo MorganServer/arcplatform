@@ -331,35 +331,47 @@ redirectIfNotLoggedIn();
                     <?php echo htmlspecialchars($manager_initials); ?>
                 </div>
                 <div class="name-bg">
-                    <span class="name"><?php echo htmlspecialchars($off_manager); ?></span>
+                    <span class="name" data-bs-toggle="tooltip" 
+                          title="<?php echo nl2br(htmlspecialchars($off_manager_dol)); ?>">
+                        <?php echo htmlspecialchars($off_manager); ?>
+                    </span>
                 </div>
             </div>
             <div class="mt-2"></div>
             <div class="auditor-info">
-                <div class="circle" data-tooltip="<?php echo htmlspecialchars($off_senior_dol); ?>">
+                <div class="circle">
                     <?php echo htmlspecialchars($senior_initials); ?>
                 </div>
-                <div class="name-bg" data-tooltip="<?php echo htmlspecialchars($off_senior_dol); ?>">
-                    <span class="name"><?php echo htmlspecialchars($off_senior); ?></span>
+                <div class="name-bg">
+                    <span class="name" data-bs-toggle="tooltip" 
+                          title="<?php echo nl2br(htmlspecialchars($off_senior_dol)); ?>">
+                        <?php echo htmlspecialchars($off_senior); ?>
+                    </span>
                 </div>
             </div>
             <div class="mt-2"></div>
             <div class="auditor-info">
-                <div class="circle" data-tooltip="<?php echo htmlspecialchars($off_staff_1_dol); ?>">
+                <div class="circle">
                     <?php echo htmlspecialchars($staff_1_initials); ?>
                 </div>
-                <div class="name-bg" data-tooltip="<?php echo htmlspecialchars($off_staff_1_dol); ?>">
-                    <span class="name"><?php echo htmlspecialchars($off_staff_1); ?></span>
+                <div class="name-bg">
+                    <span class="name" data-bs-toggle="tooltip" 
+                          title="<?php echo nl2br(htmlspecialchars($off_staff_1_dol)); ?>">
+                        <?php echo htmlspecialchars($off_staff_1); ?>
+                    </span>
                 </div>
             </div>
-            <?php if(isset($off_staff_2)) { ?>
+            <?php if (isset($off_staff_2)) { ?>
             <div class="mt-2"></div>
             <div class="auditor-info">
-                <div class="circle" data-tooltip="<?php echo htmlspecialchars($staff_2_dol); ?>">
+                <div class="circle">
                     <?php echo htmlspecialchars($staff_2_initials); ?>
                 </div>
-                <div class="name-bg" data-tooltip="<?php echo htmlspecialchars($staff_2_dol); ?>">
-                    <span class="name"><?php echo htmlspecialchars($off_staff_2); ?></span>
+                <div class="name-bg">
+                    <span class="name" data-bs-toggle="tooltip" 
+                          title="<?php echo nl2br(htmlspecialchars($staff_2_dol)); ?>">
+                        <?php echo htmlspecialchars($off_staff_2); ?>
+                    </span>
                 </div>
             </div>
             <?php } ?>
@@ -367,17 +379,19 @@ redirectIfNotLoggedIn();
     </div>
 </div>
 
+
 <script>
-    document.addEventListener('DOMContentLoaded', function () {
+   document.addEventListener('DOMContentLoaded', function () {
     const tooltipTriggerList = [].slice.call(document.querySelectorAll('[data-bs-toggle="tooltip"]'));
-    const tooltipList = tooltipTriggerList.map(function (tooltipTriggerEl) {
+    tooltipTriggerList.map(function (tooltipTriggerEl) {
         return new bootstrap.Tooltip(tooltipTriggerEl, {
-            html: true, // Enable HTML rendering for the tooltip
-            placement: 'bottom', // Position the tooltip below the element
-            offset: [0, 10] // Add some spacing
+            html: true, // Enable HTML rendering for multi-line tooltips
+            placement: 'right', // Position the tooltip to the right of the name
+            offset: [0, 10] // Add spacing between tooltip and element
         });
     });
 });
+
 
 </script>
 
