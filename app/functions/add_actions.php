@@ -68,7 +68,8 @@ error_reporting(E_ALL);
         $report_as_of = isset($_POST['report_as_of']) ? trim($_POST['report_as_of']) : "";
         $manager = isset($_POST['manager']) ? trim($_POST['manager']) : "";
         $senior = isset($_POST['senior']) ? trim($_POST['senior']) : "";
-        $staff = isset($_POST['staff']) ? trim($_POST['staff']) : "";
+        $staff_1 = isset($_POST['staff_1']) ? trim($_POST['staff_1']) : "";
+        $staff_2 = isset($_POST['staff_2']) ? trim($_POST['staff_2']) : "";
         $leadsheet_due = isset($_POST['leadsheet_due']) ? trim($_POST['leadsheet_due']) : "";
         $field_work_week = isset($_POST['field_work_week']) ? trim($_POST['field_work_week']) : "";
         $senior_dol = isset($_POST['senior_dol']) ? trim($_POST['senior_dol']) : "";
@@ -84,7 +85,7 @@ error_reporting(E_ALL);
 
         // Prepare query
         $stmt = $conn->prepare(
-            "INSERT INTO engagement (idno, client_name, engagement_type, year, report_start, report_end, report_as_of, manager, senior, staff, leadsheets_due, field_work_week, senior_dol, staff_1_dol, staff_2_dol)
+            "INSERT INTO engagement (idno, client_name, engagement_type, year, report_start, report_end, report_as_of, manager, senior, staff_1, staff_2, leadsheets_due, field_work_week, senior_dol, staff_1_dol, staff_2_dol)
             VALUES (?, NULLIF(?, ''), NULLIF(?, ''), NULLIF(?, ''), NULLIF(?, ''), NULLIF(?, ''), NULLIF(?, ''), NULLIF(?, ''), NULLIF(?, ''), NULLIF(?, ''), NULLIF(?, ''), NULLIF(?, ''), NULLIF(?, ''), NULLIF(?, ''), NULLIF(?, ''))"
         );
 
@@ -103,7 +104,8 @@ error_reporting(E_ALL);
             $report_as_of,
             $manager,
             $senior,
-            $staff,
+            $staff_1,
+            $staff_2,
             $leadsheet_due,
             $field_work_week,
             $senior_dol,
