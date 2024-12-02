@@ -160,6 +160,35 @@ body {
     font-weight: bold;
 }
 
+.circle, .name-bg {
+    position: relative;
+    cursor: pointer;
+}
+
+.circle:hover::after, .name-bg:hover::after {
+    content: attr(data-tooltip);
+    position: absolute;
+    bottom: 100%; /* Position above the element */
+    left: 50%;
+    transform: translateX(-50%);
+    background: rgba(0, 0, 0, 0.75);
+    color: white;
+    padding: 5px 10px;
+    border-radius: 5px;
+    white-space: nowrap;
+    z-index: 1000;
+    opacity: 1;
+    visibility: visible;
+    transition: opacity 0.2s ease-in-out;
+}
+
+.circle::after, .name-bg::after {
+    opacity: 0;
+    visibility: hidden;
+    transition: opacity 0.2s ease-in-out;
+}
+
+
 .new-comments i {
     background-color: #ecf4f9;
     color: #2d60a3;
