@@ -341,7 +341,7 @@ redirectIfNotLoggedIn();
                                 <span class="name"><?php echo htmlspecialchars($off_staff_1); ?></span>
                             </div>
                         </div>
-                        <?php if(!isset($off_staff_2)) { ?>
+                        <?php if(isset($off_staff_2)) { ?>
                         <div class="mt-2"></div>
                         <div class="auditor-info">
                             <div class="circle"><?php echo htmlspecialchars($staff_2_initials); ?></div>
