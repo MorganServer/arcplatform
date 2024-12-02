@@ -169,7 +169,7 @@ if (isset($_GET['action']) && $_GET['action'] === 'mark_complete' && isset($_GET
     $e_id = intval($_GET['e_id']);   // Sanitize the input
 
     // Prepare the SQL query to update the status
-    $sql = "UPDATE qa_comments SET status = 'complete' WHERE qa_id = ?";
+    $sql = "UPDATE qa_comments SET status = 'Complete' WHERE qa_id = ?";
     if ($stmt = $conn->prepare($sql)) {
         $stmt->bind_param("i", $qa_id);
 
