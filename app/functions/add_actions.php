@@ -76,17 +76,11 @@ error_reporting(E_ALL);
         $staff_1_dol = isset($_POST['staff_1_dol']) ? trim($_POST['staff_1_dol']) : "";
         $staff_2_dol = isset($_POST['staff_2_dol']) ? trim($_POST['staff_2_dol']) : "";
 
-        // Debug parameters
-        echo "Debug Parameters:<br>";
-        echo "e_idno: $e_idno<br>";
-        echo "e_client_name: $e_client_name<br>";
-        echo "e_engagement_type: $e_engagement_type<br>";
-        // Add other variables as needed
 
         // Prepare query
         $stmt = $conn->prepare(
             "INSERT INTO engagement (idno, client_name, engagement_type, year, report_start, report_end, report_as_of, manager, senior, staff_1, staff_2, leadsheets_due, field_work_week, senior_dol, staff_1_dol, staff_2_dol)
-            VALUES (?, NULLIF(?, ''), NULLIF(?, ''), NULLIF(?, ''), NULLIF(?, ''), NULLIF(?, ''), NULLIF(?, ''), NULLIF(?, ''), NULLIF(?, ''), NULLIF(?, ''), NULLIF(?, ''), NULLIF(?, ''), NULLIF(?, ''), NULLIF(?, ''), NULLIF(?, ''))"
+            VALUES (?, NULLIF(?, ''), NULLIF(?, ''), NULLIF(?, ''), NULLIF(?, ''), NULLIF(?, ''), NULLIF(?, ''), NULLIF(?, ''), NULLIF(?, ''), NULLIF(?, ''), NULLIF(?, ''), NULLIF(?, ''), NULLIF(?, ''), NULLIF(?, ''), NULLIF(?, ''), NULLIF(?, ''))"
         );
 
         if (!$stmt) {
