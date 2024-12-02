@@ -163,6 +163,25 @@
     }
 // end edit engagement
 
+// complete qa comment
+if (isset($_GET['action']) && $_GET['action'] == 'mark_complete' && isset($_GET['qa_id'])) {
+    $qa_id = $_GET['qa_id'];
+    $engagement_id = $_GET['e_id'];
+
+    // Update the QA comment status to complete
+    $updateQuery = "UPDATE qa_comments SET status = 'complete' WHERE id = ?";
+    $stmt = $pdo->prepare($updateQuery);
+    if ($stmt->execute([$qa_id])) {
+        echo "QA Comment marked as complete successfully.";
+        // Optionally, redirect back to the relevant page
+        header("Location: some_page.php?e_id=$engagement_id");
+        exit();
+    } else {
+        echo "Failed to mark QA Comment as complete.";
+    }
+}
+// end complete qa commment
+
 
 // delete qa_comment
     if (isset($_GET['action']) && $_GET['action'] === 'delete_qa_comment' && isset($_GET['qa_id'])) {
