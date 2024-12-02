@@ -461,7 +461,7 @@ redirectIfNotLoggedIn();
                     $page = isset($_GET['page']) ? $_GET['page'] : 1;
                     $offset = ($page - 1) * $limit;
                     
-                    $sql = "SELECT * FROM qa_comments WHERE engagement_id = '$off_id' && status!='Completed' ORDER BY qa_updated ASC LIMIT $limit OFFSET $offset";
+                    $sql = "SELECT * FROM qa_comments WHERE engagement_id = '$off_id' && status!='Completed' ORDER BY qa_updated DESC LIMIT $limit OFFSET $offset";
                     $result = mysqli_query($conn, $sql);
                     if($result) {
                         $num_rows = mysqli_num_rows($result);
