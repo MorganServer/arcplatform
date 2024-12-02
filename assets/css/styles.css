@@ -169,7 +169,7 @@ body {
     content: attr(data-tooltip);
     position: absolute;
     bottom: 100%; /* Position above the element */
-    /* left: 50%; */
+    left: 100%;
     transform: translateX(-50%);
     background: rgba(0, 0, 0, 0.75);
     color: white;
