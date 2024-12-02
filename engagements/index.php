@@ -332,7 +332,7 @@ redirectIfNotLoggedIn();
                 </div>
                 <div class="name-bg">
                     <span class="name" data-bs-toggle="tooltip" 
-                          title="<?php echo nl2br(htmlspecialchars($off_manager_dol)); ?>">
+                          title="<?php echo nl2br(htmlspecialchars(str_replace(', ', "\n", $off_manager_dol))); ?>">
                         <?php echo htmlspecialchars($off_manager); ?>
                     </span>
                 </div>
@@ -344,7 +344,7 @@ redirectIfNotLoggedIn();
                 </div>
                 <div class="name-bg">
                     <span class="name" data-bs-toggle="tooltip" 
-                          title="<?php echo nl2br(htmlspecialchars($off_senior_dol)); ?>">
+                          title="<?php echo nl2br(htmlspecialchars(str_replace(', ', "\n", $off_senior_dol))); ?>">
                         <?php echo htmlspecialchars($off_senior); ?>
                     </span>
                 </div>
@@ -356,7 +356,7 @@ redirectIfNotLoggedIn();
                 </div>
                 <div class="name-bg">
                     <span class="name" data-bs-toggle="tooltip" 
-                          title="<?php echo nl2br(htmlspecialchars($off_staff_1_dol)); ?>">
+                          title="<?php echo nl2br(htmlspecialchars(str_replace(', ', "\n", $off_staff_1_dol))); ?>">
                         <?php echo htmlspecialchars($off_staff_1); ?>
                     </span>
                 </div>
@@ -369,7 +369,7 @@ redirectIfNotLoggedIn();
                 </div>
                 <div class="name-bg">
                     <span class="name" data-bs-toggle="tooltip" 
-                          title="<?php echo nl2br(htmlspecialchars($staff_2_dol)); ?>">
+                          title="<?php echo nl2br(htmlspecialchars(str_replace(', ', "\n", $staff_2_dol))); ?>">
                         <?php echo htmlspecialchars($off_staff_2); ?>
                     </span>
                 </div>
@@ -378,6 +378,7 @@ redirectIfNotLoggedIn();
         </p>
     </div>
 </div>
+
 
 
 <script>
