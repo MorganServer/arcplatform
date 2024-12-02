@@ -194,10 +194,12 @@ redirectIfNotLoggedIn();
                     $last_initial = isset($name_parts[1]) ? strtoupper($name_parts[1][0]) : '';
                     $staff_1_initials = $first_initial . $last_initial;
 
-                    $name_parts = explode(" ", $off_staff_2);
-                    $first_initial = isset($name_parts[0]) ? strtoupper($name_parts[0][0]) : '';
-                    $last_initial = isset($name_parts[1]) ? strtoupper($name_parts[1][0]) : '';
-                    $staff_2_initials = $first_initial . $last_initial;
+                    if(isset($off_staff_2)) {
+                        $name_parts = explode(" ", $off_staff_2);
+                        $first_initial = isset($name_parts[0]) ? strtoupper($name_parts[0][0]) : '';
+                        $last_initial = isset($name_parts[1]) ? strtoupper($name_parts[1][0]) : '';
+                        $staff_2_initials = $first_initial . $last_initial;
+                    } else {}
                     
 
                     $formatted_start = date("m/d/Y", strtotime($off_report_start));
