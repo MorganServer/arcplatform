@@ -194,13 +194,6 @@ if (isset($_GET['action']) && $_GET['action'] === 'mark_followup' && isset($_GET
     $qa_id = intval($_GET['qa_id']); // Sanitize the input
     $e_id = intval($_GET['e_id']);   // Sanitize the input
 
-    // Initialize the database connection
-    require_once 'db_connection.php'; // Adjust to your database connection file
-    if (!$conn) {
-        echo "<div class='alert alert-danger'>Database connection failed.</div>";
-        exit();
-    }
-
     // Prepare the SQL query to update the status
     $sql = "UPDATE qa_comments SET status = 'Follow-Up' WHERE qa_id = ?";
     if ($stmt = $conn->prepare($sql)) {
