@@ -676,7 +676,7 @@ unset($query_array['page']);
 $base_url = $_SERVER['PHP_SELF'] . '?' . http_build_query($query_array);
 
 // Pagination links
-$sql = "SELECT COUNT(*) as total FROM qa_comments WHERE engagement_id = '$off_id'";
+$sql = "SELECT COUNT(*) as total FROM qa_comments WHERE engagement_id = '$off_id' and status != 'Completed'";
 $result = mysqli_query($conn, $sql);
 $row = mysqli_fetch_assoc($result);
 $total_pages = ceil($row["total"] / $limit);
