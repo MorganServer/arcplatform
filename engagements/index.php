@@ -331,8 +331,7 @@ redirectIfNotLoggedIn();
                     <?php echo htmlspecialchars($manager_initials); ?>
                 </div>
                 <div class="name-bg">
-                    <span class="name" data-bs-toggle="tooltip" 
-                          title="<?php echo nl2br(htmlspecialchars(str_replace(', ', "\n", $off_manager_dol))); ?>">
+                    <span class="name">
                         <?php echo htmlspecialchars($off_manager); ?>
                     </span>
                 </div>
