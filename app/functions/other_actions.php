@@ -189,6 +189,40 @@ if (isset($_GET['action']) && $_GET['action'] === 'mark_complete' && isset($_GET
 }
 // end complete qa commment
 
+// Mark Awaiting Followup
+if (isset($_GET['action']) && $_GET['action'] === 'mark_followup' && isset($_GET['qa_id'])) {
+    $qa_id = intval($_GET['qa_id']); // Sanitize the input
+    $e_id = intval($_GET['e_id']);   // Sanitize the input
+
+    // Initialize the database connection
+    require_once 'db_connection.php'; // Adjust to your database connection file
+    if (!$conn) {
+        echo "<div class='alert alert-danger'>Database connection failed.</div>";
+        exit();
+    }
+
+    // Prepare the SQL query to update the status
+    $sql = "UPDATE qa_comments SET status = 'Follow-Up' WHERE qa_id = ?";
+    if ($stmt = $conn->prepare($sql)) {
+        $stmt->bind_param("i", $qa_id);
+
+        // Execute the statement
+        if ($stmt->execute()) {
+            // Redirect back to the engagements page after successful update
+            header('Location: ' . BASE_URL . '/engagements/?engagement_id=' . $e_id);
+            exit();
+        } else {
+            echo "<div class='alert alert-danger'>Error updating QA comment status: " . $stmt->error . "</div>";
+        }
+
+        $stmt->close();
+    } else {
+        echo "<div class='alert alert-danger'>Error preparing the statement: " . $conn->error . "</div>";
+    }
+}
+
+// end Awaiting Followup
+
 
 // delete qa_comment
     if (isset($_GET['action']) && $_GET['action'] === 'delete_qa_comment' && isset($_GET['qa_id'])) {
