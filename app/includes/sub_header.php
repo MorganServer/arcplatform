@@ -135,6 +135,7 @@ $pageName = ucwords($pageName);
                         <option value="SOC 2 Type 1">SOC 2 Type 1</option>
                         <option value="SOC 2 Type 2">SOC 2 Type 2</option>
                         <option value="HIPAA">HIPAA</option>
+                        <option value="PCI">PCI</option>
                     </select>
                 </div>
                 <div class="col-md-6">
@@ -162,8 +163,12 @@ $pageName = ucwords($pageName);
                     <input type="text" class="form-control" id="senior" name="senior">
                 </div>
                 <div class="col-md-6">
-                    <label for="staff" class="form-label">Staff</label>
-                    <input type="text" class="form-control" id="staff" name="staff">
+                    <label for="staff_1" class="form-label">Staff 1</label>
+                    <input type="text" class="form-control" id="staff_1" name="staff_1">
+                </div>
+                <div class="col-md-6">
+                    <label for="staff_2" class="form-label">Staff 2</label>
+                    <input type="text" class="form-control" id="staff_2" name="staff_2">
                 </div>
                 <div class="col-md-6">
                     <label for="leadsheet_due" class="form-label">Leadsheet Due</label>
