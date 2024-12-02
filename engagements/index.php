@@ -176,6 +176,9 @@ redirectIfNotLoggedIn();
                     $off_staff_1                = $off_row['staff_1'];
                     $off_staff_2                = $off_row['staff_2']; 
                     $off_status                 = $off_row['status']; 
+                    $off_senior_dol             = $off_row['senior_dol'];
+                    $off_staff_1_dol            = $off_row['staff_1_dol'];
+                    $off_staff_2_dol            = $off_row['staff_2_dol'];
 
 
                     // Split the name into parts and get initials
@@ -324,28 +327,28 @@ redirectIfNotLoggedIn();
         <h5 class="card-title">Auditors</h5>
         <p class="card-text">
             <div class="auditor-info">
-                <div class="circle" data-tooltip="<?php echo htmlspecialchars($senior_dol); ?>">
+                <div class="circle" data-tooltip="<?php echo htmlspecialchars($off_senior_dol); ?>">
                     <?php echo htmlspecialchars($manager_initials); ?>
                 </div>
-                <div class="name-bg" data-tooltip="<?php echo htmlspecialchars($senior_dol); ?>">
+                <div class="name-bg" data-tooltip="<?php echo htmlspecialchars($off_senior_dol); ?>">
                     <span class="name"><?php echo htmlspecialchars($off_manager); ?></span>
                 </div>
             </div>
             <div class="mt-2"></div>
             <div class="auditor-info">
-                <div class="circle" data-tooltip="<?php echo htmlspecialchars($staff_1_dol); ?>">
+                <div class="circle" data-tooltip="<?php echo htmlspecialchars($off_staff_1_dol); ?>">
                     <?php echo htmlspecialchars($senior_initials); ?>
                 </div>
-                <div class="name-bg" data-tooltip="<?php echo htmlspecialchars($staff_1_dol); ?>">
+                <div class="name-bg" data-tooltip="<?php echo htmlspecialchars($off_staff_1_dol); ?>">
                     <span class="name"><?php echo htmlspecialchars($off_senior); ?></span>
                 </div>
             </div>
             <div class="mt-2"></div>
             <div class="auditor-info">
-                <div class="circle" data-tooltip="<?php echo htmlspecialchars($staff_2_dol); ?>">
+                <div class="circle" data-tooltip="<?php echo htmlspecialchars($off_staff_2_dol); ?>">
                     <?php echo htmlspecialchars($staff_1_initials); ?>
                 </div>
-                <div class="name-bg" data-tooltip="<?php echo htmlspecialchars($staff_2_dol); ?>">
+                <div class="name-bg" data-tooltip="<?php echo htmlspecialchars($off_staff_2_dol); ?>">
                     <span class="name"><?php echo htmlspecialchars($off_staff_1); ?></span>
                 </div>
             </div>
