@@ -173,7 +173,8 @@ redirectIfNotLoggedIn();
                     $off_report_as_of           = $off_row['report_as_of']; 
                     $off_manager                = $off_row['manager']; 
                     $off_senior                 = $off_row['senior']; 
-                    $off_staff                  = $off_row['staff']; 
+                    $off_staff_1                = $off_row['staff_1'];
+                    $off_staff_2                = $off_row['staff_2']; 
                     $off_status                 = $off_row['status']; 
 
 
@@ -188,10 +189,15 @@ redirectIfNotLoggedIn();
                     $last_initial = isset($name_parts[1]) ? strtoupper($name_parts[1][0]) : '';
                     $senior_initials = $first_initial . $last_initial;
 
-                    $name_parts = explode(" ", $off_staff);
+                    $name_parts = explode(" ", $off_staff_1);
                     $first_initial = isset($name_parts[0]) ? strtoupper($name_parts[0][0]) : '';
                     $last_initial = isset($name_parts[1]) ? strtoupper($name_parts[1][0]) : '';
-                    $staff_initials = $first_initial . $last_initial;
+                    $staff_1_initials = $first_initial . $last_initial;
+
+                    $name_parts = explode(" ", $off_staff_2);
+                    $first_initial = isset($name_parts[0]) ? strtoupper($name_parts[0][0]) : '';
+                    $last_initial = isset($name_parts[1]) ? strtoupper($name_parts[1][0]) : '';
+                    $staff_2_initials = $first_initial . $last_initial;
                     
 
                     $formatted_start = date("m/d/Y", strtotime($off_report_start));
@@ -330,11 +336,20 @@ redirectIfNotLoggedIn();
                         </div>
                         <div class="mt-2"></div>
                         <div class="auditor-info">
-                            <div class="circle"><?php echo htmlspecialchars($staff_initials); ?></div>
+                            <div class="circle"><?php echo htmlspecialchars($staff_1_initials); ?></div>
                             <div class="name-bg">
-                                <span class="name"><?php echo htmlspecialchars($off_staff); ?></span>
+                                <span class="name"><?php echo htmlspecialchars($off_staff_1); ?></span>
                             </div>
                         </div>
+                        <?php if(!isset($off_staff_2)) { ?>
+                        <div class="mt-2"></div>
+                        <div class="auditor-info">
+                            <div class="circle"><?php echo htmlspecialchars($staff_2_initials); ?></div>
+                            <div class="name-bg">
+                                <span class="name"><?php echo htmlspecialchars($off_staff_2); ?></span>
+                            </div>
+                        </div>
+                        <?php } else {} ?>
                     </p>
                   </div>
                 </div>
