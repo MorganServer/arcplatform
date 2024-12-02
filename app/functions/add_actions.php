@@ -88,7 +88,7 @@ error_reporting(E_ALL);
         }
 
         $stmt->bind_param(
-            "sssssssssssssss",
+            "ssssssssssssssss",
             $e_idno,
             $e_client_name,
             $e_engagement_type,
