@@ -211,35 +211,30 @@ redirectIfNotLoggedIn();
                 }
 
                 // Ensure $off_client_name is properly sanitized
-$off_client_name = mysqli_real_escape_string($conn, $off_client_name);
+                $off_client_name = mysqli_real_escape_string($conn, $off_client_name);
 
-// Query to fetch client details
-$sep_sql = "SELECT * FROM clients WHERE client_name = '$off_client_name'";
-$sep_result = mysqli_query($conn, $sep_sql);
+                // Query to fetch client details
+                $sep_sql = "SELECT * FROM clients WHERE client_name = '$off_client_name'";
+                $sep_result = mysqli_query($conn, $sep_sql);
 
-if ($sep_result) {
-    $sep_num_rows = mysqli_num_rows($sep_result);
-
-    if ($sep_num_rows > 0) {
-        while ($sep_row = mysqli_fetch_assoc($sep_result)) {
-            $sep_client_id = htmlspecialchars($sep_row['client_id'], ENT_QUOTES, 'UTF-8');
-            $sep_client_name = htmlspecialchars($sep_row['client_name'], ENT_QUOTES, 'UTF-8');
-            ?>
-        <!-- end php code for getting asset details -->
-
-    <!-- main-container -->
-    <div class="container" style="background-color: #f2f2f2 !important;">
+                if ($sep_result) {
+                    $sep_num_rows = mysqli_num_rows($sep_result);
+                
+                    if ($sep_num_rows > 0) {
+                        while ($sep_row = mysqli_fetch_assoc($sep_result)) {
+                            $sep_client_id = htmlspecialchars($sep_row['client_id'], ENT_QUOTES, 'UTF-8');
+                            $sep_client_name = htmlspecialchars($sep_row['client_name'], ENT_QUOTES, 'UTF-8');
+                ?>
+                        <!-- end php code for getting asset details -->
+                        
+                <!-- main-container -->
+            <div class="container" style="background-color: #f2f2f2 !important;">
                 <a class="text-decoration-none" href="<?php echo BASE_URL; ?>/client_list/details/?id=<?php echo $sep_client_id; ?>">
                     <i class="bi bi-arrow-left"></i>&nbsp; Back to <?php echo $sep_client_name; ?>
                 </a>
-           
-
-            <?php
-        }
-    }
-
-}
-?>
+                        
+                        
+            <?php } } } ?>
             <br>
             <div class="mt-5"></div>
             <div class="detail-section d-flex justify-content-between">
