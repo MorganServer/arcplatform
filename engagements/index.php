@@ -226,7 +226,7 @@ redirectIfNotLoggedIn();
     <!-- main-container -->
         <div class="container" style="background-color: #f2f2f2 !important;">
                 <a class="text-decoration-none" href="<?php BASE_URL; ?>/client_list/details/?id=<?php echo $sep_client_id; ?>"><i class="bi bi-arrow-left"></i>&nbsp; Back to <?php echo $sep_client_name; ?></a>
-            
+            <?php }} }?>
             <br>
             <div class="mt-5"></div>
             <div class="detail-section d-flex justify-content-between">
@@ -725,7 +725,6 @@ redirectIfNotLoggedIn();
                         }
                     }
                 }
-            }}}
                 ?>
             </tbody>
         </table>
