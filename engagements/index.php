@@ -209,13 +209,24 @@ redirectIfNotLoggedIn();
                     $formatted_end = date("m/d/Y", strtotime($off_report_end));
                     $formatted_as_of = date("m/d/Y", strtotime($off_report_as_of));
                 }
-            // }}
+
+                $sep_sql = "SELECT * FROM clients WHERE client_name = $off_client_name";
+                $sep_result = mysqli_query($conn, $sep_sql);
+                if($sep_result) {
+                $sep_num_rows = mysqli_num_rows($sep_result);
+                if($sep_num_rows > 0) {
+                while ($sep_row = mysqli_fetch_assoc($sep_result)) {
+                    $sep_client_id = $sep_row['client_id'];
+                    $sep_client_name = $sep_row['client_name'];
+                }
+                }
+                }
             ?>
         <!-- end php code for getting asset details -->
 
     <!-- main-container -->
         <div class="container" style="background-color: #f2f2f2 !important;">
-                <a class="text-decoration-none" href="<?php BASE_URL; ?>/client_list"><i class="bi bi-arrow-left"></i>&nbsp; Back to Client List</a>
+                <a class="text-decoration-none" href="<?php BASE_URL; ?>/client_list/details/?id=<?php echo $sep_client_id; ?>"><i class="bi bi-arrow-left"></i>&nbsp; Back to <?php echo $sep_client_name; ?></a>
             
             <br>
             <div class="mt-5"></div>
@@ -323,77 +334,75 @@ redirectIfNotLoggedIn();
                   </div>
                 </div>
                 <div class="card details_card" style="width: 20rem;">
-    <div class="card-body">
-        <h5 class="card-title">Auditors</h5>
-        <p class="card-text">
-            <div class="auditor-info">
-                <div class="circle">
-                    <?php echo htmlspecialchars($manager_initials); ?>
+                    <div class="card-body">
+                        <h5 class="card-title">Auditors</h5>
+                        <p class="card-text">
+                            <div class="auditor-info">
+                                <div class="circle">
+                                    <?php echo htmlspecialchars($manager_initials); ?>
+                                </div>
+                                <div class="name-bg">
+                                    <span class="name">
+                                        <?php echo htmlspecialchars($off_manager); ?>
+                                    </span>
+                                </div>
+                            </div>
+                            <div class="mt-2"></div>
+                            <div class="auditor-info">
+                                <div class="circle">
+                                    <?php echo htmlspecialchars($senior_initials); ?>
+                                </div>
+                                <div class="name-bg">
+                                    <span class="name" data-bs-toggle="tooltip" 
+                                          title="<?php echo nl2br(htmlspecialchars(str_replace(', ', "\n", $off_senior_dol))); ?>">
+                                        <?php echo htmlspecialchars($off_senior); ?>
+                                    </span>
+                                </div>
+                            </div>
+                            <div class="mt-2"></div>
+                            <div class="auditor-info">
+                                <div class="circle">
+                                    <?php echo htmlspecialchars($staff_1_initials); ?>
+                                </div>
+                                <div class="name-bg">
+                                    <span class="name" data-bs-toggle="tooltip" 
+                                          title="<?php echo nl2br(htmlspecialchars(str_replace(', ', "\n", $off_staff_1_dol))); ?>">
+                                        <?php echo htmlspecialchars($off_staff_1); ?>
+                                    </span>
+                                </div>
+                            </div>
+                            <?php if (isset($off_staff_2)) { ?>
+                            <div class="mt-2"></div>
+                            <div class="auditor-info">
+                                <div class="circle">
+                                    <?php echo htmlspecialchars($staff_2_initials); ?>
+                                </div>
+                                <div class="name-bg">
+                                    <span class="name" data-bs-toggle="tooltip" 
+                                          title="<?php echo nl2br(htmlspecialchars(str_replace(', ', "\n", $staff_2_dol))); ?>">
+                                        <?php echo htmlspecialchars($off_staff_2); ?>
+                                    </span>
+                                </div>
+                            </div>
+                            <?php } ?>
+                        </p>
+                    </div>
                 </div>
-                <div class="name-bg">
-                    <span class="name">
-                        <?php echo htmlspecialchars($off_manager); ?>
-                    </span>
-                </div>
-            </div>
-            <div class="mt-2"></div>
-            <div class="auditor-info">
-                <div class="circle">
-                    <?php echo htmlspecialchars($senior_initials); ?>
-                </div>
-                <div class="name-bg">
-                    <span class="name" data-bs-toggle="tooltip" 
-                          title="<?php echo nl2br(htmlspecialchars(str_replace(', ', "\n", $off_senior_dol))); ?>">
-                        <?php echo htmlspecialchars($off_senior); ?>
-                    </span>
-                </div>
-            </div>
-            <div class="mt-2"></div>
-            <div class="auditor-info">
-                <div class="circle">
-                    <?php echo htmlspecialchars($staff_1_initials); ?>
-                </div>
-                <div class="name-bg">
-                    <span class="name" data-bs-toggle="tooltip" 
-                          title="<?php echo nl2br(htmlspecialchars(str_replace(', ', "\n", $off_staff_1_dol))); ?>">
-                        <?php echo htmlspecialchars($off_staff_1); ?>
-                    </span>
-                </div>
-            </div>
-            <?php if (isset($off_staff_2)) { ?>
-            <div class="mt-2"></div>
-            <div class="auditor-info">
-                <div class="circle">
-                    <?php echo htmlspecialchars($staff_2_initials); ?>
-                </div>
-                <div class="name-bg">
-                    <span class="name" data-bs-toggle="tooltip" 
-                          title="<?php echo nl2br(htmlspecialchars(str_replace(', ', "\n", $staff_2_dol))); ?>">
-                        <?php echo htmlspecialchars($off_staff_2); ?>
-                    </span>
-                </div>
-            </div>
-            <?php } ?>
-        </p>
-    </div>
-</div>
 
 
 
-<script>
-   document.addEventListener('DOMContentLoaded', function () {
-    const tooltipTriggerList = [].slice.call(document.querySelectorAll('[data-bs-toggle="tooltip"]'));
-    tooltipTriggerList.map(function (tooltipTriggerEl) {
-        return new bootstrap.Tooltip(tooltipTriggerEl, {
-            html: true, // Enable HTML rendering for multi-line tooltips
-            placement: 'right', // Position the tooltip to the right of the name
-            offset: [0, 10] // Add spacing between tooltip and element
-        });
-    });
-});
-
-
-</script>
+                <script>
+                   document.addEventListener('DOMContentLoaded', function () {
+                    const tooltipTriggerList = [].slice.call(document.querySelectorAll('[data-bs-toggle="tooltip"]'));
+                    tooltipTriggerList.map(function (tooltipTriggerEl) {
+                        return new bootstrap.Tooltip(tooltipTriggerEl, {
+                            html: true, // Enable HTML rendering for multi-line tooltips
+                            placement: 'right', // Position the tooltip to the right of the name
+                            offset: [0, 10] // Add spacing between tooltip and element
+                        });
+                    });
+                });
+                </script>
 
                 <div class="card details_card" style="width: 38rem;">
                   <div class="card-body">
