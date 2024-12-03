@@ -236,11 +236,8 @@ if ($sep_result) {
 
             <?php
         }
-    } else {
-        echo "<div>No client found with the name: " . htmlspecialchars($off_client_name, ENT_QUOTES, 'UTF-8') . "</div>";
     }
-} else {
-    echo "<div>Error executing query: " . mysqli_error($conn) . "</div>";
+
 }
 ?>
             <br>
