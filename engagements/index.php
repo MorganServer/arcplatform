@@ -232,7 +232,7 @@ if ($sep_result) {
                 <a class="text-decoration-none" href="<?php echo BASE_URL; ?>/client_list/details/?id=<?php echo $sep_client_id; ?>">
                     <i class="bi bi-arrow-left"></i>&nbsp; Back to <?php echo $sep_client_name; ?>
                 </a>
-            </div>
+           
 
             <?php
         }
